@@ -1,13 +1,50 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOLTECH - نظام إدارة شركات الأجهزة والإكسسوارات الذكي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOLTECH - نظام إدارة شركات الأجهزة والإكسسوارات الذكي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&amp;family=Orbitron:wght@700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* V6.3.2 FINAL INVOICE LOGO LEFT */
+        #printPreviewModal .invoice-print-box .invoice-top-header {
+            position: relative !important;
+            display: block !important;
+            width: 100% !important;
+            min-height: 82px !important;
+            direction: ltr !important;
+        }
+        #printPreviewModal .invoice-print-box .invoice-header-brand {
+            position: absolute !important;
+            left: 0 !important;
+            right: auto !important;
+            top: 0 !important;
+            width: 50% !important;
+            margin: 0 !important;
+            text-align: left !important;
+            display: block !important;
+        }
+        #printPreviewModal .invoice-print-box .invoice-header-brand .brand,
+        #printPreviewModal .invoice-print-box .invoice-header-brand p {
+            text-align: left !important;
+        }
+        #printPreviewModal .invoice-print-box .invoice-header-info {
+            position: absolute !important;
+            right: 0 !important;
+            left: auto !important;
+            top: 0 !important;
+            width: 50% !important;
+            margin: 0 !important;
+            text-align: right !important;
+            display: block !important;
+        }
+        @media print {
+            #printPreviewModal .invoice-print-box .invoice-header-brand { left: 0 !important; right: auto !important; }
+            #printPreviewModal .invoice-print-box .invoice-header-info { right: 0 !important; left: auto !important; }
+        }
+
         :root {
             --bg-deep: #0b0c10;
             --bg-glass: rgba(22, 22, 30, 0.85);
@@ -167,6 +204,129 @@
             background: linear-gradient(135deg, #15161d 0%, #101116 100%); color: #f5f6fa; width: 680px; padding: 40px; border-radius: 16px; font-family: 'Tajawal', sans-serif;
             box-shadow: 0 0 50px rgba(255, 42, 77, 0.25); border: 2px solid #ff2a4d; text-align: right; direction: rtl; position: relative;
         }
+        /* Fix invoice preview overflow/alignment: the global table min-width must not affect the invoice table. */
+        #printPreviewModal {
+            box-sizing: border-box;
+        }
+        #printPreviewModal .invoice-print-box {
+            box-sizing: border-box;
+            width: min(760px, calc(100vw - 40px));
+            max-width: 760px;
+            overflow: hidden;
+        }
+        #printPreviewModal .invoice-top-header {
+            width: 100%;
+            box-sizing: border-box;
+            flex-direction: row;
+            direction: ltr;
+            align-items: flex-start;
+        }
+        #printPreviewModal .invoice-top-header > div:first-child {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        #printPreviewModal .invoice-top-header > div:last-child {
+            flex: 1 1 50%;
+            min-width: 0;
+        }
+        #printPreviewModal .invoice-top-header > div:first-child {
+            flex: 1 1 50%;
+            min-width: 0;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-info { order: 2 !important; text-align:right !important; direction:rtl; }
+        #printPreviewModal .invoice-top-header .invoice-header-brand { order: 1 !important; text-align:left !important; direction:rtl; }
+        #printPreviewModal .invoice-meta-grid > div:last-child { text-align:left !important; direction:ltr; }
+        /* V6.3.1 FINAL - customer invoice header layout and exact system dimensions */
+        #printPreviewModal .invoice-print-box {
+            width: 680px !important;
+            max-width: calc(100vw - 40px) !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+        #printPreviewModal .invoice-top-header {
+            display: grid !important;
+            grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+            grid-template-rows: auto !important;
+            direction: ltr !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            align-items: start !important;
+            justify-content: normal !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+            order: initial !important;
+            justify-self: start !important;
+            align-self: start !important;
+            display: block !important;
+            width: auto !important;
+            min-width: 0 !important;
+            text-align: left !important;
+            direction: rtl !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand .brand {
+            display: block !important;
+            width: max-content !important;
+            max-width: 100% !important;
+            text-align: left !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand p {
+            display: block !important;
+            width: auto !important;
+            margin: 0 !important;
+            text-align: left !important;
+            direction: rtl !important;
+            white-space: normal !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-info {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+            order: initial !important;
+            justify-self: end !important;
+            align-self: start !important;
+            display: block !important;
+            width: auto !important;
+            min-width: 0 !important;
+            text-align: right !important;
+            direction: rtl !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-info p {
+            text-align: right !important;
+            direction: rtl !important;
+            margin: 0 0 4px 0 !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-info p:last-child { margin-bottom: 0 !important; }
+
+        @media print {
+            #printPreviewModal .invoice-top-header { display:flex !important; flex-direction:row !important; direction:ltr !important; justify-content:space-between !important; align-items:flex-start !important; }
+            #printPreviewModal .invoice-top-header .invoice-header-info { order:2 !important; text-align:right !important; direction:rtl !important; }
+            #printPreviewModal .invoice-top-header .invoice-header-brand { order:1 !important; text-align:left !important; direction:rtl !important; }
+            #printPreviewModal .invoice-meta-grid { display:grid !important; grid-template-columns:1fr 1fr !important; }
+            #printPreviewModal .invoice-meta-grid > div:last-child { text-align:left !important; direction:ltr !important; }
+        }
+        #printPreviewModal .print-table {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100%;
+            table-layout: fixed;
+            box-sizing: border-box;
+        }
+        #printPreviewModal .print-table th,
+        #printPreviewModal .print-table td {
+            box-sizing: border-box;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        #printPreviewModal .invoice-meta-grid {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #printPreviewModal .invoice-total-row {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         .invoice-top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2f2f3d; padding-bottom: 15px; margin-bottom: 20px; }
         .invoice-top-header .brand { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900; color: #fff; letter-spacing: 2px; }
         .invoice-top-header .brand span { color: #ff2a4d; text-shadow: 0 0 10px rgba(255,42,77,0.5); }
@@ -198,7 +358,7 @@
         main { min-width:0; }
         .card { min-width:0; }
         .table-container { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
-        table { min-width: 720px; }
+        table:not(.print-table) { min-width: 720px; }
         .form-grid { min-width:0; }
         input, select, textarea, button { max-width:100%; }
         img { max-width:100%; height:auto; }
@@ -242,12 +402,13 @@
             #accountsActionBar h2 { flex:1 1 100%; }
             .account-quick-btn { padding:8px 10px; font-size:12px; }
             .table-container { margin-top:10px; overflow-x:auto; }
-            table { min-width: 760px; }
+            table:not(.print-table) { min-width: 760px; }
             .modal-content-box { width:96vw; max-width:96vw; padding:18px; max-height:88vh; }
             .invoice-print-box { width:96vw; max-width:96vw; padding:20px; }
             .invoice-meta-grid { grid-template-columns:1fr; }
-            .invoice-top-header { flex-direction:column; align-items:flex-start; gap:12px; }
-            .invoice-top-header > div:last-child { width:100%; text-align:right !important; }
+            #printPreviewModal .invoice-top-header { flex-direction:column; align-items:stretch; gap:12px; }
+            #printPreviewModal .invoice-top-header > div:last-child { width:100%; min-width:0; justify-content:flex-start; }
+            #printPreviewModal .invoice-top-header > div:last-child > div:last-child { text-align:left !important; }
         }
 
         @media (max-width: 540px) {
@@ -280,6 +441,151 @@
             main { padding:10px; }
         }
 
+        /* V6.2.2 - Invoice preview: completely isolated from global table/responsive rules */
+        #printPreviewModal .invoice-print-box {
+            width: 680px !important;
+            max-width: calc(100vw - 32px) !important;
+            min-width: 0 !important;
+            padding: 30px !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+        #printPreviewModal .invoice-top-header {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: flex-start !important;
+            direction: ltr !important;
+        }
+        #printPreviewModal .invoice-top-header > div:first-child {
+            flex: 0 1 auto !important;
+            min-width: 0 !important;
+            text-align: right !important;
+            direction: rtl !important;
+            order: 2 !important;
+        }
+        #printPreviewModal .invoice-top-header > div:last-child {
+            flex: 0 1 auto !important;
+            min-width: 0 !important;
+            width: auto !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            gap: 15px !important;
+            order: 1 !important;
+        }
+        #printPreviewModal .invoice-top-header > div:last-child > div:last-child {
+            text-align: left !important;
+            direction: rtl !important;
+            white-space: nowrap !important;
+        }
+        #printPreviewModal .invoice-print-box table.print-table {
+            display: table !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            table-layout: fixed !important;
+            box-sizing: border-box !important;
+        }
+        #printPreviewModal .invoice-print-box table.print-table th,
+        #printPreviewModal .invoice-print-box table.print-table td {
+            min-width: 0 !important;
+            max-width: none !important;
+            width: auto !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            overflow-wrap: anywhere !important;
+            word-break: break-word !important;
+            white-space: normal !important;
+        }
+        #printPreviewModal .invoice-print-box table.print-table code {
+            display: inline-block !important;
+            max-width: 100% !important;
+            white-space: normal !important;
+            overflow-wrap: anywhere !important;
+            word-break: break-all !important;
+        }
+        #printPreviewModal .invoice-meta-grid,
+        #printPreviewModal .invoice-total-row,
+        #printPreviewModal .invoice-footer-notes {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 820px) {
+            #printPreviewModal .invoice-top-header {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 12px !important;
+                direction: rtl !important;
+            }
+            #printPreviewModal .invoice-top-header > div:first-child,
+            #printPreviewModal .invoice-top-header > div:last-child {
+                width: 100% !important;
+                min-width: 0 !important;
+                order: initial !important;
+            }
+            #printPreviewModal .invoice-top-header > div:last-child > div:last-child {
+                text-align: left !important;
+                white-space: normal !important;
+            }
+        }
+
+        /* V6.2.3 - HARD FIX: invoice item strip must never exceed invoice box */
+        #printPreviewModal .invoice-table-wrap {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            margin: 0 0 20px 0 !important;
+            padding: 0 !important;
+        }
+        #printPreviewModal #invoicePrintTable {
+            display: table !important;
+            position: relative !important;
+            left: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            table-layout: fixed !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            transform: none !important;
+            box-sizing: border-box !important;
+        }
+        #printPreviewModal #invoicePrintTable th,
+        #printPreviewModal #invoicePrintTable td {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: 0 !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            white-space: normal !important;
+            overflow-wrap: anywhere !important;
+            word-break: break-all !important;
+        }
+        #printPreviewModal #invoicePrintTable th:nth-child(1),
+        #printPreviewModal #invoicePrintTable td:nth-child(1) { width: 25% !important; }
+        #printPreviewModal #invoicePrintTable th:nth-child(2),
+        #printPreviewModal #invoicePrintTable td:nth-child(2) { width: 18% !important; }
+        #printPreviewModal #invoicePrintTable th:nth-child(3),
+        #printPreviewModal #invoicePrintTable td:nth-child(3) { width: 14% !important; }
+        #printPreviewModal #invoicePrintTable th:nth-child(4),
+        #printPreviewModal #invoicePrintTable td:nth-child(4) { width: 22% !important; }
+        #printPreviewModal #invoicePrintTable th:nth-child(5),
+        #printPreviewModal #invoicePrintTable td:nth-child(5) { width: 21% !important; }
+
         @media print {
             body * { visibility: hidden; }
             #printPreviewModal, #printPreviewModal * { visibility: visible; }
@@ -294,874 +600,893 @@
             #printPreviewModal button { display: none !important; }
             .print-barcode-col { display: none !important; }
         }
-    </style>
+    
+        /* V6.3.1 - force customer invoice logo to the absolute left edge */
+        #printPreviewModal .invoice-top-header {
+            position: relative !important;
+            display: block !important;
+            width: 100% !important;
+            min-height: 58px !important;
+            direction: ltr !important;
+            box-sizing: border-box !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand {
+            position: absolute !important;
+            left: 0 !important;
+            right: auto !important;
+            top: 0 !important;
+            width: 48% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            direction: rtl !important;
+            transform: none !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand .brand {
+            margin: 0 !important;
+            text-align: left !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-brand p {
+            margin: 0 !important;
+            text-align: left !important;
+        }
+        #printPreviewModal .invoice-top-header .invoice-header-info {
+            position: absolute !important;
+            right: 0 !important;
+            left: auto !important;
+            top: 0 !important;
+            width: 48% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: right !important;
+            direction: rtl !important;
+        }
+        @media print {
+            #printPreviewModal .invoice-top-header {
+                position: relative !important;
+                display: block !important;
+                width: 100% !important;
+                min-height: 58px !important;
+                direction: ltr !important;
+            }
+            #printPreviewModal .invoice-top-header .invoice-header-brand {
+                position: absolute !important;
+                left: 0 !important;
+                right: auto !important;
+                top: 0 !important;
+                width: 48% !important;
+                text-align: left !important;
+            }
+            #printPreviewModal .invoice-top-header .invoice-header-info {
+                position: absolute !important;
+                right: 0 !important;
+                left: auto !important;
+                top: 0 !important;
+                width: 48% !important;
+                text-align: right !important;
+            }
+        }
+</style>
+<style id="voltech-invoice-clean-final">
+/* VOLTECH — CLEAN CUSTOMER INVOICE CSS. Single authoritative invoice stylesheet. */
+#printPreviewModal.v630-invoice-modal{display:none}
+#printPreviewModal .invoice-print-box.v630-invoice{width:680px!important;max-width:680px!important;min-width:0!important;box-sizing:border-box!important;padding:28px!important;overflow:hidden!important;direction:rtl!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{position:relative!important;display:block!important;width:100%!important;height:82px!important;min-height:82px!important;margin:0 0 20px!important;padding:0 0 15px!important;border-bottom:2px solid #2f2f3d!important;box-sizing:border-box!important;direction:ltr!important;overflow:visible!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{position:absolute!important;left:0!important;right:auto!important;top:0!important;width:52%!important;max-width:52%!important;height:auto!important;margin:0!important;padding:0!important;display:block!important;text-align:left!important;direction:ltr!important;transform:none!important;box-sizing:border-box!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left #printVipBadgeBox{margin:0 0 3px!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .brand{display:block!important;width:max-content!important;max-width:100%!important;margin:0!important;padding:0!important;text-align:left!important;direction:ltr!important;white-space:nowrap!important;line-height:1.05!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .invoice-brand-tagline{display:block!important;width:100%!important;max-width:100%!important;margin:5px 0 0!important;padding:0!important;text-align:left!important;direction:rtl!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;font-size:9px!important;line-height:1.35!important;box-sizing:border-box!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right{position:absolute!important;right:0!important;left:auto!important;top:0!important;width:42%!important;max-width:42%!important;margin:0!important;padding:0!important;display:block!important;text-align:right!important;direction:rtl!important;transform:none!important;box-sizing:border-box!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right p{display:block!important;width:100%!important;margin:0 0 4px!important;padding:0!important;text-align:right!important;direction:rtl!important;white-space:nowrap!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid>div:first-child{text-align:right!important;direction:rtl!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid>div:last-child{text-align:left!important;direction:ltr!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-table-wrap{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+#printPreviewModal .invoice-print-box.v630-invoice #invoicePrintTable{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important;box-sizing:border-box!important}
+@media print{#printPreviewModal .invoice-print-box.v630-invoice{width:680px!important;max-width:680px!important;margin:0 auto!important;padding:28px!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{position:relative!important;display:block!important;width:100%!important;height:82px!important;min-height:82px!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{position:absolute!important;left:0!important;right:auto!important;top:0!important;width:52%!important;max-width:52%!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right{position:absolute!important;right:0!important;left:auto!important;top:0!important;width:42%!important;max-width:42%!important}}
+</style>
 </head>
 <body>
-
-    <div id="loginScreen">
-        <div class="login-card">
-            <div class="brand-sub-box">
-                <div class="brand-text-logo">VOL<span>TECH</span></div>
-                <p>فولتيك للهواتف والاكسسوارات والأنظمة الذكية</p>
-            </div>
-            
-            <div class="input-group">
-                <label>اسم المستخدم (Username):</label>
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="loginUsername" placeholder="أدخل اسم المستخدم">
-            </div>
-            <div class="input-group">
-                <label>رمز الدخول (Password):</label>
-                <i class="fa-solid fa-key"></i>
-                <input type="password" id="loginPass" placeholder="أدخل كلمة المرور">
-            </div>
-            <button class="btn-custom" onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</button>
-        </div>
-    </div>
-
-
-    <div id="appContainer">
-        <aside>
-            <div class="sidebar-header">
-                <div class="sidebar-logo-text">VOL<span>TECH</span></div>
-                <h3 id="userNameDisplay">اسم المستخدم</h3>
-                <span class="role-badge" id="roleBadgeDisplay">صلاحية</span>
-            </div>
-            <nav>
-                <button id="navSales" onclick="switchTab('sales')" class="active"><i class="fa-solid fa-cash-register"></i> نقطة البيع والفواتير</button>
-                <button id="navPurchases" onclick="switchTab('purchases')"><i class="fa-solid fa-truck-ramp-box"></i> المشتريات والدفعات</button>
-                <button id="navWarehouseDevices" onclick="switchTab('warehouseDevices')"><i class="fa-solid fa-mobile-screen-button"></i> مستودع الأجهزة</button>
-                <button id="navWarehouseAccessories" onclick="switchTab('warehouseAccessories')"><i class="fa-solid fa-headphones"></i> مستودع الاكسسوارات</button>
-                <button id="navAccounts" onclick="switchTab('accounts')"><i class="fa-solid fa-vault"></i> الحسابات والديون</button>
-                <button id="navTreasury" onclick="switchTab('treasury')" style="display:none;"><i class="fa-solid fa-money-bill-transfer"></i> الكاشير والقاصة</button>
-                <button id="navFinance" onclick="switchTab('finance')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</button>
-                <button id="navAdminSettings" onclick="switchTab('adminSettings')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-gear"></i> إعدادات الصرف والنظام</button>
-                <button id="navAdminUsers" onclick="switchTab('adminUsers')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-users-gear"></i> إدارة المستخدمين</button>
-                <button id="navLogs" onclick="switchTab('logs')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-timeline"></i> سجل العمليات</button>
-            </nav>
-            <div class="sidebar-footer">
-                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-power-off"></i> إغلاق الجلسة</button>
-            </div>
-        </aside>
-
-        <main>
-            <section id="tabSales" class="section-content active">
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                        <h2 style="border: none; padding: 0; margin: 0;"><i class="fa-solid fa-barcode"></i> نقطة البيع وإصدار الفواتير الرسمية (بالدينار العراقي)</h2>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn-custom" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #3498db, #2980b9); box-shadow: 0 4px 15px rgba(52,152,219,0.35);" onclick="openSearchDeviceModal()">
-                                <i class="fa-solid fa-mobile-screen"></i> سجل فواتير الأجهزة
+<div id="loginScreen">
+<div class="login-card">
+<div class="brand-sub-box">
+<div class="brand-text-logo">VOL<span>TECH</span></div>
+<p>فولتيك للهواتف والاكسسوارات والأنظمة الذكية</p>
+</div>
+<div class="input-group">
+<label>اسم المستخدم (Username):</label>
+<i class="fa-solid fa-user"></i>
+<input id="loginUsername" placeholder="أدخل اسم المستخدم" type="text"/>
+</div>
+<div class="input-group">
+<label>رمز الدخول (Password):</label>
+<i class="fa-solid fa-key"></i>
+<input id="loginPass" placeholder="أدخل كلمة المرور" type="password"/>
+</div>
+<button class="btn-custom" onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</button>
+</div>
+</div>
+<div id="appContainer">
+<aside>
+<div class="sidebar-header">
+<div class="sidebar-logo-text">VOL<span>TECH</span></div>
+<h3 id="userNameDisplay">اسم المستخدم</h3>
+<span class="role-badge" id="roleBadgeDisplay">صلاحية</span>
+</div>
+<nav>
+<button class="active" id="navSales" onclick="switchTab('sales')"><i class="fa-solid fa-cash-register"></i> نقطة البيع والفواتير</button>
+<button id="navPurchases" onclick="switchTab('purchases')"><i class="fa-solid fa-truck-ramp-box"></i> المشتريات والدفعات</button>
+<button id="navWarehouseDevices" onclick="switchTab('warehouseDevices')"><i class="fa-solid fa-mobile-screen-button"></i> مستودع الأجهزة</button>
+<button id="navWarehouseAccessories" onclick="switchTab('warehouseAccessories')"><i class="fa-solid fa-headphones"></i> مستودع الاكسسوارات</button>
+<button id="navAccounts" onclick="switchTab('accounts')"><i class="fa-solid fa-vault"></i> الحسابات والديون</button>
+<button id="navTreasury" onclick="switchTab('treasury')" style="display:none;"><i class="fa-solid fa-money-bill-transfer"></i> الكاشير والقاصة</button>
+<button id="navFinance" onclick="switchTab('finance')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</button>
+<button id="navAdminSettings" onclick="switchTab('adminSettings')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-gear"></i> إعدادات الصرف والنظام</button>
+<button id="navAdminUsers" onclick="switchTab('adminUsers')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-users-gear"></i> إدارة المستخدمين</button>
+<button id="navLogs" onclick="switchTab('logs')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-timeline"></i> سجل العمليات</button>
+</nav>
+<div class="sidebar-footer">
+<button class="btn-logout" onclick="logout()"><i class="fa-solid fa-power-off"></i> إغلاق الجلسة</button>
+</div>
+</aside>
+<main>
+<section class="section-content active" id="tabSales">
+<div class="card">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+<h2 style="border: none; padding: 0; margin: 0;"><i class="fa-solid fa-barcode"></i> نقطة البيع وإصدار الفواتير الرسمية (بالدينار العراقي)</h2>
+<div style="display: flex; gap: 10px;">
+<button class="btn-custom" onclick="openSearchDeviceModal()" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #3498db, #2980b9); box-shadow: 0 4px 15px rgba(52,152,219,0.35);" type="button">
+<i class="fa-solid fa-mobile-screen"></i> سجل فواتير الأجهزة
                             </button>
-                            <button class="btn-custom" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 4px 15px rgba(46,204,113,0.35);" onclick="openSearchAccessoryModal()">
-                                <i class="fa-solid fa-headphones"></i> سجل فواتير الاكسسوارات
+<button class="btn-custom" onclick="openSearchAccessoryModal()" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #2ecc71, #27ae60); box-shadow: 0 4px 15px rgba(46,204,113,0.35);" type="button">
+<i class="fa-solid fa-headphones"></i> سجل فواتير الاكسسوارات
                             </button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-grid" style="background: rgba(255, 42, 77, 0.1); border: 1px solid var(--accent-red); padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <div style="flex:1;">
-                                <label style="color: var(--accent-red); font-weight: bold;"><i class="fa-solid fa-filter"></i> نوع الفاتورة المطلوب إصدارها:</label>
-                                <select id="invoiceCategoryType" onchange="toggleInvoiceCategory()">
-                                    <option value="device">📱 فاتورة أجهزة ذكية (مسح IMEI فوري)</option>
-                                    <option value="accessory">🎧 فاتورة اكسسوارات (مسح باركود فوري)</option>
-                                </select>
-                            </div>
-                            <div style="text-align:left; margin-right:20px; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; border:1px solid #2f2f3d;">
-                                <span style="font-size:12px; color:var(--text-muted);">سعر الصرف الحالي:</span>
-                                <div style="font-size:15px; color:var(--accent-green); font-weight:bold;"><span id="displayExchangeRate">1500</span> د.ع / $</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                        <div><label>اسم الزبون (اتركه فارغاً إن لم يكن مسجلاً):</label><input type="text" id="clientNameInput" placeholder="مثال: حسين ماهر"></div>
-                        <div><label>رقم هاتف الزبون:</label><input type="text" id="clientPhoneInput" placeholder="مثال: 0773 077 4788"></div>
-                        <div><label>اسم الموظف:</label><select id="invoiceEmployeeSelect"><option value="">اختر الموظف</option></select></div>
-                        <div><label>رقم القائمة:</label><input type="text" id="invoiceNoInput" value="1" readonly></div>
-                        <div>
-                            <label>نوع الضمان المعتمد:</label>
-                            <select id="warrantyTypeSelect" onchange="updateTotalWithWarranty()">
-                                <option value="normal">ضمان عادي (مجاني / قياسي)</option>
-                                <option value="vip">ضمان VIP (أجور إضافية)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>آلية السداد:</label>
-                            <select id="invoicePaymentType" onchange="togglePaymentOptions()">
-                                <option value="cash">نقداً (كاش فوري)</option>
-                                <option value="pos">دفع POS (بطاقة/جهاز شبكة)</option>
-                                <option value="debt">آجل (على حساب شخص أو شركة)</option>
-                                <option value="ops">دفعة OPS (دفعات متعددة/أجزاء)</option>
-                                <option value="installment">قسط (ضمن مجموعة الأقساط)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="accessoryDiscountSection" class="form-grid" style="background: rgba(46, 204, 113, 0.08); border: 1px dashed var(--accent-green); padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px; display: none;">
-                        <div style="grid-column: span 2;">
-                            <label style="color: var(--accent-green); font-weight: bold;"><i class="fa-solid fa-tag"></i> خصم الفاتورة (مبلغ ثابت بالدينار العراقي - مخفي عن الزبون):</label>
-                            <input type="number" id="invoiceDiscountInput" value="0" placeholder="أدخل مبلغ الخصم بالدينار..." oninput="renderActiveInvoiceTable()" style="border-color: var(--accent-green); color: var(--accent-green); font-weight: bold;">
-                        </div>
-                    </div>
-
-                    <div id="debtAccountSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
-                        <label>تسجيل الآجل على:</label>
-                        <input type="text" id="debtEntityName" placeholder="مثال: شركة الرافدين للتجارة أو الأستاذ أحمد">
-                        <div class="form-grid" style="margin-top:10px; margin-bottom:0;">
-                            <div><label>المبلغ المدفوع (مقدمة بالدينار):</label><input type="number" id="debtPaidAmount" value="0" oninput="calcRemainingDebt()"></div>
-                            <div style="font-size: 14px; color: var(--accent-red); align-self: center;">المتبقي بالذمة: <span id="debtRemainingDisplay">0</span> د.ع</div>
-                        </div>
-                    </div>
-
-                    <div id="opsSectionSummary" style="display: none; background: rgba(52, 152, 219, 0.1); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px; align-items: center; justify-content: space-between;">
-                        <div>
-                            <span style="font-size: 13px; color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-list-check"></i> تفاصيل دفعة OPS (الدفعات المتعددة):</span>
-                            <div style="font-size: 14px; margin-top: 4px;">الواصل الإجمالي: <b id="opsSummaryPaid" style="color:var(--accent-green);">0</b> د.ع | المتبقي: <b id="opsSummaryRemaining" style="color:var(--accent-red);">0</b> د.ع</div>
-                        </div>
-                        <button class="btn-custom" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #3498db, #2980b9);" onclick="openOpsModal()">إدارة ودفع الدفعات (OPS)</button>
-                    </div>
-
-                    <div id="installmentGroupSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px;">
-                        <div class="form-grid" style="margin-bottom:0;">
-                            <div>
-                                <label>مجموعة الأقساط المعتمدة:</label>
-                                <select id="installmentGroupSelect">
-                                    <option value="group_A">مجموعة موظفي الدولة (أقساط شهرية)</option>
-                                    <option value="group_B">مجموعة التجار (أقساط كل 45 يوم)</option>
-                                    <option value="group_VIP">مجموعة خاصة (VIP)</option>
-                                </select>
-                            </div>
-                            <div><label>عدد الأقساط:</label><input type="number" id="installmentCount" value="6"></div>
-                            <div><label>قسط المقدمة (بالدينار):</label><input type="number" id="installmentDownPayment" value="0"></div>
-                        </div>
-                    </div>
-
-                    <div id="deviceScanSection" class="form-grid" style="margin-top: 10px;">
-                        <div style="grid-column: span 2;">
-                            <label>امسح باركود أو أدخل IMEI الجهاز (يضيف تلقائياً عند الضغط على Enter):</label>
-                            <input type="text" id="scanInput" placeholder="امسح الـ IMEI هنا واضغط Enter..." oninput="handleDeviceScanInput(event)" onkeydown="handleDeviceScanKey(event)">
-                        </div>
-                    </div>
-
-                    <div id="accessoryScanSection" class="form-grid" style="margin-top: 10px; display: none;">
-                        <div>
-                            <label>باركود:</label>
-                            <input type="text" id="accBarcodeScan" placeholder="باركود" oninput="handleAccessoryBarcodeChange(this.value)" onkeydown="handleAccessoryBarcodeKey(event)">
-                        </div>
-                        <div>
-                            <label>اسم المنتج:</label>
-                            <input type="text" id="accNameInput" placeholder="اكتب اسم المنتج أو سيظهر تلقائياً...">
-                        </div>
-                        <div>
-                            <label>السعر (د.ع):</label>
-                            <input type="number" id="accPriceInput" placeholder="أدخل السعر المفرد..." onchange="addAccessoryManualItem()" onkeydown="handleAccessoryPriceKey(event)">
-                        </div>
-                        <div>
-                            <label>العدد:</label>
-                            <input type="number" id="accQtyInput" placeholder="1" value="1" min="1">
-                        </div>
-                        <div style="align-self:flex-end; display:flex; gap:8px; align-items:end;">
-                            <button type="button" class="btn-custom" onclick="addAccessoryManualItem()" style="background:var(--accent-red); color:#fff; width:auto; padding:8px 18px; border:1px solid var(--accent-red);">إضافة</button>
-                        </div>
-                    </div>
-
-                    <div id="accessoryQuickButtons" style="display:none; gap:10px; margin-top:10px; margin-bottom: 10px;">
-                        <button class="btn-action" style="background: rgba(52,152,219,0.15); color:var(--accent-blue); border:1px solid rgba(52,152,219,0.3); padding:8px 14px;" onclick="quickFillAccessoryBarcode('1')"><i class="fa-solid fa-mobile"></i> باركود 1 - لاصق شاشة</button>
-                        <button class="btn-action" style="background: rgba(46,204,113,0.15); color:var(--accent-green); border:1px solid rgba(46,204,113,0.3); padding:8px 14px;" onclick="quickFillAccessoryBarcode('2')"><i class="fa-solid fa-shield"></i> باركود 2 - حافظة جهاز</button>
-                    </div>
-
-                    <div class="table-container">
-                        <table id="activeInvoiceTable">
-                            <thead>
-                                <tr id="tableHeaderRow">
-                                    <th>الجهاز والموديل</th>
-                                    <th>اللون</th>
-                                    <th>الذاكرة</th>
-                                    <th>السعر (د.ع) [تعديل حر]</th>
-                                    <th>رقم IMEI</th>
-                                    <th>التحكم</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td colspan="6" style="color: var(--text-muted);">لم يتم إضافة أي منتج للقائمة بعد</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="total-box">
-                        <span>إجمالي القائمة النهائية (صافي المبلغ بعد التخفيض):</span>
-                        <span id="activeInvoiceTotal" style="color: var(--accent-green); font-size: 18px;">0 د.ع</span>
-                    </div>
-                    
-                    <button class="btn-custom" onclick="checkoutAndPrint()" style="margin-top: 20px;">
-                        <i class="fa-solid fa-print"></i> إصدار وعرض فاتورة الزبون الرسمية
+</div>
+</div>
+<div class="form-grid" style="background: rgba(255, 42, 77, 0.1); border: 1px solid var(--accent-red); padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px;">
+<div style="display:flex; justify-content:space-between; align-items:center;">
+<div style="flex:1;">
+<label style="color: var(--accent-red); font-weight: bold;"><i class="fa-solid fa-filter"></i> نوع الفاتورة المطلوب إصدارها:</label>
+<select id="invoiceCategoryType" onchange="toggleInvoiceCategory()">
+<option value="device">📱 فاتورة أجهزة ذكية (مسح IMEI فوري)</option>
+<option value="accessory">🎧 فاتورة اكسسوارات (مسح باركود فوري)</option>
+</select>
+</div>
+<div style="text-align:left; margin-right:20px; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; border:1px solid #2f2f3d;">
+<span style="font-size:12px; color:var(--text-muted);">سعر الصرف الحالي:</span>
+<div style="font-size:15px; color:var(--accent-green); font-weight:bold;"><span id="displayExchangeRate">1500</span> د.ع / $</div>
+</div>
+</div>
+</div>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+<div><label>اسم الزبون (اتركه فارغاً إن لم يكن مسجلاً):</label><input id="clientNameInput" placeholder="مثال: حسين ماهر" type="text"/></div>
+<div><label>رقم هاتف الزبون:</label><input id="clientPhoneInput" placeholder="مثال: 0773 077 4788" type="text"/></div>
+<div><label>اسم الموظف:</label><select id="invoiceEmployeeSelect"><option value="">اختر الموظف</option></select></div>
+<div><label>رقم القائمة:</label><input id="invoiceNoInput" readonly="" type="text" value="1"/></div>
+<div>
+<label>نوع الضمان المعتمد:</label>
+<select id="warrantyTypeSelect" onchange="updateTotalWithWarranty()">
+<option value="normal">ضمان عادي (مجاني / قياسي)</option>
+<option value="vip">ضمان VIP (أجور إضافية)</option>
+</select>
+</div>
+<div>
+<label>آلية السداد:</label>
+<select id="invoicePaymentType" onchange="togglePaymentOptions()">
+<option value="cash">نقداً (كاش فوري)</option>
+<option value="pos">تسديد POS — يضاف إلى حساب POS</option>
+<option value="debt">آجل (على حساب شخص أو شركة)</option>
+<option value="ops">دفعة OPS (دفعات متعددة/أجزاء)</option>
+<option value="installment">قسط (ضمن مجموعة الأقساط)</option>
+</select>
+</div>
+</div>
+<div class="form-grid" id="accessoryDiscountSection" style="background: rgba(46, 204, 113, 0.08); border: 1px dashed var(--accent-green); padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px; display: none;">
+<div style="grid-column: span 2;">
+<label style="color: var(--accent-green); font-weight: bold;"><i class="fa-solid fa-tag"></i> خصم الفاتورة (مبلغ ثابت بالدينار العراقي - مخفي عن الزبون):</label>
+<input id="invoiceDiscountInput" oninput="renderActiveInvoiceTable()" placeholder="أدخل مبلغ الخصم بالدينار..." style="border-color: var(--accent-green); color: var(--accent-green); font-weight: bold;" type="number" value="0"/>
+</div>
+</div>
+<div id="debtAccountSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
+<label>تسجيل الآجل على:</label>
+<input id="debtEntityName" placeholder="مثال: شركة الرافدين للتجارة أو الأستاذ أحمد" type="text"/>
+<div class="form-grid" style="margin-top:10px; margin-bottom:0;">
+<div><label>المبلغ المدفوع (مقدمة بالدينار):</label><input id="debtPaidAmount" oninput="calcRemainingDebt()" type="number" value="0"/></div>
+<div style="font-size: 14px; color: var(--accent-red); align-self: center;">المتبقي بالذمة: <span id="debtRemainingDisplay">0</span> د.ع</div>
+</div>
+</div>
+<div id="opsSectionSummary" style="display: none; background: rgba(52, 152, 219, 0.1); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px; align-items: center; justify-content: space-between;">
+<div>
+<span style="font-size: 13px; color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-list-check"></i> تفاصيل دفعة OPS (الدفعات المتعددة):</span>
+<div style="font-size: 14px; margin-top: 4px;">الواصل الإجمالي: <b id="opsSummaryPaid" style="color:var(--accent-green);">0</b> د.ع | المتبقي: <b id="opsSummaryRemaining" style="color:var(--accent-red);">0</b> د.ع</div>
+</div>
+<button class="btn-custom" onclick="openOpsModal()" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #3498db, #2980b9);">إدارة ودفع الدفعات (OPS)</button>
+</div>
+<div id="installmentGroupSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px;">
+<div class="form-grid" style="margin-bottom:0;">
+<div>
+<label>مجموعة الأقساط المعتمدة:</label>
+<select id="installmentGroupSelect">
+<option value="group_A">مجموعة موظفي الدولة (أقساط شهرية)</option>
+<option value="group_B">مجموعة التجار (أقساط كل 45 يوم)</option>
+<option value="group_VIP">مجموعة خاصة (VIP)</option>
+</select>
+</div>
+<div><label>عدد الأقساط:</label><input id="installmentCount" type="number" value="6"/></div>
+<div><label>قسط المقدمة (بالدينار):</label><input id="installmentDownPayment" type="number" value="0"/></div>
+</div>
+</div>
+<div class="form-grid" id="deviceScanSection" style="margin-top: 10px;">
+<div style="grid-column: span 2;">
+<label>امسح باركود أو أدخل IMEI الجهاز (يضيف تلقائياً عند الضغط على Enter):</label>
+<input id="scanInput" oninput="handleDeviceScanInput(event)" onkeydown="handleDeviceScanKey(event)" placeholder="امسح الـ IMEI هنا واضغط Enter..." type="text"/>
+</div>
+</div>
+<div class="form-grid" id="accessoryScanSection" style="margin-top: 10px; display: none;">
+<div>
+<label>باركود:</label>
+<input id="accBarcodeScan" oninput="handleAccessoryBarcodeChange(this.value)" onkeydown="handleAccessoryBarcodeKey(event)" placeholder="باركود" type="text"/>
+</div>
+<div>
+<label>اسم المنتج:</label>
+<input id="accNameInput" placeholder="اكتب اسم المنتج أو سيظهر تلقائياً..." type="text"/>
+</div>
+<div>
+<label>السعر (د.ع):</label>
+<input id="accPriceInput" onchange="addAccessoryManualItem()" onkeydown="handleAccessoryPriceKey(event)" placeholder="أدخل السعر المفرد..." type="number"/>
+</div>
+<div>
+<label>العدد:</label>
+<input id="accQtyInput" min="1" placeholder="1" type="number" value="1"/>
+</div>
+<div style="align-self:flex-end; display:flex; gap:8px; align-items:end;">
+<button class="btn-custom" onclick="addAccessoryManualItem()" style="background:var(--accent-red); color:#fff; width:auto; padding:8px 18px; border:1px solid var(--accent-red);" type="button">إضافة</button>
+</div>
+</div>
+<div id="accessoryQuickButtons" style="display:none; gap:10px; margin-top:10px; margin-bottom: 10px;">
+<button class="btn-action" onclick="quickFillAccessoryBarcode('1')" style="background: rgba(52,152,219,0.15); color:var(--accent-blue); border:1px solid rgba(52,152,219,0.3); padding:8px 14px;"><i class="fa-solid fa-mobile"></i> باركود 1 - لاصق شاشة</button>
+<button class="btn-action" onclick="quickFillAccessoryBarcode('2')" style="background: rgba(46,204,113,0.15); color:var(--accent-green); border:1px solid rgba(46,204,113,0.3); padding:8px 14px;"><i class="fa-solid fa-shield"></i> باركود 2 - حافظة جهاز</button>
+</div>
+<div class="table-container">
+<table id="activeInvoiceTable">
+<thead>
+<tr id="tableHeaderRow">
+<th>الجهاز والموديل</th>
+<th>اللون</th>
+<th>الذاكرة</th>
+<th>السعر (د.ع) [تعديل حر]</th>
+<th>رقم IMEI</th>
+<th>التحكم</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="6" style="color: var(--text-muted);">لم يتم إضافة أي منتج للقائمة بعد</td></tr>
+</tbody>
+</table>
+</div>
+<div class="total-box">
+<span>إجمالي القائمة النهائية (صافي المبلغ بعد التخفيض):</span>
+<span id="activeInvoiceTotal" style="color: var(--accent-green); font-size: 18px;">0 د.ع</span>
+</div>
+<button class="btn-custom" onclick="checkoutAndPrint()" style="margin-top: 20px;">
+<i class="fa-solid fa-print"></i> إصدار وعرض فاتورة الزبون الرسمية
                     </button>
-                </div>
-            </section>
-
-            <section id="tabPurchases" class="section-content">
-                <div class="card">
-                    <h2><i class="fa-solid fa-cart-plus"></i> إدخال دفعة أجهزة أو اكسسوارات جديدة للمستودع</h2>
-                    
-                    <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                        <div>
-                            <label>نوع المستودع المستهدف:</label>
-                            <select id="batchTargetWarehouse" onchange="toggleBatchTargetFields()">
-                                <option value="device">مستودع الأجهزة (حسب الشركات)</option>
-                                <option value="accessory">مستودع الاكسسوارات (حسب الشركات)</option>
-                            </select>
-                        </div>
-                        <div><label>اسم الشركة المصنعة:</label><input type="text" id="batchCompany" value="Apple" placeholder="مثال: Apple, Samsung, Anker"></div>
-                        <div><label>موديل الجهاز / اسم المنتج:</label><input type="text" id="batchModel" value="iPhone 17 Pro Max" placeholder="iPhone 17 Pro Max أو شاحن سريع"></div>
-                        <div><label>اللون (للأجهزة فقط):</label><input type="text" id="batchColor" value="Cosmic Gray" placeholder="Cosmic Gray"></div>
-                        <div><label>سعة الذاكرة (للأجهزة فقط):</label><input type="text" id="batchMemory" value="256 GB" placeholder="256 GB"></div>
-                        
-                        <div>
-                            <label>عملة الإدخال من المورد:</label>
-                            <select id="batchCurrency" onchange="toggleBatchCurrencyLabel()">
-                                <option value="USD">دولار أمريكي ($)</option>
-                                <option value="IQD">دينار عراقي (د.ع)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label id="batchCostLabel">سعر الشراء ($):</label>
-                            <input type="number" id="batchCost" value="1100" placeholder="1100">
-                        </div>
-                        <div>
-                            <label>سعر البيع المقترح ($ أو د.ع):</label>
-                            <input type="number" id="batchPrice" value="1250" placeholder="1250">
-                        </div>
-                        <div><label>اسم المورد (الشركات فقط):</label><select id="batchSupplier" onchange="handleBatchSupplierChange()"><option value="">اختيار شركة</option></select></div>
-                        <div>
-                            <label>آلية دفع المورد:</label>
-                            <select id="batchPaymentType" onchange="toggleBatchDebtSection()">
-                                <option value="cash">نقداً (كاش فوري)</option>
-                                <option value="debt">آجل (على حساب الشركة/المورد)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="batchDebtSection" style="display:none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
-                        <div class="form-grid" style="margin-bottom:0;">
-                            <div style="grid-column:span 2;font-size:13px;color:var(--text-muted);align-self:center;">هذه الفاتورة ستبقى معلقة مالياً بعد الإدخال، وسيتم تسجيلها على حساب المورد من زر «دفع الفاتورة» فقط بعد اعتمادها من مدير الفرع أو المدير العام.</div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" style="margin-top: 10px;">
-                        <div>
-                            <label>رقم الـ IMEI (للأجهزة):</label>
-                            <input type="text" id="batchImeiInput" placeholder="أدخل رقم الـ IMEI..." inputmode="numeric" autocomplete="off" oninput="autoAddBatchImei()" onkeydown="handleBatchScanKey(event)">
-                        </div>
-                        <div>
-                            <label>باركود المنتج (اضغط Enter هنا للإضافة):</label>
-                            <input type="text" id="batchBarcodeInput" placeholder="امسح باركود النوع..." oninput="handleBatchBarcodeChange(this.value)" onkeydown="handleBatchScanKey(event)">
-                        </div>
-                        <div id="batchAccessoryQtyWrap" style="display:none;">
-                            <label>العدد (للاكسسوار):</label>
-                            <input type="number" id="batchAccessoryQty" value="1" min="1" placeholder="1">
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <table id="batchPreviewTable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>الشركة والمنتج</th>
-                                    <th>التكلفة بالدولار</th>
-                                    <th>التكلفة بالعراقي</th>
-                                    <th>سعر البيع</th>
-                                    <th>IMEI</th>
-                                    <th>الباركود</th>
-                                    <th>إجراء</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td colspan="8" style="color: var(--text-muted);">لم يتم إدراج أي قطعة في الدفعة الحالية</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="form-grid" style="background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px dashed var(--border-color);">
-                        <div style="grid-column: span 2;">
-                            <label>صورة فاتورة الدفعة (إجبارية قبل الحفظ):</label>
-                            <input type="file" id="batchInvoiceImage" accept="image/*">
-                            <div id="batchInvoiceImagePreviewBox" style="margin-top:8px;"></div>
-                        </div>
-                        <div style="grid-column: span 2;">
-                            <label>بيان محتوى قائمة الأجهزة / الاكسسوارات (إجباري):</label>
-                            <textarea id="batchContentStatement" rows="3" placeholder="اكتب بياناً كاملاً عن محتوى القائمة: الأنواع، الألوان، الذاكرة، الكميات أو أي ملاحظات مهمة..." style="width:100%;resize:vertical;"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="total-box">
-                        <span>إجمالي القطع المجهزة للإدخال: <b id="batchCountNum" style="color:var(--accent-blue);">0</b> قطعة</span>
-                        <button class="btn-custom" style="width: auto; padding: 10px 25px;" onclick="saveBatchToWarehouse()"><i class="fa-solid fa-cloud-arrow-down"></i> حفظ الكل دفعة واحدة للمستودع</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2><i class="fa-solid fa-clock-rotate-left"></i> سجل المشتريات والدفعات</h2>
-                    <div class="table-container">
-                        <table id="purchasesLogTable">
-                            <thead>
-                                <tr>
-                                    <th>الصورة</th>
-                                    <th>التاريخ والوقت</th>
-                                    <th>الموظف</th>
-                                    <th>عدد القطع</th>
-                                    <th>نوع الدفع</th>
-                                    <th>إجمالي التكلفة</th>
-                                    <th>المورد</th>
-                                    <th>بيان المحتوى</th>
-                                    <th>الحالة المالية</th>
-                                    <th>إجراء</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td colspan="8" style="color: var(--text-muted);">لا توجد دفعات مسجلة حتى الآن</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabWarehouseDevices" class="section-content">
-                <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; gap:10px; flex-wrap:wrap;">
-                        <h2 style="border:none; padding:0; margin:0;"><i class="fa-solid fa-mobile-screen-button"></i> مستودع الأجهزة الذكية (حسب الشركات)</h2>
-                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                            <button class="btn-custom" style="width:auto; padding:8px 15px; font-size:13px;" onclick="openInventoryReportModal('device')"><i class="fa-solid fa-print"></i> طباعة نموذج جرد الأجهزة</button>
-                            <button class="btn-custom" style="width:auto; padding:8px 15px; font-size:13px; background:linear-gradient(135deg,#9b59b6,#8e44ad); color:#fff;" onclick="openCatalogModal('device')"><i class="fa-solid fa-plus"></i> إضافة عنصر جهاز</button>
-                        </div>
-                    </div>
-
-                     <div class="form-grid" style="margin-bottom: 15px;">
-                        <div>
-                            <label>تصفية حسب الشركة:</label>
-                            <select id="filterDeviceCompany" onchange="renderWarehouseDevicesTable()">
-                                <option value="all">جميع الشركات</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>بحث سريع في مستودع الأجهزة:</label>
-                            <input type="text" id="searchWarehouseDevicesInput" placeholder="ابحث بالاسم، الموديل، IMEI أو الباركود..." oninput="renderWarehouseDevicesTable()">
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table id="warehouseDevicesTable">
-                            <thead>
-                                <tr>
-                                    <th>الشركة</th>
-                                    <th>الجهاز والموديل</th>
-                                    <th>اللون</th><th>الذاكرة</th>
-                                    <th>باركود الجهاز</th>
-                                    <th>إيمي الجهاز (IMEI)</th>
-                                    <th>سعر التكلفة</th>
-                                    <th>سعر البيع</th>
-                                    <th>المورد</th><th>التحكم</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabWarehouseAccessories" class="section-content">
-                <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; gap:10px; flex-wrap:wrap;">
-                        <h2 style="border:none; padding:0; margin:0;"><i class="fa-solid fa-headphones"></i> مستودع الاكسسوارات والملحقات (حسب الشركات)</h2>
-                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                            <button class="btn-custom" style="width:auto; padding:8px 15px; font-size:13px;" onclick="openInventoryReportModal('accessory')"><i class="fa-solid fa-print"></i> طباعة نموذج جرد الاكسسوارات</button>
-                            <button class="btn-custom" style="width:auto; padding:8px 15px; font-size:13px; background:linear-gradient(135deg,#9b59b6,#8e44ad); color:#fff;" onclick="openCatalogModal('accessory')"><i class="fa-solid fa-plus"></i> إضافة عنصر اكسسوار</button>
-                        </div>
-                    </div>
-
-                     <div class="form-grid" style="margin-bottom: 15px;">
-                        <div>
-                            <label>تصفية حسب الشركة المصنعة للاكسسوار:</label>
-                            <select id="filterAccessoryCompany" onchange="renderWarehouseAccessoriesTable()">
-                                <option value="all">جميع الشركات</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>بحث سريع في مستودع الاكسسوارات:</label>
-                            <input type="text" id="searchWarehouseAccessoriesInput" placeholder="ابحث بالشركة، الاسم، اللون، الذاكرة، الباركود أو المورد..." oninput="renderWarehouseAccessoriesTable()">
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table id="warehouseAccessoriesTable">
-                            <thead>
-                                <tr>
-                                    <th>الشركة</th>
-                                    <th>اسم الاكسسوار</th>
-                                    <th>اللون</th>
-                                    <th>الذاكرة / السعة</th>
-                                    <th>باركود المنتج</th>
-                                    <th>رقم الإيمي / السيريال (إن وجد)</th>
-                                    <th>العدد المتوفر</th>
-                                    <th>سعر التكلفة</th>
-                                    <th>سعر البيع</th>
-                                    <th>المورد</th><th>التحكم</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabAccounts" class="section-content">
-                <div class="card">
-                    <div id="accountsActionBar">
-                        <h2><i class="fa-solid fa-vault"></i> سجل الديون والحسابات والشركات (بالدينار العراقي)</h2>
-                        <button id="accountsVoucherBtn" class="account-quick-btn" onclick="toggleVoucherPanel()" style="background:#5dade2;">تسجيل سند جديد</button>
-                                                <button id="accountsNewBtn" class="account-quick-btn" onclick="toggleNewAccountPanel()" style="background:#2ecc71;">إضافة حساب جديد</button>
-                    </div>
-                    <div id="newAccountPanel" class="form-grid" style="display:none; background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
-                        <div><label>نوع الحساب:</label><select id="manualAccountType"><option value="person">شخص</option><option value="company">شركة</option></select></div>
-                        <div><label>اسم الشخص أو الشركة الجديدة:</label><input type="text" id="manualAccountName" placeholder="مثال: شركة النور للتجارة أو الأستاذ محمد"></div>
-                        <div style="grid-column: span 2; color:var(--text-muted); font-size:12px; align-self:center;"><i class="fa-solid fa-circle-info"></i> يتم إنشاء الحساب بدون أي مبالغ، وتُسجّل جميع الحركات المالية لاحقاً حصراً بواسطة سند القبض أو سند الصرف المرتبط بهذا الحساب.</div>
-                        <div style="align-self: flex-end;"><button class="btn-custom" onclick="addNewManualAccount()" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;box-shadow:0 5px 20px rgba(231,76,60,.25);"><i class="fa-solid fa-user-plus"></i> إضافة الحساب</button></div>
-                    </div>
-
-                    <div id="generalExpenseBox" style="display:none; background: rgba(255,42,77,0.08); padding:15px; border-radius: var(--radius-md); border:1px dashed var(--accent-red); margin-bottom:20px;">
-                        <label style="color:var(--accent-red); font-weight:bold;"><i class="fa-solid fa-money-bill-wave"></i> حساب المصاريف العامة — يُرحّل تلقائياً إلى الحسابات والديون للتدقيق الشهري:</label>
-                        <div class="form-grid" style="margin-top:8px; margin-bottom:0;">
-                            <div><input type="number" id="generalExpenseAmount" placeholder="المبلغ (د.ع)"></div>
-                            <div><input type="text" id="generalExpenseNote" placeholder="بيان المصروف"></div>
-                            <div style="align-self:flex-end;"><button class="btn-custom" onclick="addGeneralExpense()" style="background: var(--accent-red);">استقطاع من الكاشير</button></div>
-                        </div>
-                    </div>
-
-                    <div id="accountVoucherBox" class="quick-voucher-panel" style="display:none;background:rgba(52,152,219,.08);padding:15px;border-radius:var(--radius-md);border:1px dashed var(--accent-blue);margin-bottom:20px;">
-                        <label style="color:var(--accent-blue);font-weight:bold;"><i class="fa-solid fa-file-invoice-dollar"></i> سند قبض / صرف على حساب</label>
-                        <div class="form-grid" style="margin-top:8px;margin-bottom:0;">
-                            <div><label>الحساب:</label><select id="voucherAccountSelect"></select></div>
-                            <div><label>نوع السند:</label><select id="voucherType"><option value="receipt">سند قبض</option><option value="payment">سند صرف</option></select></div>
-                            <div><label>مكان الحركة:</label><select id="voucherSource"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select></div>
-                            <div><label>المبلغ (د.ع):</label><input type="number" id="voucherAmount" min="0" placeholder="0"></div>
-                            <div><label>البيان الكامل:</label><input type="text" id="voucherNote" placeholder="سبب القبض أو الصرف بالتفصيل"></div>
-                            <div style="align-self:flex-end;"><button class="btn-custom" onclick="addAccountVoucher()" style="background:var(--accent-blue);">تسجيل السند</button></div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" style="margin-bottom: 15px;">
-                        <div style="grid-column: span 2;">
-                            <label>بحث سريع في الحسابات والديون:</label>
-                            <input type="text" id="searchAccountsInput" placeholder="ابحث باسم الجهة أو الزبون..." oninput="renderAccountsTable()">
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <table id="accountsTable">
-                            <thead>
-                                <tr><th>الجهة / الزبون / الشركة</th><th>مطلوب مني</th><th>مطلوب لي</th><th>الحركات</th><th>التحكم</th></tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabTreasury" class="section-content">
-                <div class="card">
-                    <h2><i class="fa-solid fa-money-bill-transfer"></i> الكاشير والقاصة</h2>
-                    <div class="form-grid">
-                        <div class="total-box" style="display:block; text-align:center;">
-                            <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">الرصيد المتوفر حالياً في الكاشير</div>
-                            <div id="cashierBalanceDisplay" style="font-size:22px; color:var(--accent-green); font-weight:900;">0 د.ع</div>
-                        </div>
-                        <div class="total-box" style="display:block; text-align:center;">
-                            <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">الرصيد المتوفر حالياً في القاصة</div>
-                            <div id="vaultBalanceDisplay" style="font-size:22px; color:var(--accent-blue); font-weight:900;">0 د.ع</div>
-                        </div>
-                    </div>
-
-                    <div id="treasuryTransferBox" style="display:none; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color); margin-top:15px;">
-                        <label>نقل الأموال بين الكاشير والقاصة (خاص بالمحاسب والمسؤول العام):</label>
-                        <div class="form-grid" style="margin-top:8px; margin-bottom:0;">
-                            <div>
-                                <label>اتجاه التحويل:</label>
-                                <select id="transferDirection">
-                                    <option value="cashierToVault">من الكاشير إلى القاصة</option>
-                                    <option value="vaultToCashier">من القاصة إلى الكاشير</option>
-                                </select>
-                            </div>
-                            <div><label>المبلغ (د.ع):</label><input type="number" id="transferAmount" placeholder="0"></div>
-                            <div style="align-self:flex-end;"><button class="btn-custom" onclick="executeTreasuryTransfer()" style="background: linear-gradient(135deg, #3498db, #2980b9);"><i class="fa-solid fa-right-left"></i> تنفيذ التحويل</button></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabFinance" class="section-content">
-                <div class="card">
-                    <h2><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</h2>
-                    <div class="form-grid">
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي المصروف على الأجهزة</div><div id="finSpentDevices" style="font-size:18px; color:var(--accent-blue); font-weight:900;">0 د.ع</div></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي المصروف على الاكسسوارات</div><div id="finSpentAccessories" style="font-size:18px; color:var(--accent-blue); font-weight:900;">0 د.ع</div></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي الأرباح الصافية</div><div id="finTotalProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أرباح اليوم</div><div id="finDailyProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div><small style="color:var(--text-muted);">تتجدد تلقائياً بعد منتصف الليل</small></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أرباح الدورة الشهرية</div><div id="finMonthlyProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div><small style="color:var(--text-muted);">من يوم 1 إلى آخر يوم في الشهر</small></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">مبالغ ضمان VIP المستحصلة</div><div id="finVipCollected" style="font-size:18px; color:var(--accent-red); font-weight:900;">0 د.ع</div></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر جهاز ربحاً</div><div id="finBestDevice" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
-                        <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر اكسسوار ربحاً</div><div id="finBestAccessory" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
-                    </div>
-                    <div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
-                        <h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-users"></i> مبيعات أعضاء النظام الشهرية</h3>
-                        <div style="margin-bottom:10px;"><input type="text" id="employeeSalesSearchInput" placeholder="ابحث باسم أي عضو في النظام..." oninput="renderEmployeeSalesDashboard()"></div>
-                        <div id="topEmployeeMonthlyBanner" style="margin-bottom:12px;padding:11px 14px;border-radius:10px;background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;font-weight:800;text-align:center;box-shadow:0 5px 18px rgba(255,42,77,.22);">الأكثر مبيعات هذا الشهر: لا توجد مبيعات بعد</div>
-                        <div class="table-container"><table id="employeeSalesTable"><thead><tr><th>العضو</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th><th>التفاصيل</th></tr></thead><tbody></tbody></table></div>
-                        <div id="employeeSalesDetails" style="margin-top:12px;"></div>
-                        <div id="vipMonthlyHistoryBox"><b style="color:var(--accent-red);">سجل ضمان VIP الشهري</b><div id="vipMonthlyHistoryList" style="margin-top:8px;"></div></div>
-                        <div id="vipYearlyHistoryBox"><b style="color:var(--accent-red);">سجل ضمان VIP السنوي</b><div id="vipYearlyHistoryList" style="margin-top:8px;"></div></div>
-                        <div id="adminDailyReportHistoryBox" style="display:none;">
-                            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-                                <b style="color:var(--accent-blue);">السجل الخاص للمدير العام — تقارير الأرباح والمبيعات اليومية</b>
-                                <button id="adminDailyReportsToggleBtn" class="btn-action" onclick="toggleAdminDailyReports()" style="background:#2ecc71;color:#fff;border:1px solid #27ae60;padding:9px 16px;">اظهار التقارير</button>
-                            </div>
-                            <div id="adminDailyReportHistoryList" style="margin-top:8px;display:none;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
-                        <h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-file-circle-check"></i> التقارير اليومية</h3>
-                        <div class="form-grid" style="margin-bottom:10px;">
-                            <div class="total-box" style="display:block;text-align:center;"><div style="font-size:12px;color:var(--text-muted);">مبيعات أجهزة اليوم</div><div id="dailyDeviceSalesDisplay" style="font-size:18px;color:var(--accent-blue);font-weight:900;">0 د.ع</div></div>
-                            <div class="total-box" style="display:block;text-align:center;"><div style="font-size:12px;color:var(--text-muted);">مبيعات اكسسوارات اليوم</div><div id="dailyAccessorySalesDisplay" style="font-size:18px;color:var(--accent-green);font-weight:900;">0 د.ع</div></div>
-                        </div>
-                        <button class="btn-custom" onclick="issueDailySalesProfitReport()" style="background:linear-gradient(135deg,#e67e22,#d35400);"><i class="fa-solid fa-file-export"></i> إصدار تقرير الأرباح والمبيعات اليومية</button>
-                        <button class="btn-custom" onclick="issueMonthlyAccountsReport()" style="margin-top:10px;background:linear-gradient(135deg,#8e44ad,#6c3483);"><i class="fa-solid fa-calendar-check"></i> تقرير المبيعات الشهرية</button>
-                    </div>
-                    <div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
-                        <h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-chart-column"></i> مقارنة الأرباح بين الأشهر</h3>
-                        <canvas id="profitChartCanvas" height="90"></canvas>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabAdminSettings" class="section-content">
-                <div class="card" style="border-color: var(--accent-red);">
-                    <h2><i class="fa-solid fa-gear"></i> إعدادات سعر الصرف وضمان VIP الأساسي</h2>
-                    <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
-                        <div>
-                            <label style="color: var(--accent-green); font-weight: bold;">سعر الصرف الحالي (الدينار العراقي مقابل 1 دولار أمريكي):</label>
-                            <input type="number" id="settingExchangeRate" value="1500" placeholder="1500" style="font-size: 18px; font-weight: bold; color: var(--accent-green);">
-                        </div>
-                        <div style="align-self: flex-end;">
-                            <button class="btn-custom" onclick="saveExchangeRateSetting()"><i class="fa-solid fa-floppy-disk"></i> حفظ سعر الصرف</button>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                        <div>
-                            <label style="color: var(--accent-red); font-weight: bold;">سعر ضمان VIP (بالدينار العراقي يحدده المسؤول حصراً):</label>
-                            <input type="number" id="settingVipWarrantyPrice" value="25000" placeholder="25000" style="font-size: 18px; font-weight: bold; color: var(--accent-red);">
-                        </div>
-                        <div style="align-self: flex-end;">
-                            <button class="btn-custom" onclick="saveVipWarrantySetting()"><i class="fa-solid fa-shield-halved"></i> حفظ قيمة ضمان VIP</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabAdminUsers" class="section-content">
-                <div class="card">
-                    <h2><i class="fa-solid fa-users-gear"></i> إدارة مستخدمي النظام والصلاحيات</h2>
-                    
-                    <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                        <div><label>اسم الموظف / الشخص:</label><input type="text" id="newAccName" placeholder="مثال: محاسب أحمد خالد"></div>
-                        <div><label>نوع الصلاحية:</label>
-                            <select id="newAccRole">
-                                <option value="manager">مدير الفرع</option>
-                                <option value="employee">موظف مبيعات</option>
-                                <option value="accountant">محاسب مالي</option>
-                            </select>
-                        </div>
-                        <div><label>اسم المستخدم (Username):</label><input type="text" id="newAccUser" placeholder="username"></div>
-                        <div><label>رمز الدخول (Password):</label><input type="text" id="newAccPass" placeholder="password"></div>
-                    </div>
-                    <button class="btn-custom" style="width: auto; padding: 10px 25px; margin-bottom: 20px;" onclick="addNewUserAccount()"><i class="fa-solid fa-user-plus"></i> إضافة حساب جديد للنظام</button>
-
-                    <div class="table-container">
-                        <table id="usersManageTable">
-                            <thead>
-                                <tr>
-                                    <th>الاسم</th>
-                                    <th>الصلاحية</th>
-                                    <th>اسم المستخدم</th>
-                                    <th>كلمة المرور</th>
-                                    <th>حالة الحساب</th>
-                                    <th>التحكم والتعديل</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tabLogs" class="section-content">
-                <div class="card">
-                    <h2><i class="fa-solid fa-timeline"></i> سجل العمليات</h2>
-                    <div class="form-grid" style="margin-bottom:15px;">
-                        <div><label>من تاريخ:</label><input type="date" id="logsDateFrom" onchange="renderLogsTable()"></div>
-                        <div><label>إلى تاريخ:</label><input type="date" id="logsDateTo" onchange="renderLogsTable()"></div>
-                        <div><label>التصنيف:</label><select id="logsCategoryFilter" onchange="renderLogsTable()"><option value="all">كل الحركات</option><option value="cancelled">الفواتير الملغاة</option><option value="accounts">حركات الحسابات والديون</option><option value="receipt">سند قبض</option><option value="payment">سند صرف</option><option value="invoices">سجل الفواتير</option></select></div>
-                    </div>
-                    <div class="table-container"><table id="logsTable"><thead><tr><th>الصلاحية</th><th>التصنيف</th><th>الحدث</th><th>التفاصيل</th><th>التاريخ والوقت</th></tr></thead><tbody></tbody></table></div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-
-    <div id="purchasePaymentModal" style="position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:2500;padding:20px;">
-        <div class="modal-content-box" style="width:420px;max-width:96vw;border-color:#ff2a4d;">
-            <h3 style="margin-bottom:15px;color:#fff;">دفع فاتورة المشتريات</h3>
-            <label>طريقة التسديد:</label>
-            <select id="purchasePaymentTypeSelect" onchange="togglePurchasePaymentTypeUI()">
-                <option value="cash">نقداً</option>
-                <option value="debt">آجل</option>
-            </select>
-            <div id="purchasePaymentCashSourceWrap" style="margin-top:10px;">
-                <label>مكان الدفع النقدي:</label>
-                <select id="purchasePaymentSourceSelect"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select>
-            </div>
-            <div style="display:flex;gap:8px;margin-top:15px;">
-                <button class="btn-custom" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;border:1px solid #ff2a4d;box-shadow:0 5px 20px rgba(255,42,77,.35);" onclick="confirmPurchasePayment()"><i class="fa-solid fa-check"></i> تأكيد الدفع</button>
-                <button class="btn-action" style="background:#555;color:#fff;flex:0 0 auto;padding:10px 16px;" onclick="closePurchasePaymentModal()">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="opsModal">
-        <div class="modal-content-box" style="border-color: var(--accent-blue);">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-blue); font-size: 18px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-list-check"></i> إدارة دفعات OPS (الدفعات المتعددة والأجزاء)
+</div>
+</section>
+<section class="section-content" id="tabPurchases">
+<div class="card">
+<h2><i class="fa-solid fa-cart-plus"></i> إدخال دفعة أجهزة أو اكسسوارات جديدة للمستودع</h2>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+<div>
+<label>نوع المستودع المستهدف:</label>
+<select id="batchTargetWarehouse" onchange="toggleBatchTargetFields()">
+<option value="device">مستودع الأجهزة (حسب الشركات)</option>
+<option value="accessory">مستودع الاكسسوارات (حسب الشركات)</option>
+</select>
+</div>
+<div><label>اسم الشركة المصنعة:</label><input id="batchCompany" placeholder="مثال: Apple, Samsung, Anker" type="text" value="Apple"/></div>
+<div><label>موديل الجهاز / اسم المنتج:</label><input id="batchModel" placeholder="iPhone 17 Pro Max أو شاحن سريع" type="text" value="iPhone 17 Pro Max"/></div>
+<div><label>اللون (للأجهزة فقط):</label><input id="batchColor" placeholder="Cosmic Gray" type="text" value="Cosmic Gray"/></div>
+<div><label>سعة الذاكرة (للأجهزة فقط):</label><input id="batchMemory" placeholder="256 GB" type="text" value="256 GB"/></div>
+<div>
+<label>عملة الإدخال من المورد:</label>
+<select id="batchCurrency" onchange="toggleBatchCurrencyLabel()">
+<option value="USD">دولار أمريكي ($)</option>
+<option value="IQD">دينار عراقي (د.ع)</option>
+</select>
+</div>
+<div>
+<label id="batchCostLabel">سعر الشراء ($):</label>
+<input id="batchCost" placeholder="1100" type="number" value="1100"/>
+</div>
+<div>
+<label>سعر البيع المقترح ($ أو د.ع):</label>
+<input id="batchPrice" placeholder="1250" type="number" value="1250"/>
+</div>
+<div><label>اسم المورد (الشركات فقط):</label><select id="batchSupplier" onchange="handleBatchSupplierChange()"><option value="">اختيار شركة</option></select></div>
+<div>
+<label>آلية دفع المورد:</label>
+<select id="batchPaymentType" onchange="toggleBatchDebtSection()">
+<option value="cash">نقداً (كاش فوري)</option>
+<option value="debt">آجل (على حساب الشركة/المورد)</option>
+</select>
+</div>
+</div>
+<div id="batchDebtSection" style="display:none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
+<div class="form-grid" style="margin-bottom:0;">
+<div style="grid-column:span 2;font-size:13px;color:var(--text-muted);align-self:center;">هذه الفاتورة ستبقى معلقة مالياً بعد الإدخال، وسيتم تسجيلها على حساب المورد من زر «دفع الفاتورة» فقط بعد اعتمادها من مدير الفرع أو المدير العام.</div>
+</div>
+</div>
+<div class="form-grid" style="margin-top: 10px;">
+<div>
+<label>رقم الـ IMEI (للأجهزة):</label>
+<input autocomplete="off" id="batchImeiInput" inputmode="numeric" oninput="autoAddBatchImei()" onkeydown="handleBatchScanKey(event)" placeholder="أدخل رقم الـ IMEI..." type="text"/>
+</div>
+<div>
+<label>باركود المنتج (اضغط Enter هنا للإضافة):</label>
+<input id="batchBarcodeInput" oninput="handleBatchBarcodeChange(this.value)" onkeydown="handleBatchScanKey(event)" placeholder="امسح باركود النوع..." type="text"/>
+</div>
+<div id="batchAccessoryQtyWrap" style="display:none;">
+<label>العدد (للاكسسوار):</label>
+<input id="batchAccessoryQty" min="1" placeholder="1" type="number" value="1"/>
+</div>
+</div>
+<div class="table-container">
+<table id="batchPreviewTable">
+<thead>
+<tr>
+<th>#</th>
+<th>الشركة والمنتج</th>
+<th>التكلفة بالدولار</th>
+<th>التكلفة بالعراقي</th>
+<th>سعر البيع</th>
+<th>IMEI</th>
+<th>الباركود</th>
+<th>إجراء</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="8" style="color: var(--text-muted);">لم يتم إدراج أي قطعة في الدفعة الحالية</td></tr>
+</tbody>
+</table>
+</div>
+<div class="form-grid" style="background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px dashed var(--border-color);">
+<div style="grid-column: span 2;">
+<label>صورة فاتورة الدفعة (إجبارية قبل الحفظ):</label>
+<input accept="image/*" id="batchInvoiceImage" type="file"/>
+<div id="batchInvoiceImagePreviewBox" style="margin-top:8px;"></div>
+</div>
+<div style="grid-column: span 2;">
+<label>بيان محتوى قائمة الأجهزة / الاكسسوارات (إجباري):</label>
+<textarea id="batchContentStatement" placeholder="اكتب بياناً كاملاً عن محتوى القائمة: الأنواع، الألوان، الذاكرة، الكميات أو أي ملاحظات مهمة..." rows="3" style="width:100%;resize:vertical;"></textarea>
+</div>
+</div>
+<div class="total-box">
+<span>إجمالي القطع المجهزة للإدخال: <b id="batchCountNum" style="color:var(--accent-blue);">0</b> قطعة</span>
+<button class="btn-custom" onclick="saveBatchToWarehouse()" style="width: auto; padding: 10px 25px;"><i class="fa-solid fa-cloud-arrow-down"></i> حفظ الكل دفعة واحدة للمستودع</button>
+</div>
+</div>
+<div class="card">
+<h2><i class="fa-solid fa-clock-rotate-left"></i> سجل المشتريات والدفعات</h2>
+<div class="table-container">
+<table id="purchasesLogTable">
+<thead>
+<tr>
+<th>الصورة</th>
+<th>التاريخ والوقت</th>
+<th>الموظف</th>
+<th>عدد القطع</th>
+<th>نوع الدفع</th>
+<th>إجمالي التكلفة</th>
+<th>المورد</th>
+<th>بيان المحتوى</th>
+<th>الحالة المالية</th>
+<th>إجراء</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="8" style="color: var(--text-muted);">لا توجد دفعات مسجلة حتى الآن</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabWarehouseDevices">
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; gap:10px; flex-wrap:wrap;">
+<h2 style="border:none; padding:0; margin:0;"><i class="fa-solid fa-mobile-screen-button"></i> مستودع الأجهزة الذكية (حسب الشركات)</h2>
+<div style="display:flex; gap:8px; flex-wrap:wrap;">
+<button class="btn-custom" onclick="openInventoryReportModal('device')" style="width:auto; padding:8px 15px; font-size:13px;" type="button"><i class="fa-solid fa-print"></i> طباعة نموذج جرد الأجهزة</button>
+<button class="btn-custom" onclick="openCatalogModal('device')" style="width:auto; padding:8px 15px; font-size:13px; background:linear-gradient(135deg,#9b59b6,#8e44ad); color:#fff;" type="button"><i class="fa-solid fa-plus"></i> إضافة عنصر جهاز</button>
+</div>
+</div>
+<div class="form-grid" style="margin-bottom: 15px;">
+<div>
+<label>تصفية حسب الشركة:</label>
+<select id="filterDeviceCompany" onchange="renderWarehouseDevicesTable()">
+<option value="all">جميع الشركات</option>
+</select>
+</div>
+<div>
+<label>بحث سريع في مستودع الأجهزة:</label>
+<input id="searchWarehouseDevicesInput" oninput="renderWarehouseDevicesTable()" placeholder="ابحث بالاسم، الموديل، IMEI أو الباركود..." type="text"/>
+</div>
+</div>
+<div class="table-container">
+<table id="warehouseDevicesTable">
+<thead>
+<tr>
+<th>الشركة</th>
+<th>الجهاز والموديل</th>
+<th>اللون</th><th>الذاكرة</th>
+<th>باركود الجهاز</th>
+<th>إيمي الجهاز (IMEI)</th>
+<th>سعر التكلفة</th>
+<th>سعر البيع</th>
+<th>المورد</th><th>التحكم</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabWarehouseAccessories">
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; gap:10px; flex-wrap:wrap;">
+<h2 style="border:none; padding:0; margin:0;"><i class="fa-solid fa-headphones"></i> مستودع الاكسسوارات والملحقات (حسب الشركات)</h2>
+<div style="display:flex; gap:8px; flex-wrap:wrap;">
+<button class="btn-custom" onclick="openInventoryReportModal('accessory')" style="width:auto; padding:8px 15px; font-size:13px;" type="button"><i class="fa-solid fa-print"></i> طباعة نموذج جرد الاكسسوارات</button>
+<button class="btn-custom" onclick="openCatalogModal('accessory')" style="width:auto; padding:8px 15px; font-size:13px; background:linear-gradient(135deg,#9b59b6,#8e44ad); color:#fff;" type="button"><i class="fa-solid fa-plus"></i> إضافة عنصر اكسسوار</button>
+</div>
+</div>
+<div class="form-grid" style="margin-bottom: 15px;">
+<div>
+<label>تصفية حسب الشركة المصنعة للاكسسوار:</label>
+<select id="filterAccessoryCompany" onchange="renderWarehouseAccessoriesTable()">
+<option value="all">جميع الشركات</option>
+</select>
+</div>
+<div>
+<label>بحث سريع في مستودع الاكسسوارات:</label>
+<input id="searchWarehouseAccessoriesInput" oninput="renderWarehouseAccessoriesTable()" placeholder="ابحث بالشركة، الاسم، اللون، الذاكرة، الباركود أو المورد..." type="text"/>
+</div>
+</div>
+<div class="table-container">
+<table id="warehouseAccessoriesTable">
+<thead>
+<tr>
+<th>الشركة</th>
+<th>اسم الاكسسوار</th>
+<th>اللون</th>
+<th>الذاكرة / السعة</th>
+<th>باركود المنتج</th>
+<th>رقم الإيمي / السيريال (إن وجد)</th>
+<th>العدد المتوفر</th>
+<th>سعر التكلفة</th>
+<th>سعر البيع</th>
+<th>المورد</th><th>التحكم</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabAccounts">
+<div class="card">
+<div id="accountsActionBar">
+<h2><i class="fa-solid fa-vault"></i> سجل الديون والحسابات والشركات (بالدينار العراقي)</h2>
+<button class="account-quick-btn" id="accountsVoucherBtn" onclick="toggleVoucherPanel()" style="background:#5dade2;">تسجيل سند جديد</button>
+<button class="account-quick-btn" id="accountsNewBtn" onclick="toggleNewAccountPanel()" style="background:#2ecc71;">إضافة حساب جديد</button>
+</div>
+<div class="form-grid" id="newAccountPanel" style="display:none; background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
+<div><label>نوع الحساب:</label><select id="manualAccountType"><option value="person">شخص</option><option value="company">شركة</option></select></div>
+<div><label>اسم الشخص أو الشركة الجديدة:</label><input id="manualAccountName" placeholder="مثال: شركة النور للتجارة أو الأستاذ محمد" type="text"/></div>
+<div style="grid-column: span 2; color:var(--text-muted); font-size:12px; align-self:center;"><i class="fa-solid fa-circle-info"></i> يتم إنشاء الحساب بدون أي مبالغ، وتُسجّل جميع الحركات المالية لاحقاً حصراً بواسطة سند القبض أو سند الصرف المرتبط بهذا الحساب.</div>
+<div style="align-self: flex-end;"><button class="btn-custom" onclick="addNewManualAccount()" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;box-shadow:0 5px 20px rgba(231,76,60,.25);"><i class="fa-solid fa-user-plus"></i> إضافة الحساب</button></div>
+</div>
+<div id="generalExpenseBox" style="display:none; background: rgba(255,42,77,0.08); padding:15px; border-radius: var(--radius-md); border:1px dashed var(--accent-red); margin-bottom:20px;">
+<label style="color:var(--accent-red); font-weight:bold;"><i class="fa-solid fa-money-bill-wave"></i> حساب المصاريف العامة — يُرحّل تلقائياً إلى الحسابات والديون للتدقيق الشهري:</label>
+<div class="form-grid" style="margin-top:8px; margin-bottom:0;">
+<div><input id="generalExpenseAmount" placeholder="المبلغ (د.ع)" type="number"/></div>
+<div><input id="generalExpenseNote" placeholder="بيان المصروف" type="text"/></div>
+<div style="align-self:flex-end;"><button class="btn-custom" onclick="addGeneralExpense()" style="background: var(--accent-red);">استقطاع من الكاشير</button></div>
+</div>
+</div>
+<div class="quick-voucher-panel" id="accountVoucherBox" style="display:none;background:rgba(52,152,219,.08);padding:15px;border-radius:var(--radius-md);border:1px dashed var(--accent-blue);margin-bottom:20px;">
+<label style="color:var(--accent-blue);font-weight:bold;"><i class="fa-solid fa-file-invoice-dollar"></i> سند قبض / صرف على حساب</label>
+<div class="form-grid" style="margin-top:8px;margin-bottom:0;">
+<div><label>الحساب:</label><select id="voucherAccountSelect"></select></div>
+<div><label>نوع السند:</label><select id="voucherType"><option value="receipt">سند قبض</option><option value="payment">سند صرف</option></select></div>
+<div><label>مكان الحركة:</label><select id="voucherSource"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select></div>
+<div><label>المبلغ (د.ع):</label><input id="voucherAmount" min="0" placeholder="0" type="number"/></div>
+<div><label>البيان الكامل:</label><input id="voucherNote" placeholder="سبب القبض أو الصرف بالتفصيل" type="text"/></div>
+<div style="align-self:flex-end;"><button class="btn-custom" onclick="addAccountVoucher()" style="background:var(--accent-blue);">تسجيل السند</button></div>
+</div>
+</div>
+<div class="form-grid" style="margin-bottom: 15px;">
+<div style="grid-column: span 2;">
+<label>بحث سريع في الحسابات والديون:</label>
+<input id="searchAccountsInput" oninput="renderAccountsTable()" placeholder="ابحث باسم الجهة أو الزبون..." type="text"/>
+</div>
+</div>
+<div class="table-container">
+<table id="accountsTable">
+<thead>
+<tr><th>الجهة / الزبون / الشركة</th><th>مطلوب مني</th><th>مطلوب لي</th><th>الحركات</th><th>التحكم</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabTreasury">
+<div class="card">
+<h2><i class="fa-solid fa-money-bill-transfer"></i> الكاشير والقاصة</h2>
+<div class="form-grid">
+<div class="total-box" style="display:block; text-align:center;">
+<div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">الرصيد المتوفر حالياً في الكاشير</div>
+<div id="cashierBalanceDisplay" style="font-size:22px; color:var(--accent-green); font-weight:900;">0 د.ع</div>
+</div>
+<div class="total-box" style="display:block; text-align:center;">
+<div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">الرصيد المتوفر حالياً في القاصة</div>
+<div id="vaultBalanceDisplay" style="font-size:22px; color:var(--accent-blue); font-weight:900;">0 د.ع</div>
+</div>
+</div>
+<div id="treasuryTransferBox" style="display:none; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color); margin-top:15px;">
+<label>نقل الأموال بين الكاشير والقاصة (خاص بالمحاسب والمسؤول العام):</label>
+<div class="form-grid" style="margin-top:8px; margin-bottom:0;">
+<div>
+<label>اتجاه التحويل:</label>
+<select id="transferDirection">
+<option value="cashierToVault">من الكاشير إلى القاصة</option>
+<option value="vaultToCashier">من القاصة إلى الكاشير</option>
+</select>
+</div>
+<div><label>المبلغ (د.ع):</label><input id="transferAmount" placeholder="0" type="number"/></div>
+<div style="align-self:flex-end;"><button class="btn-custom" onclick="executeTreasuryTransfer()" style="background: linear-gradient(135deg, #3498db, #2980b9);"><i class="fa-solid fa-right-left"></i> تنفيذ التحويل</button></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabFinance">
+<div class="card">
+<h2><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</h2>
+<div class="form-grid">
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي المصروف على الأجهزة</div><div id="finSpentDevices" style="font-size:18px; color:var(--accent-blue); font-weight:900;">0 د.ع</div></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي المصروف على الاكسسوارات</div><div id="finSpentAccessories" style="font-size:18px; color:var(--accent-blue); font-weight:900;">0 د.ع</div></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">إجمالي الأرباح الصافية</div><div id="finTotalProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أرباح اليوم</div><div id="finDailyProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div><small style="color:var(--text-muted);">تتجدد تلقائياً بعد منتصف الليل</small></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أرباح الدورة الشهرية</div><div id="finMonthlyProfit" style="font-size:18px; color:var(--accent-green); font-weight:900;">0 د.ع</div><small style="color:var(--text-muted);">من يوم 1 إلى آخر يوم في الشهر</small></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">مبالغ ضمان VIP المستحصلة</div><div id="finVipCollected" style="font-size:18px; color:var(--accent-red); font-weight:900;">0 د.ع</div></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر جهاز ربحاً</div><div id="finBestDevice" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
+<div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر اكسسوار ربحاً</div><div id="finBestAccessory" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
+</div>
+<div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
+<h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-users"></i> مبيعات أعضاء النظام الشهرية</h3>
+<div style="margin-bottom:10px;"><input id="employeeSalesSearchInput" oninput="renderEmployeeSalesDashboard()" placeholder="ابحث باسم أي عضو في النظام..." type="text"/></div>
+<div id="topEmployeeMonthlyBanner" style="margin-bottom:12px;padding:11px 14px;border-radius:10px;background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;font-weight:800;text-align:center;box-shadow:0 5px 18px rgba(255,42,77,.22);">الأكثر مبيعات هذا الشهر: لا توجد مبيعات بعد</div>
+<div class="table-container"><table id="employeeSalesTable"><thead><tr><th>العضو</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th><th>التفاصيل</th></tr></thead><tbody></tbody></table></div>
+<div id="employeeSalesDetails" style="margin-top:12px;"></div>
+<div id="vipMonthlyHistoryBox"><b style="color:var(--accent-red);">سجل ضمان VIP الشهري</b><div id="vipMonthlyHistoryList" style="margin-top:8px;"></div></div>
+<div id="vipYearlyHistoryBox"><b style="color:var(--accent-red);">سجل ضمان VIP السنوي</b><div id="vipYearlyHistoryList" style="margin-top:8px;"></div></div>
+<div id="adminDailyReportHistoryBox" style="display:none;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+<b style="color:var(--accent-blue);">السجل الخاص للمدير العام — تقارير الأرباح والمبيعات اليومية</b>
+<button class="btn-action" id="adminDailyReportsToggleBtn" onclick="toggleAdminDailyReports()" style="background:#2ecc71;color:#fff;border:1px solid #27ae60;padding:9px 16px;">اظهار التقارير</button>
+</div>
+<div id="adminDailyReportHistoryList" style="margin-top:8px;display:none;"></div>
+</div>
+</div>
+<div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
+<h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-file-circle-check"></i> التقارير اليومية</h3>
+<div class="form-grid" style="margin-bottom:10px;">
+<div class="total-box" style="display:block;text-align:center;"><div style="font-size:12px;color:var(--text-muted);">مبيعات أجهزة اليوم</div><div id="dailyDeviceSalesDisplay" style="font-size:18px;color:var(--accent-blue);font-weight:900;">0 د.ع</div></div>
+<div class="total-box" style="display:block;text-align:center;"><div style="font-size:12px;color:var(--text-muted);">مبيعات اكسسوارات اليوم</div><div id="dailyAccessorySalesDisplay" style="font-size:18px;color:var(--accent-green);font-weight:900;">0 د.ع</div></div>
+</div>
+<button class="btn-custom" onclick="issueDailySalesProfitReport()" style="background:linear-gradient(135deg,#e67e22,#d35400);"><i class="fa-solid fa-file-export"></i> إصدار تقرير الأرباح والمبيعات اليومية</button>
+<button class="btn-custom" onclick="issueMonthlyAccountsReport()" style="margin-top:10px;background:linear-gradient(135deg,#8e44ad,#6c3483);"><i class="fa-solid fa-calendar-check"></i> تقرير المبيعات الشهرية</button>
+</div>
+<div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
+<h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-chart-column"></i> مقارنة الأرباح بين الأشهر</h3>
+<canvas height="90" id="profitChartCanvas"></canvas>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabAdminSettings">
+<div class="card" style="border-color: var(--accent-red);">
+<h2><i class="fa-solid fa-gear"></i> إعدادات سعر الصرف وضمان VIP الأساسي</h2>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
+<div>
+<label style="color: var(--accent-green); font-weight: bold;">سعر الصرف الحالي (الدينار العراقي مقابل 1 دولار أمريكي):</label>
+<input id="settingExchangeRate" placeholder="1500" style="font-size: 18px; font-weight: bold; color: var(--accent-green);" type="number" value="1500"/>
+</div>
+<div style="align-self: flex-end;">
+<button class="btn-custom" onclick="saveExchangeRateSetting()"><i class="fa-solid fa-floppy-disk"></i> حفظ سعر الصرف</button>
+</div>
+</div>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+<div>
+<label style="color: var(--accent-red); font-weight: bold;">سعر ضمان VIP (بالدينار العراقي يحدده المسؤول حصراً):</label>
+<input id="settingVipWarrantyPrice" placeholder="25000" style="font-size: 18px; font-weight: bold; color: var(--accent-red);" type="number" value="25000"/>
+</div>
+<div style="align-self: flex-end;">
+<button class="btn-custom" onclick="saveVipWarrantySetting()"><i class="fa-solid fa-shield-halved"></i> حفظ قيمة ضمان VIP</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabAdminUsers">
+<div class="card">
+<h2><i class="fa-solid fa-users-gear"></i> إدارة مستخدمي النظام والصلاحيات</h2>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+<div><label>اسم الموظف / الشخص:</label><input id="newAccName" placeholder="مثال: محاسب أحمد خالد" type="text"/></div>
+<div><label>نوع الصلاحية:</label>
+<select id="newAccRole">
+<option value="manager">مدير الفرع</option>
+<option value="employee">موظف مبيعات</option>
+<option value="accountant">محاسب مالي</option>
+</select>
+</div>
+<div><label>اسم المستخدم (Username):</label><input id="newAccUser" placeholder="username" type="text"/></div>
+<div><label>رمز الدخول (Password):</label><input id="newAccPass" placeholder="password" type="text"/></div>
+</div>
+<button class="btn-custom" onclick="addNewUserAccount()" style="width: auto; padding: 10px 25px; margin-bottom: 20px;"><i class="fa-solid fa-user-plus"></i> إضافة حساب جديد للنظام</button>
+<div class="table-container">
+<table id="usersManageTable">
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الصلاحية</th>
+<th>اسم المستخدم</th>
+<th>كلمة المرور</th>
+<th>حالة الحساب</th>
+<th>التحكم والتعديل</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabLogs">
+<div class="card">
+<h2><i class="fa-solid fa-timeline"></i> سجل العمليات</h2>
+<div class="form-grid" style="margin-bottom:15px;">
+<div><label>من تاريخ:</label><input id="logsDateFrom" onchange="renderLogsTable()" type="date"/></div>
+<div><label>إلى تاريخ:</label><input id="logsDateTo" onchange="renderLogsTable()" type="date"/></div>
+<div><label>التصنيف:</label><select id="logsCategoryFilter" onchange="renderLogsTable()"><option value="all">كل الحركات</option><option value="cancelled">الفواتير الملغاة</option><option value="accounts">حركات الحسابات والديون</option><option value="receipt">سند قبض</option><option value="payment">سند صرف</option><option value="invoices">سجل الفواتير</option></select></div>
+</div>
+<div class="table-container"><table id="logsTable"><thead><tr><th>الصلاحية</th><th>التصنيف</th><th>الحدث</th><th>التفاصيل</th><th>التاريخ والوقت</th></tr></thead><tbody></tbody></table></div>
+</div>
+</section>
+</main>
+</div>
+<div id="purchasePaymentModal" style="position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:2500;padding:20px;">
+<div class="modal-content-box" style="width:420px;max-width:96vw;border-color:#ff2a4d;">
+<h3 style="margin-bottom:15px;color:#fff;">دفع فاتورة المشتريات</h3>
+<label>طريقة التسديد:</label>
+<select id="purchasePaymentTypeSelect" onchange="togglePurchasePaymentTypeUI()">
+<option value="cash">نقداً</option>
+<option value="debt">آجل</option>
+</select>
+<div id="purchasePaymentCashSourceWrap" style="margin-top:10px;">
+<label>مكان الدفع النقدي:</label>
+<select id="purchasePaymentSourceSelect"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select>
+</div>
+<div style="display:flex;gap:8px;margin-top:15px;">
+<button class="btn-custom" onclick="confirmPurchasePayment()" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;border:1px solid #ff2a4d;box-shadow:0 5px 20px rgba(255,42,77,.35);"><i class="fa-solid fa-check"></i> تأكيد الدفع</button>
+<button class="btn-action" onclick="closePurchasePaymentModal()" style="background:#555;color:#fff;flex:0 0 auto;padding:10px 16px;">إلغاء</button>
+</div>
+</div>
+</div>
+<div id="opsModal">
+<div class="modal-content-box" style="border-color: var(--accent-blue);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+<h3 style="color: var(--accent-blue); font-size: 18px; display: flex; align-items: center; gap: 10px;">
+<i class="fa-solid fa-list-check"></i> إدارة دفعات OPS (الدفعات المتعددة والأجزاء)
                 </h3>
-                <button onclick="document.getElementById('opsModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 15px;">
-                <div><label>مبلغ الدفعة الحالية (د.ع):</label><input type="number" id="opsInstallmentAmount" placeholder="0"></div>
-                <div><label>ملاحظة الدفعة (مثال: دفعة أولى / عربون):</label><input type="text" id="opsInstallmentNote" placeholder="دفعة أولى"></div>
-                <div style="align-self: flex-end;"><button class="btn-custom" onclick="addOpsPayment()" style="background: linear-gradient(135deg, #3498db, #2980b9);"><i class="fa-solid fa-plus"></i> إضافة دفعة للقائمة</button></div>
-            </div>
-
-            <div class="table-container" style="max-height: 250px; overflow-y: auto;">
-                <table id="opsPaymentsTable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>المبلغ (د.ع)</th>
-                            <th>الملاحظة / البيان</th>
-                            <th>التاريخ والوقت</th>
-                            <th>التحكم</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="5" style="color: var(--text-muted);">لم يتم إضافة أي دفعة أجزاء حتى الآن</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="total-box" style="margin-top: 15px;">
-                <span>إجمالي المبلغ المطلوب: <b id="opsModalTotal" style="color:#fff;">0</b> د.ع</span>
-                <span>الواصل الإجمالي: <b id="opsModalPaid" style="color:var(--accent-green);">0</b> د.ع</span>
-                <span style="color:var(--accent-red);">المتبقي: <b id="opsModalRemaining">0</b> د.ع</span>
-            </div>
-
-            <button class="btn-custom" onclick="document.getElementById('opsModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">اعتماد وإغلاق النافذة</button>
-        </div>
-    </div>
-
-    <div id="searchDeviceModal">
-        <div class="modal-content-box" style="border-color: #3498db;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-blue); font-size: 18px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-mobile-screen"></i> سجل فواتير الأجهزة الذكية والبحث الشامل
+<button onclick="document.getElementById('opsModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 15px;">
+<div><label>مبلغ الدفعة الحالية (د.ع):</label><input id="opsInstallmentAmount" placeholder="0" type="number"/></div>
+<div><label>ملاحظة الدفعة (مثال: دفعة أولى / عربون):</label><input id="opsInstallmentNote" placeholder="دفعة أولى" type="text"/></div>
+<div style="align-self: flex-end;"><button class="btn-custom" onclick="addOpsPayment()" style="background: linear-gradient(135deg, #3498db, #2980b9);"><i class="fa-solid fa-plus"></i> إضافة دفعة للقائمة</button></div>
+</div>
+<div class="table-container" style="max-height: 250px; overflow-y: auto;">
+<table id="opsPaymentsTable">
+<thead>
+<tr>
+<th>#</th>
+<th>المبلغ (د.ع)</th>
+<th>الملاحظة / البيان</th>
+<th>التاريخ والوقت</th>
+<th>التحكم</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="5" style="color: var(--text-muted);">لم يتم إضافة أي دفعة أجزاء حتى الآن</td></tr>
+</tbody>
+</table>
+</div>
+<div class="total-box" style="margin-top: 15px;">
+<span>إجمالي المبلغ المطلوب: <b id="opsModalTotal" style="color:#fff;">0</b> د.ع</span>
+<span>الواصل الإجمالي: <b id="opsModalPaid" style="color:var(--accent-green);">0</b> د.ع</span>
+<span style="color:var(--accent-red);">المتبقي: <b id="opsModalRemaining">0</b> د.ع</span>
+</div>
+<button class="btn-custom" onclick="document.getElementById('opsModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">اعتماد وإغلاق النافذة</button>
+</div>
+</div>
+<div id="searchDeviceModal">
+<div class="modal-content-box" style="border-color: #3498db;">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+<h3 style="color: var(--accent-blue); font-size: 18px; display: flex; align-items: center; gap: 10px;">
+<i class="fa-solid fa-mobile-screen"></i> سجل فواتير الأجهزة الذكية والبحث الشامل
                 </h3>
-                <button onclick="document.getElementById('searchDeviceModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="form-grid" style="margin-bottom: 15px;">
-                <div style="grid-column: span 2;">
-                    <label>ابحث برقم القائمة، اسم الزبون، اسم الموظف، رقم الهاتف، أو الـ IMEI:</label>
-                    <input type="text" id="deviceSearchQueryInput" placeholder="اكتب للبحث الفوري في فواتير الأجهزة..." oninput="filterDeviceInvoicesArchive()">
-                </div>
-            </div>
-
-            <div class="table-container" style="max-height: 350px; overflow-y: auto;">
-                <table id="deviceInvoicesArchiveTable">
-                    <thead>
-                        <tr>
-                            <th>رقم القائمة</th>
-                            <th>التاريخ والوقت</th>
-                            <th>اسم الزبون</th>
-                            <th>الموظف</th>
-                            <th>الحالة</th>
-                            <th>الإجمالي</th>
-                            <th>إجراءات الفاتورة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="7" style="color: var(--text-muted);">لا توجد فواتير أجهزة مسجلة في الأرشيف حتى الآن</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <button class="btn-custom" onclick="document.getElementById('searchDeviceModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">إغلاق النافذة</button>
-        </div>
-    </div>
-
-    <div id="searchAccessoryModal">
-        <div class="modal-content-box" style="border-color: #2ecc71;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-green); font-size: 18px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-headphones"></i> سجل فواتير الاكسسوارات والملحقات والبحث الشامل
+<button onclick="document.getElementById('searchDeviceModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid" style="margin-bottom: 15px;">
+<div style="grid-column: span 2;">
+<label>ابحث برقم القائمة، اسم الزبون، اسم الموظف، رقم الهاتف، أو الـ IMEI:</label>
+<input id="deviceSearchQueryInput" oninput="filterDeviceInvoicesArchive()" placeholder="اكتب للبحث الفوري في فواتير الأجهزة..." type="text"/>
+</div>
+</div>
+<div class="table-container" style="max-height: 350px; overflow-y: auto;">
+<table id="deviceInvoicesArchiveTable">
+<thead>
+<tr>
+<th>رقم القائمة</th>
+<th>التاريخ والوقت</th>
+<th>اسم الزبون</th>
+<th>الموظف</th>
+<th>الحالة</th>
+<th>الإجمالي</th>
+<th>إجراءات الفاتورة</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="7" style="color: var(--text-muted);">لا توجد فواتير أجهزة مسجلة في الأرشيف حتى الآن</td></tr>
+</tbody>
+</table>
+</div>
+<button class="btn-custom" onclick="document.getElementById('searchDeviceModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">إغلاق النافذة</button>
+</div>
+</div>
+<div id="searchAccessoryModal">
+<div class="modal-content-box" style="border-color: #2ecc71;">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+<h3 style="color: var(--accent-green); font-size: 18px; display: flex; align-items: center; gap: 10px;">
+<i class="fa-solid fa-headphones"></i> سجل فواتير الاكسسوارات والملحقات والبحث الشامل
                 </h3>
-                <button onclick="document.getElementById('searchAccessoryModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="form-grid" style="margin-bottom: 15px;">
-                <div style="grid-column: span 2;">
-                    <label>ابحث برقم القائمة، اسم الزبون، اسم الموظف، رقم الهاتف، أو اسم المنتج:</label>
-                    <input type="text" id="accessorySearchQueryInput" placeholder="اكتب للبحث الفوري في فواتير الاكسسوارات..." oninput="filterAccessoryInvoicesArchive()">
-                </div>
-            </div>
-
-            <div class="table-container" style="max-height: 350px; overflow-y: auto;">
-                <table id="accessoryInvoicesArchiveTable">
-                    <thead>
-                        <tr>
-                            <th>رقم القائمة</th>
-                            <th>التاريخ والوقت</th>
-                            <th>اسم الزبون</th>
-                            <th>الموظف</th>
-                            <th>الحالة</th>
-                            <th>الإجمالي</th>
-                            <th>إجراءات الفاتورة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="7" style="color: var(--text-muted);">لا توجد فواتير اكسسوارات مسجلة في الأرشيف حتى الآن</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <button class="btn-custom" onclick="document.getElementById('searchAccessoryModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">إغلاق النافذة</button>
-        </div>
-    </div>
-
-    <div id="invoiceDetailsModal">
-        <div class="modal-content-box" style="border-color: var(--accent-red);">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-red); font-size: 18px;"><i class="fa-solid fa-file-invoice"></i> تفاصيل القائمة وإلغاؤها</h3>
-                <button onclick="document.getElementById('invoiceDetailsModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="invoiceDetailsBody" style="font-size: 14px; line-height: 1.8;"></div>
-            <div id="cancelInvoiceActionBox" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;"></div>
-        </div>
-    </div>
-
-    <div id="catalogItemModal">
-        <div class="modal-content-box" style="border-color:#9b59b6;">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
-                <h3 style="color:#bb86fc;font-size:18px;"><i class="fa-solid fa-box-open"></i> قائمة إضافة عنصر جديد</h3>
-                <button onclick="closeCatalogModal()" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="form-grid" style="margin-bottom:15px;">
-                <div><label>القسم:</label><div id="catalogFixedTypeLabel" style="padding:11px;border:1px solid var(--border-color);border-radius:8px;background:#111;color:#fff;font-weight:bold;">جهاز</div></div>
-                <div style="grid-column:span 2;"><label>بحث عن عنصر مضاف للتعديل:</label><input type="text" id="catalogSearchInput" placeholder="ابحث بالشركة، الاسم، اللون، الذاكرة أو الباركود..." oninput="renderCatalogManager()"></div>
-            </div>
-            <div id="catalogEditPermissionNote" style="margin-bottom:12px;padding:10px;border-radius:8px;background:rgba(255,42,77,.08);border:1px dashed var(--accent-red);font-size:12px;"></div>
-            <div class="form-grid" style="background:rgba(20,20,28,.7);padding:15px;border-radius:10px;border:1px solid var(--border-color);margin-bottom:15px;">
-                <div><label>الشركة:</label><input id="catalogCompany" type="text"></div>
-                <div><label id="catalogNameLabel">اسم / موديل الجهاز:</label><input id="catalogName" type="text"></div>
-                <div><label>اللون:</label><input id="catalogColor" type="text"></div>
-                <div><label>الذاكرة / السعة:</label><input id="catalogMemory" type="text"></div>
-                <div><label>الباركود التعريفي:</label><input id="catalogBarcode" type="text"></div>
-                <div style="align-self:end;"><button id="catalogSaveBtn" class="btn-custom" onclick="saveCatalogItem()" style="background:linear-gradient(135deg,#9b59b6,#8e44ad);">حفظ عنصر جديد</button></div>
-            </div>
-            <div class="table-container" style="max-height:330px;overflow:auto;">
-                <table id="catalogManagerTable"><thead><tr><th>الشركة</th><th>الاسم</th><th>اللون</th><th>الذاكرة/السعة</th><th>الباركود</th><th>التحكم</th></tr></thead><tbody></tbody></table>
-            </div>
-        </div>
-    </div>
-
-    <div id="inventoryReportModal">
-        <div class="modal-content-box" style="border-color:#3498db;">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
-                <h3 style="color:#3498db;font-size:18px;"><i class="fa-solid fa-print"></i> إعداد نموذج الجرد</h3>
-                <button onclick="document.getElementById('inventoryReportModal').style.display='none'" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="form-grid">
-                <input type="hidden" id="inventoryReportType" value="device">
-                <div style="grid-column:1/-1;"><label id="inventoryReportTypeLabel" style="font-weight:800;font-size:14px;">نوع الجرد: الأجهزة</label></div>
-                <div style="grid-column:1/-1;"><label>الشركة:</label><select id="inventoryReportCompany"><option value="all">كل الشركات</option></select></div>
-            </div>
-            <div style="margin-top:15px;padding:10px;border-radius:8px;background:rgba(52,152,219,.08);border:1px dashed #3498db;font-size:12px;color:var(--text-muted);">هذا النموذج خاص بنوع الجرد المحدد فقط. اختر شركة محددة أو <b>كل الشركات</b> لطباعة جرد هذا النوع.</div>
-            <button class="btn-custom" onclick="printSelectedInventoryReport()" style="margin-top:18px;"><i class="fa-solid fa-print"></i> معاينة وطباعة الجرد</button>
-        </div>
-    </div>
-
-    <div id="printPreviewModal">
-        <div class="invoice-print-box">
-            <div class="invoice-top-header">
-                <div>
-                    <div class="brand">VOL<span>TECH</span></div>
-                    <p style="font-size: 11px; color: #a4b0be; margin:0;">لتجارة الهواتف النقالة والاكسسوارات والأنظمة الذكية</p>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <div id="printVipBadgeBox" style="display: none; background: linear-gradient(135deg, #ff2a4d, #d90429); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 14px; box-shadow: 0 0 15px rgba(255,42,77,0.5); border: 1px solid #fff;">VIP</div>
-                    <div style="text-align: left; font-size: 12px; color: #f5f6fa;">
-                        <p>تاريخ الإصدار: <b id="printDate" style="color:#ff2a4d;"></b></p>
-                        <p>وقت الطباعة: <b id="printTime" style="color:#3498db;"></b></p>
-                        <p>رقم القائمة: <b id="printInvoiceNo"></b></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="invoice-meta-grid">
-                <div>اسم الزبون: <b id="printClientName" style="color:#fff;"></b></div>
-                <div>رقم الهاتف: <b id="printClientPhone" style="color:#fff;"></b></div>
-            </div>
-            <table class="print-table">
-                <thead>
-                    <tr id="printTableHeader">
-                        <th>الجهاز</th>
-                        <th>اللون</th>
-                        <th>الذاكرة</th>
-                        <th>السعر (د.ع)</th>
-                        <th>IMEI</th>
-                    </tr>
-                </thead>
-                <tbody id="printTableBody"></tbody>
-            </table>
-
-            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 15px; margin-bottom: 15px; background: rgba(255,42,77,0.15); border: 1px solid #ff2a4d; padding: 12px; border-radius: 8px;">
-                <span>إجمالي عدد العناصر: <span id="printTotalCount" style="color:#3498db;">0</span></span>
-                <span>المبلغ الإجمالي النهائي: <span id="printTotalAmount" style="color: #2ecc71; font-size: 18px;">0</span> د.ع</span>
-            </div>
-
-            <div class="invoice-footer-notes">
-                <p><b>شروط الضمان وسياسة البيع:</b></p>
-                <p id="printWarrantyNoteText">• الضمان القياسي المعتمد لدى الشركة ضد العيوب المصنعية.</p>
-                <p style="margin-top: 6px; text-align: center; color: #ff2a4d; font-weight: bold; font-size: 12px;">العنوان: بغداد - زيونة - شارع ربيع - مقابل جدار سنتر | هاتف: 07730774788</p>
-            </div>
-
-            <button class="btn-custom" onclick="confirmPrint()" style="margin-top: 20px; font-size: 15px; padding: 12px;"><i class="fa-solid fa-print"></i> طباعة الفاتورة رسمياً</button>
-            <button onclick="document.getElementById('printPreviewModal').style.display='none'" style="width:100%; margin-top:10px; background:none; border:none; color:#a4b0be; cursor:pointer; font-size:12px;">إلغاء وإغلاق</button>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-    <script>
+<button onclick="document.getElementById('searchAccessoryModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid" style="margin-bottom: 15px;">
+<div style="grid-column: span 2;">
+<label>ابحث برقم القائمة، اسم الزبون، اسم الموظف، رقم الهاتف، أو اسم المنتج:</label>
+<input id="accessorySearchQueryInput" oninput="filterAccessoryInvoicesArchive()" placeholder="اكتب للبحث الفوري في فواتير الاكسسوارات..." type="text"/>
+</div>
+</div>
+<div class="table-container" style="max-height: 350px; overflow-y: auto;">
+<table id="accessoryInvoicesArchiveTable">
+<thead>
+<tr>
+<th>رقم القائمة</th>
+<th>التاريخ والوقت</th>
+<th>اسم الزبون</th>
+<th>الموظف</th>
+<th>الحالة</th>
+<th>الإجمالي</th>
+<th>إجراءات الفاتورة</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="7" style="color: var(--text-muted);">لا توجد فواتير اكسسوارات مسجلة في الأرشيف حتى الآن</td></tr>
+</tbody>
+</table>
+</div>
+<button class="btn-custom" onclick="document.getElementById('searchAccessoryModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">إغلاق النافذة</button>
+</div>
+</div>
+<div id="invoiceDetailsModal">
+<div class="modal-content-box" style="border-color: var(--accent-red);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+<h3 style="color: var(--accent-red); font-size: 18px;"><i class="fa-solid fa-file-invoice"></i> تفاصيل القائمة وإلغاؤها</h3>
+<button onclick="document.getElementById('invoiceDetailsModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div id="invoiceDetailsBody" style="font-size: 14px; line-height: 1.8;"></div>
+<div id="cancelInvoiceActionBox" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;"></div>
+</div>
+</div>
+<div id="catalogItemModal">
+<div class="modal-content-box" style="border-color:#9b59b6;">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
+<h3 style="color:#bb86fc;font-size:18px;"><i class="fa-solid fa-box-open"></i> قائمة إضافة عنصر جديد</h3>
+<button onclick="closeCatalogModal()" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid" style="margin-bottom:15px;">
+<div><label>القسم:</label><div id="catalogFixedTypeLabel" style="padding:11px;border:1px solid var(--border-color);border-radius:8px;background:#111;color:#fff;font-weight:bold;">جهاز</div></div>
+<div style="grid-column:span 2;"><label>بحث عن عنصر مضاف للتعديل:</label><input id="catalogSearchInput" oninput="renderCatalogManager()" placeholder="ابحث بالشركة، الاسم، اللون، الذاكرة أو الباركود..." type="text"/></div>
+</div>
+<div id="catalogEditPermissionNote" style="margin-bottom:12px;padding:10px;border-radius:8px;background:rgba(255,42,77,.08);border:1px dashed var(--accent-red);font-size:12px;"></div>
+<div class="form-grid" style="background:rgba(20,20,28,.7);padding:15px;border-radius:10px;border:1px solid var(--border-color);margin-bottom:15px;">
+<div><label>الشركة:</label><input id="catalogCompany" type="text"/></div>
+<div><label id="catalogNameLabel">اسم / موديل الجهاز:</label><input id="catalogName" type="text"/></div>
+<div><label>اللون:</label><input id="catalogColor" type="text"/></div>
+<div><label>الذاكرة / السعة:</label><input id="catalogMemory" type="text"/></div>
+<div><label>الباركود التعريفي:</label><input id="catalogBarcode" type="text"/></div>
+<div style="align-self:end;"><button class="btn-custom" id="catalogSaveBtn" onclick="saveCatalogItem()" style="background:linear-gradient(135deg,#9b59b6,#8e44ad);">حفظ عنصر جديد</button></div>
+</div>
+<div class="table-container" style="max-height:330px;overflow:auto;">
+<table id="catalogManagerTable"><thead><tr><th>الشركة</th><th>الاسم</th><th>اللون</th><th>الذاكرة/السعة</th><th>الباركود</th><th>التحكم</th></tr></thead><tbody></tbody></table>
+</div>
+</div>
+</div>
+<div id="inventoryReportModal">
+<div class="modal-content-box" style="border-color:#3498db;">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
+<h3 style="color:#3498db;font-size:18px;"><i class="fa-solid fa-print"></i> إعداد نموذج الجرد</h3>
+<button onclick="document.getElementById('inventoryReportModal').style.display='none'" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid">
+<input id="inventoryReportType" type="hidden" value="device"/>
+<div style="grid-column:1/-1;"><label id="inventoryReportTypeLabel" style="font-weight:800;font-size:14px;">نوع الجرد: الأجهزة</label></div>
+<div style="grid-column:1/-1;"><label>الشركة:</label><select id="inventoryReportCompany"><option value="all">كل الشركات</option></select></div>
+</div>
+<div style="margin-top:15px;padding:10px;border-radius:8px;background:rgba(52,152,219,.08);border:1px dashed #3498db;font-size:12px;color:var(--text-muted);">هذا النموذج خاص بنوع الجرد المحدد فقط. اختر شركة محددة أو <b>كل الشركات</b> لطباعة جرد هذا النوع.</div>
+<button class="btn-custom" onclick="printSelectedInventoryReport()" style="margin-top:18px;"><i class="fa-solid fa-print"></i> معاينة وطباعة الجرد</button>
+</div>
+</div>
+<div class="v630-invoice-modal" id="printPreviewModal">
+<div class="invoice-print-box v630-invoice">
+<div class="invoice-top-header invoice-header-fixed-left">
+<div class="invoice-header-brand invoice-header-brand-left">
+<div id="printVipBadgeBox" style="display: none; background: linear-gradient(135deg, #ff2a4d, #d90429); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 14px; box-shadow: 0 0 15px rgba(255,42,77,0.5); border: 1px solid #fff;">VIP</div>
+<div class="brand">VOL<span>TECH</span></div>
+<p class="invoice-brand-tagline">لتجارة الهواتف النقالة والاكسسوارات والأنظمة الذكية</p>
+</div>
+<div class="invoice-header-info invoice-header-info-right" style="font-size:12px; color:#f5f6fa;">
+<p>تاريخ الإصدار: <b id="printDate" style="color:#ff2a4d;"></b></p>
+<p>وقت الطباعة: <b id="printTime" style="color:#3498db;"></b></p>
+<p>رقم القائمة: <b id="printInvoiceNo"></b></p>
+</div>
+</div>
+<div class="invoice-meta-grid">
+<div style="text-align:right;">اسم الزبون: <b id="printClientName" style="color:#fff;"></b></div>
+<div style="text-align:left; direction:ltr;">رقم الهاتف: <b id="printClientPhone" style="color:#fff;"></b></div>
+</div>
+<div class="invoice-table-wrap" id="invoicePrintTableWrap">
+<table class="print-table" id="invoicePrintTable" style="width:100%;min-width:0;max-width:100%;table-layout:fixed;box-sizing:border-box;">
+<thead>
+<tr id="printTableHeader">
+<th>اسم الجهاز</th>
+<th>اللون</th>
+<th>الذاكرة</th>
+<th>السعر (د.ع)</th>
+<th>IMEI</th>
+</tr>
+</thead>
+<tbody id="printTableBody"></tbody>
+</table>
+</div>
+<div class="invoice-total-row" style="display: flex; justify-content: space-between; font-weight: bold; font-size: 15px; margin-bottom: 15px; background: rgba(255,42,77,0.15); border: 1px solid #ff2a4d; padding: 12px; border-radius: 8px;">
+<span>إجمالي عدد العناصر: <span id="printTotalCount" style="color:#3498db;">0</span></span>
+<span>المبلغ الإجمالي النهائي: <span id="printTotalAmount" style="color: #2ecc71; font-size: 18px;">0</span> د.ع</span>
+</div>
+<div class="invoice-footer-notes">
+<p><b>شروط الضمان وسياسة البيع:</b></p>
+<div id="printWarrantyNoteText">
+<p>• الاحتفاظ بالكارتون الخاص بالجهاز أو الاكسسوار.</p>
+<p>• ضمان الاجهزة والاكسسوارات لا يشمل اي تلف متعمد أو خدش أو سوء استخدام أو سوائل أو نار.</p>
+<p>• ضمان الاجهزة لمدة سنة كاملة من اي اخطاء أو اعطال مصنعية فقط.</p>
+</div>
+</div>
+<button class="btn-custom" onclick="confirmPrint()" style="margin-top: 20px; font-size: 15px; padding: 12px;"><i class="fa-solid fa-print"></i> طباعة الفاتورة رسمياً</button>
+<button onclick="document.getElementById('printPreviewModal').style.display='none'" style="width:100%; margin-top:10px; background:none; border:none; color:#a4b0be; cursor:pointer; font-size:12px;">إلغاء وإغلاق</button>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
         let exchangeRate = 1500;
         let vipWarrantyPrice = 25000;
         let invoiceCounter = 1;
@@ -1231,6 +1556,7 @@
         // حفظ دائم لكل بيانات التشغيل داخل ملف JSON واحد في localStorage.
         // يتم استعادتها عند إعادة فتح/تحديث الصفحة، مع إبقاء التقارير التاريخية منفصلة أيضاً.
         const APP_STORE_KEY = 'voltech_app_state_v14';
+        const VOLTECH_BUILD = 'V6.2.7-PRELINK-OFFLINE-FINAL-INVOICE';
         function appStatePayload(){
             return {
                 version: 14, savedAt: Date.now(),
@@ -1241,6 +1567,76 @@
                 monthlyAccountsReportHistory, adminDailyReportHistory, vipFinanceState, vipAnnualHistory
             };
         }
+        // ===== V6.1 PRE-LINK SAFETY LAYER =====
+        // هذه الحماية تعمل أوفلاين الآن، وسيتم نقل فرض الصلاحيات لاحقاً إلى Supabase RLS.
+        function hasRole(...roles){ return !!loggedInUser && roles.includes(loggedInUser.role); }
+        function requireRole(roles, message='ليس لديك صلاحية لتنفيذ هذه العملية.'){
+            if(!loggedInUser || !roles.includes(loggedInUser.role)){ alert(message); return false; }
+            return true;
+        }
+        function isValidMoney(v){ return Number.isFinite(Number(v)) && Number(v) >= 0; }
+        function validateInvoiceStock(items){
+            const deviceItems=items.filter(i=>i.type!=='accessory');
+            for(const item of deviceItems){
+                const found=warehouseDevicesList.find(d=>String(d.imei)===String(item.imei));
+                if(!found) return `الجهاز IMEI ${item.imei||'-'} لم يعد موجوداً في المستودع.`;
+            }
+            const requested={};
+            items.filter(i=>i.type==='accessory').forEach(i=>{
+                const key=String(i.barcode||''); requested[key]=(requested[key]||0)+(Number(i.qty)||1);
+            });
+            for(const [barcode,qty] of Object.entries(requested)){
+                if(!barcode) continue; // البيع المباشر بدون باركود لا يعتمد على مخزون المستودع
+                const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===barcode);
+                if(stock && Number(stock.qty||0)<qty) return `الكمية المتوفرة للاكسسوار ${barcode} غير كافية لإصدار الفاتورة.`;
+            }
+            return null;
+        }
+        function commitInvoiceStock(items){
+            const deviceItems=items.filter(i=>i.type!=='accessory');
+            for(const item of deviceItems){
+                const idx=warehouseDevicesList.findIndex(d=>String(d.imei)===String(item.imei));
+                if(idx<0) throw new Error(`Stock commit failed for IMEI ${item.imei}`);
+                warehouseDevicesList.splice(idx,1);
+            }
+            const requested={};
+            items.filter(i=>i.type==='accessory').forEach(i=>{
+                const barcode=String(i.barcode||'');
+                if(barcode) requested[barcode]=(requested[barcode]||0)+(Number(i.qty)||1);
+            });
+            for(const [barcode,qty] of Object.entries(requested)){
+                const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===barcode);
+                if(stock){ stock.qty=Number(stock.qty||0)-qty; if(stock.qty<0) throw new Error(`Negative accessory stock: ${barcode}`); }
+            }
+        }
+        function restoreInvoiceStock(items){
+            items.forEach(item=>{
+                if(item.type==='accessory'){
+                    const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===String(item.barcode) && item.barcode);
+                    if(stock) stock.qty=(Number(stock.qty)||0)+(Number(item.qty)||1);
+                    else warehouseAccessoriesList.push(JSON.parse(JSON.stringify(item)));
+                }else{
+                    const exists=warehouseDevicesList.some(d=>String(d.imei)===String(item.imei));
+                    if(!exists) warehouseDevicesList.push(JSON.parse(JSON.stringify(item)));
+                }
+            });
+        }
+        function compressInvoiceImage(file, maxBytes=900*1024){
+            return new Promise((resolve,reject)=>{
+                if(!file){resolve('');return;}
+                if(file.size<=maxBytes){ const r=new FileReader(); r.onload=()=>resolve(r.result); r.onerror=reject; r.readAsDataURL(file); return; }
+                const img=new Image(), reader=new FileReader();
+                reader.onload=()=>{ img.onload=()=>{
+                    const maxSide=1600, scale=Math.min(1,maxSide/Math.max(img.width,img.height));
+                    const c=document.createElement('canvas'); c.width=Math.max(1,Math.round(img.width*scale)); c.height=Math.max(1,Math.round(img.height*scale));
+                    const ctx=c.getContext('2d'); ctx.drawImage(img,0,0,c.width,c.height);
+                    let q=.82, out=c.toDataURL('image/jpeg',q);
+                    while(out.length*0.75>maxBytes && q>.45){ q-=.07; out=c.toDataURL('image/jpeg',q); }
+                    resolve(out);
+                }; img.onerror=reject; img.src=reader.result;}; reader.onerror=reject; reader.readAsDataURL(file);
+            });
+        }
+
         function saveAllAppState(){
             try{ localStorage.setItem(APP_STORE_KEY, JSON.stringify(appStatePayload())); return true; }
             catch(e){ console.error('VOLTECH persistence error:',e); return false; }
@@ -1708,6 +2104,7 @@
         }
 
         function toggleUserStatus(id) {
+            if(!requireRole(['admin'],'تغيير حالة المستخدمين متاح للمدير العام فقط.')) return;
             let usr = systemUsers.find(u => u.id === id);
             if(usr) {
                 usr.active = !usr.active;
@@ -1717,6 +2114,7 @@
         }
 
         function deleteUserAccount(id) {
+            if(!requireRole(['admin'],'حذف المستخدمين متاح للمدير العام فقط.')) return;
             if(confirm("هل أنت متأكد من حذف هذا الحساب نهائياً؟")) {
                 systemUsers = systemUsers.filter(u => u.id !== id);
                 renderUsersManageTable();
@@ -2024,11 +2422,9 @@
             let supplierAccount = accountsList.find(a=>String(a.name)===supplierName && a.entityType==='company' && a.id!==900001 && a.id!==900002);
             if(!supplierAccount){ alert("اسم المورد يجب أن يكون شركة مضافة مسبقاً في الحسابات والديون."); return; }
 
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                finalizeBatchSave(e.target.result, paymentType, totalCostIQD, supplierName, contentStatement);
-            };
-            reader.readAsDataURL(imageInput.files[0]);
+            compressInvoiceImage(imageInput.files[0]).then(imageData=>{
+                finalizeBatchSave(imageData, paymentType, totalCostIQD, supplierName, contentStatement);
+            }).catch(()=>alert('تعذر معالجة صورة الفاتورة. حاول اختيار صورة أخرى.'));
         }
 
         function finalizeBatchSave(imageDataUrl, paymentType, totalCostIQD, supplierName, contentStatement) {
@@ -2219,7 +2615,9 @@
                 return;
             }
             if(index===-1){alert("IMEI أو باركود الجهاز غير موجود في مستودع الأجهزة!");return;}
-            let device=warehouseDevicesList.splice(index,1)[0];
+            let device=JSON.parse(JSON.stringify(warehouseDevicesList[index]));
+            device.type = device.type || 'device';
+            if(currentInvoiceItems.some(x=>String(x.imei)===String(device.imei))){ alert('هذا الجهاز مضاف مسبقاً إلى الفاتورة الحالية.'); return; }
             currentInvoiceItems.push(device);
             renderActiveInvoiceTable(); renderWarehouseDevicesTable(); updateOpsSummary();
         }
@@ -2271,7 +2669,6 @@
                     alert(`الكمية المتوفرة في المستودع لهذا المنتج هي ${stockItem.qty || 0} فقط!`);
                     return;
                 }
-                stockItem.qty -= qty;
                 accItem = {
                     type: 'accessory', company: stockItem.company, name: stockItem.name, barcode: stockItem.barcode,
                     imei: stockItem.imei, costUSD: stockItem.costUSD, costIQD: stockItem.costIQD,
@@ -2334,7 +2731,7 @@
                     });
                 }
             } else {
-                headerRow.innerHTML = `<th>اسم الاكسسوار / الملحق</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع) [تعديل حر]</th><th>الإجمالي</th><th>التحكم</th>`;
+                headerRow.innerHTML = `<th>اسم الاكسسوار</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع) [تعديل حر]</th><th>الإجمالي</th><th>التحكم</th>`;
                 if(currentInvoiceItems.length === 0) {
                     tbody.innerHTML = `<tr><td colspan="6" style="color: var(--text-muted);">لم يتم إضافة أي اكسسوار للقائمة بعد</td></tr>`;
                 } else {
@@ -2816,12 +3213,43 @@
             addAccountPaymentHistory(acc,0,`تصفير الحساب من قبل المسؤول العام — البيان: ${settlementNote} — قبل التصفير: الإجمالي ${oldTotal.toLocaleString()} د.ع، الواصل ${oldPaid.toLocaleString()} د.ع، المتبقي ${oldRemaining.toLocaleString()} د.ع`);
             renderAccountsTable(); logAction(loggedInUser.name,'تصفير حساب',`تم تصفير حساب ${acc.name} — البيان: ${settlementNote} — قبل التصفير: الإجمالي ${oldTotal.toLocaleString()} د.ع، الواصل ${oldPaid.toLocaleString()} د.ع، المتبقي ${oldRemaining.toLocaleString()} د.ع`); alert('تم تصفير الحساب بنجاح وتسجيل بيان التصفير.');
         }
-        function keepPosAccountFirst(){
-            const posIndex = accountsList.findIndex(a => String(a.name || '').trim().toLowerCase() === 'pos');
-            if(posIndex > 0){
-                const pos = accountsList.splice(posIndex,1)[0];
-                accountsList.unshift(pos);
+        function ensureSinglePosAccount(){
+            const matches = accountsList.filter(a => String(a?.name || '').trim().toLowerCase() === 'pos');
+            if(!matches.length){
+                accountsList.unshift({id:900001,name:'POS',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]});
+                return accountsList[0];
             }
+            const pos = matches[0];
+            pos.id = 900001;
+            pos.name = 'POS';
+            pos.entityType = 'company';
+            pos.total = matches.reduce((n,a)=>n + (Number(a.total)||0),0);
+            pos.paid = matches.reduce((n,a)=>n + (Number(a.paid)||0),0);
+            pos.remaining = Math.max(0, pos.total - pos.paid);
+            pos.paymentHistory = matches.flatMap(a=>Array.isArray(a.paymentHistory)?a.paymentHistory:[]).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')) || String(b.time||'').localeCompare(String(a.time||'')));
+            pos.vouchers = matches.flatMap(a=>Array.isArray(a.vouchers)?a.vouchers:[]);
+            const keep = new Set([pos]);
+            accountsList = accountsList.filter(a => {
+                if(String(a?.name || '').trim().toLowerCase() !== 'pos') return true;
+                return keep.has(a);
+            });
+            const idx=accountsList.indexOf(pos);
+            if(idx>0) accountsList.splice(idx,1), accountsList.unshift(pos);
+            return pos;
+        }
+        function keepPosAccountFirst(){ return ensureSinglePosAccount(); }
+
+        function normalizePosPaymentOption(){
+            const select=document.getElementById('invoicePaymentType');
+            if(!select) return;
+            const options=[...select.options];
+            let kept=false;
+            options.forEach(o=>{
+                if(o.value==='pos'){
+                    if(!kept){ o.textContent='تسديد POS — يضاف إلى حساب POS'; kept=true; }
+                    else o.remove();
+                }
+            });
         }
 
         function resetGeneralExpenseAccount(){
@@ -2938,6 +3366,7 @@
         }
 
         function deleteAccount(idx) {
+            if(!requireRole(['admin'],'حذف الحسابات متاح للمدير العام فقط.')) return;
             if(confirm("هل أنت متأكد من حذف هذا الحساب؟")) {
                 accountsList.splice(idx, 1);
                 saveAllAppState();
@@ -3036,7 +3465,155 @@
             let report={month,monthProfit,topEmployee:top?top[0]:'لا يوجد',topEmployeeSales:top?top[1].total||0:0,employees:Object.fromEntries(entries),timestamp:Date.now(),issuedBy:loggedInUser.name};
             monthlyAccountsReportHistory.unshift(report); persistMonthlyAccountsReportHistory();
             let rows=entries.map(([name,e])=>`<tr><td>${name}</td><td>${(e.deviceSales||0).toLocaleString()} د.ع</td><td>${(e.accessorySales||0).toLocaleString()} د.ع</td><td>${(e.total||0).toLocaleString()} د.ع</td></tr>`).join('');
-            let win=window.open('','_blank','width=950,height=750'); if(win){win.document.write(`<html dir="rtl"><head><meta charset="UTF-8"><title>تقرير المبيعات الشهرية - VOLTECH</title><style>body{font-family:Arial;padding:30px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #222;padding:10px;text-align:center}h1,h2{text-align:center}</style></head><body><h1>تقرير المبيعات الشهرية - VOLTECH</h1><h2>الشهر: ${month}</h2><p><b>إجمالي المبيعات:</b> ${monthSales.toLocaleString()} د.ع</p><p><b>إجمالي الأرباح الشهرية:</b> ${monthProfit.toLocaleString()} د.ع</p><p><b>الأكثر مبيعات:</b> ${report.topEmployee} — ${report.topEmployeeSales.toLocaleString()} د.ع</p><table><tr><th>الموظف / عضو النظام</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th></tr>${rows||'<tr><td colspan="4">لا توجد مبيعات</td></tr>'}</table></body></html>`);win.document.close();setTimeout(()=>win.print(),300);}
+            let win=window.open('','_blank','width=950,height=750'); if(win){win.document.write(`<html dir="rtl"><head><meta charset="UTF-8"><title>تقرير المبيعات الشهرية - VOLTECH</title><style>body{font-family:Arial;padding:30px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #222;padding:10px;text-align:center}h1,h2{text-align:center}</style>
+<style id="voltech-final-tagline-fix">
+/* V6.3.3 FINAL - tagline directly under the left logo */
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand {
+    position: static !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 48% !important;
+    max-width: 48% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    direction: ltr !important;
+    box-sizing: border-box !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .brand {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    direction: ltr !important;
+    white-space: nowrap !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .invoice-brand-tagline {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    font-size: 9px !important;
+    line-height: 15px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    direction: rtl !important;
+    unicode-bidi: plaintext !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+}
+@media print {
+    #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand {
+        width: 48% !important;
+        max-width: 48% !important;
+        overflow: hidden !important;
+    }
+    #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .invoice-brand-tagline {
+        font-size: 9px !important;
+        line-height: 15px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+    }
+}
+</style>
+
+<style id="voltech-invoice-tagline-final-fixed">
+/* FINAL FIX: logo + tagline are one compact block on the LEFT. */
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{
+  position:relative !important;
+  display:block !important;
+  width:100% !important;
+  height:92px !important;
+  min-height:92px !important;
+  direction:ltr !important;
+  box-sizing:border-box !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{
+  position:absolute !important;
+  left:0 !important;
+  right:auto !important;
+  top:0 !important;
+  width:280px !important;
+  max-width:280px !important;
+  min-width:280px !important;
+  height:auto !important;
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:center !important;
+  direction:ltr !important;
+  transform:none !important;
+  overflow:visible !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .brand{
+  display:block !important;
+  width:max-content !important;
+  max-width:280px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  text-align:center !important;
+  direction:ltr !important;
+  white-space:nowrap !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .invoice-brand-tagline{
+  display:block !important;
+  width:280px !important;
+  max-width:280px !important;
+  margin:5px 0 0 0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+  font-size:9px !important;
+  line-height:14px !important;
+  font-weight:500 !important;
+  text-align:center !important;
+  direction:rtl !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right{
+  position:absolute !important;
+  right:0 !important;
+  left:auto !important;
+  top:0 !important;
+  width:280px !important;
+  max-width:280px !important;
+  display:block !important;
+  text-align:right !important;
+  direction:rtl !important;
+}
+@media print{
+  #printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{
+    height:92px !important;
+    min-height:92px !important;
+    display:block !important;
+  }
+  #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{
+    left:0 !important;
+    width:280px !important;
+    max-width:280px !important;
+    min-width:280px !important;
+  }
+  #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .invoice-brand-tagline{
+    width:280px !important;
+    max-width:280px !important;
+    font-size:9px !important;
+    line-height:14px !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+  }
+}
+</style>
+</head><body><h1>تقرير المبيعات الشهرية - VOLTECH</h1><h2>الشهر: ${month}</h2><p><b>إجمالي المبيعات:</b> ${monthSales.toLocaleString()} د.ع</p><p><b>إجمالي الأرباح الشهرية:</b> ${monthProfit.toLocaleString()} د.ع</p><p><b>الأكثر مبيعات:</b> ${report.topEmployee} — ${report.topEmployeeSales.toLocaleString()} د.ع</p><table><tr><th>الموظف / عضو النظام</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th></tr>${rows||'<tr><td colspan="4">لا توجد مبيعات</td></tr>'}</table></body></html>`);win.document.close();setTimeout(()=>win.print(),300);}
             financeMonthlyBaseline=Date.now();
             persistFinanceMonthlyBaseline();
             employeeMonthlySalesState={month:monthKeyLocal(),employees:{},_financeBaseline:financeBaseline};
@@ -3195,6 +3772,24 @@
             let discountVal = (cat === 'accessory') ? (parseFloat(document.getElementById("invoiceDiscountInput").value) || 0) : 0;
             total = Math.max(0, total - discountVal);
 
+            const stockError = validateInvoiceStock(clonedItems);
+            if(stockError){ alert(stockError); return; }
+            if(paymentType === 'debt'){
+                const paidCheck = parseFloat(document.getElementById("debtPaidAmount").value) || 0;
+                if(!isValidMoney(paidCheck) || paidCheck > total){ alert('الدفعة المقدمة لا يمكن أن تكون أكبر من إجمالي الفاتورة.'); return; }
+            }
+            if(paymentType === 'installment'){
+                const downCheck = parseFloat(document.getElementById("installmentDownPayment").value) || 0;
+                if(!isValidMoney(downCheck) || downCheck > total){ alert('الدفعة الأولى لا يمكن أن تكون أكبر من إجمالي الفاتورة.'); return; }
+            }
+            if(paymentType === 'ops'){
+                const opsCheck = opsPaymentsList.reduce((sum,p)=>sum+(Number(p.amount)||0),0);
+                if(opsCheck > total){ alert('مجموع دفعات OPS لا يمكن أن يتجاوز إجمالي الفاتورة.'); return; }
+            }
+            try { commitInvoiceStock(clonedItems); }
+            catch(e){ console.error(e); alert('تعذر تثبيت حركة المخزون. لم يتم إصدار الفاتورة.'); return; }
+            renderWarehouseDevicesTable(); renderWarehouseAccessoriesTable();
+
             let linkedAccountIndex = null;
             let entityNameForAcc = clientNameForPrint;
 
@@ -3202,7 +3797,7 @@
                 cashierBalance += total;
             } else if(paymentType === 'pos') {
                 // كافة فواتير الدفع عبر POS تُجمع في حساب واحد موحّد بدل فتح حساب لكل فاتورة
-                let posAcc = getOrCreateAggregateAccount("POS");
+                let posAcc = ensureSinglePosAccount();
                 posAcc.total += total;
                 posAcc.paid += total;
                 posAcc.remaining = Math.max(0, posAcc.total - posAcc.paid);
@@ -3298,13 +3893,10 @@ saveAllAppState();
             document.getElementById("printTotalCount").innerText = totalElementsCount;
 
             let vipBadgeBox = document.getElementById("printVipBadgeBox");
-            let warrantyNoteText = document.getElementById("printWarrantyNoteText");
             if (inv.warranty === 'vip') {
                 vipBadgeBox.style.display = "block";
-                warrantyNoteText.innerHTML = `• يتضمن هذا الجهاز ضمان VIP ضد العيوب المصنعية.`;
             } else {
                 vipBadgeBox.style.display = "none";
-                warrantyNoteText.innerHTML = `• الضمان القياسي المعتمد لدى الشركة ضد العيوب المصنعية.`;
             }
 
             let printTbody = document.getElementById("printTableBody");
@@ -3326,7 +3918,7 @@ saveAllAppState();
                     `;
                 });
             } else {
-                printHeader.innerHTML = `<th>اسم الاكسسوار / الملحق</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع)</th><th>الإجمالي</th>`;
+                printHeader.innerHTML = `<th>اسم الاكسسوار</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع)</th>`;
                 inv.items.forEach(item => {
                     let val = parseFloat(item.priceIQD) || 0;
                     let qty = item.qty || 1;
@@ -3336,7 +3928,6 @@ saveAllAppState();
                             <td><code>${item.barcode}</code></td>
                             <td>${qty}</td>
                             <td>${val.toLocaleString()} د.ع</td>
-                            <td>${(val*qty).toLocaleString()} د.ع</td>
                         </tr>
                     `;
                 });
@@ -3346,7 +3937,7 @@ saveAllAppState();
                 printTbody.innerHTML += `
                     <tr style="background: rgba(255,42,77,0.05);">
                         <td><b>ضمان VIP</b></td>
-                        <td colspan="${inv.category === 'device' ? 3 : 3}"></td>
+                        <td colspan="${inv.category === 'device' ? 3 : 2}"></td>
                         <td>${inv.warrantyCost.toLocaleString()} د.ع</td>
                     </tr>
                 `;
@@ -3390,13 +3981,15 @@ saveAllAppState();
             let query = document.getElementById("deviceSearchQueryInput").value.trim().toLowerCase();
 
             let filtered = deviceInvoicesArchive.filter(inv => {
-                return !query || 
-                    inv.invoiceNo.toLowerCase().includes(query) || 
-                    inv.clientName.toLowerCase().includes(query) || 
-                    inv.clientPhone.toLowerCase().includes(query) || 
-                    String(inv.employeeName||'').toLowerCase().includes(query) ||
-                    String(inv.contentDescription||'').toLowerCase().includes(query) ||
-                    inv.items.some(i => String(i.imei||'').toLowerCase().includes(query));
+                const invoiceNo = String(inv.invoiceNo ?? '').toLowerCase();
+                const clientName = String(inv.clientName ?? '').toLowerCase();
+                const clientPhone = String(inv.clientPhone ?? '').toLowerCase();
+                const employeeName = String(inv.employeeName ?? '').toLowerCase();
+                const contentDescription = String(inv.contentDescription ?? '').toLowerCase();
+                const items = Array.isArray(inv.items) ? inv.items : [];
+                return !query || invoiceNo.includes(query) || clientName.includes(query) || clientPhone.includes(query) ||
+                    employeeName.includes(query) || contentDescription.includes(query) ||
+                    items.some(i => String(i?.imei ?? '').toLowerCase().includes(query));
             });
 
             if(filtered.length === 0) {
@@ -3428,13 +4021,15 @@ saveAllAppState();
             let query = document.getElementById("accessorySearchQueryInput").value.trim().toLowerCase();
 
             let filtered = accessoryInvoicesArchive.filter(inv => {
-                return !query || 
-                    inv.invoiceNo.toLowerCase().includes(query) || 
-                    inv.clientName.toLowerCase().includes(query) || 
-                    inv.clientPhone.toLowerCase().includes(query) || 
-                    String(inv.employeeName||'').toLowerCase().includes(query) ||
-                    String(inv.contentDescription||'').toLowerCase().includes(query) ||
-                    inv.items.some(i => String(i.name||'').toLowerCase().includes(query));
+                const invoiceNo = String(inv.invoiceNo ?? '').toLowerCase();
+                const clientName = String(inv.clientName ?? '').toLowerCase();
+                const clientPhone = String(inv.clientPhone ?? '').toLowerCase();
+                const employeeName = String(inv.employeeName ?? '').toLowerCase();
+                const contentDescription = String(inv.contentDescription ?? '').toLowerCase();
+                const items = Array.isArray(inv.items) ? inv.items : [];
+                return !query || invoiceNo.includes(query) || clientName.includes(query) || clientPhone.includes(query) ||
+                    employeeName.includes(query) || contentDescription.includes(query) ||
+                    items.some(i => String(i?.name ?? '').toLowerCase().includes(query));
             });
 
             if(filtered.length === 0) {
@@ -3520,7 +4115,7 @@ saveAllAppState();
             if(inv.paymentType==='cash') cashierBalance-=total;
             else if(inv.paymentType==='pos'){
                 vaultBalance-=total;
-                const pa=accountsList.find(a=>a.name==='POS');
+                const pa=ensureSinglePosAccount();
                 if(pa){pa.total=Math.max(0,(pa.total||0)-total);pa.paid=Math.max(0,(pa.paid||0)-total);pa.remaining=Math.max(0,pa.total-pa.paid);}
             } else if(inv.linkedAccountId!=null){
                 const acc=accountsList.find(a=>a.id===inv.linkedAccountId);
@@ -3634,6 +4229,7 @@ saveAllAppState();
         // تُستخلص أسماء المستخدمين/الإعدادات فقط من الحالة القديمة، ثم تُصفّر كل العمليات.
         if(!localStorage.getItem('voltech_startup_clean_v14')){
             initializeAuthoritativeStartupV14();
+        console.info('VOLTECH build:', VOLTECH_BUILD);
         }else if(!hydrateAppState()){
             // في حال تلفت الحالة الجديدة، أعد إنشاء حالة نظيفة بدلاً من إعادة السجلات القديمة.
             localStorage.removeItem('voltech_startup_clean_v14');
@@ -3641,6 +4237,8 @@ saveAllAppState();
         }
 
         // بعد التهيئة الأولى، الحفظ الدائم يعتمد حصراً على APP_STORE_KEY ولا توجد عمليات تنظيف تلقائية أخرى.
+        ensureSinglePosAccount();
+        normalizePosPaymentOption();
         saveAllAppState();
         renderDailyReportPanel();
         keepPosAccountFirst();
