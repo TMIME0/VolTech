@@ -1493,7 +1493,9 @@ input:focus,select:focus,textarea:focus{
 <div><label>الحساب:</label><select id="voucherAccountSelect"></select></div>
 <div><label>نوع السند:</label><select id="voucherType"><option value="receipt">سند قبض</option><option value="payment">سند صرف</option></select></div>
 <div><label>مكان الحركة:</label><select id="voucherSource"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select></div>
-<div><label>المبلغ (د.ع):</label><input id="voucherAmount" min="0" placeholder="0" type="number"/></div>
+<div><label>عملة السند:</label><select id="voucherCurrency" onchange="updateVoucherCurrencyUI()"><option value="IQD">دينار عراقي (د.ع)</option><option value="USD">دولار أمريكي ($)</option></select></div>
+<div><label id="voucherAmountLabel">المبلغ (د.ع):</label><input id="voucherAmount" min="0" placeholder="0" type="number"/></div>
+<div id="voucherExchangeRateWrap" style="display:none;"><label>سعر الصرف (1$ = د.ع):</label><input id="voucherExchangeRate" min="1" type="number"/></div>
 <div><label>البيان الكامل:</label><input id="voucherNote" placeholder="سبب القبض أو الصرف بالتفصيل" type="text"/></div>
 <div style="align-self:flex-end;"><button class="btn-custom" onclick="addAccountVoucher()" style="background:var(--accent-blue);">تسجيل السند</button></div>
 </div>
@@ -1694,8 +1696,10 @@ input:focus,select:focus,textarea:focus{
 </select>
 <div id="purchasePaymentCashSourceWrap" style="margin-top:10px;">
 <label>مكان الدفع النقدي:</label>
-<select id="purchasePaymentSourceSelect"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select>
+<select id="purchasePaymentSourceSelect" onchange="updatePurchasePaymentCurrencyInfo()"><option value="cashier">الكاشير</option><option value="vault">القاصة</option></select>
 </div>
+<div id="purchasePaymentCurrencyInfo" style="display:none;margin-top:10px;background:rgba(52,152,219,.08);padding:10px;border:1px dashed var(--accent-blue);border-radius:8px;line-height:1.8;"></div>
+<div id="purchasePaymentExchangeRateWrap" style="display:none;margin-top:10px;"><label>سعر الصرف وقت الدفع (1$ = د.ع):</label><input id="purchasePaymentExchangeRate" min="1" type="number" oninput="updatePurchasePaymentCurrencyInfo()"/></div>
 <div style="display:flex;gap:8px;margin-top:15px;">
 <button class="btn-custom" onclick="confirmPurchasePayment()" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;border:1px solid #ff2a4d;box-shadow:0 5px 20px rgba(255,42,77,.35);"><i class="fa-solid fa-check"></i> تأكيد الدفع</button>
 <button class="btn-action" onclick="closePurchasePaymentModal()" style="background:#555;color:#fff;flex:0 0 auto;padding:10px 16px;">إلغاء</button>
@@ -2465,7 +2469,7 @@ input:focus,select:focus,textarea:focus{
                 const p=purchasesLog.find(x=>x.id===u.purchaseId); if(!p){alert('فاتورة المشتريات غير موجودة.');return;}
                 if(p.financialStatus!=='paid'){alert('الفاتورة ليست مدفوعة حالياً.');return;}
                 if(u.paymentType==='cash'){ if(u.source==='vault') vaultBalance += u.amount; else cashierBalance += u.amount; }
-                if(u.paymentType==='debt' && u.accountId){ const acc=accountsList.find(a=>a.id===u.accountId); if(acc){acc.payableTotal=Math.max(0,(acc.payableTotal||0)-u.amount);acc.payableRemaining=Math.max(0,(acc.payableTotal||0)-(acc.payablePaid||0)); if(Array.isArray(acc.paymentHistory)) acc.paymentHistory=acc.paymentHistory.filter(h=>h.purchaseId!==u.purchaseId);} }
+                if(u.paymentType==='debt' && u.accountId){ const acc=accountsList.find(a=>a.id===u.accountId); if(acc){const cur=u.currency||p.currency||'IQD'; const amt=Number(u.amount||0); if(cur==='USD'){acc.payableUSD=Math.max(0,(acc.payableUSD||0)-amt);acc.payableRemainingUSD=Math.max(0,acc.payableUSD-(acc.payablePaidUSD||0));}else{acc.payableIQD=Math.max(0,(acc.payableIQD||acc.payableTotal||0)-amt);acc.payableRemainingIQD=Math.max(0,acc.payableIQD-(acc.payablePaidIQD||acc.payablePaid||0));acc.payableTotal=acc.payableIQD;acc.payableRemaining=acc.payableRemainingIQD;} if(Array.isArray(acc.paymentHistory)) acc.paymentHistory=acc.paymentHistory.filter(h=>h.purchaseId!==u.purchaseId);} }
                 p.financialStatus='pending'; p.paidAt=''; p.paidBy=''; p.paidSource='';
             } else if(u.kind==='treasuryTransfer'){
                 if(u.direction==='cashierToVault'){cashierBalance+=u.amount;vaultBalance-=u.amount;} else {vaultBalance+=u.amount;cashierBalance-=u.amount;}
@@ -3024,11 +3028,11 @@ input:focus,select:focus,textarea:focus{
             if(!supplierAccount){ alert("اسم المورد يجب أن يكون شركة مضافة مسبقاً في الحسابات والديون."); return; }
 
             compressInvoiceImage(imageInput.files[0]).then(imageData=>{
-                finalizeBatchSave(imageData, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo);
+                finalizeBatchSave(imageData, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo, currency, totalCostOriginal, purchaseExchangeRate);
             }).catch(()=>alert('تعذر معالجة صورة الفاتورة. حاول اختيار صورة أخرى.'));
         }
 
-        function finalizeBatchSave(imageDataUrl, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo) {
+        function finalizeBatchSave(imageDataUrl, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo, currency='IQD', totalCostOriginal=totalCostIQD, purchaseExchangeRate=(Number(exchangeRate)||1)) {
             const purchaseInvoiceNo=String(purchaseInvoiceCounter);
             pendingBatchItems.forEach(item => {
                 if(item.type === 'device') {
@@ -3059,6 +3063,10 @@ input:focus,select:focus,textarea:focus{
                 paymentType: paymentType === 'debt' ? 'آجل' : 'نقداً',
                 warehouseType: pendingBatchItems[0]?.type || document.getElementById('batchTargetWarehouse')?.value || 'device',
                 totalIQD: totalCostIQD,
+                currency: currency,
+                currencyAmount: Number(totalCostOriginal)||0,
+                exchangeRateAtPurchase: Number(purchaseExchangeRate)||1,
+                totalUSD: Number(currency==='USD' ? totalCostOriginal : (totalCostIQD/(Number(purchaseExchangeRate)||1)))||0,
                 supplier: supplierName,
                 contentDescription: contentStatement,
                 items: JSON.parse(JSON.stringify(pendingBatchItems)),
@@ -3315,6 +3323,10 @@ input:focus,select:focus,textarea:focus{
             let type=((p.paymentType||'').includes('آجل'))?'debt':'cash';
             document.getElementById('purchasePaymentTypeSelect').value=type;
             document.getElementById('purchasePaymentSourceSelect').value='cashier';
+            const cur=p.currency||'IQD'; const rateWrap=document.getElementById('purchasePaymentExchangeRateWrap'); const rateInput=document.getElementById('purchasePaymentExchangeRate');
+            if(rateWrap) rateWrap.style.display=cur==='USD'?'block':'none';
+            if(rateInput) rateInput.value=Number(exchangeRate)||Number(p.exchangeRateAtPurchase)||1;
+            updatePurchasePaymentCurrencyInfo();
             togglePurchasePaymentTypeUI();
             modal.style.display='flex';
         }
@@ -3324,31 +3336,43 @@ input:focus,select:focus,textarea:focus{
             if(!loggedInUser || !['admin','accountant'].includes(loggedInUser.role)){alert('دفع فواتير المشتريات متاح للمسؤول العام والمحاسب فقط.');return;}
             let p=purchasesLog.find(x=>x.id===pendingPurchasePaymentId); if(!p)return;
             let chosenType=document.getElementById('purchasePaymentTypeSelect')?.value||'cash';
-            const amount=Number(p.totalIQD||0);
+            const currency=p.currency||'IQD';
+            const originalAmount=Number(p.currencyAmount ?? (currency==='USD'?p.totalUSD:p.totalIQD))||0;
             if(chosenType==='debt'){
-                if(!confirm(`تحويل فاتورة المورد ${p.supplier} إلى آجل وربطها بحساب الشركة الموجود في الحسابات والديون بمبلغ ${amount.toLocaleString()} د.ع؟`))return;
+                const displayAmount=currency==='USD'?`$ ${originalAmount.toLocaleString()}`:`${Number(p.totalIQD||0).toLocaleString()} د.ع`;
+                if(!confirm(`تحويل فاتورة المورد ${p.supplier} إلى آجل وربطها بحساب الشركة بمبلغ ${displayAmount}؟`))return;
                 let acc=accountsList.find(a=>String(a.name||'').trim().toLowerCase()===String(p.supplier||'').trim().toLowerCase() && a.entityType==='company' && !isFixedSystemAccount(a));
                 if(!acc){alert('المورد يجب أن يكون شركة مضافة مسبقاً في قائمة الحسابات والديون.');return;}
-                acc.payableTotal=(acc.payableTotal||0)+amount;
-                acc.payableRemaining=Math.max(0,acc.payableTotal-(acc.payablePaid||0));
-                // فاتورة شراء آجلة = مطلوب مني للشركة فقط، ولا تُضاف إلى مطلوب لي.
-                acc.total=Number(acc.total||0);
-                acc.remaining=Math.max(0,acc.total-(acc.paid||0));
-                addAccountPaymentHistoryMeta(acc,0,`فاتورة مشتريات آجلة — ${p.contentDescription||'-'}`,{purchaseId:p.id,ledgerType:'payable'});
+                if(currency==='USD'){
+                    acc.payableUSD=Number(acc.payableUSD||0)+originalAmount;
+                    acc.payablePaidUSD=Number(acc.payablePaidUSD||0);
+                    acc.payableRemainingUSD=Math.max(0,acc.payableUSD-acc.payablePaidUSD);
+                }else{
+                    const iqd=Number(p.totalIQD||0);
+                    acc.payableIQD=Number(acc.payableIQD||acc.payableTotal||0)+iqd;
+                    acc.payablePaidIQD=Number(acc.payablePaidIQD||acc.payablePaid||0);
+                    acc.payableRemainingIQD=Math.max(0,acc.payableIQD-acc.payablePaidIQD);
+                    acc.payableTotal=acc.payableIQD; acc.payablePaid=acc.payablePaidIQD; acc.payableRemaining=acc.payableRemainingIQD;
+                }
+                acc.total=Number(acc.total||0); acc.remaining=Math.max(0,acc.total-(acc.paid||0));
+                addAccountPaymentHistoryMeta(acc,0,`فاتورة مشتريات آجلة — ${p.contentDescription||'-'}`,{purchaseId:p.id,ledgerType:'payable',currency,amount:originalAmount,exchangeRate:p.exchangeRateAtPurchase||1});
                 p.paymentType='آجل'; p.financialStatus='paid'; p.paidAt=new Date().toLocaleString('ar-IQ'); p.paidBy=loggedInUser.name; p.paidSource='حساب آجل'; p.linkedAccountId=acc.id;
                 renderAccountsTable(); renderPurchasesLogTable(); saveAllAppState();
-                logAction(loggedInUser.name,'تسجيل فاتورة مشتريات آجلة',`تم تحويل فاتورة المورد ${p.supplier} إلى آجل على الحساب ${acc.name} بمبلغ ${amount.toLocaleString()} د.ع — البيان: ${p.contentDescription||'-'}`,{kind:'purchasePayment',purchaseId:p.id,paymentType:'debt',accountId:acc.id,amount,done:false});
+                logAction(loggedInUser.name,'تسجيل فاتورة مشتريات آجلة',`تم تحويل فاتورة المورد ${p.supplier} إلى آجل على الحساب ${acc.name} بمبلغ ${displayAmount} — البيان: ${p.contentDescription||'-'}`,{kind:'purchasePayment',purchaseId:p.id,paymentType:'debt',accountId:acc.id,amount:originalAmount,currency,done:false});
                 closePurchasePaymentModal(); alert('تم اعتماد الفاتورة كآجل على حساب الشركة.');
                 return;
             }
             const source=document.getElementById('purchasePaymentSourceSelect').value;
             const sourceName=source==='vault'?'القاصة':'الكاشير';
+            const rate=currency==='USD'?(Number(document.getElementById('purchasePaymentExchangeRate')?.value)||Number(exchangeRate)||1):1;
+            const treasuryAmount=currency==='USD'?originalAmount*rate:Number(p.totalIQD||0);
             const balance=source==='vault'?vaultBalance:cashierBalance;
-            if(amount>balance){alert(`رصيد ${sourceName} غير كافٍ.`);return;}
-            if(!confirm(`تأكيد دفع فاتورة المشتريات بقيمة ${amount.toLocaleString()} د.ع من ${sourceName}؟`))return;
-            if(source==='vault')vaultBalance-=amount;else cashierBalance-=amount;
+            if(treasuryAmount>balance){alert(`رصيد ${sourceName} غير كافٍ. المطلوب ${treasuryAmount.toLocaleString()} د.ع.`);return;}
+            if(!confirm(`تأكيد دفع فاتورة المشتريات بقيمة ${currency==='USD'?`$ ${originalAmount.toLocaleString()} (ما يعادل ${treasuryAmount.toLocaleString()} د.ع)`:treasuryAmount.toLocaleString()+' د.ع'} من ${sourceName}؟`))return;
+            if(source==='vault')vaultBalance-=treasuryAmount;else cashierBalance-=treasuryAmount;
             p.paymentType='نقداً'; p.financialStatus='paid'; p.paidAt=new Date().toLocaleString('ar-IQ'); p.paidBy=loggedInUser.name; p.paidSource=sourceName;
-            logAction(loggedInUser.name,'دفع فاتورة مشتريات',`تم دفع فاتورة المورد ${p.supplier} بمبلغ ${amount.toLocaleString()} د.ع من ${sourceName} — البيان: ${p.contentDescription||'-'}`,{kind:'purchasePayment',purchaseId:p.id,paymentType:'cash',source,amount,done:false});
+            p.paymentCurrency='IQD'; p.paymentAmount=currency==='USD'?originalAmount:treasuryAmount; p.paymentAmountIQD=treasuryAmount; p.paymentExchangeRate=rate;
+            logAction(loggedInUser.name,'دفع فاتورة مشتريات',`تم دفع فاتورة المورد ${p.supplier} بمبلغ ${currency==='USD'?`$ ${originalAmount.toLocaleString()}`:treasuryAmount.toLocaleString()+' د.ع'} من ${sourceName}${currency==='USD'?` — أثر الخزينة ${treasuryAmount.toLocaleString()} د.ع بسعر ${rate.toLocaleString()}`:''} — البيان: ${p.contentDescription||'-'}`,{kind:'purchasePayment',purchaseId:p.id,paymentType:'cash',source,amount:treasuryAmount,currency,paymentAmount:originalAmount,amountIQD:treasuryAmount,exchangeRate:rate,done:false});
             closePurchasePaymentModal(); renderPurchasesLogTable(); updateTreasuryDisplay(); saveAllAppState(); alert('تم تنفيذ الدفع بنجاح.');
         }
         function confirmPurchaseCashPayment(){ return confirmPurchasePayment(); }
@@ -3905,63 +3929,59 @@ input:focus,select:focus,textarea:focus{
             let sel=document.getElementById('voucherAccountSelect'); if(!sel)return;
             sel.innerHTML=accountsList.map(a=>`<option value="${a.id}">${a.name}</option>`).join('');
         }
+        function updateVoucherCurrencyUI(){
+            const cur=document.getElementById('voucherCurrency')?.value||'IQD';
+            const label=document.getElementById('voucherAmountLabel'); const wrap=document.getElementById('voucherExchangeRateWrap'); const fx=document.getElementById('voucherExchangeRate');
+            if(label) label.innerText=cur==='USD'?'المبلغ ($):':'المبلغ (د.ع):';
+            if(wrap) wrap.style.display=cur==='USD'?'block':'none';
+            if(fx && !fx.value) fx.value=Number(exchangeRate)||1;
+        }
+        function updatePurchasePaymentCurrencyInfo(){
+            const info=document.getElementById('purchasePaymentCurrencyInfo'); if(!info)return;
+            const p=purchasesLog.find(x=>x.id===pendingPurchasePaymentId); if(!p){info.style.display='none';return;}
+            const cur=p.currency||'IQD'; const orig=Number(p.currencyAmount ?? (cur==='USD'?p.totalUSD:p.totalIQD))||0;
+            const rate=cur==='USD'?(Number(document.getElementById('purchasePaymentExchangeRate')?.value)||Number(exchangeRate)||1):1;
+            const iqd=cur==='USD'?orig*rate:Number(p.totalIQD)||0;
+            info.style.display='block'; info.innerHTML=cur==='USD'?`عملة الفاتورة: <b>$ USD</b><br>قيمة الفاتورة: <b>$ ${orig.toLocaleString()}</b><br>سعر الصرف وقت الدفع: <b>${rate.toLocaleString()} د.ع</b><br>المطلوب من ${document.getElementById('purchasePaymentSourceSelect')?.value==='vault'?'القاصة':'الكاشير'}: <b>${iqd.toLocaleString()} د.ع</b>`:`عملة الفاتورة: <b>د.ع</b><br>قيمة الفاتورة: <b>${iqd.toLocaleString()} د.ع</b>`;
+        }
         function addAccountVoucher(){
             if(!loggedInUser || !['admin','manager','accountant'].includes(loggedInUser.role)){alert('سندات الحسابات متاحة للمدير العام ومدير الفرع والمحاسب.');return;}
             let sel=document.getElementById('voucherAccountSelect');
-            let id=Number(sel?.value), type=document.getElementById('voucherType').value, source=document.getElementById('voucherSource')?.value||'cashier', amount=parseFloat(document.getElementById('voucherAmount').value)||0, note=document.getElementById('voucherNote').value.trim();
+            let id=Number(sel?.value), type=document.getElementById('voucherType').value, source=document.getElementById('voucherSource')?.value||'cashier', currency=document.getElementById('voucherCurrency')?.value||'IQD', amount=parseFloat(document.getElementById('voucherAmount').value)||0, note=document.getElementById('voucherNote').value.trim();
             let acc=accountsList.find(a=>a.id===id);
             if(!acc){alert('اختر شخصاً أو شركة مضافة مسبقاً من قائمة الحسابات والديون.');return;}
             if(amount<=0||!note){alert('أدخل مبلغ السند والبيان.');return;}
+            if(currency==='USD' && type!=='payment'){alert('الدولار في السندات مخصص لتسديد ذمة مورد بالدولار. سند القبض يبقى بالدينار العراقي.');return;}
+            const rate=currency==='USD'?(Number(document.getElementById('voucherExchangeRate')?.value)||Number(exchangeRate)||1):1;
+            const treasuryAmount=currency==='USD'?amount*rate:amount;
             let balance=source==='vault'?vaultBalance:cashierBalance;
-            if(type==='payment' && amount>balance){alert('الرصيد في مكان الدفع غير كافٍ.');return;}
+            if(type==='payment' && treasuryAmount>balance){alert(`الرصيد في ${source==='vault'?'القاصة':'الكاشير'} غير كافٍ. المطلوب ${treasuryAmount.toLocaleString()} د.ع.`);return;}
+            const payableUSD=Math.max(0,Number(acc.payableRemainingUSD ?? (Number(acc.payableUSD||0)-Number(acc.payablePaidUSD||0))));
+            const payableIQD=Math.max(0,Number(acc.payableRemainingIQD ?? (Number(acc.payableTotal||0)-Number(acc.payablePaid||0))));
+            if(type==='payment' && currency==='USD' && payableUSD<=0){alert('لا يوجد دين بالدولار على هذا الحساب.');return;}
+            if(type==='payment' && currency==='USD' && amount>payableUSD){alert(`مبلغ التسديد بالدولار أكبر من الدين المتبقي. المتبقي $${payableUSD.toLocaleString()}.`);return;}
+            if(type==='payment' && currency==='IQD' && payableIQD>0 && amount>payableIQD){alert(`مبلغ التسديد بالدينار أكبر من الدين المتبقي. المتبقي ${payableIQD.toLocaleString()} د.ع.`);return;}
             if(!acc.vouchers) acc.vouchers=[];
-            let now=new Date();
-            let voucher={id:Date.now()+Math.floor(Math.random()*1000),type,amount:Number(amount),note,date:now.toLocaleDateString('ar-IQ'),time:now.toLocaleTimeString('ar-IQ'),employee:loggedInUser.name,source};
-            acc.vouchers.unshift(voucher);
-
-            // الحسابات التشغيلية الثابتة (POS / مصاريف عامة / مصرف-اقساط) تحفظ الحركات فقط،
-            // ولا تُحوّل سندات القبض/الصرف إلى ذمم؛ لذلك يبقى مطلوب مني/مطلوب لي = 0.
-            if(isFixedSystemAccount(acc)){
-                // الحسابات التشغيلية لا تدخل في مطلوب مني/مطلوب لي، لكن رصيدها التشغيلي
-                // يتحرك مع كل سند حتى يظهر للمستخدم أثر الحركة مباشرة.
-                if(type==='payment'){
-                    acc.operationalBalance=Number(acc.operationalBalance||0)-amount;
-                    if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
-                } else {
-                    acc.operationalBalance=Number(acc.operationalBalance||0)+amount;
-                    if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
+            let now=new Date(); let voucher={id:Date.now()+Math.floor(Math.random()*1000),type,amount:Number(amount),currency,paymentAmountIQD:Number(treasuryAmount),exchangeRate:Number(rate),note,date:now.toLocaleDateString('ar-IQ'),time:now.toLocaleTimeString('ar-IQ'),employee:loggedInUser.name,source}; acc.vouchers.unshift(voucher);
+            if(type==='payment'){
+                if(source==='vault') vaultBalance-=treasuryAmount; else cashierBalance-=treasuryAmount;
+                if(currency==='USD'){
+                    acc.payableUSD=Number(acc.payableUSD||0); acc.payablePaidUSD=Number(acc.payablePaidUSD||0)+amount; acc.payableRemainingUSD=Math.max(0,acc.payableUSD-acc.payablePaidUSD);
+                    addAccountPaymentHistoryMeta(acc,amount,`سند صرف — تسديد مورد بالدولار — ${note}`,{voucherId:voucher.id,ledgerType:'payable',appliedToPayable:amount,currency:'USD',exchangeRate:rate,amountIQD:treasuryAmount});
+                }else if(payableIQD>0){
+                    acc.payableIQD=Number(acc.payableIQD||acc.payableTotal||0); acc.payablePaidIQD=Number(acc.payablePaidIQD||acc.payablePaid||0)+amount; acc.payableRemainingIQD=Math.max(0,acc.payableIQD-acc.payablePaidIQD); acc.payableTotal=acc.payableIQD; acc.payablePaid=acc.payablePaidIQD; acc.payableRemaining=acc.payableRemainingIQD;
+                    addAccountPaymentHistoryMeta(acc,amount,`سند صرف — تسديد مورد — ${note}`,{voucherId:voucher.id,ledgerType:'payable',appliedToPayable:amount,currency:'IQD'});
+                }else{
+                    acc.total=(acc.total||0)+amount; acc.remaining=Math.max(0,acc.total-(acc.paid||0));
+                    addAccountPaymentHistoryMeta(acc,amount,`سند صرف — ${note}`,{voucherId:voucher.id,ledgerType:'general',currency:'IQD'});
                 }
-                addAccountPaymentHistoryMeta(acc,amount,`سند ${type==='receipt'?'قبض':'صرف'} — ${note}`,{voucherId:voucher.id,ledgerType:'system'});
-            } else {
-            // إذا كان الحساب يحمل ذمة مورد، فإن سند الصرف يسدد الدين المستحق للشركة ولا ينشئ ديناً جديداً.
-            const payableOpen=Math.max(0,(acc.payableTotal||0)-(acc.payablePaid||0));
-            if(type==='payment' && payableOpen>0){
-                const applied=Math.min(amount,payableOpen);
-                acc.payablePaid=(acc.payablePaid||0)+applied;
-                acc.payableRemaining=Math.max(0,(acc.payableTotal||0)-acc.payablePaid);
-                if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
-                addAccountPaymentHistoryMeta(acc,applied,`سند صرف — تسديد مورد — ${note}`,{voucherId:voucher.id,ledgerType:'payable',appliedToPayable:applied});
-                if(amount>applied){
-                    const extra=amount-applied;
-                    addAccountPaymentHistoryMeta(acc,extra,`سند صرف — مبلغ زائد بعد تسوية ذمة المورد — ${note}`,{voucherId:voucher.id,ledgerType:'general'});
-                }
-            } else if(type==='receipt'){
-                acc.paid=(acc.paid||0)+amount;
-                acc.remaining=Math.max(0,(acc.total||0)-acc.paid);
-                if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
-                addAccountPaymentHistoryMeta(acc,amount,`سند قبض — ${note}`,{voucherId:voucher.id,ledgerType:'receivable'});
-            } else {
-                acc.total=(acc.total||0)+amount;
-                acc.remaining=Math.max(0,acc.total-(acc.paid||0));
-                if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
-                addAccountPaymentHistoryMeta(acc,amount,`سند صرف — ${note}`,{voucherId:voucher.id,ledgerType:'general'});
+            }else{
+                acc.paid=(acc.paid||0)+amount; acc.remaining=Math.max(0,(acc.total||0)-acc.paid); if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
+                addAccountPaymentHistoryMeta(acc,amount,`سند قبض — ${note}`,{voucherId:voucher.id,ledgerType:'receivable',currency:'IQD'});
             }
-            }
-
-            document.getElementById('voucherAmount').value=''; document.getElementById('voucherNote').value='';
-            renderAccountsTable(); updateTreasuryDisplay();
-            logAction(loggedInUser.name,type==='receipt'?'سند قبض على حساب':'سند صرف على حساب',`الحساب: ${acc.name} | المبلغ: ${amount.toLocaleString()} د.ع | المصدر: ${source==='vault'?'القاصة':'الكاشير'} | البيان: ${note}`,{kind:'accountVoucher',accountId:acc.id,voucherId:voucher.id,type,source,amount,done:false});
-            alert(`تم تسجيل ${type==='receipt'?'سند القبض':'سند الصرف'} وربطه بحساب «${acc.name}» بنجاح.`); saveAllAppState();
+            document.getElementById('voucherAmount').value=''; document.getElementById('voucherNote').value=''; renderAccountsTable(); updateTreasuryDisplay(); saveAllAppState();
+            logAction(loggedInUser.name,type==='receipt'?'سند قبض على حساب':'سند صرف على حساب',`الحساب: ${acc.name} | المبلغ: ${currency==='USD'?'$ '+amount.toLocaleString():amount.toLocaleString()+' د.ع'} | المصدر: ${source==='vault'?'القاصة':'الكاشير'}${currency==='USD'?' | أثر الخزينة: '+treasuryAmount.toLocaleString()+' د.ع بسعر '+rate.toLocaleString():''} | البيان: ${note}`,{kind:'accountVoucher',accountId:acc.id,voucherId:voucher.id,type,source,amount,currency,amountIQD:treasuryAmount,exchangeRate:rate,done:false});
+            alert(`تم تسجيل ${type==='receipt'?'سند القبض':'سند الصرف'} وربطه بحساب «${acc.name}» بنجاح.`);
         }
         function resetAccountBalance(index){
             if(!loggedInUser || loggedInUser.role!=='admin'){alert('تصفير الحسابات متاح للمسؤول العام فقط.');return;}
@@ -4035,7 +4055,13 @@ input:focus,select:focus,textarea:focus{
                 acc.payableTotal=Number(acc.payableTotal||0);
                 acc.payablePaid=Number(acc.payablePaid||0);
                 acc.payableRemaining=Math.max(0,acc.payableTotal-acc.payablePaid);
-                if(isFixedSystemAccount(acc)) acc.operationalBalance=Number(acc.operationalBalance||0);
+                acc.payableUSD=Number(acc.payableUSD||0);
+                acc.payablePaidUSD=Number(acc.payablePaidUSD||0);
+                acc.payableRemainingUSD=Math.max(0,acc.payableUSD-acc.payablePaidUSD);
+                acc.payableIQD=Number(acc.payableIQD||acc.payableTotal||0);
+                acc.payablePaidIQD=Number(acc.payablePaidIQD||acc.payablePaid||0);
+                acc.payableRemainingIQD=Math.max(0,acc.payableIQD-acc.payablePaidIQD);
+                acc.payableTotal=acc.payableIQD; acc.payablePaid=acc.payablePaidIQD; acc.payableRemaining=acc.payableRemainingIQD;
                 if(acc.entityType==='company' && String(acc.name||'').startsWith('مورد (آجل):')){
                     acc.entityType='company';
                 }
@@ -4062,11 +4088,14 @@ input:focus,select:focus,textarea:focus{
                 let originalIdx = accountsList.findIndex(item => item.id === acc.id);
                 const receivableRemaining = Math.max(0, Number(acc.remaining||0));
                 const payableRemaining = Math.max(0, Number(acc.payableRemaining||0));
+                const payableUSD = Math.max(0, Number(acc.payableRemainingUSD ?? (Number(acc.payableUSD||0)-Number(acc.payablePaidUSD||0))));
+                const payableIQD = Math.max(0, Number(acc.payableRemainingIQD ?? payableRemaining));
+                const payableHtml = `${payableIQD>0?payableIQD.toLocaleString()+' د.ع':''}${payableIQD>0&&payableUSD>0?'<br>':''}${payableUSD>0?'$ '+payableUSD.toLocaleString():''}${(payableIQD>0||payableUSD>0)?'<br><small style="color:#ff8a8a">متبقي علينا</small>':''}` || '0 د.ع';
                 tbody.innerHTML += `
                     <tr>
                         <td><b>${acc.name}</b><br><small style="color:var(--text-muted);">${acc.entityType==='company'?'شركة':(isFixedSystemAccount(acc)?'حساب تشغيلي':'شخص')}</small></td>
                         <td style="font-weight:bold;color:${isFixedSystemAccount(acc)?'var(--accent-blue)':'var(--text-muted)'};">${isFixedSystemAccount(acc)?`${Number(acc.operationalBalance||0).toLocaleString()} د.ع`:'—'}</td>
-                        <td style="color:var(--accent-red);font-weight:bold;">${payableRemaining.toLocaleString()} د.ع${payableRemaining>0?'<br><small style=\"color:#ff8a8a\">متبقي علينا</small>':''}</td>
+                        <td style="color:var(--accent-red);font-weight:bold;">${payableHtml}</td>
                         <td style="color:var(--accent-green);font-weight:bold;">${receivableRemaining.toLocaleString()} د.ع${receivableRemaining>0?'<br><small style=\"color:#8ff0b4\">متبقي لنا</small>':''}</td>
                         <td style="min-width:180px;text-align:center;">
                             <button class="btn-action" style="background:#3498db;color:#fff;border:1px solid #2980b9;min-width:100px;padding:9px 14px;" onclick="toggleAccountMovements(${acc.id})"><i class="fa-solid fa-list"></i> الحركات</button>
