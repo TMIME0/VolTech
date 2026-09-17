@@ -680,10 +680,376 @@
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right p{display:block!important;width:100%!important;margin:0 0 4px!important;padding:0!important;text-align:right!important;direction:rtl!important;white-space:nowrap!important}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid>div:first-child{text-align:right!important;direction:rtl!important}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid>div:last-child{text-align:left!important;direction:ltr!important}
+#printPreviewModal .invoice-print-box.v630-invoice .invoice-meta-grid>div:last-child{text-align:left!important;direction:ltr!important;position:relative!important;left:18px!important}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-table-wrap{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
 #printPreviewModal .invoice-print-box.v630-invoice #invoicePrintTable{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed!important;box-sizing:border-box!important}
 @media print{#printPreviewModal .invoice-print-box.v630-invoice{width:680px!important;max-width:680px!important;margin:0 auto!important;padding:28px!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{position:relative!important;display:block!important;width:100%!important;height:82px!important;min-height:82px!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{position:absolute!important;left:0!important;right:auto!important;top:0!important;width:52%!important;max-width:52%!important}#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right{position:absolute!important;right:0!important;left:auto!important;top:0!important;width:42%!important;max-width:42%!important}}
+
+#printPreviewModal .invoice-brand-line{display:flex!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important;direction:ltr!important;}
+#printPreviewModal .invoice-brand-line #printVipBadgeBox{display:none;flex:0 0 auto!important;width:34px!important;height:24px!important;padding:2px 5px!important;border-radius:5px!important;font-size:11px!important;line-height:18px!important;text-align:center!important;box-sizing:border-box!important;margin:0!important;}
+#printPreviewModal .invoice-brand-line .brand{flex:0 0 auto!important;}
+#printPreviewModal .print-vip-row td{background:rgba(255,42,77,.06)!important;}
+/* V6.3.16 — subtle premium motion layer (visual only) */
+@keyframes vtAmbientShift {
+  0%,100% { transform: scale(1) translate3d(0,0,0); opacity:.72; }
+  50% { transform: scale(1.08) translate3d(1%, -1%, 0); opacity:1; }
+}
+@keyframes vtCardIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+@keyframes vtGlowPulse { 0%,100%{box-shadow:0 0 22px rgba(255,42,77,.14)} 50%{box-shadow:0 0 34px rgba(255,42,77,.25)} }
+@keyframes vtLogoBreath { 0%,100%{text-shadow:0 0 10px rgba(255,42,77,.18)} 50%{text-shadow:0 0 22px rgba(255,42,77,.42)} }
+@keyframes vtLineShimmer { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+/* Overall system: calm movement, no layout/function changes */
+body::before, body::after {
+  content:""; position:fixed; width:42vw; height:42vw; border-radius:50%;
+  pointer-events:none; z-index:0; filter:blur(55px); opacity:.10;
+  animation:vtAmbientShift 14s ease-in-out infinite;
+}
+body::before { top:-20vw; right:-15vw; background:rgba(255,42,77,.42); }
+body::after { bottom:-22vw; left:-16vw; background:rgba(52,152,219,.34); animation-delay:-7s; }
+#appContainer, aside, main, .modal, .card, .section-card { position:relative; z-index:1; }
+
+/* Soft entrance for major panels */
+#appContainer main > * { animation:vtCardIn .42s ease both; }
+#appContainer main > *:nth-child(2){animation-delay:.04s}
+#appContainer main > *:nth-child(3){animation-delay:.08s}
+#appContainer main > *:nth-child(4){animation-delay:.12s}
+
+/* Buttons: restrained lift */
+button, .btn-custom, .btn, .nav-item { transition:transform .25s ease, box-shadow .25s ease, filter .25s ease, border-color .25s ease, background .25s ease; }
+button:hover:not(:disabled), .btn-custom:hover:not(:disabled), .btn:hover:not(:disabled) { transform:translateY(-2px); filter:brightness(1.04); }
+button:active:not(:disabled), .btn-custom:active:not(:disabled), .btn:active:not(:disabled) { transform:translateY(0) scale(.985); }
+
+/* Cards/sections */
+.card, .section-card, .modal-content, .panel, .stat-card {
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card:hover, .section-card:hover, .stat-card:hover { transform:translateY(-2px); }
+
+/* Inputs: subtle focus halo */
+input, select, textarea { transition:var(--transition), box-shadow .3s ease; }
+input:focus, select:focus, textarea:focus { transform:translateY(-1px); }
+
+/* Login — premium, calm, dark, visually consistent with VOLTECH */
+#loginScreen {
+  overflow:hidden;
+  background:#050608 !important;
+  background-image:
+    radial-gradient(circle at 50% 45%, rgba(255,42,77,.055), transparent 34%),
+    radial-gradient(circle at 15% 85%, rgba(52,152,219,.035), transparent 28%) !important;
+}
+#loginScreen::before, #loginScreen::after {
+  content:""; position:absolute; border-radius:50%; pointer-events:none; filter:blur(45px);
+  animation:vtAmbientShift 12s ease-in-out infinite;
+}
+#loginScreen::before { width:360px;height:360px;right:-180px;top:-150px;background:rgba(255,42,77,.10); }
+#loginScreen::after { width:300px;height:300px;left:-160px;bottom:-150px;background:rgba(52,152,219,.07);animation-delay:-6s; }
+.login-card {
+  position:relative; z-index:2; overflow:hidden;
+  background:linear-gradient(145deg, rgba(25,26,34,.96), rgba(12,13,18,.97)) !important;
+  border:1px solid rgba(255,42,77,.58) !important;
+  box-shadow:0 28px 80px rgba(0,0,0,.58), 0 0 42px rgba(255,42,77,.10) !important;
+  backdrop-filter:blur(18px);
+  animation:vtCardIn .65s cubic-bezier(.16,1,.3,1) both, vtGlowPulse 5s ease-in-out 1s infinite;
+}
+.login-card::before {
+  content:""; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,42,77,.85), rgba(52,152,219,.55), transparent);
+  background-size:200% 100%; animation:vtLineShimmer 6s linear infinite;
+}
+.login-card::after {
+  content:""; position:absolute; width:180px;height:180px;right:-110px;top:-110px;border-radius:50%;
+  background:rgba(255,42,77,.055); filter:blur(10px); pointer-events:none;
+}
+.brand-text-logo { animation:vtLogoBreath 4s ease-in-out infinite; }
+.login-card p { letter-spacing:.15px; }
+.login-card .input-group { animation:vtCardIn .55s ease both; }
+.login-card .input-group:nth-of-type(2){animation-delay:.08s}
+.login-card .btn-custom { margin-top:4px; box-shadow:0 8px 26px rgba(255,42,77,.18); }
+.login-card .btn-custom:hover { box-shadow:0 10px 32px rgba(255,42,77,.30); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+</style>
+
+<style id="voltech-premium-live-motion">
+/* VOLTECH 6.3.18 — visual motion only. No business logic changes. */
+:root{
+  --vt-motion-red: rgba(255,42,77,.18);
+  --vt-motion-blue: rgba(52,152,219,.14);
+  --vt-motion-speed: 18s;
+}
+body{
+  position:relative;
+  isolation:isolate;
+  background-size: 180% 180%;
+  animation: vtBackgroundDrift 22s ease-in-out infinite alternate;
+}
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:42vw;
+  height:42vw;
+  min-width:280px;
+  min-height:280px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-1;
+  filter:blur(70px);
+  opacity:.55;
+}
+body::before{
+  top:-18vw; right:-10vw;
+  background:radial-gradient(circle, var(--vt-motion-red) 0%, transparent 68%);
+  animation:vtOrbOne 16s ease-in-out infinite alternate;
+}
+body::after{
+  bottom:-20vw; left:-12vw;
+  background:radial-gradient(circle, var(--vt-motion-blue) 0%, transparent 68%);
+  animation:vtOrbTwo 20s ease-in-out infinite alternate;
+}
+
+#appContainer{
+  position:relative;
+}
+#appContainer::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,.018) 45%, transparent 52%);
+  background-size:240% 100%;
+  animation:vtLightSweep 14s linear infinite;
+}
+
+aside{
+  box-shadow:0 0 40px rgba(0,0,0,.18);
+}
+aside nav button{
+  position:relative;
+  overflow:hidden;
+}
+aside nav button::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-80%;
+  width:55%;
+  height:180%;
+  transform:rotate(18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.09),transparent);
+  transition:left .7s ease;
+  pointer-events:none;
+}
+aside nav button:hover::after,
+aside nav button.active::after{ left:125%; }
+aside nav button i{
+  animation:vtIconFloat 3.2s ease-in-out infinite;
+}
+aside nav button:nth-child(2n) i{ animation-delay:-1.2s; }
+
+.card{
+  position:relative;
+  overflow:hidden;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .35s ease;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-35%;
+  width:28%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+  filter:blur(.4px);
+  opacity:.55;
+  animation:vtCardScan 7s ease-in-out infinite;
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 38px rgba(0,0,0,.34);
+}
+
+button{
+  transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease, filter .25s ease;
+}
+button:hover{
+  filter:brightness(1.06);
+}
+button:active{
+  transform:translateY(1px) scale(.985);
+}
+
+input,select,textarea{
+  transition:border-color .3s ease, box-shadow .3s ease, background-color .3s ease, transform .3s ease;
+}
+input:focus,select:focus,textarea:focus{
+  transform:translateY(-1px);
+}
+
+.btn-custom{
+  position:relative;
+  overflow:hidden;
+}
+.btn-custom::after{
+  content:"";
+  position:absolute;
+  top:-60%;
+  left:-45%;
+  width:28%;
+  height:220%;
+  transform:rotate(20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  animation:vtButtonShine 5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* Login: premium dark, alive but calm */
+#loginScreen{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,42,77,.11), transparent 34%),
+    radial-gradient(circle at 20% 80%, rgba(52,152,219,.08), transparent 30%),
+    #050609;
+}
+#loginScreen::before,
+#loginScreen::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+}
+#loginScreen::before{
+  width:520px;height:520px;
+  top:-260px;right:-150px;
+  background:radial-gradient(circle,rgba(255,42,77,.17),transparent 67%);
+  filter:blur(18px);
+  animation:vtLoginOrb 12s ease-in-out infinite alternate;
+}
+#loginScreen::after{
+  width:460px;height:460px;
+  bottom:-260px;left:-150px;
+  background:radial-gradient(circle,rgba(52,152,219,.12),transparent 68%);
+  filter:blur(22px);
+  animation:vtLoginOrbTwo 15s ease-in-out infinite alternate;
+}
+.login-card{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(24,26,34,.94),rgba(10,11,16,.96));
+  border:1px solid rgba(255,42,77,.55);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,255,255,.025) inset,
+    0 0 45px rgba(255,42,77,.13);
+  animation:vtLoginCard 1s cubic-bezier(.16,1,.3,1) both;
+}
+.login-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:-45%;
+  width:35%;height:2px;
+  background:linear-gradient(90deg,transparent,#ff2a4d,rgba(255,255,255,.85),#ff2a4d,transparent);
+  box-shadow:0 0 16px rgba(255,42,77,.5);
+  animation:vtLoginLine 5.5s ease-in-out infinite;
+}
+.login-card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.035) 50%,transparent 70%);
+  background-size:220% 100%;
+  animation:vtGlassSweep 9s linear infinite;
+}
+.brand-text-logo{
+  animation:vtLogoBreath 3.5s ease-in-out infinite;
+}
+.login-card p{
+  animation:vtSoftPulse 4s ease-in-out infinite;
+}
+.login-card .btn-custom{
+  box-shadow:0 8px 28px rgba(255,42,77,.20);
+}
+
+@keyframes vtBackgroundDrift{
+  0%{background-position:0% 20%}
+  50%{background-position:60% 80%}
+  100%{background-position:100% 30%}
+}
+@keyframes vtOrbOne{
+  0%{transform:translate3d(0,0,0) scale(.92)}
+  100%{transform:translate3d(-10vw,8vh,0) scale(1.12)}
+}
+@keyframes vtOrbTwo{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(12vw,-7vh,0) scale(.9)}
+}
+@keyframes vtLightSweep{
+  0%{background-position:130% 0}
+  100%{background-position:-30% 0}
+}
+@keyframes vtCardScan{
+  0%,55%{left:-35%;opacity:0}
+  65%{opacity:.55}
+  90%,100%{left:115%;opacity:0}
+}
+@keyframes vtButtonShine{
+  0%,55%{left:-45%;opacity:0}
+  65%{opacity:.8}
+  85%,100%{left:125%;opacity:0}
+}
+@keyframes vtIconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+@keyframes vtLoginOrb{
+  0%{transform:translate(0,0) scale(.9)}
+  100%{transform:translate(-90px,75px) scale(1.12)}
+}
+@keyframes vtLoginOrbTwo{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(90px,-55px) scale(.88)}
+}
+@keyframes vtLoginCard{
+  from{opacity:0;transform:translateY(18px) scale(.975)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes vtLoginLine{
+  0%,15%{left:-45%;opacity:0}
+  30%{opacity:1}
+  65%{left:110%;opacity:0}
+  100%{left:110%;opacity:0}
+}
+@keyframes vtGlassSweep{
+  0%{background-position:160% 0}
+  100%{background-position:-60% 0}
+}
+@keyframes vtLogoBreath{
+  0%,100%{text-shadow:0 0 10px rgba(255,42,77,.22)}
+  50%{text-shadow:0 0 22px rgba(255,42,77,.48),0 0 35px rgba(52,152,219,.10)}
+}
+@keyframes vtSoftPulse{
+  0%,100%{opacity:.72}
+  50%{opacity:1}
+}
+
+@media (prefers-reduced-motion: reduce){
+  body,#appContainer::before,body::before,body::after,
+  aside nav button i,.card::before,.btn-custom::after,
+  #loginScreen::before,#loginScreen::after,.login-card,
+  .login-card::before,.login-card::after,.brand-text-logo,.login-card p{
+    animation:none !important;
+  }
+  .card:hover{transform:none}
+}
 </style>
 </head>
 <body>
@@ -712,6 +1078,12 @@
 <div class="sidebar-logo-text">VOL<span>TECH</span></div>
 <h3 id="userNameDisplay">اسم المستخدم</h3>
 <span class="role-badge" id="roleBadgeDisplay">صلاحية</span>
+<div id="currentBranchSelectorBox" style="display:none;margin-top:10px;text-align:center;">
+<label style="font-size:10px;color:var(--text-muted);display:block;margin-bottom:4px;">الفرع الحالي</label>
+<select id="currentBranchSelector" onchange="switchActiveBranch(this.value)" style="width:100%;font-size:12px;padding:7px;border-radius:7px;">
+</select>
+<div id="currentBranchLabel" style="font-size:10px;color:var(--accent-green);margin-top:4px;"></div>
+</div>
 </div>
 <nav>
 <button class="active" id="navSales" onclick="switchTab('sales')"><i class="fa-solid fa-cash-register"></i> نقطة البيع والفواتير</button>
@@ -723,6 +1095,7 @@
 <button id="navFinance" onclick="switchTab('finance')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</button>
 <button id="navAdminSettings" onclick="switchTab('adminSettings')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-gear"></i> إعدادات الصرف والنظام</button>
 <button id="navAdminUsers" onclick="switchTab('adminUsers')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-users-gear"></i> إدارة المستخدمين</button>
+<button id="navNotifications" onclick="switchTab('notifications')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-bell"></i> التبليغات <span id="notificationUnreadBadge" style="display:none; margin-right:6px; background:var(--accent-red); color:#fff; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:900;">0</span></button>
 <button id="navLogs" onclick="switchTab('logs')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-timeline"></i> سجل العمليات</button>
 </nav>
 <div class="sidebar-footer">
@@ -776,7 +1149,6 @@
 <option value="cash">نقداً (كاش فوري)</option>
 <option value="pos">تسديد POS — يضاف إلى حساب POS</option>
 <option value="debt">آجل (على حساب شخص أو شركة)</option>
-<option value="ops">دفعة OPS (دفعات متعددة/أجزاء)</option>
 <option value="installment">قسط (ضمن مجموعة الأقساط)</option>
 </select>
 </div>
@@ -789,18 +1161,26 @@
 </div>
 <div id="debtAccountSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
 <label>تسجيل الآجل على:</label>
-<input id="debtEntityName" placeholder="مثال: شركة الرافدين للتجارة أو الأستاذ أحمد" type="text"/>
+<select id="debtEntityName" onchange="updateDebtAccountSelection()">
+<option value="">اختر الشخص أو الشركة</option>
+</select>
+<input id="debtAccountId" type="hidden" value=""/>
+<div id="debtAccountSelectionHint" style="margin-top:6px;font-size:12px;color:var(--text-muted);">يجب اختيار حساب موجود مسبقاً.</div>
 <div class="form-grid" style="margin-top:10px; margin-bottom:0;">
 <div><label>المبلغ المدفوع (مقدمة بالدينار):</label><input id="debtPaidAmount" oninput="calcRemainingDebt()" type="number" value="0"/></div>
 <div style="font-size: 14px; color: var(--accent-red); align-self: center;">المتبقي بالذمة: <span id="debtRemainingDisplay">0</span> د.ع</div>
 </div>
 </div>
-<div id="opsSectionSummary" style="display: none; background: rgba(52, 152, 219, 0.1); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px; align-items: center; justify-content: space-between;">
-<div>
-<span style="font-size: 13px; color: var(--accent-blue); font-weight: bold;"><i class="fa-solid fa-list-check"></i> تفاصيل دفعة OPS (الدفعات المتعددة):</span>
-<div style="font-size: 14px; margin-top: 4px;">الواصل الإجمالي: <b id="opsSummaryPaid" style="color:var(--accent-green);">0</b> د.ع | المتبقي: <b id="opsSummaryRemaining" style="color:var(--accent-red);">0</b> د.ع</div>
+<div id="mixedPaymentSection" style="display:none; background:rgba(52,152,219,.08); padding:15px; border:1px dashed var(--accent-blue); border-radius:var(--radius-md); margin-bottom:15px;">
+<div style="font-weight:800;color:var(--accent-blue);margin-bottom:10px;">توزيع الدفعة المختلطة</div>
+<div class="form-grid" style="margin-bottom:0;">
+<div><label>دفع POS (د.ع):</label><input id="mixedPosAmount" oninput="updateMixedPaymentSummary()" type="number" min="0" step="1" value="0"></div>
+<div><label>دفع نقدي (الكاشير) (د.ع):</label><input id="mixedCashAmount" oninput="updateMixedPaymentSummary()" type="number" min="0" step="1" value="0"></div>
 </div>
-<button class="btn-custom" onclick="openOpsModal()" style="width: auto; padding: 8px 15px; font-size: 13px; background: linear-gradient(135deg, #3498db, #2980b9);">إدارة ودفع الدفعات (OPS)</button>
+<div style="margin-top:10px;font-size:13px;display:flex;gap:16px;flex-wrap:wrap;">
+<span>المدفوع: <b id="mixedPaidDisplay" style="color:var(--accent-green);">0</b> د.ع</span>
+<span>المتبقي: <b id="mixedRemainingDisplay" style="color:var(--accent-red);">0</b> د.ع</span>
+</div>
 </div>
 <div id="installmentGroupSection" style="display: none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-blue); border-radius: var(--radius-md); margin-bottom: 15px;">
 <div class="form-grid" style="margin-bottom:0;">
@@ -865,7 +1245,7 @@
 </table>
 </div>
 <div class="total-box">
-<span>إجمالي القائمة النهائية (صافي المبلغ بعد التخفيض):</span>
+<span>إجمالي القائمة النهائية:</span>
 <span id="activeInvoiceTotal" style="color: var(--accent-green); font-size: 18px;">0 د.ع</span>
 </div>
 <button class="btn-custom" onclick="checkoutAndPrint()" style="margin-top: 20px;">
@@ -884,10 +1264,10 @@
 <option value="accessory">مستودع الاكسسوارات (حسب الشركات)</option>
 </select>
 </div>
-<div><label>اسم الشركة المصنعة:</label><input id="batchCompany" placeholder="مثال: Apple, Samsung, Anker" type="text" value="Apple"/></div>
-<div><label>موديل الجهاز / اسم المنتج:</label><input id="batchModel" placeholder="iPhone 17 Pro Max أو شاحن سريع" type="text" value="iPhone 17 Pro Max"/></div>
-<div><label>اللون (للأجهزة فقط):</label><input id="batchColor" placeholder="Cosmic Gray" type="text" value="Cosmic Gray"/></div>
-<div><label>سعة الذاكرة (للأجهزة فقط):</label><input id="batchMemory" placeholder="256 GB" type="text" value="256 GB"/></div>
+<div><label>اسم الشركة المصنعة:</label><input id="batchCompany" placeholder="مثال: Apple, Samsung, Anker" type="text" value=""/></div>
+<div><label>موديل الجهاز / اسم المنتج:</label><input id="batchModel" placeholder="أدخل موديل الجهاز أو اسم المنتج" type="text" value=""/></div>
+<div><label>اللون (للأجهزة فقط):</label><input id="batchColor" placeholder="أدخل اللون" type="text" value=""/></div>
+<div><label>سعة الذاكرة (للأجهزة فقط):</label><input id="batchMemory" placeholder="أدخل الذاكرة / السعة" type="text" value=""/></div>
 <div>
 <label>عملة الإدخال من المورد:</label>
 <select id="batchCurrency" onchange="toggleBatchCurrencyLabel()">
@@ -897,12 +1277,13 @@
 </div>
 <div>
 <label id="batchCostLabel">سعر الشراء ($):</label>
-<input id="batchCost" placeholder="1100" type="number" value="1100"/>
+<input id="batchCost" placeholder="أدخل سعر الشراء" type="number" value="0"/>
 </div>
 <div>
 <label>سعر البيع المقترح ($ أو د.ع):</label>
-<input id="batchPrice" placeholder="1250" type="number" value="1250"/>
+<input id="batchPrice" placeholder="أدخل سعر البيع المقترح" type="number" value="0"/>
 </div>
+<div><label>رقم قائمة المشتريات:</label><input id="purchaseInvoiceNoInput" type="text" inputmode="numeric" placeholder="أدخل رقم قائمة المورد" value=""/></div>
 <div><label>اسم المورد (الشركات فقط):</label><select id="batchSupplier" onchange="handleBatchSupplierChange()"><option value="">اختيار شركة</option></select></div>
 <div>
 <label>آلية دفع المورد:</label>
@@ -914,7 +1295,7 @@
 </div>
 <div id="batchDebtSection" style="display:none; background: rgba(20, 20, 28, 0.8); padding: 15px; border: 1px dashed var(--accent-red); border-radius: var(--radius-md); margin-bottom: 15px;">
 <div class="form-grid" style="margin-bottom:0;">
-<div style="grid-column:span 2;font-size:13px;color:var(--text-muted);align-self:center;">هذه الفاتورة ستبقى معلقة مالياً بعد الإدخال، وسيتم تسجيلها على حساب المورد من زر «دفع الفاتورة» فقط بعد اعتمادها من مدير الفرع أو المدير العام.</div>
+<div style="grid-column:span 2;font-size:13px;color:var(--text-muted);align-self:center;">هذه الفاتورة ستبقى معلقة مالياً بعد الإدخال، وسيتم تنفيذ الدفع من زر «دفع الفاتورة» بصلاحية المحاسب أو المسؤول العام فقط.</div>
 </div>
 </div>
 <div class="form-grid" style="margin-top: 10px;">
@@ -967,11 +1348,23 @@
 </div>
 </div>
 <div class="card">
-<h2><i class="fa-solid fa-clock-rotate-left"></i> سجل المشتريات والدفعات</h2>
+<h2><i class="fa-solid fa-magnifying-glass"></i> البحث في قوائم المشتريات</h2>
+<div style="display:flex;gap:10px;align-items:end;flex-wrap:wrap;">
+<div style="flex:1;min-width:220px;"><label>رقم قائمة المشتريات:</label><input id="purchaseInvoiceSearchInput" inputmode="numeric" type="number" min="1" placeholder="أدخل رقم القائمة" onkeydown="if(event.key==='Enter')searchPurchaseInvoiceByNo()"/></div>
+<button class="btn-custom" type="button" onclick="searchPurchaseInvoiceByNo()" style="width:auto;padding:10px 18px;background:linear-gradient(135deg,#3498db,#2980b9);color:#fff;"><i class="fa-solid fa-search"></i> بحث</button>
+</div>
+<div id="purchaseInvoiceSearchResult" style="margin-top:12px;"></div>
+</div>
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
+<h2 style="border:none;padding:0;margin:0;"><i class="fa-solid fa-clock-rotate-left"></i> سجل المشتريات والدفعات</h2>
+<button class="btn-custom" type="button" onclick="openSupplierReconciliationModal()" style="width:auto;padding:9px 16px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;"><i class="fa-solid fa-print"></i> طباعة كشف</button>
+</div>
 <div class="table-container">
 <table id="purchasesLogTable">
 <thead>
 <tr>
+<th>رقم القائمة</th>
 <th>الصورة</th>
 <th>التاريخ والوقت</th>
 <th>الموظف</th>
@@ -1114,7 +1507,7 @@
 <div class="table-container">
 <table id="accountsTable">
 <thead>
-<tr><th>الجهة / الزبون / الشركة</th><th>مطلوب مني</th><th>مطلوب لي</th><th>الحركات</th><th>التحكم</th></tr>
+<tr><th>الجهة / الزبون / الشركة</th><th>الرصيد الحالي</th><th>مطلوب مني</th><th>مطلوب لي</th><th>الحركات</th><th>التحكم</th></tr>
 </thead>
 <tbody></tbody>
 </table>
@@ -1163,7 +1556,7 @@
 <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر جهاز ربحاً</div><div id="finBestDevice" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
 <div class="total-box" style="display:block; text-align:center;"><div style="font-size:12px; color:var(--text-muted);">أكثر اكسسوار ربحاً</div><div id="finBestAccessory" style="font-size:15px; color:#fff; font-weight:700;">-</div></div>
 </div>
-<div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
+<div id="employeeMonthlySalesSection" style="display:none; margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
 <h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-users"></i> مبيعات أعضاء النظام الشهرية</h3>
 <div style="margin-bottom:10px;"><input id="employeeSalesSearchInput" oninput="renderEmployeeSalesDashboard()" placeholder="ابحث باسم أي عضو في النظام..." type="text"/></div>
 <div id="topEmployeeMonthlyBanner" style="margin-bottom:12px;padding:11px 14px;border-radius:10px;background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;font-weight:800;text-align:center;box-shadow:0 5px 18px rgba(255,42,77,.22);">الأكثر مبيعات هذا الشهر: لا توجد مبيعات بعد</div>
@@ -1186,7 +1579,7 @@
 <div class="total-box" style="display:block;text-align:center;"><div style="font-size:12px;color:var(--text-muted);">مبيعات اكسسوارات اليوم</div><div id="dailyAccessorySalesDisplay" style="font-size:18px;color:var(--accent-green);font-weight:900;">0 د.ع</div></div>
 </div>
 <button class="btn-custom" onclick="issueDailySalesProfitReport()" style="background:linear-gradient(135deg,#e67e22,#d35400);"><i class="fa-solid fa-file-export"></i> إصدار تقرير الأرباح والمبيعات اليومية</button>
-<button class="btn-custom" onclick="issueMonthlyAccountsReport()" style="margin-top:10px;background:linear-gradient(135deg,#8e44ad,#6c3483);"><i class="fa-solid fa-calendar-check"></i> تقرير المبيعات الشهرية</button>
+<button id="adminMonthlySalesReportBtn" class="btn-custom" onclick="issueMonthlyAccountsReport()" style="display:none;margin-top:10px;background:linear-gradient(135deg,#8e44ad,#6c3483);"><i class="fa-solid fa-calendar-check"></i> تقرير المبيعات الشهرية</button>
 </div>
 <div style="margin-top:20px; background: rgba(20,20,28,0.7); padding:15px; border-radius: var(--radius-md); border:1px solid var(--border-color);">
 <h3 style="font-size:14px; color:var(--text-muted); margin-bottom:12px;"><i class="fa-solid fa-chart-column"></i> مقارنة الأرباح بين الأشهر</h3>
@@ -1215,6 +1608,14 @@
 <button class="btn-custom" onclick="saveVipWarrantySetting()"><i class="fa-solid fa-shield-halved"></i> حفظ قيمة ضمان VIP</button>
 </div>
 </div>
+<div class="card" style="margin-top:20px;border-color:var(--accent-blue);">
+<h2><i class="fa-solid fa-code-branch"></i> إدارة الفروع</h2>
+<p style="color:var(--text-muted);font-size:12px;line-height:1.8;">كل فرع يملك بياناته التشغيلية بشكل مستقل. عند إنشاء فرع جديد يبدأ بمخزون وفواتير وحسابات تشغيلية فارغة، بينما تبقى بنية النظام والصلاحيات جاهزة.</p>
+<button class="btn-custom" onclick="addBranch()" style="width:auto;padding:10px 22px;background:linear-gradient(135deg,#3498db,#2980b9);"><i class="fa-solid fa-plus"></i> إضافة فرع جديد</button>
+<div class="table-container" style="margin-top:15px;">
+<table id="branchesManageTable"><thead><tr><th>اسم الفرع</th><th>الرمز</th><th>الحالة</th><th>التحكم</th></tr></thead><tbody></tbody></table>
+</div>
+</div>
 </div>
 </section>
 <section class="section-content" id="tabAdminUsers">
@@ -1230,7 +1631,16 @@
 </select>
 </div>
 <div><label>اسم المستخدم (Username):</label><input id="newAccUser" placeholder="username" type="text"/></div>
-<div><label>رمز الدخول (Password):</label><input id="newAccPass" placeholder="password" type="text"/></div>
+<div><label>رمز الدخول (Password):</label><input id="newAccPass" placeholder="password" autocomplete="new-password" type="password"/></div>
+<div><label>الفرع:</label><select id="newAccBranch"></select></div>
+</div>
+<div id="salesNamesManager" style="display:none; margin:12px 0 20px; padding:14px; border:1px solid var(--border-color); border-radius:var(--radius-md); background:rgba(20,20,28,.55);">
+  <h3 style="margin:0 0 10px;">أسماء موظفي المبيعات للفواتير</h3>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+    <input id="salesNameInput" type="text" placeholder="أدخل اسم موظف المبيعات" style="min-width:260px;">
+    <button class="btn-custom" type="button" onclick="addSalesInvoiceName()">إضافة اسم</button>
+  </div>
+  <div id="salesNamesList" style="margin-top:12px;"></div>
 </div>
 <button class="btn-custom" onclick="addNewUserAccount()" style="width: auto; padding: 10px 25px; margin-bottom: 20px;"><i class="fa-solid fa-user-plus"></i> إضافة حساب جديد للنظام</button>
 <div class="table-container">
@@ -1240,13 +1650,24 @@
 <th>الاسم</th>
 <th>الصلاحية</th>
 <th>اسم المستخدم</th>
-<th>كلمة المرور</th>
+<th>بيانات الدخول</th>
+<th>الفرع</th>
 <th>حالة الحساب</th>
 <th>التحكم والتعديل</th>
 </tr>
 </thead>
 <tbody></tbody>
 </table>
+</div>
+</div>
+</section>
+<section class="section-content" id="tabNotifications">
+<div class="card">
+<h2><i class="fa-solid fa-bell"></i> التبليغات</h2>
+<div id="activeNotificationsBox"></div>
+<div style="margin-top:18px;border-top:1px solid var(--border-color);padding-top:15px;">
+<h3 style="margin-bottom:10px;">سجل التبليغات المؤكدة</h3>
+<div id="notificationHistoryBox"></div>
 </div>
 </div>
 </section>
@@ -1279,43 +1700,6 @@
 <button class="btn-custom" onclick="confirmPurchasePayment()" style="background:linear-gradient(135deg,#ff2a4d,#d90429);color:#fff;border:1px solid #ff2a4d;box-shadow:0 5px 20px rgba(255,42,77,.35);"><i class="fa-solid fa-check"></i> تأكيد الدفع</button>
 <button class="btn-action" onclick="closePurchasePaymentModal()" style="background:#555;color:#fff;flex:0 0 auto;padding:10px 16px;">إلغاء</button>
 </div>
-</div>
-</div>
-<div id="opsModal">
-<div class="modal-content-box" style="border-color: var(--accent-blue);">
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-<h3 style="color: var(--accent-blue); font-size: 18px; display: flex; align-items: center; gap: 10px;">
-<i class="fa-solid fa-list-check"></i> إدارة دفعات OPS (الدفعات المتعددة والأجزاء)
-                </h3>
-<button onclick="document.getElementById('opsModal').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
-</div>
-<div class="form-grid" style="background: rgba(20, 20, 28, 0.7); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 15px;">
-<div><label>مبلغ الدفعة الحالية (د.ع):</label><input id="opsInstallmentAmount" placeholder="0" type="number"/></div>
-<div><label>ملاحظة الدفعة (مثال: دفعة أولى / عربون):</label><input id="opsInstallmentNote" placeholder="دفعة أولى" type="text"/></div>
-<div style="align-self: flex-end;"><button class="btn-custom" onclick="addOpsPayment()" style="background: linear-gradient(135deg, #3498db, #2980b9);"><i class="fa-solid fa-plus"></i> إضافة دفعة للقائمة</button></div>
-</div>
-<div class="table-container" style="max-height: 250px; overflow-y: auto;">
-<table id="opsPaymentsTable">
-<thead>
-<tr>
-<th>#</th>
-<th>المبلغ (د.ع)</th>
-<th>الملاحظة / البيان</th>
-<th>التاريخ والوقت</th>
-<th>التحكم</th>
-</tr>
-</thead>
-<tbody>
-<tr><td colspan="5" style="color: var(--text-muted);">لم يتم إضافة أي دفعة أجزاء حتى الآن</td></tr>
-</tbody>
-</table>
-</div>
-<div class="total-box" style="margin-top: 15px;">
-<span>إجمالي المبلغ المطلوب: <b id="opsModalTotal" style="color:#fff;">0</b> د.ع</span>
-<span>الواصل الإجمالي: <b id="opsModalPaid" style="color:var(--accent-green);">0</b> د.ع</span>
-<span style="color:var(--accent-red);">المتبقي: <b id="opsModalRemaining">0</b> د.ع</span>
-</div>
-<button class="btn-custom" onclick="document.getElementById('opsModal').style.display='none'" style="margin-top: 20px; background: #2f2f3d;">اعتماد وإغلاق النافذة</button>
 </div>
 </div>
 <div id="searchDeviceModal">
@@ -1437,13 +1821,30 @@
 <button class="btn-custom" onclick="printSelectedInventoryReport()" style="margin-top:18px;"><i class="fa-solid fa-print"></i> معاينة وطباعة الجرد</button>
 </div>
 </div>
+<div class="v630-invoice-modal" id="supplierReconciliationModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px;overflow:auto;">
+<div class="modal-content-box" style="border-color:#2ecc71;max-width:760px;">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;">
+<h3 style="color:#2ecc71;font-size:18px;"><i class="fa-solid fa-file-invoice-dollar"></i> طباعة كشف المشتريات</h3>
+<button type="button" onclick="document.getElementById('supplierReconciliationModal').style.display='none'" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid">
+<div style="grid-column:1/-1;"><label>الشركة الموردة:</label><select id="supplierReconciliationCompany"><option value="">اختيار الشركة</option></select></div>
+<div><label>من تاريخ:</label><input id="supplierReconciliationFrom" type="date"/></div>
+<div><label>إلى تاريخ:</label><input id="supplierReconciliationTo" type="date"/></div>
+</div>
+<div style="margin-top:15px;padding:10px;border-radius:8px;background:rgba(46,204,113,.08);border:1px dashed #2ecc71;font-size:12px;color:var(--text-muted);">اختر الشركة والفترة، وسيتم تجهيز كشف بالمشتريات وأرقام قوائم المورد، المبالغ، وحالة الدفع.</div>
+<button class="btn-custom" type="button" onclick="printSupplierReconciliation()" style="margin-top:18px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;"><i class="fa-solid fa-print"></i> معاينة وطباعة الكشف</button>
+</div>
+</div>
 <div class="v630-invoice-modal" id="printPreviewModal">
 <div class="invoice-print-box v630-invoice">
 <div class="invoice-top-header invoice-header-fixed-left">
 <div class="invoice-header-brand invoice-header-brand-left">
-<div id="printVipBadgeBox" style="display: none; background: linear-gradient(135deg, #ff2a4d, #d90429); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 14px; box-shadow: 0 0 15px rgba(255,42,77,0.5); border: 1px solid #fff;">VIP</div>
+<div class="invoice-brand-line">
 <div class="brand">VOL<span>TECH</span></div>
-<p class="invoice-brand-tagline">لتجارة الهواتف النقالة والاكسسوارات والأنظمة الذكية</p>
+<div id="printVipBadgeBox" style="display: none; background: linear-gradient(135deg, #ff2a4d, #d90429); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 14px; box-shadow: 0 0 15px rgba(255,42,77,0.5); border: 1px solid #fff;">VIP</div>
+</div>
+<p class="invoice-brand-tagline">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</p>
 </div>
 <div class="invoice-header-info invoice-header-info-right" style="font-size:12px; color:#f5f6fa;">
 <p>تاريخ الإصدار: <b id="printDate" style="color:#ff2a4d;"></b></p>
@@ -1476,9 +1877,9 @@
 <div class="invoice-footer-notes">
 <p><b>شروط الضمان وسياسة البيع:</b></p>
 <div id="printWarrantyNoteText">
-<p>• الاحتفاظ بالكارتون الخاص بالجهاز أو الاكسسوار.</p>
-<p>• ضمان الاجهزة والاكسسوارات لا يشمل اي تلف متعمد أو خدش أو سوء استخدام أو سوائل أو نار.</p>
-<p>• ضمان الاجهزة لمدة سنة كاملة من اي اخطاء أو اعطال مصنعية فقط.</p>
+<p>• الاحتفاظ بالكارتون الخاص بالجهاز او الاكسسوار</p>
+<p>• ضمان الاجهزة والاكسسوارات لا يشمل اي تلف متعمد او خدش او سوء استخدام او سوائل او نار</p>
+<p>• ضمان الاجهزة لمدة سنة كاملة من اي اخطاء او اعطال مصنعية فقط</p>
 </div>
 </div>
 <button class="btn-custom" onclick="confirmPrint()" style="margin-top: 20px; font-size: 15px; padding: 12px;"><i class="fa-solid fa-print"></i> طباعة الفاتورة رسمياً</button>
@@ -1490,6 +1891,8 @@
         let exchangeRate = 1500;
         let vipWarrantyPrice = 25000;
         let invoiceCounter = 1;
+        let purchaseInvoiceCounter = 1;
+        let notificationsList = [];
         let cashierBalance = 0;
         let vaultBalance = 0;
         let vipCollectedTotal = 0;
@@ -1501,36 +1904,27 @@
         let catalogModalFixedType = null;
 
         let systemUsers = [
-            { id: 1, name: "المسؤول العام الرئيسي", role: "admin", username: "admin", pass: "1234", active: true },
-            { id: 2, name: "مدير الفرع الرئيسي", role: "manager", username: "manager", pass: "1234", active: true },
-            { id: 3, name: "المحاسب المالي", role: "accountant", username: "accountant", pass: "1234", active: true },
-            { id: 4, name: "موظف مبيعات 1", role: "employee", username: "emp1", pass: "1234", active: true }
+            { id: 1, name: "المسؤول العام الرئيسي", role: "admin", username: "admin", passwordHash: "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", active: true },
+            { id: 2, name: "مدير الفرع الرئيسي", role: "manager", username: "manager", passwordHash: "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", active: true },
+            { id: 3, name: "المحاسب المالي", role: "accountant", username: "accountant", passwordHash: "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", active: true },
+            { id: 4, name: "موظف مبيعات 1", role: "employee", username: "emp1", salesInvoiceNames: ["موظف مبيعات 1"], passwordHash: "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", active: true }
         ];
 
         // تعريفات المنتجات: لا تدخل المستودع، وإنما تُستخدم للتعرف على المنتج بالباركود.
-        let deviceCatalog = [
-            { barcode: "DEV-APP-13", company: "Apple", model: "iPhone 13", color: "Starlight", memory: "128 GB" },
-            { barcode: "DEV-APP-17PM", company: "Apple", model: "iPhone 17 Pro Max", color: "Cosmic Gray", memory: "256 GB" }
-        ];
-        let accessoryCatalog = [
-            { barcode: "ACC-ANK-01", company: "Anker", name: "شاحن جداري سريع 20W", color: "أبيض", memory: "" }
-        ];
+        let deviceCatalog = [];
+        let accessoryCatalog = [];
 
-        let warehouseDevicesList = [
-            { imei: "353523524027988", barcode: "DEV-APP-13", company: "Apple", model: "iPhone 13", color: "Starlight", memory: "128 GB", costUSD: 530, costIQD: 530 * 1500, priceUSD: 585, priceIQD: 585 * 1500, supplier: "شركة الصقر" },
-            { imei: "359876543210123", barcode: "DEV-APP-17PM", company: "Apple", model: "iPhone 17 Pro Max", color: "Cosmic Gray", memory: "256 GB", costUSD: 1100, costIQD: 1100 * 1500, priceUSD: 1250, priceIQD: 1250 * 1500, supplier: "شركة الصقر العالمية" }
-        ];
+        let warehouseDevicesList = [];
 
-        let warehouseAccessoriesList = [
-            { barcode: "ACC-ANK-01", imei: "N/A", company: "Anker", name: "شاحن جداري سريع 20W", color: "أبيض", qty: 10, costUSD: 10, costIQD: 15000, priceUSD: 15, priceIQD: 22500, supplier: "شركة الرافدين" }
-        ];
+        let warehouseAccessoriesList = [];
 
         let currentInvoiceItems = [];
         let pendingBatchItems = [];
         // حسابات تشغيلية ثابتة تظهر ضمن الحسابات والديون من البداية.
         let accountsList = [
-            {id:900001,name:'POS',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]},
-            {id:900002,name:'مصاريف عامة',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]}
+            {id:900001,name:'POS',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+            {id:900002,name:'مصاريف عامة',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+            {id:900003,name:'مصرف-اقساط',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]}
         ];
         let logsList = [];
         let purchasesLog = [];
@@ -1539,8 +1933,157 @@
         let accessoryInvoicesArchive = [];
 
         let loggedInUser = null;
-        let opsPaymentsList = [];
+        
         let currentActivePrintInvoiceData = null;
+
+        // ===== V6.3.2 MULTI-BRANCH FOUNDATION =====
+        // كل البيانات التشغيلية الحالية مرتبطة بفرع نشط. يبدأ النظام بفرع واحد فقط،
+        // ويمكن إضافة فروع لاحقاً دون خلط مخزون/فواتير/حسابات/خزائن الفروع.
+        let branches = [{id:1,name:'الفرع الرئيسي',code:'BR-001',active:true,createdAt:Date.now()}];
+        let currentBranchId = 1;
+        let branchDataStore = {};
+        let salesInvoiceNames = [];
+        const BRANCH_DATA_VERSION = 1;
+        function fixedSystemAccountsFactory(){
+            return [
+                {id:900001,name:'POS',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+                {id:900002,name:'مصاريف عامة',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+                {id:900003,name:'مصرف-اقساط',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]}
+            ];
+        }
+        function makeBranchDataSnapshot(){
+            return {
+                version:BRANCH_DATA_VERSION,
+                invoiceCounter:Number(invoiceCounter)||1,
+                purchaseInvoiceCounter:Number(purchaseInvoiceCounter)||1,
+                cashierBalance:Number(cashierBalance)||0,
+                vaultBalance:Number(vaultBalance)||0,
+                deviceCatalog:JSON.parse(JSON.stringify(deviceCatalog||[])),
+                accessoryCatalog:JSON.parse(JSON.stringify(accessoryCatalog||[])),
+                warehouseDevicesList:JSON.parse(JSON.stringify(warehouseDevicesList||[])),
+                warehouseAccessoriesList:JSON.parse(JSON.stringify(warehouseAccessoriesList||[])),
+                accountsList:JSON.parse(JSON.stringify(accountsList||fixedSystemAccountsFactory())),
+                logsList:JSON.parse(JSON.stringify(logsList||[])),
+                purchasesLog:JSON.parse(JSON.stringify(purchasesLog||[])),
+                deviceInvoicesArchive:JSON.parse(JSON.stringify(deviceInvoicesArchive||[])),
+                accessoryInvoicesArchive:JSON.parse(JSON.stringify(accessoryInvoicesArchive||[])),
+                notificationsList:JSON.parse(JSON.stringify(notificationsList||[])),
+                financeBaseline:Number(financeBaseline)||Date.now(),
+                financeBaselineInitialized:!!financeBaselineInitialized,
+                financeMonthlyBaseline:Number(financeMonthlyBaseline)||Date.now(),
+                dailyFinanceState:JSON.parse(JSON.stringify(dailyFinanceState||{})),
+                dailyReportHistory:JSON.parse(JSON.stringify(dailyReportHistory||[])),
+                employeeMonthlySalesState:JSON.parse(JSON.stringify(employeeMonthlySalesState||{month:monthKeyLocal(),employees:{}})),
+                monthlyAccountsReportHistory:JSON.parse(JSON.stringify(monthlyAccountsReportHistory||[])),
+                adminDailyReportHistory:JSON.parse(JSON.stringify(adminDailyReportHistory||[])),
+                vipFinanceState:JSON.parse(JSON.stringify(vipFinanceState||{date:todayKeyLocal(),amount:0})),
+                vipAnnualHistory:JSON.parse(JSON.stringify(vipAnnualHistory||[])),
+                salesInvoiceNames:Array.isArray(salesInvoiceNames)?JSON.parse(JSON.stringify(salesInvoiceNames)):[]
+            };
+        }
+        function normalizeBranches(){
+            if(!Array.isArray(branches)||!branches.length) branches=[{id:1,name:'الفرع الرئيسي',code:'BR-001',active:true,createdAt:Date.now()}];
+            branches=branches.map((b,i)=>({id:Number(b.id)||i+1,name:String(b.name||`فرع ${i+1}`).trim(),code:String(b.code||`BR-${String(i+1).padStart(3,'0')}`),active:b.active!==false,createdAt:b.createdAt||Date.now()}));
+            if(!branches.some(b=>b.id===1)) branches.unshift({id:1,name:'الفرع الرئيسي',code:'BR-001',active:true,createdAt:Date.now()});
+            currentBranchId=Number(currentBranchId)||1;
+            if(!branches.some(b=>b.id===currentBranchId && b.active!==false)) currentBranchId=branches.find(b=>b.active!==false)?.id||1;
+        }
+        function ensureBranchData(branchId){
+            const id=Number(branchId)||1;
+            if(!branchDataStore[id]){
+                branchDataStore[id]=makeBranchDataSnapshot();
+                branchDataStore[id].invoiceCounter=1;
+                branchDataStore[id].purchaseInvoiceCounter=1;
+                branchDataStore[id].cashierBalance=0;
+                branchDataStore[id].vaultBalance=0;
+                branchDataStore[id].deviceCatalog=[];
+                branchDataStore[id].accessoryCatalog=[];
+                branchDataStore[id].warehouseDevicesList=[];
+                branchDataStore[id].warehouseAccessoriesList=[];
+                branchDataStore[id].accountsList=fixedSystemAccountsFactory();
+                branchDataStore[id].logsList=[]; branchDataStore[id].purchasesLog=[];
+                branchDataStore[id].deviceInvoicesArchive=[]; branchDataStore[id].accessoryInvoicesArchive=[];
+                branchDataStore[id].notificationsList=[]; branchDataStore[id].dailyReportHistory=[];
+                branchDataStore[id].monthlyAccountsReportHistory=[]; branchDataStore[id].adminDailyReportHistory=[];
+                branchDataStore[id].vipAnnualHistory=[];
+                branchDataStore[id].salesInvoiceNames=[];
+                branchDataStore[id].financeBaseline=Date.now(); branchDataStore[id].financeMonthlyBaseline=Date.now();
+                branchDataStore[id].financeBaselineInitialized=true;
+                branchDataStore[id].dailyFinanceState=financeZeroState();
+                branchDataStore[id].employeeMonthlySalesState={month:monthKeyLocal(),employees:{}};
+                branchDataStore[id].vipFinanceState={date:todayKeyLocal(),amount:0};
+            }
+            return branchDataStore[id];
+        }
+        function syncActiveBranchToStore(){ branchDataStore[Number(currentBranchId)||1]=makeBranchDataSnapshot(); }
+        function loadBranchData(branchId){
+            const id=Number(branchId)||1, d=ensureBranchData(id);
+            currentBranchId=id;
+            invoiceCounter=Number(d.invoiceCounter)||1; purchaseInvoiceCounter=Number(d.purchaseInvoiceCounter)||1;
+            cashierBalance=Number(d.cashierBalance)||0; vaultBalance=Number(d.vaultBalance)||0;
+            deviceCatalog=JSON.parse(JSON.stringify(d.deviceCatalog||[])); accessoryCatalog=JSON.parse(JSON.stringify(d.accessoryCatalog||[]));
+            warehouseDevicesList=JSON.parse(JSON.stringify(d.warehouseDevicesList||[])); warehouseAccessoriesList=JSON.parse(JSON.stringify(d.warehouseAccessoriesList||[]));
+            accountsList=JSON.parse(JSON.stringify(d.accountsList||fixedSystemAccountsFactory())); logsList=JSON.parse(JSON.stringify(d.logsList||[]));
+            purchasesLog=JSON.parse(JSON.stringify(d.purchasesLog||[])); deviceInvoicesArchive=JSON.parse(JSON.stringify(d.deviceInvoicesArchive||[]));
+            accessoryInvoicesArchive=JSON.parse(JSON.stringify(d.accessoryInvoicesArchive||[])); notificationsList=JSON.parse(JSON.stringify(d.notificationsList||[]));
+            financeBaseline=Number(d.financeBaseline)||Date.now(); financeBaselineInitialized=!!d.financeBaselineInitialized;
+            financeMonthlyBaseline=Number(d.financeMonthlyBaseline)||Date.now(); dailyFinanceState=JSON.parse(JSON.stringify(d.dailyFinanceState||financeZeroState()));
+            dailyReportHistory=JSON.parse(JSON.stringify(d.dailyReportHistory||[])); employeeMonthlySalesState=JSON.parse(JSON.stringify(d.employeeMonthlySalesState||{month:monthKeyLocal(),employees:{}}));
+            monthlyAccountsReportHistory=JSON.parse(JSON.stringify(d.monthlyAccountsReportHistory||[])); adminDailyReportHistory=JSON.parse(JSON.stringify(d.adminDailyReportHistory||[]));
+            vipFinanceState=JSON.parse(JSON.stringify(d.vipFinanceState||{date:todayKeyLocal(),amount:0})); vipAnnualHistory=JSON.parse(JSON.stringify(d.vipAnnualHistory||[]));
+            salesInvoiceNames=Array.isArray(d.salesInvoiceNames)?JSON.parse(JSON.stringify(d.salesInvoiceNames)):[];
+            // ترحيل أسماء المبيعات القديمة إلى قائمة الفرع مرة واحدة، مع الإبقاء على بيانات المستخدمين القديمة كما هي.
+            if(!salesInvoiceNames.length){
+                const legacyNames=(systemUsers||[]).filter(u=>u&&u.active!==false&&u.role==='employee'&&Number(u.branchId||1)===id)
+                    .flatMap(u=>Array.isArray(u.salesInvoiceNames)?u.salesInvoiceNames:(u.name?[u.name]:[]))
+                    .map(n=>String(n||'').trim()).filter(Boolean);
+                salesInvoiceNames=[...new Set(legacyNames)];
+            }
+            ensureSinglePosAccount(); ensureInstallmentAccount(); keepPosAccountFirst();
+        }
+        function branchName(id=currentBranchId){ return branches.find(b=>Number(b.id)===Number(id))?.name||'الفرع الرئيسي'; }
+        function renderBranchSelector(){
+            const box=document.getElementById('currentBranchSelectorBox'), sel=document.getElementById('currentBranchSelector');
+            if(!box||!sel||!loggedInUser) return;
+            const isAdmin=loggedInUser.role==='admin';
+            box.style.display='block'; sel.disabled=!isAdmin;
+            sel.innerHTML=branches.filter(b=>b.active!==false).map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+            sel.value=String(currentBranchId);
+            const label=document.getElementById('currentBranchLabel'); if(label) label.textContent=branchName();
+        }
+        function switchActiveBranch(branchId){
+            if(!loggedInUser||loggedInUser.role!=='admin'){alert('تغيير الفرع متاح للمسؤول العام فقط.');return;}
+            const id=Number(branchId), b=branches.find(x=>x.id===id&&x.active!==false); if(!b){alert('الفرع غير متاح.');return;}
+            if(id===currentBranchId){renderBranchSelector();return;}
+            syncActiveBranchToStore(); loadBranchData(id); saveAllAppState(); renderBranchSelector();
+            updateExchangeRateUI(); updateCompanyFilters(); renderWarehouseDevicesTable(); renderWarehouseAccessoriesTable();
+            refreshSupplierCompanySelect(); renderUserBranchSelect(); refreshInvoiceEmployeeSelect(); renderUsersManageTable(); renderSalesNamesManager(); renderNotifications();
+            switchTab('sales');
+            saveAllAppState();
+        }
+        function addBranch(){
+            if(!requireRole(['admin'],'إضافة الفروع متاحة للمسؤول العام فقط.')) return;
+            const name=prompt('اسم الفرع الجديد:','فرع جديد'); if(!name||!name.trim()) return;
+            const clean=name.trim(); if(branches.some(b=>b.active!==false&&b.name===clean)){alert('اسم الفرع موجود مسبقاً.');return;}
+            const id=Math.max(0,...branches.map(b=>Number(b.id)||0))+1;
+            branches.push({id,name:clean,code:`BR-${String(id).padStart(3,'0')}`,active:true,createdAt:Date.now()});
+            ensureBranchData(id); renderBranchManagement(); renderBranchSelector(); renderUserBranchSelect(); saveAllAppState();
+            logAction(loggedInUser.name,'إضافة فرع',`تم إنشاء الفرع: ${clean}`); alert(`تم إنشاء ${clean} بنجاح. الفرع الجديد يبدأ ببيانات تشغيلية فارغة وجاهزة.`);
+        }
+        function toggleBranch(id){
+            if(!requireRole(['admin'],'إدارة الفروع متاحة للمسؤول العام فقط.')) return;
+            const b=branches.find(x=>Number(x.id)===Number(id)); if(!b) return;
+            if(Number(id)===1){alert('الفرع الرئيسي لا يمكن تعطيله.');return;}
+            if(Number(id)===Number(currentBranchId)){alert('انتقل إلى فرع آخر أولاً ثم عطّل هذا الفرع.');return;}
+            b.active=b.active===false; renderBranchManagement(); renderBranchSelector(); saveAllAppState();
+        }
+        function renderBranchManagement(){
+            const tbody=document.querySelector('#branchesManageTable tbody'); if(!tbody) return;
+            tbody.innerHTML=branches.map(b=>`<tr><td><b>${b.name}</b></td><td><code>${b.code}</code></td><td>${Number(b.id)===Number(currentBranchId)?'<b style="color:var(--accent-green)">الفرع الحالي</b>':(b.active!==false?'مفعل':'<span style="color:var(--accent-red)">معطل</span>')}</td><td>${Number(b.id)===1?'<span style="color:var(--text-muted)">محمي</span>':`<button class="btn-action ${b.active===false?'':'btn-delete'}" onclick="toggleBranch(${b.id})">${b.active===false?'تفعيل':'تعطيل'}</button>`}</td></tr>`).join('');
+        }
+        function normalizeUserBranches(){
+            systemUsers.forEach(u=>{ if(!Number.isFinite(Number(u.branchId)) || !branches.some(b=>Number(b.id)===Number(u.branchId))) u.branchId=1; });
+        }
 
         // خط أساس مالي: البطاقات الأساسية تبدأ من الصفر، وتحتسب فقط العمليات المنفذة بعد التصفير.
         let financeBaseline = loadFinanceBaseline();
@@ -1556,15 +2099,14 @@
         // حفظ دائم لكل بيانات التشغيل داخل ملف JSON واحد في localStorage.
         // يتم استعادتها عند إعادة فتح/تحديث الصفحة، مع إبقاء التقارير التاريخية منفصلة أيضاً.
         const APP_STORE_KEY = 'voltech_app_state_v14';
-        const VOLTECH_BUILD = 'V6.2.7-PRELINK-OFFLINE-FINAL-INVOICE';
+        const VOLTECH_BUILD = 'V6.3.6-PRELINK-SALES-NAMES-SIMPLE';
         function appStatePayload(){
+            syncActiveBranchToStore();
             return {
-                version: 14, savedAt: Date.now(),
-                exchangeRate, vipWarrantyPrice, invoiceCounter, cashierBalance, vaultBalance,
-                systemUsers, deviceCatalog, accessoryCatalog, warehouseDevicesList, warehouseAccessoriesList,
-                accountsList, logsList, purchasesLog, deviceInvoicesArchive, accessoryInvoicesArchive,
-                financeBaseline, financeBaselineInitialized, financeMonthlyBaseline, dailyFinanceState, dailyReportHistory, employeeMonthlySalesState,
-                monthlyAccountsReportHistory, adminDailyReportHistory, vipFinanceState, vipAnnualHistory
+                // نسخة توافقية للحالة النشطة فقط، مفيدة إذا احتجنا استعادة نسخة قديمة.
+                ...makeBranchDataSnapshot(),
+                version: 15, savedAt: Date.now(),
+                exchangeRate, vipWarrantyPrice, systemUsers, branches, currentBranchId, branchDataStore
             };
         }
         // ===== V6.1 PRE-LINK SAFETY LAYER =====
@@ -1645,14 +2187,37 @@
             try{
                 const raw=localStorage.getItem(APP_STORE_KEY);
                 if(!raw) return false;
-                const st=JSON.parse(raw); if(!st || st.version!==14) return false;
+                const st=JSON.parse(raw); if(!st || ![14,15].includes(Number(st.version))) return false;
                 if(typeof st.exchangeRate==='number') exchangeRate=st.exchangeRate;
                 if(typeof st.vipWarrantyPrice==='number') vipWarrantyPrice=st.vipWarrantyPrice;
                 if(Number.isFinite(st.invoiceCounter)) invoiceCounter=st.invoiceCounter;
+                if(Number.isFinite(st.purchaseInvoiceCounter)) purchaseInvoiceCounter=st.purchaseInvoiceCounter;
                 if(Number.isFinite(st.cashierBalance)) cashierBalance=st.cashierBalance;
                 if(Number.isFinite(st.vaultBalance)) vaultBalance=st.vaultBalance;
                 if(Array.isArray(st.systemUsers)) systemUsers=st.systemUsers;
-                if(Array.isArray(st.deviceCatalog)) deviceCatalog=st.deviceCatalog;
+                if(Array.isArray(st.branches)) branches=st.branches;
+                if(Number.isFinite(Number(st.currentBranchId))) currentBranchId=Number(st.currentBranchId);
+                if(st.branchDataStore && typeof st.branchDataStore==='object') branchDataStore=st.branchDataStore;
+                normalizeBranches(); normalizeUserBranches();
+                if(Object.keys(branchDataStore||{}).length===0){
+                    // ترحيل آمن للحالة القديمة: كل البيانات الحالية تصبح بيانات الفرع الرئيسي فقط.
+                    branchDataStore={};
+                    branchDataStore[1]={
+                        version:1, invoiceCounter:Number(st.invoiceCounter)||1, purchaseInvoiceCounter:Number(st.purchaseInvoiceCounter)||1,
+                        cashierBalance:Number(st.cashierBalance)||0, vaultBalance:Number(st.vaultBalance)||0,
+                        deviceCatalog:st.deviceCatalog||[], accessoryCatalog:st.accessoryCatalog||[], warehouseDevicesList:st.warehouseDevicesList||[],
+                        warehouseAccessoriesList:st.warehouseAccessoriesList||[], accountsList:st.accountsList||fixedSystemAccountsFactory(), logsList:st.logsList||[],
+                        purchasesLog:st.purchasesLog||[], deviceInvoicesArchive:st.deviceInvoicesArchive||[], accessoryInvoicesArchive:st.accessoryInvoicesArchive||[],
+                        notificationsList:st.notificationsList||[], financeBaseline:Number(st.financeBaseline)||Date.now(), financeBaselineInitialized:!!st.financeBaselineInitialized,
+                        financeMonthlyBaseline:Number(st.financeMonthlyBaseline)||Date.now(), dailyFinanceState:st.dailyFinanceState||financeZeroState(),
+                        dailyReportHistory:st.dailyReportHistory||[], employeeMonthlySalesState:st.employeeMonthlySalesState||{month:monthKeyLocal(),employees:{}},
+                        monthlyAccountsReportHistory:st.monthlyAccountsReportHistory||[], adminDailyReportHistory:st.adminDailyReportHistory||[],
+                        vipFinanceState:st.vipFinanceState||{date:todayKeyLocal(),amount:0}, vipAnnualHistory:st.vipAnnualHistory||[],
+                        salesInvoiceNames:st.salesInvoiceNames||[]
+                    };
+                }
+                loadBranchData(currentBranchId||1);
+                if(Array.isArray(st.deviceCatalog)) deviceCatalog=deviceCatalog;
                 if(Array.isArray(st.accessoryCatalog)) accessoryCatalog=st.accessoryCatalog;
                 if(Array.isArray(st.warehouseDevicesList)) warehouseDevicesList=st.warehouseDevicesList;
                 if(Array.isArray(st.warehouseAccessoriesList)) warehouseAccessoriesList=st.warehouseAccessoriesList;
@@ -1661,6 +2226,8 @@
                 if(Array.isArray(st.purchasesLog)) purchasesLog=st.purchasesLog;
                 if(Array.isArray(st.deviceInvoicesArchive)) deviceInvoicesArchive=st.deviceInvoicesArchive;
                 if(Array.isArray(st.accessoryInvoicesArchive)) accessoryInvoicesArchive=st.accessoryInvoicesArchive;
+                if(Array.isArray(st.notificationsList)) notificationsList=st.notificationsList;
+                if(!Number.isFinite(st.purchaseInvoiceCounter)) purchaseInvoiceCounter=(purchasesLog||[]).reduce((m,p)=>Math.max(m,Number(p.invoiceNo)||0),0)+1;
                 if(typeof st.financeBaseline==='number') financeBaseline=st.financeBaseline;
                 if(typeof st.financeBaselineInitialized==='boolean') financeBaselineInitialized=st.financeBaselineInitialized;
                 if(typeof st.financeMonthlyBaseline==='number') financeMonthlyBaseline=st.financeMonthlyBaseline;
@@ -1677,19 +2244,17 @@
                     a.payableTotal=Number(a.payableTotal||0);
                     a.payablePaid=Number(a.payablePaid||0);
                     a.payableRemaining=Math.max(0,a.payableTotal-a.payablePaid);
-                    if(!a.entityType){
+                    if(isFixedSystemAccount(a)){ a.entityType='system'; a.operationalBalance=Number(a.operationalBalance||0); }
+                    else if(!a.entityType){
                         const nm=String(a.name||'').trim();
                         a.entityType = (a.id===900001 || a.id===900002 || nm.startsWith('مورد (آجل):') || nm.includes('شركة')) ? 'company' : 'person';
                     }
                 });
+                // بعد تطبيع الحسابات، نعيد تحميل الفرع النشط حتى لا تختلط الحالة القديمة مع بيانات الفرع.
+                loadBranchData(currentBranchId||1); normalizeUserBranches();
                 return true;
             }catch(e){ console.error('VOLTECH hydrate error:',e); return false; }
         }
-
-        const ACCESSORY_BARCODE_PRESETS = {
-            "1": "لاصق شاشة",
-            "2": "حافظة جهاز"
-        };
 
         function todayKeyLocal(){ return new Date().toLocaleDateString('en-CA'); }
         function loadFinanceBaseline(){
@@ -1784,7 +2349,7 @@
         }
 
         function rolloverEmployeeMonthlySales(){let m=monthKeyLocal();if(employeeMonthlySalesState.month!==m){employeeMonthlySalesState={month:m,employees:{}};persistEmployeeMonthlySalesState();}}
-        function recordEmployeeMonthlySale(inv,direction=1){rolloverEmployeeMonthlySales();let name=inv.employeeName||inv.employee||'';if(!name)return;let e=employeeMonthlySalesState.employees[name]||{deviceSales:0,accessorySales:0,total:0,profit:0};let amount=(inv.totalAmount||0)*direction;let profit=((inv.items||[]).reduce((sum,it)=>sum+(((it.priceIQD||0)-(it.costIQD||0))*(it.qty||1)),0)+(inv.warranty==='vip'?(inv.warrantyCost||0):0))*direction;if(inv.category==='device')e.deviceSales+=amount;else e.accessorySales+=amount;e.total+=amount;e.profit=(e.profit||0)+profit;employeeMonthlySalesState.employees[name]=e;persistEmployeeMonthlySalesState();}
+        function recordEmployeeMonthlySale(inv,direction=1){rolloverEmployeeMonthlySales();const invoiceMonth=inv&&inv.dateISO?String(inv.dateISO).slice(0,7):monthKeyLocal();if(invoiceMonth!==monthKeyLocal())return;let name=inv.employeeName||inv.employee||'';if(!name)return;let e=employeeMonthlySalesState.employees[name]||{deviceSales:0,accessorySales:0,total:0,profit:0};let amount=(inv.totalAmount||0)*direction;let profit=((inv.items||[]).reduce((sum,it)=>sum+(((it.priceIQD||0)-(it.costIQD||0))*(it.qty||1)),0)+(inv.warranty==='vip'?(inv.warrantyCost||0):0))*direction;if(inv.category==='device')e.deviceSales+=amount;else e.accessorySales+=amount;e.total+=amount;e.profit=(e.profit||0)+profit;employeeMonthlySalesState.employees[name]=e;persistEmployeeMonthlySalesState();}
 
         function loadAdminDailyReportHistory(){ try{ let x=JSON.parse(localStorage.getItem('voltech_admin_daily_reports')||'[]'); let cutoff=Date.now()-31*86400000; return x.filter(r=>(r.timestamp||0)>=cutoff); }catch(e){return [];} }
         function persistAdminDailyReportHistory(){ adminDailyReportHistory=adminDailyReportHistory.filter(r=>(r.timestamp||0)>=Date.now()-31*86400000); localStorage.setItem('voltech_admin_daily_reports',JSON.stringify(adminDailyReportHistory)); }
@@ -1839,6 +2404,31 @@
             vipFinanceState={date:todayKeyLocal(),amount:0,_financeBaseline:financeBaseline}; persistVipFinanceState();
             saveAllAppState();
             renderDailyReportPanel(); renderFinanceDashboard(); alert('تم إصدار التقرير وتصفير المربعات اليومية، مع الاحتفاظ بالتقرير في السجل.');
+        }
+
+        function getActiveNotificationsForUser(){
+            if(!loggedInUser || !['admin','manager'].includes(loggedInUser.role)) return [];
+            return (notificationsList||[]).filter(n=>Array.isArray(n.recipients)&&n.recipients.includes(loggedInUser.role)&&!((n.confirmedBy||[]).includes(String(loggedInUser.id))));
+        }
+        function renderNotifications(){
+            const activeBox=document.getElementById('activeNotificationsBox'), historyBox=document.getElementById('notificationHistoryBox');
+            if(!activeBox||!historyBox)return;
+            const visible=(notificationsList||[]).filter(n=>Array.isArray(n.recipients)&&loggedInUser&&n.recipients.includes(loggedInUser.role)&&!((n.confirmedBy||[]).includes(String(loggedInUser.id))));
+            const history=(notificationsList||[]).filter(n=>Array.isArray(n.recipients)&&loggedInUser&&n.recipients.includes(loggedInUser.role)&&((n.confirmedBy||[]).includes(String(loggedInUser.id))));
+            activeBox.innerHTML=visible.length?visible.map(n=>`<div style="padding:14px;margin-bottom:10px;border:1px solid var(--accent-red);border-radius:10px;background:rgba(255,42,77,.08);"><div style="font-weight:900;color:var(--accent-red);">⚠️ تنبيه بيع بسعر غير آمن — الفاتورة رقم ${n.invoiceNo}</div><div style="margin-top:7px;line-height:1.8;"><b>السبب:</b> ${n.reason}<br><b>الموظف:</b> ${n.employeeName}<br><b>التاريخ والوقت:</b> ${n.date} — ${n.time}</div><button type="button" class="btn-custom" style="width:auto;margin-top:10px;background:var(--accent-green);color:#fff;" onclick="confirmNotification(${n.id})"><i class="fa-solid fa-check"></i> تأكيد القراءة</button></div>`).join(''):'<div style="padding:12px;color:var(--text-muted);">لا توجد تبليغات جديدة.</div>';
+            historyBox.innerHTML=history.length?history.slice().reverse().map(n=>`<div style="padding:10px;margin-bottom:8px;border:1px solid var(--border-color);border-radius:8px;"><b>فاتورة رقم ${n.invoiceNo}</b> — ${n.date} ${n.time}<br><span style="font-size:12px;">الموظف: ${n.employeeName} | السبب: ${n.reason}</span></div>`).join(''):'<div style="padding:12px;color:var(--text-muted);">لا توجد تبليغات مؤكدة بعد.</div>';
+            const unread=visible.length; const badge=document.getElementById('notificationUnreadBadge'); if(badge){badge.textContent=String(unread);badge.style.display=unread?'inline-block':'none';}
+        }
+        function confirmNotification(id){
+            if(!loggedInUser||!['admin','manager'].includes(loggedInUser.role)){alert('هذه التبليغات مخصصة لمدير الفرع والمسؤول العام.');return;}
+            const n=(notificationsList||[]).find(x=>String(x.id)===String(id)); if(!n)return;
+            n.confirmedBy=Array.isArray(n.confirmedBy)?n.confirmedBy:[]; const uid=String(loggedInUser.id); if(!n.confirmedBy.includes(uid))n.confirmedBy.push(uid);
+            n.confirmations=Array.isArray(n.confirmations)?n.confirmations:[]; n.confirmations.push({userId:uid,userName:loggedInUser.name,date:new Date().toLocaleDateString('ar-IQ'),time:new Date().toLocaleTimeString('ar-IQ')});
+            saveAllAppState(); renderNotifications();
+        }
+        function createSalePriceWarning(invoiceNo, employeeName, reason, now){
+            notificationsList=Array.isArray(notificationsList)?notificationsList:[];
+            notificationsList.unshift({id:Date.now()+Math.floor(Math.random()*1000),invoiceNo:String(invoiceNo),reason,employeeName,date:now.toLocaleDateString('ar-IQ'),time:now.toLocaleTimeString('ar-IQ'),recipients:['admin','manager'],confirmedBy:[],confirmations:[]});
         }
 
         function logAction(roleName, type, details, undoData=null) {
@@ -1896,7 +2486,7 @@
         function getOrCreateAggregateAccount(name) {
             let acc = accountsList.find(a => a.name === name);
             if (!acc) {
-                acc = { id: Date.now() + Math.floor(Math.random() * 1000), name: name, total: 0, paid: 0, remaining: 0, payableTotal:0, payablePaid:0, payableRemaining:0, paymentHistory:[], vouchers:[] };
+                acc = { id: Date.now() + Math.floor(Math.random() * 1000), name: name, entityType: isFixedSystemAccount({name}) ? 'system' : undefined, total: 0, paid: 0, remaining: 0, operationalBalance: 0, payableTotal:0, payablePaid:0, payableRemaining:0, paymentHistory:[], vouchers:[] };
                 accountsList.push(acc);
             }
             return acc;
@@ -1907,21 +2497,43 @@
             acc.paymentHistory.unshift({amount:Number(amount)||0,date:new Date().toLocaleDateString('ar-IQ'),time:new Date().toLocaleTimeString('ar-IQ'),note:note||"دفعة"});
         }
         function addAccountPaymentHistoryMeta(acc, amount, note, meta={}){ if(!acc.paymentHistory) acc.paymentHistory=[]; acc.paymentHistory.unshift(Object.assign({amount:Number(amount)||0,date:new Date().toLocaleDateString('ar-IQ'),time:new Date().toLocaleTimeString('ar-IQ'),note:note||'دفعة'},meta)); }
+        function removeInvoiceLinkedAccountHistory(inv){
+            if(!inv||!inv.id)return;
+            const invoiceId=Number(inv.id);
+            (accountsList||[]).forEach(acc=>{
+                if(Array.isArray(acc.paymentHistory))acc.paymentHistory=acc.paymentHistory.filter(p=>Number(p.invoiceId||0)!==invoiceId);
+            });
+        }
+
         function getAccountPaymentHistoryHtml(acc) {
             if(!acc.paymentHistory || !acc.paymentHistory.length) return '<span style="color:var(--text-muted);font-size:11px;">لا توجد دفعات</span>';
             return acc.paymentHistory.map(p=>`<div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)"><b style="color:var(--accent-green)">${Number(p.amount||0).toLocaleString()} د.ع</b> — ${p.date} ${p.time}<br><span style="font-size:11px;color:var(--text-muted)">${p.note || ""}</span></div>`).join("");
         }
         function canEditWarehouseDevice(){ return loggedInUser && (loggedInUser.role==='admin'||loggedInUser.role==='manager'); }
 
-        function login() {
-            let uInput = document.getElementById("loginUsername").value.trim();
-            let pInput = document.getElementById("loginPass").value.trim();
+        async function hashOfflinePassword(value){
+            const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value)));
+            return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+        }
+        async function migrateLegacyUserPasswords(){
+            let changed=false;
+            for(const u of systemUsers){if(!u.passwordHash&&typeof u.pass==='string'){u.passwordHash=await hashOfflinePassword(u.pass);delete u.pass;changed=true;}}
+            if(changed)saveAllAppState();
+        }
 
-            let foundUser = systemUsers.find(u => u.username === uInput && u.pass === pInput);
+        async function login(){
+            const uInput=document.getElementById('loginUsername').value.trim();
+            const pInput=document.getElementById('loginPass').value;
+            if(!uInput||!pInput){alert('يرجى إدخال اسم المستخدم ورمز الدخول.');return;}
+            const passwordHash=await hashOfflinePassword(pInput);
+            const foundUser=systemUsers.find(u=>String(u.username||'').toLowerCase()===uInput.toLowerCase()&&u.passwordHash===passwordHash);
             if(!foundUser) { alert("اسم المستخدم أو كلمة المرور غير صحيحة!"); return; }
             if(!foundUser.active) { alert("عذراً، هذا الحساب معطل حالياً من قِبل المسؤول العام."); return; }
 
             loggedInUser = foundUser;
+            normalizeUserBranches();
+            if(loggedInUser.role!=='admin') loadBranchData(loggedInUser.branchId||1); else loadBranchData(currentBranchId||1);
+            renderBranchSelector(); renderBranchManagement(); renderUserBranchSelect();
             document.getElementById("loginScreen").style.display = "none";
             document.getElementById("appContainer").style.display = "flex";
             
@@ -1940,6 +2552,7 @@
             document.getElementById("navAdminSettings").style.display = "none";
             document.getElementById("navAdminUsers").style.display = "none";
             document.getElementById("navLogs").style.display = "none";
+            document.getElementById("navNotifications").style.display = "none";
 
             let defaultTab = 'sales';
 
@@ -1953,6 +2566,7 @@
                 document.getElementById("navAdminSettings").style.display = "flex";
                 document.getElementById("navAdminUsers").style.display = "flex";
                 document.getElementById("navLogs").style.display = "flex";
+                document.getElementById("navNotifications").style.display = "flex";
             } else if(loggedInUser.role === 'manager') {
                 document.getElementById("navPurchases").style.display = "flex";
                 document.getElementById("navWarehouseDevices").style.display = "flex";
@@ -1961,6 +2575,7 @@
                 document.getElementById("navTreasury").style.display = "flex";
                 document.getElementById("navFinance").style.display = "flex";
                 document.getElementById("navLogs").style.display = "flex";
+                document.getElementById("navNotifications").style.display = "flex";
             } else if(loggedInUser.role === 'accountant') {
                 // إخفاء نقطة البيع والفواتير عن المحاسب
                 document.getElementById("navSales").style.display = "none";
@@ -1971,6 +2586,7 @@
                 document.getElementById("navTreasury").style.display = "flex";
                 document.getElementById("navLogs").style.display = "flex";
                 document.getElementById("navFinance").style.display = "flex";
+                document.getElementById("navNotifications").style.display = "none";
                 defaultTab = 'accounts';
             } else if(loggedInUser.role === 'employee') {
                 // فقط نقطة البيع
@@ -1982,6 +2598,7 @@
             document.getElementById("generalExpenseBox").style.display = "none";
 
             updateExchangeRateUI();
+            applyAdminOnlyFinanceVisibility();
             updateCompanyFilters();
             renderWarehouseDevicesTable();
             renderWarehouseAccessoriesTable();
@@ -1991,12 +2608,16 @@
             renderAccountsTable();
             refreshSupplierCompanySelect();
             renderUsersManageTable();
+            renderSalesNamesManager();
+            renderBranchSelector(); renderBranchManagement(); renderUserBranchSelect();
             refreshInvoiceEmployeeSelect();
             renderLogsTable();
             renderPurchasesLogTable();
+            renderNotifications();
             updateTreasuryDisplay();
             renderDailyReportPanel();
             document.getElementById("invoiceNoInput").value = invoiceCounter;
+            document.getElementById("purchaseInvoiceNoInput").value = "";
             switchTab(defaultTab);
         }
 
@@ -2007,6 +2628,15 @@
         function logout() { location.reload(); }
 
         function switchTab(tabName) {
+            // الإعدادات الحساسة للمدير العام فقط. إخفاء الزر وحده لا يكفي.
+            if(tabName==='adminSettings' && (!loggedInUser || loggedInUser.role!=='admin')){
+                alert('إعدادات الصرف والنظام متاحة للمسؤول العام فقط.');
+                return;
+            }
+            if(tabName==='adminUsers' && (!loggedInUser || loggedInUser.role!=='admin')){
+                alert('إدارة المستخدمين متاحة للمسؤول العام فقط.');
+                return;
+            }
             document.querySelectorAll('aside nav button').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
             
@@ -2058,23 +2688,26 @@
             logAction("المسؤول العام", "تعديل ضمان VIP", `تم ضبط سعر ضمان VIP المعتمد إلى ${vipWarrantyPrice.toLocaleString()} د.ع`);
         }
 
-        function addNewUserAccount() {
-            let name = document.getElementById("newAccName").value.trim();
-            let role = document.getElementById("newAccRole").value;
-            let username = document.getElementById("newAccUser").value.trim();
-            let pass = document.getElementById("newAccPass").value.trim();
+        async function addNewUserAccount(){
+            // إنشاء مستخدمي النظام حصراً بواسطة المسؤول العام.
+            if(!requireRole(['admin'],'إضافة مستخدمي النظام متاحة للمسؤول العام فقط.')) return;
+            const name=document.getElementById('newAccName').value.trim(),role=document.getElementById('newAccRole').value,username=document.getElementById('newAccUser').value.trim(),pass=document.getElementById('newAccPass').value;
+            if(!name||!username||!pass){alert('يرجى ملء جميع حقول بيانات الحساب بدقة!');return;}
+            if(systemUsers.some(u=>String(u.username||'').toLowerCase()===username.toLowerCase())){alert('اسم المستخدم هذا مستخدم مسبقاً!');return;}
+            if(pass.length<4){alert('رمز الدخول يجب أن لا يقل عن 4 أحرف.');return;}
+            const branchId=Number(document.getElementById('newAccBranch')?.value)||1;
+            if(role==='employee' && systemUsers.some(u=>u&&u.role==='employee'&&u.active!==false&&Number(u.branchId||1)===branchId)){
+                alert('يوجد بالفعل حساب واحد لموظف المبيعات في هذا الفرع. أضف الأسماء داخل نفس الحساب بدلاً من إنشاء حساب آخر.'); return;
+            }
+            systemUsers.push({id:Date.now()+Math.floor(Math.random()*1000),name,role,username,passwordHash:await hashOfflinePassword(pass),active:true,branchId,salesInvoiceNames:role==='employee'?[name]:[]});
+            document.getElementById('newAccName').value='';document.getElementById('newAccUser').value='';document.getElementById('newAccPass').value='';
+            renderUsersManageTable();renderSalesNamesManager();refreshInvoiceEmployeeSelect();saveAllAppState();logAction('المسؤول العام','إدارة المستخدمين',`تم إضافة حساب جديد: ${name} (${username})`);alert('تم إضافة الحساب الجديد بنجاح!');
+        }
 
-            if(!name || !username || !pass) { alert("يرجى ملء جميع حقول بيانات الحساب بدقة!"); return; }
-            if(systemUsers.some(u => u.username === username)) { alert("اسم المستخدم هذا مستخدم مسبقاً!"); return; }
-
-            systemUsers.push({ id: Date.now(), name, role, username, pass, active: true });
-            document.getElementById("newAccName").value = "";
-            document.getElementById("newAccUser").value = "";
-            document.getElementById("newAccPass").value = "";
-            renderUsersManageTable();
-            refreshInvoiceEmployeeSelect();
-            alert("تم إضافة الحساب الجديد بنجاح!");
-            logAction("المسؤول العام", "إدارة المستخدمين", `تم إضافة حساب جديد: ${name} (${username})`);
+        function renderUserBranchSelect(){
+            const sel=document.getElementById('newAccBranch'); if(!sel) return;
+            sel.innerHTML=branches.filter(b=>b.active!==false).map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+            if(!sel.value) sel.value=String(currentBranchId);
         }
 
         function renderUsersManageTable() {
@@ -2083,7 +2716,14 @@
             tbody.innerHTML = "";
             let roleLabels = {"admin": "مسؤول عام", "manager": "مدير فرع", "employee": "موظف مبيعات", "accountant": "محاسب مالي"};
 
-            systemUsers.forEach(u => {
+            // عرض الحسابات يكون حسب الفرع الحالي، مع إبقاء حساب المسؤول العام ظاهراً دائماً.
+            // بهذا الشكل لا تختلط حسابات الفرع الرئيسي مع حسابات أي فرع آخر.
+            const activeBranchId = Number(currentBranchId || 1);
+            const visibleUsers = systemUsers.filter(u =>
+                u && (u.role === 'admin' || Number(u.branchId || 1) === activeBranchId)
+            );
+
+            visibleUsers.forEach(u => {
                 let statusText = u.active ? '<span style="color:var(--accent-green); font-weight:bold;">مفعل</span>' : '<span style="color:var(--accent-red); font-weight:bold;">معطل</span>';
                 let toggleBtnText = u.active ? 'تعطيل' : 'تفعيل';
                 let toggleBtnClass = u.active ? 'btn-delete' : '';
@@ -2093,7 +2733,8 @@
                         <td><b>${u.name}</b></td>
                         <td>${roleLabels[u.role] || u.role}</td>
                         <td><code>${u.username}</code></td>
-                        <td><code>${u.pass}</code></td>
+                        <td><span style="color:var(--text-muted);font-size:11px;">محمي</span></td>
+                        <td>${branchName(u.branchId||1)}</td>
                         <td>${statusText}</td>
                         <td>
                             ${u.role !== 'admin' ? `<button class="btn-action ${toggleBtnClass}" style="${u.active ? '' : 'background:var(--accent-green); color:white;'}" onclick="toggleUserStatus(${u.id})">${toggleBtnText}</button> <button class="btn-action btn-delete" onclick="deleteUserAccount(${u.id})" style="margin-right:5px;">حذف</button>` : '<span style="color:var(--text-muted);font-size:11px;">الحساب الرئيسي محمي</span>'}
@@ -2140,106 +2781,58 @@
             renderActiveInvoiceTable();
         }
 
-        function togglePaymentOptions() {
-            let type = document.getElementById("invoicePaymentType").value;
-            document.getElementById("debtAccountSection").style.display = (type === "debt") ? "block" : "none";
-            document.getElementById("opsSectionSummary").style.display = (type === "ops") ? "flex" : "none";
-            document.getElementById("installmentGroupSection").style.display = (type === "installment") ? "block" : "none";
-            calcRemainingDebt();
-            updateOpsSummary();
+        function getCurrentInvoiceGrandTotal(){
+            const itemsTotal=(currentInvoiceItems||[]).reduce((sum,item)=>sum+(Number(item.priceIQD)||0)*(Number(item.qty)||1),0);
+            const warrantyChoice=document.getElementById('warrantyTypeSelect')?.value||'normal';
+            const warrantyCost=warrantyChoice==='vip'?(Number(vipWarrantyPrice)||0):0;
+            const discount=document.getElementById('invoiceCategoryType')?.value==='accessory'?(Number(document.getElementById('invoiceDiscountInput')?.value)||0):0;
+            return Math.max(0,itemsTotal+warrantyCost-discount);
         }
 
-        function openOpsModal() {
-            renderOpsTable();
-            document.getElementById("opsModal").style.display = "flex";
+        function refreshDebtAccountSuggestions(){
+            const sel=document.getElementById('debtEntityName'); if(!sel)return;
+            const currentId=document.getElementById('debtAccountId')?.value||'';
+            const accounts=(accountsList||[]).filter(a=>a && ![900001,900002,900003].includes(Number(a.id)));
+            sel.innerHTML='<option value="">اختر الشخص أو الشركة</option>'+accounts.map(a=>`<option value="${String(a.id)}">${String(a.name||'')} — ${a.entityType==='company'?'شركة':'شخص'}</option>`).join('');
+            if(currentId && accounts.some(a=>String(a.id)===String(currentId))) sel.value=String(currentId);
         }
 
-        function addOpsPayment() {
-            let amount = parseFloat(document.getElementById("opsInstallmentAmount").value) || 0;
-            let note = document.getElementById("opsInstallmentNote").value.trim() || "دفعة أجزاء";
-            if(amount <= 0) { alert("يرجى إدخال مبلغ دفع صحيح!"); return; }
-
-            let itemsTotal = currentInvoiceItems.reduce((sum, item) => sum + item.priceIQD * (item.qty || 1), 0);
-            let warrantyChoice = document.getElementById("warrantyTypeSelect").value;
-            let activeWarrantyCost = (warrantyChoice === 'vip') ? vipWarrantyPrice : 0;
-            let discountVal = (document.getElementById("invoiceCategoryType").value === 'accessory') ? (parseFloat(document.getElementById("invoiceDiscountInput").value) || 0) : 0;
-            let grandTotal = Math.max(0, itemsTotal + activeWarrantyCost - discountVal);
-
-            let currentPaid = opsPaymentsList.reduce((sum, p) => sum + p.amount, 0);
-            if(currentPaid + amount > grandTotal) {
-                alert("مجموع الدفعات المدفوعة لا يمكن أن يتجاوز المبلغ الإجمالي للقائمة!");
-                return;
-            }
-
-            let now = new Date().toLocaleTimeString('ar-IQ') + ' - ' + new Date().toLocaleDateString('ar-IQ');
-            opsPaymentsList.push({ amount, note, time: now });
-
-            document.getElementById("opsInstallmentAmount").value = "";
-            document.getElementById("opsInstallmentNote").value = "";
-            renderOpsTable();
-            updateOpsSummary();
+        function updateDebtAccountSelection(){
+            const sel=document.getElementById('debtEntityName'), hidden=document.getElementById('debtAccountId'), hint=document.getElementById('debtAccountSelectionHint');
+            if(!sel||!hidden)return null;
+            const id=String(sel.value||'');
+            const acc=(accountsList||[]).find(a=>a && ![900001,900002,900003].includes(Number(a.id)) && String(a.id)===id) || null;
+            hidden.value=acc?String(acc.id):'';
+            if(hint)hint.innerHTML=acc?`<span style="color:var(--accent-green);font-weight:700;">تم اختيار الحساب: ${acc.name} (${acc.entityType==='company'?'شركة':'شخص'})</span>`:'<span style="color:var(--accent-red);">يجب اختيار اسم حساب موجود مسبقاً.</span>';
+            return acc;
         }
 
-        function removeOpsPayment(idx) {
-            opsPaymentsList.splice(idx, 1);
-            renderOpsTable();
-            updateOpsSummary();
+        function updateMixedPaymentSummary(){
+            const total=getCurrentInvoiceGrandTotal();
+            const pos=Math.max(0,Number(document.getElementById('mixedPosAmount')?.value)||0);
+            const cash=Math.max(0,Number(document.getElementById('mixedCashAmount')?.value)||0);
+            const paid=pos+cash;
+            const p=document.getElementById('mixedPaidDisplay'),r=document.getElementById('mixedRemainingDisplay');
+            if(p)p.innerText=paid.toLocaleString(); if(r)r.innerText=Math.max(0,total-paid).toLocaleString();
         }
 
-        function renderOpsTable() {
-            let tbody = document.querySelector("#opsPaymentsTable tbody");
-            tbody.innerHTML = "";
-            if(opsPaymentsList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="color: var(--text-muted);">لم يتم إضافة أي دفعة أجزاء حتى الآن</td></tr>`;
-                return;
-            }
-            opsPaymentsList.forEach((p, idx) => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${idx + 1}</td>
-                        <td style="color:var(--accent-green); font-weight:bold;">${p.amount.toLocaleString()} د.ع</td>
-                        <td><b>${p.note}</b></td>
-                        <td style="color:var(--text-muted);">${p.time}</td>
-                        <td><button class="btn-action btn-delete" onclick="removeOpsPayment(${idx})">حذف</button></td>
-                    </tr>
-                `;
-            });
+        function togglePaymentOptions(){
+            const type=document.getElementById('invoicePaymentType')?.value;
+            const debt=document.getElementById('debtAccountSection'),mixed=document.getElementById('mixedPaymentSection'),installment=document.getElementById('installmentGroupSection');
+            if(debt)debt.style.display=type==='debt'?'block':'none';
+            if(mixed)mixed.style.display=type==='mixed'?'block':'none';
+            if(installment)installment.style.display=type==='installment'?'block':'none';
+            if(type==='debt'){refreshDebtAccountSuggestions();updateDebtAccountSelection();}
+            calcRemainingDebt(); updateMixedPaymentSummary();
         }
 
-        function updateOpsSummary() {
-            let itemsTotal = currentInvoiceItems.reduce((sum, item) => sum + item.priceIQD * (item.qty || 1), 0);
-            let warrantyChoice = document.getElementById("warrantyTypeSelect").value;
-            let activeWarrantyCost = (warrantyChoice === 'vip') ? vipWarrantyPrice : 0;
-            let discountVal = (document.getElementById("invoiceCategoryType").value === 'accessory') ? (parseFloat(document.getElementById("invoiceDiscountInput").value) || 0) : 0;
-            let grandTotal = Math.max(0, itemsTotal + activeWarrantyCost - discountVal);
-
-            let totalPaid = opsPaymentsList.reduce((sum, p) => sum + p.amount, 0);
-            let remaining = Math.max(0, grandTotal - totalPaid);
-
-            document.getElementById("opsSummaryPaid").innerText = totalPaid.toLocaleString();
-            document.getElementById("opsSummaryRemaining").innerText = remaining.toLocaleString();
-
-            if(document.getElementById("opsModalTotal")) {
-                document.getElementById("opsModalTotal").innerText = grandTotal.toLocaleString();
-                document.getElementById("opsModalPaid").innerText = totalPaid.toLocaleString();
-                document.getElementById("opsModalRemaining").innerText = remaining.toLocaleString();
-            }
+        function calcRemainingDebt(){
+            const total=getCurrentInvoiceGrandTotal();
+            const paid=Math.max(0,Number(document.getElementById('debtPaidAmount')?.value)||0);
+            const el=document.getElementById('debtRemainingDisplay'); if(el)el.innerText=Math.max(0,total-paid).toLocaleString();
         }
 
-        function calcRemainingDebt() {
-            let itemsTotal = currentInvoiceItems.reduce((sum, item) => sum + item.priceIQD * (item.qty || 1), 0);
-            let warrantyChoice = document.getElementById("warrantyTypeSelect").value;
-            let activeWarrantyCost = (warrantyChoice === 'vip') ? vipWarrantyPrice : 0;
-            let discountVal = (document.getElementById("invoiceCategoryType").value === 'accessory') ? (parseFloat(document.getElementById("invoiceDiscountInput").value) || 0) : 0;
-            let total = Math.max(0, itemsTotal + activeWarrantyCost - discountVal);
-            let paid = parseFloat(document.getElementById("debtPaidAmount").value) || 0;
-            document.getElementById("debtRemainingDisplay").innerText = Math.max(0, total - paid).toLocaleString();
-        }
-
-        function updateTotalWithWarranty() { 
-            renderActiveInvoiceTable(); 
-            updateOpsSummary();
-        }
+        function updateTotalWithWarranty(){renderActiveInvoiceTable();calcRemainingDebt();updateMixedPaymentSummary();}
 
         function toggleBatchCurrencyLabel() {
             let cur = document.getElementById("batchCurrency").value;
@@ -2252,10 +2845,16 @@
             document.getElementById("batchDebtSection").style.display = (type === "debt") ? "block" : "none";
         }
 
+        function isFixedSystemAccount(acc){
+            if(!acc) return false;
+            const id=Number(acc.id); const name=String(acc.name||'').trim();
+            return id===900001 || id===900002 || id===900003 || ['POS','مصاريف عامة','مصرف-اقساط'].includes(name);
+        }
+
         function refreshSupplierCompanySelect(preferredName='') {
             const sel=document.getElementById('batchSupplier'); if(!sel)return;
             const current=preferredName || sel.value || '';
-            const companies=accountsList.filter(a=>a.entityType==='company' && a.id!==900001 && a.id!==900002);
+            const companies=accountsList.filter(a=>a.entityType==='company' && !isFixedSystemAccount(a));
             sel.innerHTML='<option value="">اختر الشركة</option>'+companies.map(a=>`<option value="${String(a.name).replace(/"/g,'&quot;')}">${a.name}</option>`).join('');
             if(current && companies.some(a=>a.name===current)) sel.value=current;
         }
@@ -2281,7 +2880,7 @@
             let warrantyChoice=document.getElementById('warrantyTypeSelect')?.value; if(warrantyChoice==='vip') itemsTotal+=vipWarrantyPrice;
             let discountVal=cat==='accessory'?(parseFloat(document.getElementById('invoiceDiscountInput')?.value)||0):0;
             document.getElementById('activeInvoiceTotal').innerText=Math.max(0,itemsTotal-discountVal).toLocaleString()+' د.ع';
-            calcRemainingDebt(); updateOpsSummary();
+            calcRemainingDebt(); updateMixedPaymentSummary();
         }
 
         function updateItemQty(idx, newQtyVal) {
@@ -2289,7 +2888,7 @@
             if(qty < 1) qty = 1;
             currentInvoiceItems[idx].qty = qty;
             renderActiveInvoiceTable();
-            updateOpsSummary();
+            updateMixedPaymentSummary();
         }
 
         function toggleBatchTargetFields(){
@@ -2416,18 +3015,21 @@
             }
 
             let paymentType = document.getElementById("batchPaymentType").value;
+            let supplierInvoiceNo = String(document.getElementById("purchaseInvoiceNoInput")?.value || "").trim();
+            if(!supplierInvoiceNo){ alert("يرجى إدخال رقم قائمة المشتريات الوارد من الشركة الموردة قبل الحفظ."); document.getElementById("purchaseInvoiceNoInput")?.focus(); return; }
             let totalCostIQD = pendingBatchItems.reduce((sum, it) => sum + (it.costIQD || 0), 0);
             let supplierName = document.getElementById("batchSupplier").value.trim();
             if(!supplierName){ alert("يرجى اختيار شركة موردة من الشركات المضافة في قائمة الحسابات والديون."); return; }
-            let supplierAccount = accountsList.find(a=>String(a.name)===supplierName && a.entityType==='company' && a.id!==900001 && a.id!==900002);
+            let supplierAccount = accountsList.find(a=>String(a.name)===supplierName && a.entityType==='company' && !isFixedSystemAccount(a));
             if(!supplierAccount){ alert("اسم المورد يجب أن يكون شركة مضافة مسبقاً في الحسابات والديون."); return; }
 
             compressInvoiceImage(imageInput.files[0]).then(imageData=>{
-                finalizeBatchSave(imageData, paymentType, totalCostIQD, supplierName, contentStatement);
+                finalizeBatchSave(imageData, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo);
             }).catch(()=>alert('تعذر معالجة صورة الفاتورة. حاول اختيار صورة أخرى.'));
         }
 
-        function finalizeBatchSave(imageDataUrl, paymentType, totalCostIQD, supplierName, contentStatement) {
+        function finalizeBatchSave(imageDataUrl, paymentType, totalCostIQD, supplierName, contentStatement, supplierInvoiceNo) {
+            const purchaseInvoiceNo=String(purchaseInvoiceCounter);
             pendingBatchItems.forEach(item => {
                 if(item.type === 'device') {
                     warehouseDevicesList.push(item);
@@ -2442,11 +3044,14 @@
             });
 
             // تسجيل الدفعة لا ينفذ أي حركة مالية هنا. تبقى الفاتورة معلقة مالياً
-            // إلى أن يضغط مدير الفرع أو المدير العام زر "دفع الفاتورة" من سجل المشتريات.
+            // إلى أن يضغط المحاسب أو المسؤول العام زر "دفع الفاتورة" من سجل المشتريات.
 
             let count = pendingBatchItems.reduce((sum,it)=>sum + (it.type==='accessory' ? (parseInt(it.qty)||1) : 1), 0);
             purchasesLog.unshift({
                 id: Date.now(),
+                invoiceNo: supplierInvoiceNo,
+                supplierInvoiceNo: supplierInvoiceNo,
+                systemInvoiceNo: purchaseInvoiceNo,
                 date: new Date().toLocaleDateString('ar-IQ'),
                 time: new Date().toLocaleTimeString('ar-IQ'),
                 employee: loggedInUser ? loggedInUser.name : '-',
@@ -2456,6 +3061,7 @@
                 totalIQD: totalCostIQD,
                 supplier: supplierName,
                 contentDescription: contentStatement,
+                items: JSON.parse(JSON.stringify(pendingBatchItems)),
                 image: imageDataUrl,
                 financialStatus: 'pending',
                 paidAt: '',
@@ -2463,6 +3069,8 @@
                 paidSource: ''
             });
 
+            purchaseInvoiceCounter++;
+            document.getElementById("purchaseInvoiceNoInput").value = "";
             logAction(loggedInUser.name, "استلام دفعة بضاعة للمستودع", `تم إدخال دفعة تحتوي على ${count} قطعة للمستودعات (${paymentType === 'debt' ? 'آجل' : 'نقداً'}) من المورد: ${supplierName}`);
             alert(`تم حفظ ${count} قطعة في المستودع بنجاح!`);
 
@@ -2478,29 +3086,137 @@
             updateTreasuryDisplay();
         }
 
+        function openSupplierReconciliationModal(){
+            const modal=document.getElementById('supplierReconciliationModal');
+            const sel=document.getElementById('supplierReconciliationCompany');
+            if(!modal || !sel)return;
+            const current=sel.value;
+            const companies=[...new Set((accountsList||[]).filter(a=>a && a.entityType==='company' && !isFixedSystemAccount(a)).map(a=>String(a.name||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
+            sel.innerHTML='<option value="">اختيار الشركة</option>'+companies.map(c=>`<option value="${escapePurchaseReportHtml(c)}">${escapePurchaseReportHtml(c)}</option>`).join('');
+            if(companies.includes(current))sel.value=current;
+            const now=new Date();
+            const first=new Date(now.getFullYear(),now.getMonth(),1);
+            const last=new Date(now.getFullYear(),now.getMonth()+1,0);
+            const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+            const from=document.getElementById('supplierReconciliationFrom'),to=document.getElementById('supplierReconciliationTo');
+            if(from)from.value=fmt(first);
+            if(to)to.value=fmt(last);
+            modal.style.display='flex';
+        }
+
+        function escapePurchaseReportHtml(value){
+            return String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+        }
+
+        function printSupplierReconciliation(){
+            const company=String(document.getElementById('supplierReconciliationCompany')?.value||'').trim();
+            const from=String(document.getElementById('supplierReconciliationFrom')?.value||'').trim();
+            const to=String(document.getElementById('supplierReconciliationTo')?.value||'').trim();
+            if(!company){alert('يرجى اختيار الشركة الموردة أولاً.');return;}
+            if(!from || !to){alert('يرجى تحديد فترة الكشف.');return;}
+            if(from>to){alert('تاريخ البداية يجب أن يكون قبل أو يساوي تاريخ النهاية.');return;}
+
+            // فتح نافذة الطباعة مباشرة من ضغطة المستخدم حتى لا يمنعها المتصفح.
+            const w=window.open('','_blank','width=1100,height=800');
+            if(!w){alert('يرجى السماح بالنوافذ المنبثقة للطباعة.');return;}
+
+            const startMs=new Date(from+'T00:00:00').getTime();
+            const endMs=new Date(to+'T23:59:59.999').getTime();
+            const rows=(purchasesLog||[]).filter(p=>{
+                const supplier=String(p.supplier||'').trim();
+                const stamp=Number(p.createdAt||p.id||0);
+                return supplier===company && stamp>=startMs && stamp<=endMs && p.status!=='cancelled';
+            }).sort((a,b)=>Number(a.createdAt||a.id||0)-Number(b.createdAt||b.id||0));
+
+            let totalCost=0,totalCount=0,paidTotal=0,remainingTotal=0;
+            rows.forEach(p=>{
+                const amount=Number(p.totalIQD||0);
+                totalCost+=amount;
+                totalCount+=Number(p.count||0);
+                const isDebt=p.paymentType==='آجل';
+                const isPaid=p.financialStatus==='paid';
+                if(isPaid&&!isDebt)paidTotal+=amount; else remainingTotal+=amount;
+            });
+            const money=n=>Number(n||0).toLocaleString('ar-IQ')+' د.ع';
+            const dateLabel=ms=>new Date(ms).toLocaleDateString('ar-IQ');
+            let html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>كشف مشتريات - ${escapePurchaseReportHtml(company)}</title><style>body{font-family:Arial,Tahoma,sans-serif;padding:28px;color:#111;background:#fff}h1{text-align:center;margin:0 0 8px;font-size:24px}h2{text-align:center;margin:0 0 18px;font-size:18px}.meta{text-align:center;color:#444;margin-bottom:20px;line-height:1.8}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.box{border:1px solid #777;padding:10px;text-align:center;border-radius:6px}.box b{display:block;font-size:16px;margin-top:5px}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #222;padding:8px;text-align:center;font-size:12px}th{background:#eee}.total-row{font-weight:bold;background:#f4f4f4}.sign{display:flex;justify-content:space-between;margin-top:55px;font-weight:bold}.empty{text-align:center;padding:30px;border:1px dashed #777;margin-top:20px}@media print{body{padding:12px}.no-print{display:none!important}}</style></head><body><h1>كشف مشتريات المورد</h1><h2>الشركة الموردة: ${escapePurchaseReportHtml(company)}</h2><div class="meta">الفترة: ${escapePurchaseReportHtml(dateLabel(startMs))} إلى ${escapePurchaseReportHtml(dateLabel(endMs))}<br>تاريخ إصدار الكشف: ${escapePurchaseReportHtml(new Date().toLocaleDateString('ar-IQ'))}</div>`;
+            html+=`<div class="summary"><div class="box">عدد القوائم<b>${rows.length}</b></div><div class="box">عدد القطع<b>${totalCount.toLocaleString('ar-IQ')}</b></div><div class="box">إجمالي المشتريات<b>${money(totalCost)}</b></div><div class="box">المتبقي<b>${money(remainingTotal)}</b></div></div>`;
+            if(!rows.length){
+                html+='<div class="empty">لا توجد قوائم مشتريات لهذه الشركة ضمن الفترة المحددة.</div>';
+            }else{
+                html+='<table><thead><tr><th>ت</th><th>التاريخ</th><th>رقم قائمة المورد</th><th>عدد القطع</th><th>إجمالي القائمة</th><th>حالة الدفع</th><th>المدفوع</th><th>المتبقي</th></tr></thead><tbody>';
+                rows.forEach((p,i)=>{
+                    const amount=Number(p.totalIQD||0);
+                    const isDebt=p.paymentType==='آجل';
+                    const isPaid=p.financialStatus==='paid';
+                    const paid=isPaid&&!isDebt?amount:0;
+                    const remaining=amount-paid;
+                    const status=isDebt?'آجل على حساب الشركة':(isPaid?'تم الدفع':'معلقة مالياً');
+                    html+=`<tr><td>${i+1}</td><td>${escapePurchaseReportHtml(p.date||dateLabel(Number(p.createdAt||p.id||0)))}</td><td><b>${escapePurchaseReportHtml(p.supplierInvoiceNo||p.invoiceNo||'-')}</b></td><td>${Number(p.count||0).toLocaleString('ar-IQ')}</td><td>${money(amount)}</td><td>${escapePurchaseReportHtml(status)}</td><td>${money(paid)}</td><td>${money(remaining)}</td></tr>`;
+                });
+                html+=`<tr class="total-row"><td colspan="3">الإجمالي</td><td>${totalCount.toLocaleString('ar-IQ')}</td><td>${money(totalCost)}</td><td>-</td><td>${money(paidTotal)}</td><td>${money(remainingTotal)}</td></tr></tbody></table>`;
+            }
+            html+=`<div class="sign"><span>توقيع VOLTECH: __________________</span><span>توقيع الشركة الموردة: __________________</span></div></body></html>`;
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+            w.focus();
+            setTimeout(()=>{try{w.print();}catch(e){}},350);
+            const modal=document.getElementById('supplierReconciliationModal');
+            if(modal)modal.style.display='none';
+        }
+
+        function searchPurchaseInvoiceByNo(){
+            const raw=String(document.getElementById('purchaseInvoiceSearchInput')?.value||'').trim();
+            const box=document.getElementById('purchaseInvoiceSearchResult'); if(!box)return;
+            if(!raw){box.innerHTML='<div style="color:var(--accent-red);">أدخل رقم قائمة المشتريات للبحث.</div>';return;}
+            const p=(purchasesLog||[]).find(x=>String(x.invoiceNo||'')===raw);
+            if(!p){box.innerHTML='<div style="padding:12px;border:1px dashed var(--accent-red);border-radius:8px;color:var(--accent-red);">لا توجد قائمة مشتريات بهذا الرقم.</div>';return;}
+            const items=(p.items||[]);
+            const itemRows=items.length?items.map((it,i)=>`<tr><td>${i+1}</td><td>${it.type==='device'?`${it.company||''} ${it.model||''}`:`${it.company||''} - ${it.name||''}`}</td><td>${it.barcode||'-'}</td><td>${it.imei||'-'}</td><td>${Number(it.qty||1)}</td><td>${Number(it.costIQD||0).toLocaleString()} د.ع</td><td>${Number(it.priceIQD||0).toLocaleString()} د.ع</td></tr>`).join(''):'<tr><td colspan="7">تفاصيل القطع غير محفوظة في هذه السجل القديم.</td></tr>';
+            box.innerHTML=`<div style="padding:15px;border:1px solid var(--accent-blue);border-radius:10px;background:rgba(52,152,219,.06);">
+                <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;"><b style="font-size:16px;color:var(--accent-blue);">قائمة المشتريات رقم ${p.invoiceNo}</b><span>${p.date||''} — ${p.time||''}</span></div>
+                <p><b>الموظف:</b> ${p.employee||'-'} | <b>المورد:</b> ${p.supplier||'-'} | <b>نوع الدفع:</b> ${p.paymentType||'-'} | <b>الحالة:</b> ${p.financialStatus==='paid'?'تم الدفع':'معلقة مالياً'}</p>
+                <p><b>إجمالي التكلفة:</b> ${Number(p.totalIQD||0).toLocaleString()} د.ع</p>
+                <p><b>بيان المحتوى:</b> ${p.contentDescription||'-'}</p>
+                ${p.image?`<button type="button" class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="openPurchaseImage(${p.id})">عرض صورة الفاتورة</button>`:''}
+                <div class="table-container" style="margin-top:12px;"><table><thead><tr><th>#</th><th>المنتج</th><th>الباركود</th><th>IMEI</th><th>العدد</th><th>التكلفة</th><th>سعر البيع</th></tr></thead><tbody>${itemRows}</tbody></table></div>
+            </div>`;
+        }
+
         function renderPurchasesLogTable() {
             let tbody = document.querySelector("#purchasesLogTable tbody");
             if(!tbody) return;
             tbody.innerHTML = "";
             if(purchasesLog.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" style="color: var(--text-muted);">لا توجد دفعات مسجلة حتى الآن</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="11" style="color: var(--text-muted);">لا توجد دفعات مسجلة حتى الآن</td></tr>`;
                 return;
             }
             purchasesLog.forEach(p => {
                 let paid = p.financialStatus === 'paid';
-                let statusHtml = paid
-                    ? `<span style="color:var(--accent-green);font-weight:bold;">تم الدفع</span>`
-                    : `<span style="color:var(--accent-red);font-weight:bold;">معلقة مالياً</span>`;
+                let statusHtml = p.status==='cancelled'
+                    ? `<span style="color:var(--accent-red);font-weight:bold;">ملغاة</span>`
+                    : (paid ? `<span style="color:var(--accent-green);font-weight:bold;">تم الدفع</span>` : `<span style="color:var(--accent-red);font-weight:bold;">معلقة مالياً</span>`);
                 let actionHtml = '';
-                if(!paid && loggedInUser && (loggedInUser.role==='admin' || loggedInUser.role==='accountant')) {
-                    actionHtml = `<button class="btn-action" style="background:#ff2a4d;color:#fff;border:1px solid #ff2a4d;" onclick="payPurchaseInvoice(${p.id})">دفع الفاتورة</button>`;
+                const isGM = !!loggedInUser && loggedInUser.role === 'admin';
+                const canPay = !!loggedInUser && (loggedInUser.role === 'admin' || loggedInUser.role === 'accountant');
+                if(p.status === 'cancelled') {
+                    actionHtml = '<span style="color:var(--text-muted);font-size:11px;">لا توجد إجراءات</span>';
                 } else if(paid) {
-                    actionHtml = `<small style="display:block;color:var(--text-muted);">${p.paidSource ? 'المصدر: '+p.paidSource : ''}</small>`;
+                    actionHtml = `<small style="display:block;color:var(--text-muted);">${p.paidSource ? 'المصدر: '+p.paidSource : 'تم الدفع'}</small>`;
                 } else {
-                    actionHtml = '<span style="color:var(--text-muted);font-size:11px;">بانتظار الدفع</span>';
+                    if(canPay) {
+                        actionHtml += `<button class="btn-action" style="background:#ff2a4d;color:#fff;border:1px solid #ff2a4d;margin:2px;" onclick="payPurchaseInvoice(${p.id})">دفع الفاتورة</button>`;
+                    }
+                    if(isGM) {
+                        actionHtml += `<button class="btn-action" style="background:#3498db;color:#fff;margin:2px;" onclick="editPurchaseInvoice(${p.id})">تعديل</button>`;
+                        actionHtml += `<button class="btn-action btn-delete" style="margin:2px;" onclick="cancelPurchaseInvoice(${p.id})">إلغاء</button>`;
+                    }
+                    if(!actionHtml) actionHtml = '<span style="color:var(--text-muted);font-size:11px;">بانتظار الصلاحية</span>';
                 }
                 tbody.innerHTML += `
                     <tr>
+                        <td><b>${p.invoiceNo || '-'}</b></td>
                         <td>${p.image ? `<img src="${p.image}" title="اضغط لفتح الصورة" onclick="openPurchaseImage(${p.id})" style="width:55px;height:55px;object-fit:cover;border-radius:6px;border:1px solid var(--border-color);cursor:pointer;" >` : '-'}</td>
                         <td style="color:var(--text-muted);">${p.date} - ${p.time}</td>
                         <td><b>${p.employee||'-'}</b></td>
@@ -2513,6 +3229,69 @@
                         <td>${actionHtml}</td>
                     </tr>`;
             });
+        }
+
+        function editPurchaseInvoice(id){
+            if(!loggedInUser || loggedInUser.role!=='admin'){alert('تعديل قوائم المشتريات متاح للمسؤول العام فقط.');return;}
+            const p=purchasesLog.find(x=>x.id===id); if(!p)return;
+            if(p.financialStatus==='paid'){alert('لا يمكن تعديل قائمة مشتريات مدفوعة مباشرةً حتى لا يتغير الأثر المالي دون تسوية. يمكنك إلغاؤها ثم إدخالها من جديد.');return;}
+            const supplier=prompt('اسم المورد (يجب أن يكون شركة موجودة مسبقاً):',p.supplier||''); if(supplier===null)return;
+            const acc=accountsList.find(a=>String(a.name||'').trim()===supplier.trim() && a.entityType==='company' && !isFixedSystemAccount(a));
+            if(!acc){alert('المورد يجب أن يكون شركة موجودة مسبقاً، ولا يمكن اختيار POS أو مصاريف عامة أو مصرف-اقساط.');return;}
+            const statement=prompt('بيان محتوى القائمة:',p.contentDescription||''); if(statement===null)return;
+            if(!statement.trim()){alert('بيان المحتوى إجباري.');return;}
+            p.supplier=supplier.trim(); p.contentDescription=statement.trim();
+            p.editedAt=new Date().toLocaleString('ar-IQ'); p.editedBy=loggedInUser.name;
+            logAction(loggedInUser.name,'تعديل قائمة مشتريات',`تم تعديل قائمة المشتريات رقم ${p.invoiceNo} — المورد: ${p.supplier}`,{kind:'purchaseEdit',purchaseId:p.id,done:false});
+            saveAllAppState(); renderPurchasesLogTable(); searchPurchaseInvoiceByNo();
+            alert('تم تعديل بيانات قائمة المشتريات بنجاح.');
+        }
+
+        function cancelPurchaseInvoice(id){
+            if(!loggedInUser || loggedInUser.role!=='admin'){alert('إلغاء قوائم المشتريات متاح للمسؤول العام فقط.');return;}
+            const p=purchasesLog.find(x=>x.id===id); if(!p)return;
+            if(p.status==='cancelled'){alert('هذه القائمة ملغاة مسبقاً.');return;}
+            const reason=prompt('أدخل سبب إلغاء قائمة المشتريات (إجباري):',''); if(reason===null)return;
+            if(!reason.trim()){alert('سبب الإلغاء إجباري.');return;}
+            const items=Array.isArray(p.items)?p.items:[];
+            // نتحقق أولاً من إمكانية إخراج الكمية نفسها من المخزون دون تخريب المخزون المباع لاحقاً.
+            for(const item of items){
+                if(item.type==='device'){
+                    const idx=warehouseDevicesList.findIndex(d=>String(d.imei)===String(item.imei));
+                    if(idx<0){alert(`لا يمكن إلغاء القائمة رقم ${p.invoiceNo}: الجهاز IMEI ${item.imei||'-'} لم يعد موجوداً في المستودع.`);return;}
+                }else{
+                    const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===String(item.barcode));
+                    const need=Number(item.qty)||1;
+                    if(!stock || Number(stock.qty||0)<need){alert(`لا يمكن إلغاء القائمة رقم ${p.invoiceNo}: كمية الاكسسوار ${item.name||item.barcode||'-'} لم تعد متوفرة بالكامل في المستودع.`);return;}
+                }
+            }
+            if(p.financialStatus==='paid'){
+                if(p.paymentType==='آجل' || p.paidSource==='حساب آجل'){
+                    const acc=accountsList.find(a=>Number(a.id)===Number(p.linkedAccountId));
+                    if(!acc){alert('تعذر العثور على حساب المورد المرتبط لإلغاء الأثر المالي.');return;}
+                    const amount=Number(p.totalIQD)||0;
+                    const openPaid=Number(acc.payablePaid||0);
+                    if(openPaid < amount){alert('لا يمكن عكس ذمة المورد تلقائياً لأن جزءاً من هذه الذمة تم تسديده لاحقاً. يجب تنفيذ التسوية من سجل الحساب قبل الإلغاء.');return;}
+                    acc.payableTotal=Math.max(0,Number(acc.payableTotal||0)-amount);
+                    acc.payableRemaining=Math.max(0,acc.payableTotal-Number(acc.payablePaid||0));
+                    if(Array.isArray(acc.paymentHistory)) acc.paymentHistory=acc.paymentHistory.filter(h=>!(h.meta&&Number(h.meta.purchaseId)===Number(p.id)) && Number(h.purchaseId)!==Number(p.id));
+                } else {
+                    const amount=Number(p.totalIQD)||0;
+                    const source=p.paidSource==='القاصة'?'vault':'cashier';
+                    if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
+                }
+            }
+            for(const item of items){
+                if(item.type==='device'){
+                    const idx=warehouseDevicesList.findIndex(d=>String(d.imei)===String(item.imei)); if(idx>=0) warehouseDevicesList.splice(idx,1);
+                }else{
+                    const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===String(item.barcode)); if(stock){stock.qty=Math.max(0,Number(stock.qty||0)-(Number(item.qty)||1)); if(stock.qty===0){const i=warehouseAccessoriesList.indexOf(stock);warehouseAccessoriesList.splice(i,1);}}
+                }
+            }
+            p.status='cancelled'; p.cancelReason=reason.trim(); p.cancelledBy=loggedInUser.name; p.cancelledAt=new Date().toLocaleString('ar-IQ');
+            logAction(loggedInUser.name,'إلغاء قائمة مشتريات',`تم إلغاء قائمة المشتريات رقم ${p.invoiceNo} — السبب: ${reason.trim()}`);
+            saveAllAppState(); renderPurchasesLogTable(); renderWarehouseDevicesTable(); renderWarehouseAccessoriesTable(); renderAccountsTable(); updateTreasuryDisplay();
+            alert('تم إلغاء قائمة المشتريات وإزالة أثرها من المستودع وعكس أثرها المالي حسب الحالة.');
         }
 
         function openPurchaseImage(id){
@@ -2548,7 +3327,7 @@
             const amount=Number(p.totalIQD||0);
             if(chosenType==='debt'){
                 if(!confirm(`تحويل فاتورة المورد ${p.supplier} إلى آجل وربطها بحساب الشركة الموجود في الحسابات والديون بمبلغ ${amount.toLocaleString()} د.ع؟`))return;
-                let acc=accountsList.find(a=>String(a.name||'').trim().toLowerCase()===String(p.supplier||'').trim().toLowerCase() && a.entityType==='company' && a.id!==900001 && a.id!==900002);
+                let acc=accountsList.find(a=>String(a.name||'').trim().toLowerCase()===String(p.supplier||'').trim().toLowerCase() && a.entityType==='company' && !isFixedSystemAccount(a));
                 if(!acc){alert('المورد يجب أن يكون شركة مضافة مسبقاً في قائمة الحسابات والديون.');return;}
                 acc.payableTotal=(acc.payableTotal||0)+amount;
                 acc.payableRemaining=Math.max(0,acc.payableTotal-(acc.payablePaid||0));
@@ -2619,7 +3398,7 @@
             device.type = device.type || 'device';
             if(currentInvoiceItems.some(x=>String(x.imei)===String(device.imei))){ alert('هذا الجهاز مضاف مسبقاً إلى الفاتورة الحالية.'); return; }
             currentInvoiceItems.push(device);
-            renderActiveInvoiceTable(); renderWarehouseDevicesTable(); updateOpsSummary();
+            renderActiveInvoiceTable(); renderWarehouseDevicesTable(); updateMixedPaymentSummary();
         }
         function handleDeviceScanKey(event) {
             if(event.key!=="Enter") return;
@@ -2642,7 +3421,7 @@
             let def=accessoryCatalog.find(a=>a.barcode===trimmed);
             if(foundAcc){ document.getElementById('accNameInput').value=foundAcc.name; document.getElementById('accPriceInput').value=foundAcc.priceIQD; }
             else if(def){ document.getElementById('accNameInput').value=def.name; document.getElementById('accPriceInput').value=""; }
-            else if(ACCESSORY_BARCODE_PRESETS[trimmed]) document.getElementById('accNameInput').value=ACCESSORY_BARCODE_PRESETS[trimmed];
+            else document.getElementById('accNameInput').value='';
         }
         function handleAccessoryBarcodeKey(event){
             if(event.key==="Enter"){ event.preventDefault(); addAccessoryManualItem(); }
@@ -2700,7 +3479,7 @@
             document.getElementById('accBarcodeScan').focus();
 
             renderActiveInvoiceTable();
-            updateOpsSummary();
+            updateMixedPaymentSummary();
         }
 
         function renderActiveInvoiceTable() {
@@ -2772,7 +3551,7 @@
             let finalGrandTotal = Math.max(0, itemsTotal - discountVal);
             document.getElementById("activeInvoiceTotal").innerText = finalGrandTotal.toLocaleString() + " د.ع";
             calcRemainingDebt();
-            updateOpsSummary();
+            updateMixedPaymentSummary();
         }
 
         function removeInvoiceItem(idx) {
@@ -2780,7 +3559,7 @@
             warehouseDevicesList.push(returned);
             renderActiveInvoiceTable();
             renderWarehouseDevicesTable();
-            updateOpsSummary();
+            updateMixedPaymentSummary();
         }
 
         function removeAccessoryItem(idx) {
@@ -2793,7 +3572,7 @@
             }
             renderActiveInvoiceTable();
             renderWarehouseAccessoriesTable();
-            updateOpsSummary();
+            updateMixedPaymentSummary();
         }
 
         function isGeneralManager(){ return !!loggedInUser && loggedInUser.role === 'admin'; }
@@ -2912,37 +3691,7 @@
             accCompanySelect.innerHTML = `<option value="all">جميع الشركات</option>` + accCompanies.map(c => `<option value="${c}">${c}</option>`).join('');
         }
 
-        function toggleNewDeviceForm() {
-            let box = document.getElementById("newDeviceFormBox");
-            box.style.display = (box.style.display === "none" || box.style.display === "") ? "grid" : "none";
-        }
 
-        function addNewDeviceDirect() {
-            if(!isGeneralManager()){alert("إضافة أو تعديل تعريفات العناصر متاحة للمدير العام فقط.");return;}
-            let company=document.getElementById("newDevCompany").value.trim(), model=document.getElementById("newDevModel").value.trim(), color=document.getElementById("newDevColor").value.trim(), memory=document.getElementById("newDevMemory").value.trim(), barcode=document.getElementById("newDevBarcode").value.trim();
-            if(!company||!model||!barcode){alert("أدخل الشركة والموديل والباركود التعريفي!");return;}
-            if(deviceCatalog.some(d=>d.barcode===barcode)){alert("هذا الباركود معرف مسبقاً!");return;}
-            deviceCatalog.push({barcode,company,model,color,memory});
-            ["newDevCompany","newDevModel","newDevColor","newDevMemory","newDevBarcode"].forEach(id=>document.getElementById(id).value="");
-            logAction(loggedInUser.name,"تعريف نوع جهاز",`تم تعريف ${company} ${model} بالباركود ${barcode} بدون إضافة للمستودع`);
-            alert("تم حفظ تعريف الجهاز بدون إضافة للمستودع.");
-        }
-
-        function toggleNewAccessoryForm() {
-            let box = document.getElementById("newAccessoryFormBox");
-            box.style.display = (box.style.display === "none" || box.style.display === "") ? "grid" : "none";
-        }
-
-        function addNewAccessoryDirect() {
-            if(!isGeneralManager()){alert("إضافة أو تعديل تعريفات العناصر متاحة للمدير العام فقط.");return;}
-            let company=document.getElementById("newAccCompany").value.trim(), name=document.getElementById("newAccName2").value.trim(), color=document.getElementById("newAccColor").value.trim(), memory=document.getElementById("newAccMemory").value.trim(), barcode=document.getElementById("newAccBarcode").value.trim();
-            if(!company||!name||!barcode){alert("أدخل الشركة والاسم والباركود التعريفي!");return;}
-            if(accessoryCatalog.some(a=>a.barcode===barcode)){alert("هذا الباركود معرف مسبقاً!");return;}
-            accessoryCatalog.push({barcode,company,name,color,memory});
-            ["newAccCompany","newAccName2","newAccColor","newAccMemory","newAccBarcode"].forEach(id=>document.getElementById(id).value="");
-            logAction(loggedInUser.name,"تعريف نوع اكسسوار",`تم تعريف ${company} - ${name} بالباركود ${barcode} بدون إضافة للمستودع`);
-            alert("تم حفظ تعريف الاكسسوار بدون إضافة للمستودع.");
-        }
 
         function renderWarehouseDevicesTable() {
             let tbody = document.querySelector("#warehouseDevicesTable tbody");
@@ -3121,10 +3870,9 @@
 
             cashierBalance -= amount;
             let acc = getOrCreateAggregateAccount("مصاريف عامة");
-            acc.total += amount;
-            acc.paid += amount;
-            acc.remaining = Math.max(0, acc.total - acc.paid);
-            addAccountPaymentHistory(acc, amount, `مصروف عام — ${note}`);
+            acc.entityType='system';
+            acc.operationalBalance=Number(acc.operationalBalance||0) + amount;
+            addAccountPaymentHistoryMeta(acc, amount, `مصروف عام — ${note}`, {ledgerType:'expense', source:'cashier'});
             acc.lastStatement = note;
 
             document.getElementById("generalExpenseAmount").value = "";
@@ -3171,6 +3919,20 @@
             let voucher={id:Date.now()+Math.floor(Math.random()*1000),type,amount:Number(amount),note,date:now.toLocaleDateString('ar-IQ'),time:now.toLocaleTimeString('ar-IQ'),employee:loggedInUser.name,source};
             acc.vouchers.unshift(voucher);
 
+            // الحسابات التشغيلية الثابتة (POS / مصاريف عامة / مصرف-اقساط) تحفظ الحركات فقط،
+            // ولا تُحوّل سندات القبض/الصرف إلى ذمم؛ لذلك يبقى مطلوب مني/مطلوب لي = 0.
+            if(isFixedSystemAccount(acc)){
+                // الحسابات التشغيلية لا تدخل في مطلوب مني/مطلوب لي، لكن رصيدها التشغيلي
+                // يتحرك مع كل سند حتى يظهر للمستخدم أثر الحركة مباشرة.
+                if(type==='payment'){
+                    acc.operationalBalance=Number(acc.operationalBalance||0)-amount;
+                    if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
+                } else {
+                    acc.operationalBalance=Number(acc.operationalBalance||0)+amount;
+                    if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
+                }
+                addAccountPaymentHistoryMeta(acc,amount,`سند ${type==='receipt'?'قبض':'صرف'} — ${note}`,{voucherId:voucher.id,ledgerType:'system'});
+            } else {
             // إذا كان الحساب يحمل ذمة مورد، فإن سند الصرف يسدد الدين المستحق للشركة ولا ينشئ ديناً جديداً.
             const payableOpen=Math.max(0,(acc.payableTotal||0)-(acc.payablePaid||0));
             if(type==='payment' && payableOpen>0){
@@ -3194,6 +3956,7 @@
                 if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
                 addAccountPaymentHistoryMeta(acc,amount,`سند صرف — ${note}`,{voucherId:voucher.id,ledgerType:'general'});
             }
+            }
 
             document.getElementById('voucherAmount').value=''; document.getElementById('voucherNote').value='';
             renderAccountsTable(); updateTreasuryDisplay();
@@ -3209,20 +3972,21 @@
             if(!settlementNote){alert('يجب إدخال بيان للتصفير قبل إتمام العملية.');return;}
             if(!confirm(`هل أنت متأكد من تصفير حساب «${acc.name}» وإخراج رصيده الحالي من الحسابات والديون؟\n\nبيان التصفير: ${settlementNote}`))return;
             let oldTotal=acc.total||0, oldPaid=acc.paid||0, oldRemaining=acc.remaining||0;
-            acc.total=0; acc.paid=0; acc.remaining=0; acc.payableTotal=0; acc.payablePaid=0; acc.payableRemaining=0;
+            acc.total=0; acc.paid=0; acc.remaining=0; acc.payableTotal=0; if(isFixedSystemAccount(acc)) acc.operationalBalance=0; acc.payablePaid=0; acc.payableRemaining=0;
             addAccountPaymentHistory(acc,0,`تصفير الحساب من قبل المسؤول العام — البيان: ${settlementNote} — قبل التصفير: الإجمالي ${oldTotal.toLocaleString()} د.ع، الواصل ${oldPaid.toLocaleString()} د.ع، المتبقي ${oldRemaining.toLocaleString()} د.ع`);
             renderAccountsTable(); logAction(loggedInUser.name,'تصفير حساب',`تم تصفير حساب ${acc.name} — البيان: ${settlementNote} — قبل التصفير: الإجمالي ${oldTotal.toLocaleString()} د.ع، الواصل ${oldPaid.toLocaleString()} د.ع، المتبقي ${oldRemaining.toLocaleString()} د.ع`); alert('تم تصفير الحساب بنجاح وتسجيل بيان التصفير.');
         }
         function ensureSinglePosAccount(){
             const matches = accountsList.filter(a => String(a?.name || '').trim().toLowerCase() === 'pos');
             if(!matches.length){
-                accountsList.unshift({id:900001,name:'POS',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]});
+                accountsList.unshift({id:900001,name:'POS',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]});
                 return accountsList[0];
             }
             const pos = matches[0];
             pos.id = 900001;
             pos.name = 'POS';
-            pos.entityType = 'company';
+            pos.entityType = 'system';
+            pos.operationalBalance = Number(pos.operationalBalance||0);
             pos.total = matches.reduce((n,a)=>n + (Number(a.total)||0),0);
             pos.paid = matches.reduce((n,a)=>n + (Number(a.paid)||0),0);
             pos.remaining = Math.max(0, pos.total - pos.paid);
@@ -3240,16 +4004,10 @@
         function keepPosAccountFirst(){ return ensureSinglePosAccount(); }
 
         function normalizePosPaymentOption(){
-            const select=document.getElementById('invoicePaymentType');
-            if(!select) return;
-            const options=[...select.options];
-            let kept=false;
-            options.forEach(o=>{
-                if(o.value==='pos'){
-                    if(!kept){ o.textContent='تسديد POS — يضاف إلى حساب POS'; kept=true; }
-                    else o.remove();
-                }
-            });
+            const select=document.getElementById('invoicePaymentType');if(!select)return;
+            const allowed=new Set(['cash','pos','mixed','debt','installment']);[...select.options].forEach(o=>{if(!allowed.has(o.value))o.remove();});
+            if(![...select.options].some(o=>o.value==='mixed')){const o=document.createElement('option');o.value='mixed';o.textContent='مختلط — POS + نقداً';select.appendChild(o);}
+            const pos=[...select.options].find(o=>o.value==='pos');if(pos)pos.textContent='تسديد POS — يضاف إلى حساب POS';
         }
 
         function resetGeneralExpenseAccount(){
@@ -3261,7 +4019,7 @@
             if(note===null)return;
             const statement=note.trim(); if(!statement){alert('يجب إدخال بيان للتصفير.');return;}
             if(!confirm(`تصفير حساب المصاريف العامة؟\n\nالإجمالي: ${amount.toLocaleString()} د.ع\nالمصروف/الواصل: ${paid.toLocaleString()} د.ع\n\nالبيان: ${statement}`))return;
-            acc.total=0; acc.paid=0; acc.remaining=0; acc.payableTotal=0; acc.payablePaid=0; acc.payableRemaining=0;
+            acc.total=0; acc.paid=0; acc.remaining=0; acc.operationalBalance=0; acc.payableTotal=0; acc.payablePaid=0; acc.payableRemaining=0;
             acc.lastStatement=statement;
             addAccountPaymentHistoryMeta(acc,0,`تصفير المصاريف العامة — ${statement}`,{settlement:true});
             logAction(loggedInUser.name,'تصفير حساب المصاريف العامة',`تم تصفير مبالغ المصاريف العامة دون التأثير على العمليات المالية الأخرى — البيان: ${statement}`,null);
@@ -3277,6 +4035,7 @@
                 acc.payableTotal=Number(acc.payableTotal||0);
                 acc.payablePaid=Number(acc.payablePaid||0);
                 acc.payableRemaining=Math.max(0,acc.payableTotal-acc.payablePaid);
+                if(isFixedSystemAccount(acc)) acc.operationalBalance=Number(acc.operationalBalance||0);
                 if(acc.entityType==='company' && String(acc.name||'').startsWith('مورد (آجل):')){
                     acc.entityType='company';
                 }
@@ -3295,7 +4054,7 @@
             });
 
             if(filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="color: var(--text-muted);">لا توجد حسابات أو ديون مسجلة حالياً</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" style="color: var(--text-muted);">لا توجد حسابات أو ديون مسجلة حالياً</td></tr>`;
                 return;
             }
             refreshVoucherAccountSelect();
@@ -3305,7 +4064,8 @@
                 const payableRemaining = Math.max(0, Number(acc.payableRemaining||0));
                 tbody.innerHTML += `
                     <tr>
-                        <td><b>${acc.name}</b><br><small style="color:var(--text-muted);">${acc.entityType==='company'?'شركة':'شخص'}</small></td>
+                        <td><b>${acc.name}</b><br><small style="color:var(--text-muted);">${acc.entityType==='company'?'شركة':(isFixedSystemAccount(acc)?'حساب تشغيلي':'شخص')}</small></td>
+                        <td style="font-weight:bold;color:${isFixedSystemAccount(acc)?'var(--accent-blue)':'var(--text-muted)'};">${isFixedSystemAccount(acc)?`${Number(acc.operationalBalance||0).toLocaleString()} د.ع`:'—'}</td>
                         <td style="color:var(--accent-red);font-weight:bold;">${payableRemaining.toLocaleString()} د.ع${payableRemaining>0?'<br><small style=\"color:#ff8a8a\">متبقي علينا</small>':''}</td>
                         <td style="color:var(--accent-green);font-weight:bold;">${receivableRemaining.toLocaleString()} د.ع${receivableRemaining>0?'<br><small style=\"color:#8ff0b4\">متبقي لنا</small>':''}</td>
                         <td style="min-width:180px;text-align:center;">
@@ -3406,17 +4166,78 @@
             logAction(loggedInUser.name, "تحويل مالي", `تم تحويل ${amount.toLocaleString()} د.ع (${direction === 'cashierToVault' ? 'من الكاشير إلى القاصة' : 'من القاصة إلى الكاشير'})`);
         }
 
+        function getSalesNamesForUser(u){
+            if(!u) return [];
+            if(!Array.isArray(u.salesInvoiceNames)) u.salesInvoiceNames=[];
+            return u.salesInvoiceNames.filter(n=>String(n||'').trim()).map(n=>String(n).trim());
+        }
+
         function refreshInvoiceEmployeeSelect(){
-            let sel=document.getElementById('invoiceEmployeeSelect');
-            if(!sel) return;
-            let current=sel.value;
-            let employees=systemUsers.filter(u=>u.active);
-            sel.innerHTML='<option value="">اختر الموظف</option>'+employees.map(u=>`<option value="${String(u.name).replace(/"/g,'&quot;')}">${u.name}</option>`).join('');
-            if(loggedInUser && loggedInUser.role==='employee') sel.value=loggedInUser.name;
-            else if(employees.some(u=>u.name===current)) sel.value=current;
+            const sel=document.getElementById('invoiceEmployeeSelect');
+            if(!sel || !loggedInUser) return;
+            const current=sel.value;
+            const names=[...new Set((Array.isArray(salesInvoiceNames)?salesInvoiceNames:[])
+                .map(n=>String(n||'').trim()).filter(Boolean))];
+            sel.disabled=names.length===0;
+            sel.innerHTML='<option value="">'+(names.length?'اختر الموظف':'لا توجد أسماء مبيعات مضافة للفرع')+'</option>'+
+                names.map(n=>`<option value="${String(n).replace(/"/g,'&quot;')}">${n}</option>`).join('');
+            if(names.includes(current)) sel.value=current;
+            else if(loggedInUser.role==='employee' && names.length===1) sel.value=names[0];
+            else sel.value='';
+        }
+
+        function renderSalesNamesManager(){
+            const box=document.getElementById('salesNamesManager'), list=document.getElementById('salesNamesList');
+            if(!box||!list) return;
+            if(!loggedInUser||loggedInUser.role!=='admin'){box.style.display='none';return;}
+            box.style.display='block';
+            const names=[...new Set((Array.isArray(salesInvoiceNames)?salesInvoiceNames:[])
+                .map(n=>String(n||'').trim()).filter(Boolean))];
+            salesInvoiceNames=names;
+            list.innerHTML=names.length
+                ?names.map((n,i)=>`<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 10px;margin:3px;border:1px solid var(--border-color);border-radius:999px;">${n}<button type="button" onclick="removeSalesInvoiceName(${i})" style="border:0;background:none;color:var(--accent-red);cursor:pointer;">×</button></span>`).join('')
+                :'<span style="color:var(--text-muted);">لا توجد أسماء مبيعات مضافة لهذا الفرع.</span>';
+        }
+
+        function addSalesInvoiceName(){
+            if(!requireRole(['admin'],'إدارة أسماء موظفي المبيعات متاحة للمدير العام فقط.')) return;
+            const input=document.getElementById('salesNameInput');
+            const name=(input?.value||'').trim();
+            if(!name){alert('أدخل اسم موظف المبيعات.');return;}
+            if(!Array.isArray(salesInvoiceNames)) salesInvoiceNames=[];
+            if(salesInvoiceNames.some(n=>String(n).trim().toLowerCase()===name.toLowerCase())){alert('هذا الاسم مضاف مسبقاً.');return;}
+            salesInvoiceNames.push(name);
+            input.value='';
+            renderSalesNamesManager(); refreshInvoiceEmployeeSelect(); saveAllAppState();
+            logAction(loggedInUser.name,'إدارة أسماء موظفي المبيعات',`تمت إضافة اسم ${name}`);
+        }
+
+        function removeSalesInvoiceName(index){
+            if(!requireRole(['admin'],'إدارة أسماء موظفي المبيعات متاحة للمدير العام فقط.')) return;
+            if(!Array.isArray(salesInvoiceNames)||index<0||index>=salesInvoiceNames.length) return;
+            const removed=salesInvoiceNames[index];
+            if(!confirm(`حذف اسم ${removed} من قائمة الفاتورة؟`)) return;
+            salesInvoiceNames.splice(index,1);
+            renderSalesNamesManager(); refreshInvoiceEmployeeSelect(); saveAllAppState();
+            logAction(loggedInUser.name,'إدارة أسماء موظفي المبيعات',`تم حذف اسم ${removed}`);
+        }
+
+        function applyAdminOnlyFinanceVisibility(){
+            const isAdmin = !!loggedInUser && loggedInUser.role === 'admin';
+            const section = document.getElementById('employeeMonthlySalesSection');
+            const reportBtn = document.getElementById('adminMonthlySalesReportBtn');
+            if(section) section.style.display = isAdmin ? 'block' : 'none';
+            if(reportBtn) reportBtn.style.display = isAdmin ? 'block' : 'none';
         }
 
         function renderEmployeeSalesDashboard(){
+            if(!loggedInUser || loggedInUser.role !== 'admin'){
+                const tb=document.querySelector('#employeeSalesTable tbody');
+                if(tb) tb.innerHTML='';
+                const details=document.getElementById('employeeSalesDetails');
+                if(details) details.innerHTML='';
+                return;
+            }
             let tb=document.querySelector('#employeeSalesTable tbody'); if(!tb)return;
             let now=new Date(), y=now.getFullYear(), m=now.getMonth();
             let q=(document.getElementById('employeeSalesSearchInput')?.value||'').trim().toLowerCase();
@@ -3430,6 +4251,7 @@
         let employeeSalesDetailsOpen=false;
         let employeeSalesDetailsName='';
         function showEmployeeSalesDetails(name){
+            if(!loggedInUser || loggedInUser.role!=='admin') return;
             let box=document.getElementById('employeeSalesDetails'); if(!box)return;
             if(employeeSalesDetailsOpen && employeeSalesDetailsName===name){ box.innerHTML=''; employeeSalesDetailsOpen=false; employeeSalesDetailsName=''; return; }
             rolloverEmployeeMonthlySales(); let e=employeeMonthlySalesState.employees[name]||{deviceSales:0,accessorySales:0,total:0,profit:0};
@@ -3442,7 +4264,8 @@
             return (inv.items||[]).reduce((sum,it)=>sum+(((it.priceIQD||0)-(it.costIQD||0))*(it.qty||1)),0)+(inv.warranty==='vip'?(inv.warrantyCost||0):0);
         }
         function getInvoiceDateObject(inv){
-            if(inv && inv.id) return new Date(inv.id);
+            if(inv&&inv.dateISO){const d=new Date(`${inv.dateISO}T00:00:00`);if(!Number.isNaN(d.getTime()))return d;}
+            if(inv&&inv.id){const d=new Date(inv.id);if(!Number.isNaN(d.getTime()))return d;}
             return new Date();
         }
         function calculateDailyProfit(){
@@ -3457,7 +4280,7 @@
         }
 
         function issueMonthlyAccountsReport(){
-            if(!loggedInUser || !['admin','manager','accountant'].includes(loggedInUser.role)){alert('تقرير المبيعات الشهرية متاح للمسؤول العام ومدير الفرع والمحاسب.');return;}
+            if(!loggedInUser || loggedInUser.role!=='admin'){alert('تقرير المبيعات الشهرية متاح للمسؤول العام فقط.');return;}
             rolloverEmployeeMonthlySales();
             let month=employeeMonthlySalesState.month; let entries=Object.entries(employeeMonthlySalesState.employees); let top=entries.sort((a,b)=>(b[1].total||0)-(a[1].total||0))[0];
             let monthProfit=entries.reduce((s,[,e])=>s+(e.profit||0),0);
@@ -3466,153 +4289,6 @@
             monthlyAccountsReportHistory.unshift(report); persistMonthlyAccountsReportHistory();
             let rows=entries.map(([name,e])=>`<tr><td>${name}</td><td>${(e.deviceSales||0).toLocaleString()} د.ع</td><td>${(e.accessorySales||0).toLocaleString()} د.ع</td><td>${(e.total||0).toLocaleString()} د.ع</td></tr>`).join('');
             let win=window.open('','_blank','width=950,height=750'); if(win){win.document.write(`<html dir="rtl"><head><meta charset="UTF-8"><title>تقرير المبيعات الشهرية - VOLTECH</title><style>body{font-family:Arial;padding:30px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #222;padding:10px;text-align:center}h1,h2{text-align:center}</style>
-<style id="voltech-final-tagline-fix">
-/* V6.3.3 FINAL - tagline directly under the left logo */
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand {
-    position: static !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    width: 48% !important;
-    max-width: 48% !important;
-    min-width: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-    direction: ltr !important;
-    box-sizing: border-box !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .brand {
-    display: block !important;
-    width: max-content !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-    direction: ltr !important;
-    white-space: nowrap !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .invoice-brand-tagline {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 2px 0 0 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    font-size: 9px !important;
-    line-height: 15px !important;
-    font-weight: 500 !important;
-    text-align: left !important;
-    direction: rtl !important;
-    unicode-bidi: plaintext !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: clip !important;
-}
-@media print {
-    #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand {
-        width: 48% !important;
-        max-width: 48% !important;
-        overflow: hidden !important;
-    }
-    #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand .invoice-brand-tagline {
-        font-size: 9px !important;
-        line-height: 15px !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-    }
-}
-</style>
-
-<style id="voltech-invoice-tagline-final-fixed">
-/* FINAL FIX: logo + tagline are one compact block on the LEFT. */
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{
-  position:relative !important;
-  display:block !important;
-  width:100% !important;
-  height:92px !important;
-  min-height:92px !important;
-  direction:ltr !important;
-  box-sizing:border-box !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{
-  position:absolute !important;
-  left:0 !important;
-  right:auto !important;
-  top:0 !important;
-  width:280px !important;
-  max-width:280px !important;
-  min-width:280px !important;
-  height:auto !important;
-  display:block !important;
-  margin:0 !important;
-  padding:0 !important;
-  text-align:center !important;
-  direction:ltr !important;
-  transform:none !important;
-  overflow:visible !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .brand{
-  display:block !important;
-  width:max-content !important;
-  max-width:280px !important;
-  margin:0 auto !important;
-  padding:0 !important;
-  text-align:center !important;
-  direction:ltr !important;
-  white-space:nowrap !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .invoice-brand-tagline{
-  display:block !important;
-  width:280px !important;
-  max-width:280px !important;
-  margin:5px 0 0 0 !important;
-  padding:0 !important;
-  box-sizing:border-box !important;
-  font-size:9px !important;
-  line-height:14px !important;
-  font-weight:500 !important;
-  text-align:center !important;
-  direction:rtl !important;
-  white-space:nowrap !important;
-  overflow:visible !important;
-  text-overflow:clip !important;
-}
-#printPreviewModal .invoice-print-box.v630-invoice .invoice-header-info-right{
-  position:absolute !important;
-  right:0 !important;
-  left:auto !important;
-  top:0 !important;
-  width:280px !important;
-  max-width:280px !important;
-  display:block !important;
-  text-align:right !important;
-  direction:rtl !important;
-}
-@media print{
-  #printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{
-    height:92px !important;
-    min-height:92px !important;
-    display:block !important;
-  }
-  #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{
-    left:0 !important;
-    width:280px !important;
-    max-width:280px !important;
-    min-width:280px !important;
-  }
-  #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left .invoice-brand-tagline{
-    width:280px !important;
-    max-width:280px !important;
-    font-size:9px !important;
-    line-height:14px !important;
-    text-align:center !important;
-    white-space:nowrap !important;
-  }
-}
-</style>
 </head><body><h1>تقرير المبيعات الشهرية - VOLTECH</h1><h2>الشهر: ${month}</h2><p><b>إجمالي المبيعات:</b> ${monthSales.toLocaleString()} د.ع</p><p><b>إجمالي الأرباح الشهرية:</b> ${monthProfit.toLocaleString()} د.ع</p><p><b>الأكثر مبيعات:</b> ${report.topEmployee} — ${report.topEmployeeSales.toLocaleString()} د.ع</p><table><tr><th>الموظف / عضو النظام</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th></tr>${rows||'<tr><td colspan="4">لا توجد مبيعات</td></tr>'}</table></body></html>`);win.document.close();setTimeout(()=>win.print(),300);}
             financeMonthlyBaseline=Date.now();
             persistFinanceMonthlyBaseline();
@@ -3678,6 +4354,7 @@
             document.getElementById('finBestAccessory').innerText = bestAccessory ? `${bestAccessory[0]} (${bestAccessory[1].toLocaleString()} د.ع)` : '0 د.ع';
 
             renderProfitChart(allInvoices);
+            applyAdminOnlyFinanceVisibility();
             renderEmployeeSalesDashboard();
         }
 
@@ -3728,235 +4405,84 @@
             return items.map((i,idx)=>`${idx+1}) ${i.company||''} ${i.name||'اكسسوار'}، اللون ${i.color||'غير محدد'}، العدد ${i.qty||1}`).join(' | ');
         }
 
-        function checkoutAndPrint() {
-            if(currentInvoiceItems.length === 0) { alert("لا توجد منتجات مضافة للقائمة!"); return; }
-
-            let lossItems = [];
-            currentInvoiceItems.forEach(item => {
-                let sellIQD = parseFloat(item.priceIQD) || 0;
-                let costIQD = parseFloat(item.costIQD) || 0;
-                if (item.type !== 'accessory' && sellIQD < costIQD) {
-                    lossItems.push(item.model ? `${item.company} ${item.model}` : item.name);
-                }
-            });
-
-            if (lossItems.length > 0) {
-                let confirmLoss = confirm(`⚠️ تنبيه خطر خسارة!\n\nالقطع التالية سعر بيعها أقل من سعر الشراء (التكلفة):\n- ${lossItems.join('\n- ')}\n\nهل أنت متأكد من الاستمرار وإصدار الفاتورة بهكذا سعر؟`);
-                if (!confirmLoss) return;
+        function checkoutAndPrint(){
+            if(!Array.isArray(currentInvoiceItems)||currentInvoiceItems.length===0){alert('لا توجد منتجات مضافة للقائمة!');return;}
+            const lossItems=currentInvoiceItems.filter(item=>item.type!=='accessory'&&Number(item.priceIQD||0)<Number(item.costIQD||0)).map(item=>item.model?`${item.company} ${item.model}`:item.name);
+            if(lossItems.length&&!confirm(`⚠️ تنبيه خطر خسارة!\n\nالقطع التالية سعر بيعها أقل من سعر الشراء:\n- ${lossItems.join('\n- ')}\n\nهل أنت متأكد من الاستمرار؟`))return;
+            const clientName=document.getElementById('clientNameInput').value.trim()||'زبون نقدي',clientPhone=document.getElementById('clientPhoneInput').value.trim()||'غير محدد';
+            const employeeSelect=document.getElementById('invoiceEmployeeSelect');
+            // موظف المبيعات يستخدم الاسم المختار من الأسماء المعرفة تحت حسابه.
+            // مدير الفرع يبقى باسمه فقط، والمدير العام يختار من قائمة أسماء الفرع.
+            const employeeName = (loggedInUser?.role==='employee')
+                ? (employeeSelect?.value || '')
+                : (loggedInUser?.role==='manager' ? loggedInUser.name : (employeeSelect?.value || ''));
+            if(!employeeName){alert('يرجى اختيار اسم الموظف قبل إصدار الفاتورة.');return;}
+            if(loggedInUser && ['manager','employee'].includes(loggedInUser.role) && employeeName!==loggedInUser.name){
+                alert('لا يمكن إصدار الفاتورة باسم مستخدم آخر.');
+                return;
             }
-
-            let clientNameInputVal = document.getElementById("clientNameInput").value.trim();
-            let clientNameForPrint = clientNameInputVal !== "" ? clientNameInputVal : "زبون نقدي";
-            let clientPhoneInputVal = document.getElementById("clientPhoneInput").value.trim();
-            let clientPhoneForPrint = clientPhoneInputVal !== "" ? clientPhoneInputVal : "غير محدد";
-            let employeeSelect = document.getElementById("invoiceEmployeeSelect");
-            let employeeNameForInvoice = employeeSelect && employeeSelect.value ? employeeSelect.value : (loggedInUser && loggedInUser.role === 'employee' ? loggedInUser.name : "");
-            if(!employeeNameForInvoice){ alert("يرجى اختيار اسم الموظف قبل إصدار الفاتورة."); return; }
-
-            let invoiceNo = String(invoiceCounter);
-            let currentDateAr = new Date().toLocaleDateString('ar-IQ');
-            let currentTimeAr = new Date().toLocaleTimeString('ar-IQ');
-            let currentDateEn = new Date().toLocaleDateString('en-US');
-            let currentTimeEn = new Date().toLocaleTimeString('en-US');
-            let cat = document.getElementById("invoiceCategoryType").value;
-            let warrantyChoice = document.getElementById("warrantyTypeSelect").value;
-            let paymentType = document.getElementById("invoicePaymentType").value;
-
-            let total = 0;
-            let clonedItems = JSON.parse(JSON.stringify(currentInvoiceItems));
-            clonedItems.forEach(item => { total += (parseFloat(item.priceIQD) || 0) * (item.qty || 1); });
-
-            let activeWarrantyCost = (warrantyChoice === 'vip') ? vipWarrantyPrice : 0;
-            total += activeWarrantyCost;
-
-            let discountVal = (cat === 'accessory') ? (parseFloat(document.getElementById("invoiceDiscountInput").value) || 0) : 0;
-            total = Math.max(0, total - discountVal);
-
-            const stockError = validateInvoiceStock(clonedItems);
-            if(stockError){ alert(stockError); return; }
-            if(paymentType === 'debt'){
-                const paidCheck = parseFloat(document.getElementById("debtPaidAmount").value) || 0;
-                if(!isValidMoney(paidCheck) || paidCheck > total){ alert('الدفعة المقدمة لا يمكن أن تكون أكبر من إجمالي الفاتورة.'); return; }
+            const invoiceNo=String(invoiceCounter),invoiceId=Date.now()+Math.floor(Math.random()*1000),now=new Date(),cat=document.getElementById('invoiceCategoryType').value,warranty=document.getElementById('warrantyTypeSelect').value,paymentType=document.getElementById('invoicePaymentType').value;
+            const clonedItems=JSON.parse(JSON.stringify(currentInvoiceItems));
+            const itemsTotal=clonedItems.reduce((sum,item)=>sum+(Number(item.priceIQD)||0)*(Number(item.qty)||1),0);
+            const warrantyCost=warranty==='vip'?(Number(vipWarrantyPrice)||0):0,discountVal=cat==='accessory'?(Number(document.getElementById('invoiceDiscountInput').value)||0):0,total=Math.max(0,itemsTotal+warrantyCost-discountVal);
+            const deviceLossItems=clonedItems.filter(item=>item.type!=='accessory'&&Number(item.priceIQD||0)<=Number(item.costIQD||0));
+            let saleWarningReason='';
+            if(deviceLossItems.length){
+                const names=deviceLossItems.map(item=>`${item.company||''} ${item.model||''} — IMEI ${item.imei||'-'}`).join('\n');
+                saleWarningReason=prompt(`⚠️ تنبيه بيع بسعر أقل أو يساوي قيمة الإدخال\n\n${names}\n\nيجب ذكر سبب البيع لإرسال تبليغ إلى مدير الفرع والمدير العام.`,'');
+                if(saleWarningReason===null)return; saleWarningReason=String(saleWarningReason).trim();
+                if(!saleWarningReason){alert('يجب إدخال سبب البيع قبل إصدار الفاتورة.');return;}
             }
-            if(paymentType === 'installment'){
-                const downCheck = parseFloat(document.getElementById("installmentDownPayment").value) || 0;
-                if(!isValidMoney(downCheck) || downCheck > total){ alert('الدفعة الأولى لا يمكن أن تكون أكبر من إجمالي الفاتورة.'); return; }
-            }
-            if(paymentType === 'ops'){
-                const opsCheck = opsPaymentsList.reduce((sum,p)=>sum+(Number(p.amount)||0),0);
-                if(opsCheck > total){ alert('مجموع دفعات OPS لا يمكن أن يتجاوز إجمالي الفاتورة.'); return; }
-            }
-            try { commitInvoiceStock(clonedItems); }
-            catch(e){ console.error(e); alert('تعذر تثبيت حركة المخزون. لم يتم إصدار الفاتورة.'); return; }
-            renderWarehouseDevicesTable(); renderWarehouseAccessoriesTable();
-
-            let linkedAccountIndex = null;
-            let entityNameForAcc = clientNameForPrint;
-
-            if(paymentType === 'cash') {
-                cashierBalance += total;
-            } else if(paymentType === 'pos') {
-                // كافة فواتير الدفع عبر POS تُجمع في حساب واحد موحّد بدل فتح حساب لكل فاتورة
-                let posAcc = ensureSinglePosAccount();
-                posAcc.total += total;
-                posAcc.paid += total;
-                posAcc.remaining = Math.max(0, posAcc.total - posAcc.paid);
-                addAccountPaymentHistory(posAcc,total,`فاتورة POS رقم ${invoiceNo}`);
-                vaultBalance += total;
-                renderAccountsTable();
-            } else if(paymentType === 'debt') {
-                entityNameForAcc = document.getElementById("debtEntityName").value.trim() || clientNameForPrint;
-                let paid = parseFloat(document.getElementById("debtPaidAmount").value) || 0;
-                let remaining = Math.max(0, total - paid);
-                let newAcc = { id: Date.now(), name: `آجل (${warrantyChoice === 'vip' ? 'VIP' : 'عادي'}): ${entityNameForAcc}`, total: total, paid: paid, remaining: remaining, paymentHistory: [] };
-                if(paid>0) addAccountPaymentHistory(newAcc, paid, "دفعة مقدمة على الفاتورة");
-                accountsList.push(newAcc);
-                linkedAccountIndex = accountsList.length - 1;
-                cashierBalance += paid;
-                renderAccountsTable();
-            } else if(paymentType === 'ops') {
-                let totalPaidOps = opsPaymentsList.reduce((sum, p) => sum + p.amount, 0);
-                let remainingOps = Math.max(0, total - totalPaidOps);
-                let newAcc = { id: Date.now(), name: `دفعة OPS: ${clientNameForPrint}`, total: total, paid: totalPaidOps, remaining: remainingOps, paymentHistory: [] };
-                opsPaymentsList.forEach(p=>addAccountPaymentHistory(newAcc,p.amount,p.note||"دفعة OPS"));
-                accountsList.push(newAcc);
-                linkedAccountIndex = accountsList.length - 1;
-                cashierBalance += totalPaidOps;
-                renderAccountsTable();
-            } else if(paymentType === 'installment') {
-                let groupName = document.getElementById("installmentGroupSelect").value;
-                let downPayment = parseFloat(document.getElementById("installmentDownPayment").value) || 0;
-                let remaining = Math.max(0, total - downPayment);
-                let newAcc = { id: Date.now(), name: `قسط (${groupName}) - ${clientNameForPrint}`, total: total, paid: downPayment, remaining: remaining, paymentHistory: [] };
-                if(downPayment>0) addAccountPaymentHistory(newAcc, downPayment, "قسط مقدمة");
-                accountsList.push(newAcc);
-                linkedAccountIndex = accountsList.length - 1;
-                cashierBalance += downPayment;
-                renderAccountsTable();
-            }
-
-            let newArchivedInvoice = {
-                id: Date.now(),
-                invoiceNo: invoiceNo,
-                date: currentDateAr,
-                time: currentTimeAr,
-                dateEn: currentDateEn,
-                timeEn: currentTimeEn,
-                clientName: clientNameForPrint,
-                clientPhone: clientPhoneForPrint,
-                employeeName: employeeNameForInvoice,
-                category: cat,
-                warranty: warrantyChoice,
-                paymentType: paymentType,
-                items: clonedItems,
-                warrantyCost: activeWarrantyCost,
-                discountVal: discountVal,
-                totalAmount: total,
-                status: 'active',
-                cancelReason: '',
-                cancelledBy: '',
-                cancelledAt: '',
-                linkedAccountId: linkedAccountIndex !== null ? accountsList[linkedAccountIndex].id : null,
-                debtPaidAmount: paymentType==='debt' ? (parseFloat(document.getElementById('debtPaidAmount').value)||0) : 0,
-                opsPaidAmount: paymentType==='ops' ? opsPaymentsList.reduce((s,p)=>s+p.amount,0) : 0,
-                installmentDownPayment: paymentType==='installment' ? (parseFloat(document.getElementById('installmentDownPayment').value)||0) : 0,
-                contentDescription: buildInvoiceContentDescription(cat, clonedItems)
-            };
-
-            if (cat === 'device') {
-                deviceInvoicesArchive.unshift(newArchivedInvoice);
-            } else {
-                accessoryInvoicesArchive.unshift(newArchivedInvoice);
-            }
-            recordDailyInvoice(newArchivedInvoice,1);
-
-            currentActivePrintInvoiceData = newArchivedInvoice;
-            archiveInvoicePreviewMode = false;
-            populatePrintModal(newArchivedInvoice);
-            updateTreasuryDisplay();
-
-            invoiceCounter++;
-
-            document.getElementById("printPreviewModal").style.display = "flex";
-            logAction(loggedInUser.name, "إصدار قائمة بيع", `تم إصدار قائمة (${cat === 'device' ? 'أجهزة' : 'اكسسوارات'}) رقم ${invoiceNo} للزبون (${clientNameForPrint}) بقيمة ${total.toLocaleString()} د.ع`,{kind:'saleInvoice',invoiceId:newArchivedInvoice.id,category:cat,done:false});
-saveAllAppState();
+            const stockError=validateInvoiceStock(clonedItems);if(stockError){alert(stockError);return;}
+            let linkedAccountId=null,debtPaid=0,installmentDown=0,cashPaid=0,posPaid=0;
+            if(paymentType==='debt'){const acc=updateDebtAccountSelection();debtPaid=Math.max(0,Number(document.getElementById('debtPaidAmount').value)||0);if(!acc){alert('يرجى اختيار حساب شخص أو شركة موجود مسبقاً من قائمة الاقتراحات.');return;}if(!isValidMoney(debtPaid)||debtPaid>total){alert('الدفعة المقدمة لا يمكن أن تكون أكبر من إجمالي الفاتورة.');return;}linkedAccountId=acc.id;}
+            else if(paymentType==='installment'){installmentDown=Math.max(0,Number(document.getElementById('installmentDownPayment').value)||0);if(!isValidMoney(installmentDown)||installmentDown>total){alert('الدفعة الأولى لا يمكن أن تكون أكبر من إجمالي الفاتورة.');return;}}
+            else if(paymentType==='mixed'){posPaid=Math.max(0,Number(document.getElementById('mixedPosAmount').value)||0);cashPaid=Math.max(0,Number(document.getElementById('mixedCashAmount').value)||0);if(!isValidMoney(posPaid)||!isValidMoney(cashPaid)||posPaid+cashPaid!==total){alert('في الدفع المختلط يجب أن يساوي مجموع POS والكاش إجمالي الفاتورة بالكامل.');return;}if(posPaid<=0||cashPaid<=0){alert('الدفع المختلط يتطلب مبلغاً موجباً في POS ومبلغاً موجباً في الكاش.');return;}}
+            try{commitInvoiceStock(clonedItems);}catch(e){console.error(e);alert('تعذر تثبيت حركة المخزون. لم يتم إصدار الفاتورة.');return;}
+            const accById=id=>(accountsList||[]).find(a=>Number(a.id)===Number(id));
+            if(paymentType==='cash'){cashPaid=total;cashierBalance+=total;}
+            else if(paymentType==='pos'){posPaid=total;const pa=ensureSinglePosAccount();pa.operationalBalance=Number(pa.operationalBalance||0)+total;pa.total=(Number(pa.total)||0)+total;pa.paid=(Number(pa.paid)||0)+total;pa.remaining=Math.max(0,pa.total-pa.paid);addAccountPaymentHistoryMeta(pa,total,`فاتورة POS رقم ${invoiceNo}`,{invoiceId,ledgerType:'sale'});vaultBalance+=total;}
+            else if(paymentType==='debt'){const acc=accById(linkedAccountId);if(!acc){restoreInvoiceStock(clonedItems);alert('تعذر العثور على الحساب المحدد. لم يتم إصدار الفاتورة.');return;}acc.total=(Number(acc.total)||0)+total;acc.paid=(Number(acc.paid)||0)+debtPaid;acc.remaining=Math.max(0,acc.total-acc.paid);if(debtPaid>0)addAccountPaymentHistoryMeta(acc,debtPaid,`دفعة مقدمة على الفاتورة رقم ${invoiceNo}`,{invoiceId,ledgerType:'receivable'});cashPaid=debtPaid;cashierBalance+=debtPaid;}
+            else if(paymentType==='installment'){const acc=ensureInstallmentAccount();acc.total=(Number(acc.total)||0)+total;acc.paid=(Number(acc.paid)||0)+installmentDown;acc.remaining=Math.max(0,acc.total-acc.paid);if(installmentDown>0)addAccountPaymentHistoryMeta(acc,installmentDown,`دفعة أولى على الفاتورة رقم ${invoiceNo}`,{invoiceId,ledgerType:'installment'});linkedAccountId=acc.id;cashPaid=installmentDown;cashierBalance+=installmentDown;}
+            else if(paymentType==='mixed'){const pa=ensureSinglePosAccount();pa.operationalBalance=Number(pa.operationalBalance||0)+posPaid;pa.total=(Number(pa.total)||0)+posPaid;pa.paid=(Number(pa.paid)||0)+posPaid;pa.remaining=Math.max(0,pa.total-pa.paid);addAccountPaymentHistoryMeta(pa,posPaid,`دفعة POS مختلطة — فاتورة رقم ${invoiceNo}`,{invoiceId,ledgerType:'sale'});vaultBalance+=posPaid;cashierBalance+=cashPaid;}
+            const newArchivedInvoice={id:invoiceId,invoiceNo,date:now.toLocaleDateString('ar-IQ'),time:now.toLocaleTimeString('ar-IQ'),dateISO:now.toLocaleDateString('en-CA'),dateEn:now.toLocaleDateString('en-US'),timeEn:now.toLocaleTimeString('en-US'),clientName,clientPhone,employeeName,category:cat,warranty,paymentType,items:clonedItems,warrantyCost,discountVal,totalAmount:total,status:'active',cancelReason:'',cancelledBy:'',cancelledAt:'',linkedAccountId,debtPaidAmount:debtPaid,installmentDownPayment:installmentDown,cashPaidAmount:cashPaid,posPaidAmount:posPaid,contentDescription:buildInvoiceContentDescription(cat,clonedItems)};
+            if(cat==='device')deviceInvoicesArchive.unshift(newArchivedInvoice);else accessoryInvoicesArchive.unshift(newArchivedInvoice); if(saleWarningReason) createSalePriceWarning(invoiceNo,employeeName,saleWarningReason,now); recordDailyInvoice(newArchivedInvoice,1);
+            currentActivePrintInvoiceData=newArchivedInvoice;archiveInvoicePreviewMode=false;populatePrintModal(newArchivedInvoice);updateTreasuryDisplay();renderWarehouseDevicesTable();renderWarehouseAccessoriesTable();renderAccountsTable();invoiceCounter++;document.getElementById("invoiceNoInput").value=invoiceCounter;document.getElementById('printPreviewModal').style.display='flex';
+            renderNotifications(); logAction(loggedInUser.name,'إصدار قائمة بيع',`تم إصدار قائمة (${cat==='device'?'أجهزة':'اكسسوارات'}) رقم ${invoiceNo} للزبون (${clientName}) بقيمة ${total.toLocaleString()} د.ع`,{kind:'saleInvoice',invoiceId:newArchivedInvoice.id,category:cat,done:false});saveAllAppState();
         }
 
-        function populatePrintModal(inv) {
-            document.getElementById("printClientName").innerText = inv.clientName;
-            document.getElementById("printClientPhone").innerText = inv.clientPhone;
-            document.getElementById("printInvoiceNo").innerText = inv.invoiceNo;
-            // الوقت والتاريخ في الطباعة يكونان باللغة الإنكليزية حصراً
-            document.getElementById("printDate").innerText = inv.dateEn || inv.date;
-            document.getElementById("printTime").innerText = inv.timeEn || inv.time;
-            let totalElementsCount = inv.items.reduce((s, it) => s + (it.qty || 1), 0) + (inv.warranty === 'vip' ? 1 : 0);
-            document.getElementById("printTotalCount").innerText = totalElementsCount;
+        function ensureInstallmentAccount(){
+            let acc=(accountsList||[]).find(a=>String(a.name||'').trim()==='مصرف-اقساط');
+            if(!acc){acc={id:900003,name:'مصرف-اقساط',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]};accountsList.push(acc);}
+            acc.paymentHistory=Array.isArray(acc.paymentHistory)?acc.paymentHistory:[];acc.vouchers=Array.isArray(acc.vouchers)?acc.vouchers:[];return acc;
+        }
 
-            let vipBadgeBox = document.getElementById("printVipBadgeBox");
-            if (inv.warranty === 'vip') {
-                vipBadgeBox.style.display = "block";
-            } else {
-                vipBadgeBox.style.display = "none";
-            }
-
-            let printTbody = document.getElementById("printTableBody");
-            let printHeader = document.getElementById("printTableHeader");
-            printTbody.innerHTML = "";
-
-            if(inv.category === "device") {
-                printHeader.innerHTML = `<th>الجهاز</th><th>اللون</th><th>الذاكرة</th><th>السعر (د.ع)</th><th>IMEI</th>`;
-                inv.items.forEach(item => {
-                    let val = parseFloat(item.priceIQD) || 0;
-                    printTbody.innerHTML += `
-                        <tr>
-                            <td><b>${item.company} ${item.model}</b></td>
-                            <td>${item.color}</td>
-                            <td>${item.memory}</td>
-                            <td>${val.toLocaleString()} د.ع</td>
-                            <td><code>${item.imei}</code></td>
-                        </tr>
-                    `;
-                });
-            } else {
-                printHeader.innerHTML = `<th>اسم الاكسسوار</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع)</th>`;
-                inv.items.forEach(item => {
-                    let val = parseFloat(item.priceIQD) || 0;
-                    let qty = item.qty || 1;
-                    printTbody.innerHTML += `
-                        <tr>
-                            <td><b>${item.name}</b></td>
-                            <td><code>${item.barcode}</code></td>
-                            <td>${qty}</td>
-                            <td>${val.toLocaleString()} د.ع</td>
-                        </tr>
-                    `;
-                });
-            }
-
-            if(inv.warranty === 'vip') {
-                printTbody.innerHTML += `
-                    <tr style="background: rgba(255,42,77,0.05);">
-                        <td><b>ضمان VIP</b></td>
-                        <td colspan="${inv.category === 'device' ? 3 : 2}"></td>
-                        <td>${inv.warrantyCost.toLocaleString()} د.ع</td>
-                    </tr>
-                `;
-            }
-
-            document.getElementById("printTotalAmount").innerText = inv.totalAmount.toLocaleString();
+        function populatePrintModal(inv){
+            document.getElementById('printClientName').innerText=inv.clientName||'';document.getElementById('printClientPhone').innerText=inv.clientPhone||'';document.getElementById('printInvoiceNo').innerText=inv.invoiceNo||'';document.getElementById('printDate').innerText=inv.dateEn||inv.date||'';document.getElementById('printTime').innerText=inv.timeEn||inv.time||'';
+            document.getElementById('printTotalCount').innerText=(inv.items||[]).reduce((s,it)=>s+(Number(it.qty)||1),0)+(inv.warranty==='vip'?1:0);
+            const vipBox=document.getElementById('printVipBadgeBox');if(vipBox)vipBox.style.display=inv.warranty==='vip'?'block':'none';
+            const tbody=document.getElementById('printTableBody'),header=document.getElementById('printTableHeader');tbody.innerHTML='';
+            if(inv.category==='device'){header.innerHTML='<th>اسم جهاز</th><th>اللون</th><th>الذاكرة</th><th>السعر المفرد (د.ع)</th><th>IMEI</th>';(inv.items||[]).forEach(item=>{const val=Number(item.priceIQD)||0;tbody.innerHTML+=`<tr><td><b>${item.company||''} ${item.model||''}</b></td><td>${item.color||''}</td><td>${item.memory||''}</td><td>${val.toLocaleString()} د.ع</td><td><code>${item.imei||''}</code></td></tr>`;});}
+            else{header.innerHTML='<th>اسم اكسسوار</th><th>الباركود</th><th>العدد</th><th>السعر المفرد (د.ع)</th>';(inv.items||[]).forEach(item=>{const val=Number(item.priceIQD)||0,qty=Number(item.qty)||1;tbody.innerHTML+=`<tr><td><b>${item.name||''}</b></td><td><code>${item.barcode||''}</code></td><td>${qty}</td><td>${val.toLocaleString()} د.ع</td></tr>`;});}
+            if(inv.warranty==='vip'){tbody.innerHTML+=`<tr class="print-vip-row"><td><b>ضمان VIP</b></td><td colspan="${inv.category==='device'?3:2}"></td><td>${Number(inv.warrantyCost||0).toLocaleString()} د.ع</td></tr>`;}
+            document.getElementById('printTotalAmount').innerText=(Number(inv.totalAmount)||0).toLocaleString();
         }
 
         function confirmPrint() {
             window.print();
             if(!archiveInvoicePreviewMode){
                 currentInvoiceItems = [];
-                opsPaymentsList = [];
                 document.getElementById("clientNameInput").value = "";
                 document.getElementById("clientPhoneInput").value = "";
                 document.getElementById("invoiceNoInput").value = invoiceCounter;
                 document.getElementById("invoiceDiscountInput").value = "0";
                 document.getElementById("debtPaidAmount").value = "0";
                 document.getElementById("debtEntityName").value = "";
+                document.getElementById("debtAccountSelectionHint").innerHTML = '<span style="color:var(--accent-red);">يجب اختيار اسم حساب موجود مسبقاً.</span>';
+                document.getElementById("debtAccountId").value = "";
+                document.getElementById("mixedPosAmount").value = "0";
+                document.getElementById("mixedCashAmount").value = "0";
+                togglePaymentOptions();
                 renderActiveInvoiceTable();
             }
             archiveInvoicePreviewMode=false;
@@ -4076,16 +4602,31 @@ saveAllAppState();
 
             if(inv.status === 'active' && (loggedInUser.role === 'admin' || loggedInUser.role === 'manager')) {
                 actionBox.innerHTML = `
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;"><button type="button" class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewInvoiceForCancellation(${inv.id}, '${type}')">معاينة الفاتورة كاملة</button></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;"><button type="button" class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewInvoiceForCancellation(${inv.id}, '${type}')">معاينة الفاتورة كاملة</button><button type="button" class="btn-action" style="background:#2ecc71;color:#fff;" onclick="editInvoice(${inv.id}, '${type}')">تعديل الفاتورة</button></div>
                     <label style="color:var(--accent-red); font-weight:bold;">سبب إلغاء القائمة (إجباري لإعادة القطع للمستودع):</label>
                     <input type="text" id="cancelReasonInput" placeholder="أدخل سبب الإلغاء بدقة..." style="margin-bottom:10px; border-color:var(--accent-red);">
                     <button class="btn-custom" style="background:var(--accent-red);" onclick="cancelAndRefundInvoice(${inv.id}, '${type}')"><i class="fa-solid fa-ban"></i> تأكيد إلغاء القائمة وإعادة المنتجات للمستودع</button>
                 `;
             } else {
-                actionBox.innerHTML = `<button type="button" class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewInvoiceForCancellation(${inv.id}, '${type}')">معاينة الفاتورة كاملة</button>` + (inv.status === 'active' ? '<p style="color:var(--text-muted); font-size:12px; margin-top:8px;">صلاحية الإلغاء متاحة للمسؤول العام ومدير الفرع حصراً.</p>' : '');
+                actionBox.innerHTML = (inv.status === 'active' && loggedInUser && ['admin','manager'].includes(loggedInUser.role) ? `<button type="button" class="btn-action" style="background:#2ecc71;color:#fff;margin-left:6px;" onclick="editInvoice(${inv.id}, '${type}')">تعديل الفاتورة</button>` : '') + `<button type="button" class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewInvoiceForCancellation(${inv.id}, '${type}')">معاينة الفاتورة كاملة</button>` + (inv.status === 'active' ? '<p style="color:var(--text-muted); font-size:12px; margin-top:8px;">صلاحية الإلغاء متاحة للمسؤول العام ومدير الفرع حصراً.</p>' : '');
             }
 
             document.getElementById("invoiceDetailsModal").style.display = "flex";
+        }
+
+        function editInvoice(id,type){
+            if(!loggedInUser || !['admin','manager'].includes(loggedInUser.role)){alert('تعديل الفواتير متاح لمدير الفرع والمسؤول العام فقط.');return;}
+            const list=type==='device'?deviceInvoicesArchive:accessoryInvoicesArchive; const inv=list.find(i=>i.id===id); if(!inv)return;
+            if(inv.status!=='active'){alert('لا يمكن تعديل فاتورة ملغاة.');return;}
+            const clientName=prompt('اسم الزبون:',inv.clientName||''); if(clientName===null)return;
+            const clientPhone=prompt('رقم هاتف الزبون:',inv.clientPhone||''); if(clientPhone===null)return;
+            const note=prompt('ملاحظة التعديل (إجباري):',''); if(note===null)return; if(!note.trim()){alert('بيان التعديل إجباري.');return;}
+            // التعديل الآمن هنا يغيّر بيانات الزبون فقط؛ لا نسمح بتغيير السعر/الضمان/الدفع بعد الإصدار
+            // من دون معاملة مالية ذرّية في Supabase، حتى لا يحدث فرق غير مسجل في الصندوق أو الذمم.
+            inv.clientName=clientName.trim(); inv.clientPhone=clientPhone.trim(); inv.editedAt=new Date().toLocaleString('ar-IQ'); inv.editedBy=loggedInUser.name; inv.editReason=note.trim();
+            logAction(loggedInUser.name,'تعديل فاتورة بيع',`تم تعديل بيانات الفاتورة رقم ${inv.invoiceNo} — السبب: ${note.trim()}`);
+            saveAllAppState(); if(type==='device')renderDeviceInvoicesArchive();else renderAccessoryInvoicesArchive(); viewInvoiceDetails(inv.id,type);
+            alert('تم تعديل بيانات الفاتورة بنجاح.');
         }
 
         function previewInvoiceForCancellation(id,type){
@@ -4093,41 +4634,16 @@ saveAllAppState();
             currentActivePrintInvoiceData=inv; archiveInvoicePreviewMode=true; populatePrintModal(inv); document.getElementById('printPreviewModal').style.display='flex';
         }
 
-        function performInvoiceCancellation(inv, type, reason){
-            const total=Number(inv.totalAmount||0);
-            const paidDebt=Number(inv.debtPaidAmount||0);
-            const opsPaid=Number(inv.opsPaidAmount||0);
-            const installmentDown=Number(inv.installmentDownPayment||0);
-            inv.status='cancelled';
-            recordDailyInvoice(inv,-1);
-            inv.cancelReason=reason;
-            inv.cancelledBy=loggedInUser.name;
-            inv.cancelledAt=new Date().toLocaleTimeString('ar-IQ')+' - '+new Date().toLocaleDateString('ar-IQ');
-            inv.items.forEach(item=>{
-                if(type==='device'){
-                    const existing=warehouseDevicesList.find(d=>String(d.imei)===String(item.imei));
-                    if(!existing) warehouseDevicesList.push(JSON.parse(JSON.stringify(item)));
-                } else {
-                    const stock=warehouseAccessoriesList.find(a=>a.barcode===item.barcode);
-                    if(stock) stock.qty=(stock.qty||0)+(item.qty||1); else warehouseAccessoriesList.push(Object.assign({},item,{qty:item.qty||1}));
-                }
-            });
-            if(inv.paymentType==='cash') cashierBalance-=total;
-            else if(inv.paymentType==='pos'){
-                vaultBalance-=total;
-                const pa=ensureSinglePosAccount();
-                if(pa){pa.total=Math.max(0,(pa.total||0)-total);pa.paid=Math.max(0,(pa.paid||0)-total);pa.remaining=Math.max(0,pa.total-pa.paid);}
-            } else if(inv.linkedAccountId!=null){
-                const acc=accountsList.find(a=>a.id===inv.linkedAccountId);
-                if(acc){
-                    const upfront=inv.paymentType==='debt'?paidDebt:(inv.paymentType==='ops'?opsPaid:installmentDown);
-                    acc.total=Math.max(0,(acc.total||0)-total);
-                    acc.paid=Math.max(0,(acc.paid||0)-upfront);
-                    acc.remaining=Math.max(0,acc.total-acc.paid);
-                    if(inv.paymentType==='debt' || inv.paymentType==='ops' || inv.paymentType==='installment') cashierBalance-=upfront;
-                }
-            }
-            renderWarehouseDevicesTable();renderWarehouseAccessoriesTable();renderAccountsTable();updateTreasuryDisplay();saveAllAppState();
+        function performInvoiceCancellation(inv,type,reason){
+            const total=Number(inv.totalAmount||0);if(inv.status!=='active')throw new Error('INVOICE_ALREADY_CANCELLED');
+            inv.status='cancelled';inv.cancelReason=reason;inv.cancelledBy=loggedInUser.name;const now=new Date();inv.cancelledAt=now.toLocaleTimeString('ar-IQ')+' - '+now.toLocaleDateString('ar-IQ');
+            (inv.items||[]).forEach(item=>{if(type==='device'){const existing=warehouseDevicesList.find(d=>String(d.imei)===String(item.imei));if(!existing)warehouseDevicesList.push(JSON.parse(JSON.stringify(item)));}else{const stock=warehouseAccessoriesList.find(a=>String(a.barcode)===String(item.barcode));if(stock)stock.qty=(Number(stock.qty)||0)+(Number(item.qty)||1);else warehouseAccessoriesList.push(Object.assign({},item,{qty:Number(item.qty)||1}));}});
+            const cashPaid=Number(inv.cashPaidAmount)||((inv.paymentType==='cash')?total:((inv.paymentType==='debt')?Number(inv.debtPaidAmount||0):Number(inv.installmentDownPayment||0)));
+            const posPaid=Number(inv.posPaidAmount)||((inv.paymentType==='pos')?total:0);
+            if(cashPaid>0)cashierBalance=Math.max(0,Number(cashierBalance||0)-cashPaid);
+            if(posPaid>0){vaultBalance=Math.max(0,Number(vaultBalance||0)-posPaid);const pa=ensureSinglePosAccount();pa.operationalBalance=Number(pa.operationalBalance||0)-posPaid;pa.total=Math.max(0,(Number(pa.total)||0)-posPaid);pa.paid=Math.max(0,(Number(pa.paid)||0)-posPaid);pa.remaining=Math.max(0,pa.total-pa.paid);removeInvoiceLinkedAccountHistory(inv);}
+            if(inv.linkedAccountId!=null&&!posPaid){const acc=accountsList.find(a=>Number(a.id)===Number(inv.linkedAccountId));if(acc){const upfront=inv.paymentType==='debt'?Number(inv.debtPaidAmount||0):Number(inv.installmentDownPayment||0);acc.total=Math.max(0,(Number(acc.total)||0)-total);acc.paid=Math.max(0,(Number(acc.paid)||0)-upfront);acc.remaining=Math.max(0,acc.total-acc.paid);removeInvoiceLinkedAccountHistory(inv);}}
+            recordDailyInvoice(inv,-1);renderWarehouseDevicesTable();renderWarehouseAccessoriesTable();renderAccountsTable();updateTreasuryDisplay();saveAllAppState();
         }
 
         function cancelAndRefundInvoice(id, type) {
@@ -4165,13 +4681,18 @@ saveAllAppState();
             if(legacyState && Number.isFinite(legacyState.exchangeRate)) exchangeRate=legacyState.exchangeRate;
             if(legacyState && Number.isFinite(legacyState.vipWarrantyPrice)) vipWarrantyPrice=legacyState.vipWarrantyPrice;
 
+            // لا نحتفظ بأي منتجات/مخزون/حسابات/فواتير تجريبية عند بدء النسخة الجديدة.
+            deviceCatalog=[];
+            accessoryCatalog=[];
+
             cashierBalance=0;
             vaultBalance=0;
             vipCollectedTotal=0;
             invoiceCounter=1;
+            purchaseInvoiceCounter=1;
+            notificationsList=[];
             currentInvoiceItems=[];
             pendingBatchItems=[];
-            opsPaymentsList=[];
 
             warehouseDevicesList=[];
             warehouseAccessoriesList=[];
@@ -4181,8 +4702,9 @@ saveAllAppState();
             logsList=[];
 
             accountsList=[
-                {id:900001,name:'POS',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]},
-                {id:900002,name:'مصاريف عامة',entityType:'company',total:0,paid:0,remaining:0,paymentHistory:[],vouchers:[]}
+                {id:900001,name:'POS',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+                {id:900002,name:'مصاريف عامة',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]},
+                {id:900003,name:'مصرف-اقساط',entityType:'system',total:0,paid:0,remaining:0,operationalBalance:0,paymentHistory:[],vouchers:[]}
             ];
 
             const now=Date.now();
@@ -4200,10 +4722,12 @@ saveAllAppState();
             adminDailyReportsVisible=false;
             employeeSalesDetailsOpen=false;
             employeeSalesDetailsName='';
+            branches=[{id:1,name:'الفرع الرئيسي',code:'BR-001',active:true,createdAt:Date.now()}];
+            currentBranchId=1; branchDataStore={};
         }
 
         function initializeAuthoritativeStartupV14(){
-            const key='voltech_startup_clean_v14';
+            const key='voltech_startup_clean_v15';
             try{
                 const already=localStorage.getItem(key)==='1';
                 const rawLegacy=localStorage.getItem('voltech_app_state_v7');
@@ -4227,18 +4751,23 @@ saveAllAppState();
         // ===== تشغيل النظام من مصدر بيانات واحد فقط =====
         // لا نستعيد أي حالة قديمة من المفاتيح المنفصلة. في أول تشغيل بعد هذا الإصلاح
         // تُستخلص أسماء المستخدمين/الإعدادات فقط من الحالة القديمة، ثم تُصفّر كل العمليات.
-        if(!localStorage.getItem('voltech_startup_clean_v14')){
+        if(!localStorage.getItem('voltech_startup_clean_v15')){
             initializeAuthoritativeStartupV14();
         console.info('VOLTECH build:', VOLTECH_BUILD);
         }else if(!hydrateAppState()){
             // في حال تلفت الحالة الجديدة، أعد إنشاء حالة نظيفة بدلاً من إعادة السجلات القديمة.
-            localStorage.removeItem('voltech_startup_clean_v14');
+            localStorage.removeItem('voltech_startup_clean_v15');
             initializeAuthoritativeStartupV14();
         }
 
         // بعد التهيئة الأولى، الحفظ الدائم يعتمد حصراً على APP_STORE_KEY ولا توجد عمليات تنظيف تلقائية أخرى.
+        normalizeBranches(); normalizeUserBranches();
+        if(!Object.keys(branchDataStore||{}).length){ branchDataStore={}; syncActiveBranchToStore(); }
+        else loadBranchData(currentBranchId||1);
         ensureSinglePosAccount();
+        ensureInstallmentAccount();
         normalizePosPaymentOption();
+        migrateLegacyUserPasswords();
         saveAllAppState();
         renderDailyReportPanel();
         keepPosAccountFirst();
