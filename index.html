@@ -8,42 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&amp;family=Orbitron:wght@700;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        /* V6.3.2 FINAL INVOICE LOGO LEFT */
-        #printPreviewModal .invoice-print-box .invoice-top-header {
-            position: relative !important;
-            display: block !important;
-            width: 100% !important;
-            min-height: 82px !important;
-            direction: ltr !important;
-        }
-        #printPreviewModal .invoice-print-box .invoice-header-brand {
-            position: absolute !important;
-            left: 0 !important;
-            right: auto !important;
-            top: 0 !important;
-            width: 50% !important;
-            margin: 0 !important;
-            text-align: left !important;
-            display: block !important;
-        }
-        #printPreviewModal .invoice-print-box .invoice-header-brand .brand,
-        #printPreviewModal .invoice-print-box .invoice-header-brand p {
-            text-align: left !important;
-        }
-        #printPreviewModal .invoice-print-box .invoice-header-info {
-            position: absolute !important;
-            right: 0 !important;
-            left: auto !important;
-            top: 0 !important;
-            width: 50% !important;
-            margin: 0 !important;
-            text-align: right !important;
-            display: block !important;
-        }
-        @media print {
-            #printPreviewModal .invoice-print-box .invoice-header-brand { left: 0 !important; right: auto !important; }
-            #printPreviewModal .invoice-print-box .invoice-header-info { right: 0 !important; left: auto !important; }
-        }
 
         :root {
             --bg-deep: #0b0c10;
@@ -735,9 +699,19 @@
                 text-align: right !important;
             }
         }
-<style id="voltech-central-branches-v1">.central-branches-card{position:relative;overflow:hidden;border:1px solid rgba(52,152,219,.38)!important;background:linear-gradient(145deg,rgba(16,20,30,.96),rgba(23,27,39,.92))!important;box-shadow:0 18px 55px rgba(0,0,0,.28),0 0 35px rgba(52,152,219,.08)}.central-branches-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}.central-branches-head h2{margin:0 0 5px!important}.central-branches-head p{margin:0;color:var(--text-muted);font-size:12px}.central-refresh-btn{width:auto!important;background:linear-gradient(135deg,#3498db,#2471a3)!important}.central-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.central-summary-card{padding:17px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.central-summary-card span{display:block;color:var(--text-muted);font-size:11px;margin-bottom:8px}.central-summary-card b{display:block;font-size:20px;font-weight:900;color:#fff}.central-section{margin-top:16px;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.075);background:rgba(10,13,20,.48)}.central-section-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:12px}.central-section-title i{color:var(--accent-blue);margin-left:6px}.central-chart-wrap{height:300px;position:relative}@media(max-width:900px){.central-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.central-summary-grid{grid-template-columns:1fr}.central-summary-card b{font-size:18px}.central-chart-wrap{height:260px}}        .delivery-print-data{font-size:17px;line-height:2.15;text-align:right;font-weight:700;padding-top:4px;}
+<style id="voltech-central-branches-v1">.central-branches-card{position:relative;overflow:hidden;border:1px solid rgba(52,152,219,.38)!important;background:linear-gradient(145deg,rgba(16,20,30,.96),rgba(23,27,39,.92))!important;box-shadow:0 18px 55px rgba(0,0,0,.28),0 0 35px rgba(52,152,219,.08)}.central-branches-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}.central-branches-head h2{margin:0 0 5px!important}.central-branches-head p{margin:0;color:var(--text-muted);font-size:12px}.central-refresh-btn{width:auto!important;background:linear-gradient(135deg,#3498db,#2471a3)!important}.central-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.central-summary-card{padding:17px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.central-summary-card span{display:block;color:var(--text-muted);font-size:11px;margin-bottom:8px}.central-summary-card b{display:block;font-size:20px;font-weight:900;color:#fff}.central-section{margin-top:16px;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.075);background:rgba(10,13,20,.48)}.central-section-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:12px}.central-section-title i{color:var(--accent-blue);margin-left:6px}.central-chart-wrap{height:300px;position:relative}@media(max-width:900px){.central-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.central-summary-grid{grid-template-columns:1fr}.central-summary-card b{font-size:18px}.central-chart-wrap{height:260px}}        .delivery-print-data{font-size:17px;line-height:2.15;text-align:right;font-weight:700;padding-top:4px;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere;word-break:break-word;}
         .delivery-print-data b{font-size:19px;color:#3498db;}
+        .delivery-print-data p{margin:0 0 4px 0;}
         @media print{.delivery-print-data{font-size:17px;line-height:2.1;}}
+        @media (max-width:820px){
+            .delivery-print-data{font-size:14px;line-height:1.9;}
+            .delivery-print-data b{font-size:15.5px;}
+        }
+        @media (max-width:540px){
+            .delivery-print-data{font-size:12px;line-height:1.75;padding-top:2px;}
+            .delivery-print-data b{font-size:13px;}
+        }
+        #printPreviewModal .invoice-footer-notes{max-width:100%;box-sizing:border-box;overflow-wrap:anywhere;word-break:break-word;}
 </style><style id="voltech-maintenance-v1">
 #tabMaintenance .maintenance-status{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
 #tabMaintenance .maintenance-status.active{background:rgba(52,152,219,.18);color:#fff}
@@ -750,7 +724,8 @@
 <style id="voltech-invoice-clean-final">
 /* VOLTECH — CLEAN CUSTOMER INVOICE CSS. Single authoritative invoice stylesheet. */
 #printPreviewModal.v630-invoice-modal{display:none}
-#printPreviewModal .invoice-print-box.v630-invoice{width:680px!important;max-width:680px!important;min-width:0!important;box-sizing:border-box!important;padding:28px!important;overflow:hidden!important;direction:rtl!important}
+#printPreviewModal .invoice-print-box.v630-invoice{width:100%!important;max-width:680px!important;min-width:0!important;box-sizing:border-box!important;padding:28px!important;overflow:hidden!important;direction:rtl!important}
+@media (max-width:540px){#printPreviewModal .invoice-print-box.v630-invoice{padding:16px!important;}}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-top-header.invoice-header-fixed-left{position:relative!important;display:block!important;width:100%!important;height:82px!important;min-height:82px!important;margin:0 0 20px!important;padding:0 0 15px!important;border-bottom:2px solid #2f2f3d!important;box-sizing:border-box!important;direction:ltr!important;overflow:visible!important}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left{position:absolute!important;left:0!important;right:auto!important;top:0!important;width:52%!important;max-width:52%!important;height:auto!important;margin:0!important;padding:0!important;display:block!important;text-align:left!important;direction:ltr!important;transform:none!important;box-sizing:border-box!important}
 #printPreviewModal .invoice-print-box.v630-invoice .invoice-header-brand-left #printVipBadgeBox{margin:0 0 3px!important}
@@ -1244,7 +1219,7 @@ input:focus,select:focus,textarea:focus{
 <div id="loginScreen">
 <div class="login-card">
 <div class="brand-sub-box">
-<div class="brand-text-logo">VOL<span>TECH</span></div>
+<div class="brand-text-logo vt-brand-mark">VOL<span>TECH</span></div>
 <p>فولتيك للهواتف والاكسسوارات والأنظمة الذكية</p>
 </div>
 <div class="input-group">
@@ -1263,7 +1238,7 @@ input:focus,select:focus,textarea:focus{
 <div id="appContainer">
 <aside>
 <div class="sidebar-header">
-<div class="sidebar-logo-text">VOL<span>TECH</span></div>
+<div class="vt-logo-row"><div class="sidebar-logo-text vt-brand-mark">VOL<span>TECH</span></div><button type="button" id="companyLogoSettingsBtn" class="vt-logo-gear" title="إعدادات شعار الشركة" onclick="openCompanyLogoModal()" style="display:none;">⚙️</button></div>
 <h3 id="userNameDisplay">اسم المستخدم</h3>
 <span class="role-badge" id="roleBadgeDisplay">صلاحية</span>
 <div id="currentBranchSelectorBox" style="display:none;margin-top:10px;text-align:center;">
@@ -1282,9 +1257,9 @@ input:focus,select:focus,textarea:focus{
 <button id="navWarehouseAccessories" onclick="switchTab('warehouseAccessories')"><i class="fa-solid fa-headphones"></i> مستودع الاكسسوارات</button>
 <button id="navAccounts" onclick="switchTab('accounts')"><i class="fa-solid fa-vault"></i> الحسابات والديون</button>
 <button id="navTreasury" onclick="switchTab('treasury')" style="display:none;"><i class="fa-solid fa-money-bill-transfer"></i> الكاشير والقاصة</button>
-<button id="navFinance" onclick="switchTab('finance')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</button>
-<button id="navCentralBranches" onclick="switchTab('centralBranches')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-building-columns"></i> اللوحة المركزية للفروع</button>
-<button id="navAdminSettings" onclick="switchTab('adminSettings')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-gear"></i> إعدادات الصرف والنظام</button>
+<button id="navFinance" onclick="switchTab('finance')" style="display:none; color: var(--text-muted);"><i class="fa-solid fa-chart-pie"></i> الحسابات الأساسية</button>
+<button id="navCentralBranches" onclick="switchTab('centralBranches')" style="display:none; color: var(--text-muted);"><i class="fa-solid fa-building-columns"></i> اللوحة المركزية للفروع</button>
+<button id="navAdminSettings" onclick="switchTab('adminSettings')" style="display:none; color: var(--text-muted);"><i class="fa-solid fa-gear"></i> إعدادات الصرف والنظام</button>
 <button id="navAdminUsers" onclick="switchTab('adminUsers')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-users-gear"></i> إدارة المستخدمين</button>
 <button id="navNotifications" onclick="switchTab('notifications')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-bell"></i> التبليغات <span id="notificationUnreadBadge" style="display:none; margin-right:6px; background:var(--accent-red); color:#fff; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:900;">0</span></button>
 <button id="navLogs" onclick="switchTab('logs')" style="display:none; color: var(--accent-red);"><i class="fa-solid fa-timeline"></i> سجل العمليات</button>
@@ -1504,12 +1479,10 @@ input:focus,select:focus,textarea:focus{
 <h2 style="margin:0;"><i class="fa-solid fa-clipboard-list"></i> سجل التوصيل</h2>
 </div>
 <div class="form-grid" style="margin-top:10px;">
-<div style="grid-column:1/-1;"><label>بحث (رقم الوصل / اسم الزبون / رقم الهاتف):</label><div style="display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;"><input id="deliveryLogSearchInput" type="text" oninput="renderDeliveryLogTable()" placeholder="اكتب للبحث..." style="flex:1;min-width:200px;margin:0;"><button type="button" class="btn-custom" style="width:auto;margin:0;padding:10px 18px;background:linear-gradient(135deg,#9b59b6,#8e44ad);white-space:nowrap;" onclick="generateDeliveryCompanyReconciliation()"><i class="fa-solid fa-list-check"></i> مطابقة كشف</button></div></div>
+<div style="grid-column:1/-1;"><label>بحث (رقم الوصل / اسم الزبون / رقم الهاتف):</label><div style="display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;"><input id="deliveryLogSearchInput" type="text" oninput="renderDeliveryLogTable()" placeholder="اكتب للبحث..." style="flex:1;min-width:200px;margin:0;"><button type="button" class="btn-custom" style="width:auto;margin:0;padding:10px 18px;background:linear-gradient(135deg,#9b59b6,#8e44ad);white-space:nowrap;" onclick="openDeliveryReconModal()"><i class="fa-solid fa-list-check"></i> مطابقة كشف</button></div></div>
 <div><label>من تاريخ:</label><input id="deliveryLogFrom" type="date" onchange="renderDeliveryLogTable()"></div>
 <div><label>إلى تاريخ:</label><input id="deliveryLogTo" type="date" onchange="renderDeliveryLogTable()"></div>
-<div><label>شركة التوصيل (للمطابقة):</label><select id="deliveryReconCompanySelect"></select></div>
 </div>
-<div id="deliveryReconResultBox" style="margin-top:14px;"></div>
 <div class="table-container" style="margin-top:10px;max-height:430px;overflow:auto;">
 <table style="width:100%;min-width:950px;">
 <thead><tr><th>وصل #</th><th>الزبون</th><th>المحافظة</th><th>شركة التوصيل</th><th>سعر التوصيل</th><th>التاريخ</th><th>إجراء</th></tr></thead>
@@ -2070,6 +2043,55 @@ input:focus,select:focus,textarea:focus{
 <div id="deliveryCompanyList" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;"></div>
 </div>
 </div>
+<div id="deliveryReconModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);align-items:center;justify-content:center;z-index:5000;padding:18px;overflow:auto;">
+<div class="modal-content-box" style="width:520px;max-width:98vw;border-color:#9b59b6;">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:10px;margin-bottom:14px;">
+<h3 style="color:#9b59b6;margin:0;"><i class="fa-solid fa-list-check"></i> مطابقة كشف التوصيل</h3>
+<button type="button" onclick="closeDeliveryReconModal()" style="background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="form-grid">
+<div><label>من تاريخ:</label><input id="deliveryReconFromModal" type="date"></div>
+<div><label>إلى تاريخ:</label><input id="deliveryReconToModal" type="date"></div>
+<div style="grid-column:1/-1;"><label>شركة التوصيل:</label><select id="deliveryReconCompanySelect"></select></div>
+</div>
+<button type="button" class="btn-custom" style="width:auto;margin-top:14px;background:linear-gradient(135deg,#9b59b6,#8e44ad);" onclick="printDeliveryCompanyReconciliation()"><i class="fa-solid fa-print"></i> طباعة كشف المطابقة</button>
+</div>
+</div>
+<style id="vt-company-logo-style">
+.vt-logo-row{display:flex;align-items:center;justify-content:center;gap:8px;}
+.vt-logo-gear{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:8px;width:30px;height:30px;padding:0;font-size:15px;line-height:28px;cursor:pointer;flex:0 0 auto;transition:transform .2s,background .2s;}
+.vt-logo-gear:hover{background:rgba(231,76,60,.25);transform:rotate(45deg);}
+.vt-brand-mark.vt-has-logo{animation:none!important;letter-spacing:0!important;}
+.vt-logo-badge{display:inline-flex;align-items:center;justify-content:center;background:#ffffff;border-radius:10px;padding:5px 10px;box-shadow:0 2px 10px rgba(0,0,0,.25);box-sizing:border-box;max-width:100%;}
+.vt-brand-mark .vt-logo-badge{margin:0 auto;}
+.vt-logo-badge .vt-logo-img{display:block;max-width:100%;object-fit:contain;margin:0;}
+.sidebar-logo-text .vt-logo-img{max-height:40px;max-width:130px;}
+.brand-text-logo .vt-logo-img{max-height:78px;max-width:210px;}
+.invoice-print-box .brand .vt-logo-img{max-height:48px;max-width:160px;}
+@media print{.vt-logo-badge{box-shadow:none!important;padding:3px 8px!important;}}
+#companyLogoPreviewBox{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+#companyLogoPreviewBox .vt-prev{flex:1;min-width:190px;border:1px dashed var(--border-color);border-radius:10px;padding:10px;text-align:center;}
+#companyLogoPreviewBox .vt-prev-stage{height:110px;display:flex;align-items:center;justify-content:center;border-radius:8px;margin-top:6px;}
+#companyLogoPreviewBox .vt-prev-stage img{max-height:96px;max-width:100%;object-fit:contain;}
+</style>
+<div id="companyLogoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);align-items:center;justify-content:center;z-index:6000;padding:18px;overflow:auto;">
+<div class="modal-content-box" style="width:620px;max-width:98vw;border-color:#e74c3c;">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:10px;margin-bottom:12px;">
+<h3 style="color:#e74c3c;margin:0;">⚙️ شعار الشركة</h3>
+<button type="button" onclick="closeCompanyLogoModal()" style="background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<p style="color:var(--text-muted);font-size:12px;line-height:1.8;margin:0;">يظهر الشعار في واجهة النظام، وفاتورة البيع، ووصولات الصيانة والتوصيل، والتقارير والكشوفات والمطابقة. يُضغط تلقائياً قبل الحفظ لتقليل حجم التخزين. الصيغ المدعومة: PNG أو JPG أو WEBP أو SVG (حتى 8 ميغابايت قبل الضغط).</p>
+<label style="display:block;margin-top:12px;">اختيار صورة الشعار من الجهاز:</label>
+<input id="companyLogoFileInput" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onchange="handleCompanyLogoFile(this)">
+<div id="companyLogoPreviewBox"></div>
+<div id="companyLogoInfo" style="margin-top:10px;font-size:12px;color:var(--text-muted);"></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+<button type="button" id="companyLogoSaveBtn" class="account-quick-btn" style="background:#2ecc71;color:#fff;" onclick="saveCompanyLogo()" disabled><i class="fa-solid fa-floppy-disk"></i> حفظ الشعار</button>
+<button type="button" id="companyLogoRemoveBtn" class="account-quick-btn" style="background:#e74c3c;color:#fff;" onclick="removeCompanyLogo()"><i class="fa-solid fa-rotate-left"></i> إزالة الشعار والعودة لشعار VOLTECH</button>
+<button type="button" class="account-quick-btn" style="background:#555;color:#fff;" onclick="closeCompanyLogoModal()">إلغاء</button>
+</div>
+</div>
+</div>
 <div id="searchDeviceModal">
 <div class="modal-content-box" style="border-color: #3498db;">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
@@ -2217,7 +2239,7 @@ input:focus,select:focus,textarea:focus{
 <div class="invoice-top-header invoice-header-fixed-left">
 <div class="invoice-header-brand invoice-header-brand-left">
 <div class="invoice-brand-line">
-<div class="brand">VOL<span>TECH</span></div>
+<div class="brand vt-brand-mark">VOL<span>TECH</span></div>
 <div id="printVipBadgeBox" style="display: none; background: linear-gradient(135deg, #ff2a4d, #d90429); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 14px; box-shadow: 0 0 15px rgba(255,42,77,0.5); border: 1px solid #fff;">VIP</div>
 </div>
 <p class="invoice-brand-tagline">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</p>
@@ -2336,6 +2358,7 @@ input:focus,select:focus,textarea:focus{
         let employeeSerialCounter=1;
         let deliveryRecords=[];
         let deliveryCompaniesList=[];
+        let companyLogo=null; // {dataUrl, mime, width, height, bytes, originalBytes, fileName, updatedAt}
         let treasuryTransfersList=[];
         let archiveInvoiceNavContext={type:null,ids:[],index:-1,query:""};
         let deliveryPrintMode=false;
@@ -2782,7 +2805,7 @@ function addBranch(){
                 version: 15, savedAt: Date.now(),
                 centralDeviceCatalog:JSON.parse(JSON.stringify(centralDeviceCatalog||deviceCatalog||[])),
                 centralAccessoryCatalog:JSON.parse(JSON.stringify(centralAccessoryCatalog||accessoryCatalog||[])),
-                exchangeRate, vipWarrantyPrice, systemUsers, branches, currentBranchId, branchDataStore, founderLogsList, cloudDatabaseConfig
+                exchangeRate, vipWarrantyPrice, systemUsers, branches, currentBranchId, branchDataStore, founderLogsList, cloudDatabaseConfig, companyLogo
             };
         }
         // ===== V6.1 PRE-LINK SAFETY LAYER =====
@@ -3008,6 +3031,7 @@ function addBranch(){
                 if(Array.isArray(st.systemUsers)) systemUsers=st.systemUsers;
                 if(Array.isArray(st.founderLogsList)) founderLogsList=st.founderLogsList;
                 if(st.cloudDatabaseConfig && typeof st.cloudDatabaseConfig==='object') cloudDatabaseConfig=st.cloudDatabaseConfig;
+                companyLogo=(st.companyLogo && typeof st.companyLogo==='object' && /^data:image\//.test(String(st.companyLogo.dataUrl||''))) ? st.companyLogo : null;
                 if(Array.isArray(st.branches)) branches=st.branches;
                 if(Number.isFinite(Number(st.currentBranchId))) currentBranchId=Number(st.currentBranchId);
                 if(st.branchDataStore && typeof st.branchDataStore==='object') branchDataStore=st.branchDataStore;
@@ -3503,6 +3527,7 @@ function addBranch(){
             let names = {"founder":"التميمي — منشئ النظام", "admin": "المسؤول العام", "manager": "مدير الفرع", "employee": "موظف مبيعات", "accountant": "محاسب مالي", "maintenance": "موظف صيانة"};
             document.getElementById("userNameDisplay").innerText = loggedInUser.name;
             document.getElementById("roleBadgeDisplay").innerText = names[loggedInUser.role];
+            applyCompanyLogoToPage();
 
             // إخفاء الكل افتراضياً ثم إظهار حسب الصلاحية
             document.getElementById("navSales").style.display = "flex";
@@ -3746,41 +3771,15 @@ function addBranch(){
             body.innerHTML=rows.map(r=>`<tr><td>${r.receiptNo||'-'}</td><td>${escapePurchaseReportHtml(r.customerName||'-')}</td><td>${escapePurchaseReportHtml(r.governorate||'-')}</td><td>${escapePurchaseReportHtml(r.deliveryCompany||'-')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')} د.ع</td><td>${r.date||'-'} ${r.time||''}</td><td style="display:flex;gap:5px;flex-wrap:wrap;"><button class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewDeliveryRecord(${r.id})">عرض</button>${canEdit?`<button class="btn-action" style="background:#f39c12;color:#fff;" onclick="openEditDeliveryRecordModal(${r.id})">تعديل</button>`:''}</td></tr>`).join('');
         }
 
-        function buildDeliveryReceiptPrintHtml(r){
-            const cat=r.invoiceCategory||r.invoiceType||'device';
-            let headerCols='',rowsHtml='';
-            const items=Array.isArray(r.invoiceItemsSnapshot)?r.invoiceItemsSnapshot:[];
-            if(cat==='device'){
-                headerCols='<th>اسم الجهاز</th><th>اللون</th><th>الذاكرة</th><th>السعر (د.ع)</th><th>IMEI</th>';
-                items.forEach(item=>{const val=Number(item.priceIQD)||0;rowsHtml+=`<tr><td><b>${escapePurchaseReportHtml(item.company||'')} ${escapePurchaseReportHtml(item.model||'')}</b></td><td>${escapePurchaseReportHtml(item.color||'')}</td><td>${escapePurchaseReportHtml(item.memory||'')}</td><td>${val.toLocaleString('en-US')} د.ع</td><td><code>${escapePurchaseReportHtml(item.imei||'')}</code></td></tr>`;});
-            }else{
-                const hasImei=items.some(item=>item.containsImei&&item.imei&&item.imei!=='N/A');
-                headerCols=`<th>اسم اكسسوار</th><th>${hasImei?'الباركود / IMEI':'الباركود'}</th><th>العدد</th><th>السعر المفرد</th>`;
-                items.forEach(item=>{const val=Number(item.priceIQD)||0,qty=Number(item.qty)||1; const identifier=(item.containsImei&&item.imei&&item.imei!=='N/A')?item.imei:(item.barcode||''); rowsHtml+=`<tr><td><b>${escapePurchaseReportHtml(item.name||'')}</b></td><td><code>${escapePurchaseReportHtml(identifier)}</code></td><td>${qty}</td><td>${val.toLocaleString('en-US')} د.ع</td></tr>`;});
-            }
-            if(r.invoiceWarranty==='vip'){rowsHtml+=`<tr><td><b>ضمان VIP</b></td><td colspan="${cat==='device'?3:2}"></td><td>${Number(r.invoiceWarrantyCost||0).toLocaleString('en-US')} د.ع</td></tr>`;}
-            return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>وصل توصيل ${escapePurchaseReportHtml(r.receiptNo||'')}</title>
-            <style>@page{size:A5;margin:8mm}body{font-family:Arial,Tahoma,sans-serif;padding:10px;color:#111;font-size:12px}
-            .box{border:2px solid #3498db;border-radius:10px;padding:14px}h1{text-align:center;color:#3498db;font-size:17px;margin:0 0 10px}
-            table{width:100%;border-collapse:collapse;margin:10px 0}th,td{border:1px solid #444;padding:5px;text-align:center;font-size:11px}th{background:#eee}
-            .meta div{margin-bottom:4px}.total{font-size:14px;font-weight:900;color:#c0392b;border-top:1px dashed #888;padding-top:8px;margin-top:8px}</style>
-            </head><body><div class="box"><h1>VOLTECH — وصل توصيل رقم ${escapePurchaseReportHtml(r.receiptNo||'')}</h1>
-            <div class="meta">
-            <div><b>الفاتورة:</b> ${escapePurchaseReportHtml(r.invoiceNo||'-')} — ${escapePurchaseReportHtml(r.invoiceDate||r.date||'')} ${escapePurchaseReportHtml(r.invoiceTime||'')}</div>
-            <div><b>الزبون:</b> ${escapePurchaseReportHtml(r.customerName||'-')} — <b>الهاتف:</b> ${escapePurchaseReportHtml(r.customerPhone||'-')}</div>
-            <div><b>المستلم:</b> ${escapePurchaseReportHtml(r.recipientName||'-')}</div>
-            <div><b>المحافظة:</b> ${escapePurchaseReportHtml(r.governorate||'-')} — <b>العنوان:</b> ${escapePurchaseReportHtml(r.address||'-')}</div>
-            <div><b>شركة التوصيل:</b> ${escapePurchaseReportHtml(r.deliveryCompany||'-')}</div>
-            </div>
-            <table><thead><tr>${headerCols}</tr></thead><tbody>${rowsHtml||`<tr><td colspan="5">لا توجد تفاصيل أصناف محفوظة لهذا الوصل.</td></tr>`}</tbody></table>
-            <div><b>إجمالي الفاتورة:</b> ${Number(r.totalAmount||0).toLocaleString('en-US')} د.ع &nbsp; <b>+ سعر التوصيل:</b> ${Number(r.deliveryFee||0).toLocaleString('en-US')} د.ع</div>
-            <div class="total">الإجمالي المطلوب تحصيله: ${Number(r.requiredTotal||0).toLocaleString('en-US')} د.ع</div>
-            ${r.note?`<div style="margin-top:8px;"><b>ملاحظة:</b> ${escapePurchaseReportHtml(r.note)}</div>`:''}
-            </div></body></html>`;
-        }
         function previewDeliveryRecord(id){
             const r=(deliveryRecords||[]).find(x=>Number(x.id)===Number(id)); if(!r){vtAlert('تعذر العثور على وصل التوصيل.');return;}
-            openPrintWindow(buildDeliveryReceiptPrintHtml(r),{autoPrint:false});
+            const fakeInv={clientName:r.customerName||'',clientPhone:r.customerPhone||'',invoiceNo:r.invoiceNo||'',date:r.invoiceDate||r.date||'',time:r.invoiceTime||r.time||'',items:Array.isArray(r.invoiceItemsSnapshot)?r.invoiceItemsSnapshot:[],warranty:r.invoiceWarranty||'normal',warrantyCost:Number(r.invoiceWarrantyCost||0),category:r.invoiceCategory||r.invoiceType||'device',totalAmount:Number(r.totalAmount)||0};
+            deliveryPrintMode=true; archiveInvoicePreviewMode=true; currentActivePrintInvoiceData=fakeInv; populatePrintModal(fakeInv);
+            const notes=document.getElementById('printWarrantyNoteText');
+            const deliveryFooter=notes?.closest('.invoice-footer-notes');
+            if(deliveryFooter)deliveryFooter.innerHTML=`<div id="printWarrantyNoteText"><div class="delivery-print-data"><b>بيانات التوصيل</b><p>اسم المستلم: ${escapePurchaseReportHtml(r.recipientName||'-')}</p><p>المحافظة: ${escapePurchaseReportHtml(r.governorate||'-')}</p><p>شركة التوصيل: ${escapePurchaseReportHtml(r.deliveryCompany||'-')}</p><p>عنوان التوصيل: ${escapePurchaseReportHtml(r.address||'-')}</p><p>سعر التوصيل: ${Number(r.deliveryFee||0).toLocaleString('en-US')} د.ع</p><p><b>الإجمالي المطلوب تحصيله: ${Number(r.requiredTotal||0).toLocaleString('en-US')} د.ع</b></p>${r.note?`<p>ملاحظة التوصيل: ${escapePurchaseReportHtml(r.note)}</p>`:''}</div></div>`;
+            const oldNo=document.getElementById('printInvoiceNo'); if(oldNo)oldNo.innerText=`${r.invoiceNo||''} / التوصيل ${r.receiptNo||''}`;
+            document.getElementById('printPreviewModal').style.display='flex';
         }
 
         let deliveryEditDraftId=null;
@@ -3835,15 +3834,16 @@ function addBranch(){
             vtAlert('تم حفظ تعديلات وصل التوصيل بنجاح.');
         }
 
-        function generateDeliveryCompanyReconciliation(){
+        function openDeliveryReconModal(){
             if(!loggedInUser||!(isFounder()||['admin','manager'].includes(loggedInUser.role))){vtAlert('مطابقة كشف التوصيل متاحة للمسؤول العام ومدير الفرع فقط.');return;}
-            const from=document.getElementById('deliveryLogFrom')?.value||'', to=document.getElementById('deliveryLogTo')?.value||'', company=document.getElementById('deliveryReconCompanySelect')?.value||'';
-            let rows=(deliveryRecords||[]).filter(r=>r);
-            if(from)rows=rows.filter(r=>new Date(r.createdAt).toLocaleDateString('en-CA')>=from);
-            if(to)rows=rows.filter(r=>new Date(r.createdAt).toLocaleDateString('en-CA')<=to);
-            if(company)rows=rows.filter(r=>(r.deliveryCompany||'')===company);
-            const box=document.getElementById('deliveryReconResultBox'); if(!box)return;
-            if(!rows.length){box.innerHTML='<div style="color:var(--text-muted);padding:14px;border:1px dashed var(--border-color);border-radius:8px;">لا توجد سجلات توصيل ضمن هذه الفترة/الشركة.</div>';return;}
+            populateDeliveryReconCompanySelect();
+            const fromEl=document.getElementById('deliveryReconFromModal'); if(fromEl)fromEl.value='';
+            const toEl=document.getElementById('deliveryReconToModal'); if(toEl)toEl.value='';
+            const sel=document.getElementById('deliveryReconCompanySelect'); if(sel)sel.value='';
+            const m=document.getElementById('deliveryReconModal'); if(m)m.style.display='flex';
+        }
+        function closeDeliveryReconModal(){ const m=document.getElementById('deliveryReconModal'); if(m)m.style.display='none'; }
+        function buildDeliveryReconciliationSectionsHtml(rows){
             const groups={};
             rows.forEach(r=>{ const key=r.deliveryCompany||'غير محدد'; (groups[key]=groups[key]||[]).push(r); });
             let grandTotal=0,grandFees=0;
@@ -3853,25 +3853,31 @@ function addBranch(){
                 const totalRequired=list.reduce((s,r)=>s+Number(r.requiredTotal||0),0);
                 grandTotal+=totalRequired; grandFees+=totalFee;
                 const trs=list.map(r=>`<tr><td>${r.receiptNo}</td><td>${escapePurchaseReportHtml(r.invoiceNo||'')}</td><td>${escapePurchaseReportHtml(r.customerName||'')}</td><td>${escapePurchaseReportHtml(r.governorate||'-')}</td><td>${Number(r.totalAmount||0).toLocaleString('en-US')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')}</td><td>${Number(r.requiredTotal||0).toLocaleString('en-US')}</td><td>${r.date}</td></tr>`).join('');
-                return `<div style="margin-top:14px;"><b style="color:var(--accent-blue);">${escapePurchaseReportHtml(companyName)}</b> — عدد الوصولات: ${list.length} | إجمالي الفواتير: ${totalAmount.toLocaleString('en-US')} د.ع | إجمالي أجور التوصيل: ${totalFee.toLocaleString('en-US')} د.ع | الإجمالي الكلي: <b>${totalRequired.toLocaleString('en-US')} د.ع</b>
-                <div class="table-container" style="max-height:260px;overflow:auto;margin-top:6px;"><table style="width:100%;min-width:800px;"><thead><tr><th>وصل #</th><th>الفاتورة</th><th>الزبون</th><th>المحافظة</th><th>إجمالي الفاتورة</th><th>أجور التوصيل</th><th>الإجمالي</th><th>التاريخ</th></tr></thead><tbody>${trs}</tbody></table></div></div>`;
+                return `<div style="margin-top:14px;"><b>${escapePurchaseReportHtml(companyName)}</b> — عدد الوصولات: ${list.length} | إجمالي الفواتير: ${totalAmount.toLocaleString('en-US')} د.ع | إجمالي أجور التوصيل: ${totalFee.toLocaleString('en-US')} د.ع | الإجمالي الكلي: <b>${totalRequired.toLocaleString('en-US')} د.ع</b>
+                <table><thead><tr><th>وصل #</th><th>الفاتورة</th><th>الزبون</th><th>المحافظة</th><th>إجمالي الفاتورة</th><th>أجور التوصيل</th><th>الإجمالي</th><th>التاريخ</th></tr></thead><tbody>${trs}</tbody></table></div>`;
             }).join('');
-            const resultHtml=`<div id="deliveryReconPrintable">
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed var(--accent-blue);border-radius:8px;"><div style="font-size:12px;color:var(--text-muted);">إجمالي أجور التوصيل</div><b>${grandFees.toLocaleString('en-US')} د.ع</b></div>
-                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed var(--accent-green);border-radius:8px;"><div style="font-size:12px;color:var(--text-muted);">الإجمالي الكلي (فواتير + أجور)</div><b>${grandTotal.toLocaleString('en-US')} د.ع</b></div>
-                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #9b59b6;border-radius:8px;"><div style="font-size:12px;color:var(--text-muted);">عدد الوصولات</div><b>${rows.length}</b></div>
-                </div>
-                ${sections}
-            </div>
-            <button type="button" class="btn-action" style="margin-top:14px;background:#3498db;color:#fff;" onclick="printDeliveryCompanyReconciliation('${escapePurchaseReportHtml(company||'كل الشركات').replace(/'/g,"\\'")}','${from}','${to}')"><i class="fa-solid fa-print"></i> طباعة كشف المطابقة</button>`;
-            box.innerHTML=resultHtml;
+            return {sections,grandTotal,grandFees};
         }
-        function printDeliveryCompanyReconciliation(companyLabel,from,to){
-            const content=document.getElementById('deliveryReconPrintable')?.innerHTML||'';
-            if(!content){vtAlert('اعرض الكشف أولاً قبل الطباعة.');return;}
+        function printDeliveryCompanyReconciliation(){
+            if(!loggedInUser||!(isFounder()||['admin','manager'].includes(loggedInUser.role))){vtAlert('مطابقة كشف التوصيل متاحة للمسؤول العام ومدير الفرع فقط.');return;}
+            const from=document.getElementById('deliveryReconFromModal')?.value||'', to=document.getElementById('deliveryReconToModal')?.value||'', company=document.getElementById('deliveryReconCompanySelect')?.value||'';
+            let rows=(deliveryRecords||[]).filter(r=>r);
+            if(from)rows=rows.filter(r=>new Date(r.createdAt).toLocaleDateString('en-CA')>=from);
+            if(to)rows=rows.filter(r=>new Date(r.createdAt).toLocaleDateString('en-CA')<=to);
+            if(company)rows=rows.filter(r=>(r.deliveryCompany||'')===company);
+            if(!rows.length){vtAlert('لا توجد سجلات توصيل ضمن هذه الفترة/الشركة.');return;}
+            const {sections,grandTotal,grandFees}=buildDeliveryReconciliationSectionsHtml(rows);
+            const companyLabel=escapePurchaseReportHtml(company||'كل الشركات');
+            const content=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #3498db;border-radius:8px;"><div style="font-size:12px;color:#666;">إجمالي أجور التوصيل</div><b>${grandFees.toLocaleString('en-US')} د.ع</b></div>
+                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #2ecc71;border-radius:8px;"><div style="font-size:12px;color:#666;">الإجمالي الكلي (فواتير + أجور)</div><b>${grandTotal.toLocaleString('en-US')} د.ع</b></div>
+                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #9b59b6;border-radius:8px;"><div style="font-size:12px;color:#666;">عدد الوصولات</div><b>${rows.length}</b></div>
+                </div>
+                ${sections}`;
             const html=`<html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>كشف مطابقة التوصيل</title><style>@page{size:A4;}body{font-family:Tahoma,Arial,sans-serif;padding:20px;color:#111;}table{width:100%;border-collapse:collapse;margin-top:10px;}th,td{border:1px solid #999;padding:6px 8px;font-size:12px;text-align:center;}th{background:#eee;}h2{margin-bottom:4px;}</style></head><body><h2>كشف مطابقة التوصيل — ${companyLabel}</h2><p>${escapePurchaseReportHtml(branchName())} — الفترة: ${from||'—'} إلى ${to||'—'} — تاريخ الإصدار: ${new Date().toLocaleDateString('en-GB')}</p>${content}</body></html>`;
             openPrintWindow(html,{autoPrint:true});
+            closeDeliveryReconModal();
+            logAction(loggedInUser.name,'طباعة كشف مطابقة توصيل',`طباعة كشف مطابقة التوصيل — الشركة: ${company||'كل الشركات'} — الفترة: ${from||'—'} إلى ${to||'—'} — عدد الوصولات: ${rows.length}`);
         }
 
         function logout() { location.reload(); }
@@ -4080,8 +4086,8 @@ function maintenancePrintField(label,value,cls=''){return `<div class="field ${c
 function printMaintenanceBundle(id,mode='both'){
             if(!requireMaintenanceAccess())return; const r=maintenanceGet(id); if(!r)return;
             const typeLabel=r.itemType==='device'?'جهاز':'اكسسوار', itemLabel=`${r.company||''} ${r.model||r.itemName||''}`.trim()||'-', field=(l,v)=>maintenancePrintField(l,v);
-            const customerPage=`<div class="sheet customer-card"><div class="header"><div><div class="brand">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">وصل استلام الصيانة للزبون</div><div class="doc-sub">رقم الوصل: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">${maintenanceEscape(r.receivedDate||'')} — ${maintenanceEscape(r.receivedTime||'')}</div></div></div><div class="section"><div class="section-title">بيانات الزبون</div><div class="grid">${field('اسم الزبون',r.customerName)}${field('رقم الهاتف',r.customerPhone)}${field('فرع الاستلام',r.branchName)}${field('الموظف المستلم',r.receivedByName)}</div></div><div class="section"><div class="section-title">بيانات القطعة</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}</div></div><div class="section"><div class="section-title">وصف العطل</div><div class="fault">${maintenanceEscape(r.fault||'-')}</div></div><div class="notice"><b>ملاحظة:</b> هذا الوصل يثبت استلام القطعة للصيانة ويُستخدم كمرجع عند الاستلام.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الزبون<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — قسم الصيانة</span><span>وصل صيانة رقم ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
-            const agencyPage=`<div class="sheet agency-tech"><div class="header"><div><div class="brand">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">ورقة تسليم الصيانة للوكالة</div><div class="doc-sub">مرجع الصيانة: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">تاريخ الاستلام: ${maintenanceEscape(r.receivedDate||'')}</div></div></div><div class="section"><div class="section-title">بيانات التسليم</div><div class="grid">${field('الوكالة',r.agencyName||'-')}${field('فرع VOLTECH',r.branchName)}${field('الموظف المستلم',r.receivedByName)}${field('تاريخ التسليم للوكالة',r.deliveredToAgencyDate||'يُحدد عند التسليم')}</div></div><div class="section"><div class="section-title">بيانات القطعة الفنية</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}${field('رقم وصل الوكالة',r.agencySlipNo||'غير متوفر')}</div></div><div class="section"><div class="section-title">بلاغ العطل والنتيجة الفنية</div><div class="fault"><b>العطل:</b><br>${maintenanceEscape(r.fault||'-')}<br><br><b>النتيجة:</b><br>${maintenanceEscape(r.agencyResult||'-')}<br><br><b>القطع المستبدلة:</b><br>${maintenanceEscape(r.replacedParts||'-')}<br><br><b>ملاحظات الوكالة:</b><br>${maintenanceEscape(r.agencyNotes||'-')}</div></div><div class="notice"><b>ملاحظة للوكالة:</b> يرجى تثبيت نتيجة الفحص والإصلاح والقطع المستبدلة وإعادة القطعة مع رقم وصل الوكالة إن وجد.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الوكالة<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — ورقة وكالة الصيانة</span><span>مرجع الصيانة ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
+            const customerPage=`<div class="sheet customer-card"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">وصل استلام الصيانة للزبون</div><div class="doc-sub">رقم الوصل: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">${maintenanceEscape(r.receivedDate||'')} — ${maintenanceEscape(r.receivedTime||'')}</div></div></div><div class="section"><div class="section-title">بيانات الزبون</div><div class="grid">${field('اسم الزبون',r.customerName)}${field('رقم الهاتف',r.customerPhone)}${field('فرع الاستلام',r.branchName)}${field('الموظف المستلم',r.receivedByName)}</div></div><div class="section"><div class="section-title">بيانات القطعة</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}</div></div><div class="section"><div class="section-title">وصف العطل</div><div class="fault">${maintenanceEscape(r.fault||'-')}</div></div><div class="notice"><b>ملاحظة:</b> هذا الوصل يثبت استلام القطعة للصيانة ويُستخدم كمرجع عند الاستلام.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الزبون<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — قسم الصيانة</span><span>وصل صيانة رقم ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
+            const agencyPage=`<div class="sheet agency-tech"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">ورقة تسليم الصيانة للوكالة</div><div class="doc-sub">مرجع الصيانة: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">تاريخ الاستلام: ${maintenanceEscape(r.receivedDate||'')}</div></div></div><div class="section"><div class="section-title">بيانات التسليم</div><div class="grid">${field('الوكالة',r.agencyName||'-')}${field('فرع VOLTECH',r.branchName)}${field('الموظف المستلم',r.receivedByName)}${field('تاريخ التسليم للوكالة',r.deliveredToAgencyDate||'يُحدد عند التسليم')}</div></div><div class="section"><div class="section-title">بيانات القطعة الفنية</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}${field('رقم وصل الوكالة',r.agencySlipNo||'غير متوفر')}</div></div><div class="section"><div class="section-title">بلاغ العطل والنتيجة الفنية</div><div class="fault"><b>العطل:</b><br>${maintenanceEscape(r.fault||'-')}<br><br><b>النتيجة:</b><br>${maintenanceEscape(r.agencyResult||'-')}<br><br><b>القطع المستبدلة:</b><br>${maintenanceEscape(r.replacedParts||'-')}<br><br><b>ملاحظات الوكالة:</b><br>${maintenanceEscape(r.agencyNotes||'-')}</div></div><div class="notice"><b>ملاحظة للوكالة:</b> يرجى تثبيت نتيجة الفحص والإصلاح والقطع المستبدلة وإعادة القطعة مع رقم وصل الوكالة إن وجد.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الوكالة<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — ورقة وكالة الصيانة</span><span>مرجع الصيانة ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
             const pages=mode==='customer'?customerPage:(mode==='agency'?agencyPage:customerPage+agencyPage); openPrintWindow(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>صيانة ${maintenanceEscape(r.receiptNo)}</title><style>${maintenancePrintStyles()}</style></head><body>${pages}</body></html>`,{autoPrint:true});
         }
 function printMaintenanceSlip(id,type='customer'){if(!requireMaintenanceAccess())return;return printMaintenanceBundle(id,type==='customer'||type==='agency'?type:'both');}
@@ -4634,14 +4640,6 @@ let lastAutoAddedBatchImei = '';
                 exchangeRateAtEntry:rate
             };
         }
-        function addBatchAccessoryByImei(imei, def){
-            const currency=getBatchEntryCurrency(); if(!lockBatchEntryCurrency(currency))return;
-            const rawCost=parseFloat(document.getElementById('batchCost').value)||0;
-            const rawPrice=parseFloat(document.getElementById('batchPrice').value)||0;
-            const pricing=makePurchaseItemPricing(rawCost,rawPrice,currency,1);
-            const item={type:'accessory',company:def.company,name:def.name,supplier:document.getElementById('batchSupplier').value.trim(),...pricing,barcode:def.barcode,color:def.color||'',memory:def.memory||'',imei:'N/A',containsImei:!!def.containsImei,qty:1};
-            pendingBatchItems.push(item); renderBatchPreviewTable();
-        }
         function addBatchDeviceByImei(imei, def){
             const currency=getBatchEntryCurrency(); if(!lockBatchEntryCurrency(currency))return;
             const rawCost=parseFloat(document.getElementById('batchCost').value)||0;
@@ -4965,10 +4963,145 @@ let lastAutoAddedBatchImei = '';
             return String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
         }
 
+        // ===== شعار الشركة (إعداد مركزي يخص المنشأ فقط) =====
+        const COMPANY_LOGO_MAX_DIM=512;          // أقصى بُعد بالبكسل بعد الضغط
+        const COMPANY_LOGO_TARGET_BYTES=180*1024; // هدف الحجم بعد الضغط
+        const COMPANY_LOGO_MAX_INPUT_BYTES=8*1024*1024;
+        let pendingCompanyLogo=null;
+
+        function hasCompanyLogo(){ return !!(companyLogo && /^data:image\//.test(String(companyLogo.dataUrl||''))); }
+        function companyLogoImgTag(style){ return hasCompanyLogo()?`<span class="vt-logo-badge"><img class="vt-logo-img" src="${companyLogo.dataUrl}" alt="شعار الشركة" style="${style||''}"></span>`:''; }
+        function formatLogoBytes(n){ n=Number(n)||0; return n>=1024*1024?(n/1048576).toFixed(2)+' ميغابايت':Math.max(1,Math.round(n/1024))+' كيلوبايت'; }
+        function dataUrlBytes(url){ const b64=String(url||'').split(',')[1]||''; return Math.floor(b64.length*3/4)-(b64.endsWith('==')?2:b64.endsWith('=')?1:0); }
+
+        // يطبّق الشعار على عناصر الصفحة (شاشة الدخول، القائمة الجانبية، فاتورة البيع) ويُظهر زر الإعدادات للمنشأ.
+        function applyCompanyLogoToPage(){
+            document.querySelectorAll('.vt-brand-mark').forEach(el=>{
+                if(el.dataset.vtOriginal==null) el.dataset.vtOriginal=el.innerHTML;
+                if(hasCompanyLogo()){ el.innerHTML=companyLogoImgTag(); el.classList.add('vt-has-logo'); }
+                else { el.innerHTML=el.dataset.vtOriginal; el.classList.remove('vt-has-logo'); }
+            });
+            const gear=document.getElementById('companyLogoSettingsBtn'); if(gear) gear.style.display=isFounder()?'inline-block':'none';
+        }
+        // يطبّق الشعار على أي مستند مطبوع قبل فتحه: يستبدل علامة VOLTECH النصية إن وُجدت، وإلا يضيف ترويسة بالشعار.
+        function applyCompanyLogoToHtml(html){
+            if(!hasCompanyLogo()||typeof html!=='string') return html;
+            if(html.includes('data-vt-no-logo')) return html;
+            const badgeStyle='display:inline-flex;align-items:center;justify-content:center;background:#ffffff;border-radius:8px;padding:4px 9px;box-sizing:border-box;';
+            const img=`<span style="${badgeStyle}"><img src="${companyLogo.dataUrl}" alt="شعار الشركة" style="display:block;max-height:52px;max-width:190px;object-fit:contain;vertical-align:middle;"></span>`;
+            if(html.includes('VOL<span>TECH</span>')) return html.split('VOL<span>TECH</span>').join(img);
+            const header=`<div style="text-align:center;margin:0 0 12px;"><span style="${badgeStyle}"><img src="${companyLogo.dataUrl}" alt="شعار الشركة" style="display:block;max-height:62px;max-width:220px;object-fit:contain;"></span></div>`;
+            return /<body[^>]*>/i.test(html) ? html.replace(/<body([^>]*)>/i,`<body$1>${header}`) : header+html;
+        }
+
+        function openCompanyLogoModal(){
+            if(!isFounder()){ vtAlert('إعدادات الشعار متاحة لحساب المنشأ فقط.'); return; }
+            pendingCompanyLogo=null;
+            const input=document.getElementById('companyLogoFileInput'); if(input) input.value='';
+            renderCompanyLogoPreview();
+            const m=document.getElementById('companyLogoModal'); if(m) m.style.display='flex';
+        }
+        function closeCompanyLogoModal(){ pendingCompanyLogo=null; const m=document.getElementById('companyLogoModal'); if(m) m.style.display='none'; }
+
+        function renderCompanyLogoPreview(){
+            const box=document.getElementById('companyLogoPreviewBox'), info=document.getElementById('companyLogoInfo');
+            const saveBtn=document.getElementById('companyLogoSaveBtn'), removeBtn=document.getElementById('companyLogoRemoveBtn');
+            if(!box) return;
+            const stage=(src,bg)=>`<div class="vt-prev-stage" style="background:${bg};">${src?`<span class="vt-logo-badge"><img src="${src}" alt=""></span>`:'<div class="brand-text-logo" style="font-size:26px;animation:none;">VOL<span>TECH</span></div>'}</div>`;
+            const current=hasCompanyLogo()?companyLogo.dataUrl:'';
+            let htmlOut=`<div class="vt-prev"><b style="font-size:12px;">الشعار الحالي</b>${stage(current,'#15151d')}</div>`;
+            if(pendingCompanyLogo){
+                htmlOut+=`<div class="vt-prev" style="border-color:#2ecc71;"><b style="font-size:12px;color:#2ecc71;">معاينة الشعار الجديد — واجهة النظام</b>${stage(pendingCompanyLogo.dataUrl,'#15151d')}</div>`;
+                htmlOut+=`<div class="vt-prev" style="border-color:#2ecc71;"><b style="font-size:12px;color:#2ecc71;">معاينة على الورق المطبوع</b>${stage(pendingCompanyLogo.dataUrl,'#ffffff')}</div>`;
+            }
+            box.innerHTML=htmlOut;
+            if(info){
+                if(pendingCompanyLogo){
+                    const saved=pendingCompanyLogo.originalBytes>0?Math.min(99,Math.max(0,Math.round((1-pendingCompanyLogo.bytes/pendingCompanyLogo.originalBytes)*100))):0;
+                    info.innerHTML=`الملف: <b>${escapePurchaseReportHtml(pendingCompanyLogo.fileName)}</b> — الأبعاد بعد الضغط: <b>${pendingCompanyLogo.width}×${pendingCompanyLogo.height}</b> بكسل — الحجم: <b>${formatLogoBytes(pendingCompanyLogo.originalBytes)}</b> ← <b style="color:#2ecc71;">${formatLogoBytes(pendingCompanyLogo.bytes)}</b>${saved>0?` (تم توفير ${saved}%)`:''}`;
+                } else if(hasCompanyLogo()){
+                    info.innerHTML=`الشعار المحفوظ: ${companyLogo.width||'-'}×${companyLogo.height||'-'} بكسل — ${formatLogoBytes(companyLogo.bytes)} — آخر تحديث: ${escapePurchaseReportHtml(companyLogo.updatedAt||'-')}`;
+                } else info.innerHTML='يُستخدم حالياً شعار VOLTECH الافتراضي.';
+            }
+            if(saveBtn){ saveBtn.disabled=!pendingCompanyLogo; saveBtn.style.opacity=pendingCompanyLogo?'1':'.5'; saveBtn.style.cursor=pendingCompanyLogo?'pointer':'not-allowed'; }
+            if(removeBtn){ removeBtn.disabled=!hasCompanyLogo(); removeBtn.style.opacity=hasCompanyLogo()?'1':'.5'; removeBtn.style.cursor=hasCompanyLogo()?'pointer':'not-allowed'; }
+        }
+
+        function readFileAsDataURL(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result||'')); r.onerror=()=>rej(new Error('تعذر قراءة الملف.')); r.readAsDataURL(file); }); }
+        function loadImageElement(src){ return new Promise((res,rej)=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=()=>rej(new Error('الملف ليس صورة صالحة أو أنه تالف.')); im.src=src; }); }
+
+        // ضغط الشعار: تصغير الأبعاد مع الحفاظ على الشفافية، ثم اختيار أصغر صيغة (WEBP ثم PNG).
+        async function compressCompanyLogo(file){
+            const srcUrl=await readFileAsDataURL(file);
+            const im=await loadImageElement(srcUrl);
+            let w=im.naturalWidth||im.width||COMPANY_LOGO_MAX_DIM, h=im.naturalHeight||im.height||Math.round(COMPANY_LOGO_MAX_DIM/3);
+            if(!w||!h) throw new Error('تعذر تحديد أبعاد الصورة.');
+            let scale=Math.min(1,COMPANY_LOGO_MAX_DIM/Math.max(w,h));
+            let best=null;
+            for(let attempt=0;attempt<5;attempt++){
+                const cw=Math.max(1,Math.round(w*scale)), ch=Math.max(1,Math.round(h*scale));
+                const canvas=document.createElement('canvas'); canvas.width=cw; canvas.height=ch;
+                const ctx=canvas.getContext('2d'); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+                ctx.clearRect(0,0,cw,ch); ctx.drawImage(im,0,0,cw,ch);
+                const candidates=[];
+                try{ const webp=canvas.toDataURL('image/webp',0.86); if(webp.startsWith('data:image/webp')) candidates.push({dataUrl:webp,mime:'image/webp'}); }catch(_){}
+                try{ candidates.push({dataUrl:canvas.toDataURL('image/png'),mime:'image/png'}); }catch(_){}
+                candidates.forEach(c=>c.bytes=dataUrlBytes(c.dataUrl));
+                candidates.sort((a,b)=>a.bytes-b.bytes);
+                const pick=candidates[0]; if(!pick) break;
+                best={...pick,width:cw,height:ch};
+                if(pick.bytes<=COMPANY_LOGO_TARGET_BYTES) break;
+                scale*=0.8;
+            }
+            if(!best) throw new Error('تعذر ضغط الصورة في هذا المتصفح.');
+            return {...best,originalBytes:file.size,fileName:file.name||'logo'};
+        }
+
+        async function handleCompanyLogoFile(input){
+            if(!isFounder()){ vtAlert('إعدادات الشعار متاحة لحساب المنشأ فقط.'); return; }
+            const file=input?.files?.[0]; if(!file) return;
+            if(!/^image\/(png|jpe?g|webp|svg\+xml)$/i.test(file.type||'')){ vtAlert('صيغة الملف غير مدعومة. اختر صورة PNG أو JPG أو WEBP أو SVG.'); input.value=''; return; }
+            if(file.size>COMPANY_LOGO_MAX_INPUT_BYTES){ vtAlert('حجم الصورة كبير جداً (أكثر من 8 ميغابايت). اختر صورة أصغر.'); input.value=''; return; }
+            const info=document.getElementById('companyLogoInfo'); if(info) info.textContent='جارٍ تجهيز الشعار وضغطه...';
+            try{ pendingCompanyLogo=await compressCompanyLogo(file); }
+            catch(e){ pendingCompanyLogo=null; vtAlert('تعذر تجهيز الشعار: '+(e&&e.message?e.message:e)); }
+            renderCompanyLogoPreview();
+        }
+
+        function saveCompanyLogo(){
+            if(!isFounder()){ vtAlert('إعدادات الشعار متاحة لحساب المنشأ فقط.'); return; }
+            if(!pendingCompanyLogo){ vtAlert('اختر صورة الشعار أولاً.'); return; }
+            const previous=companyLogo;
+            const now=new Date();
+            companyLogo={dataUrl:pendingCompanyLogo.dataUrl,mime:pendingCompanyLogo.mime,width:pendingCompanyLogo.width,height:pendingCompanyLogo.height,bytes:pendingCompanyLogo.bytes,originalBytes:pendingCompanyLogo.originalBytes,fileName:pendingCompanyLogo.fileName,updatedAt:now.toLocaleString('en-GB'),updatedBy:loggedInUser?.name||''};
+            founderLogAction(previous?'تغيير شعار الشركة':'إضافة شعار الشركة',`تم ${previous?'تغيير':'رفع'} شعار الشركة (${companyLogo.fileName}) — ${companyLogo.width}×${companyLogo.height} بكسل — ${formatLogoBytes(companyLogo.bytes)} بعد الضغط`);
+            if(!saveAllAppState()){
+                companyLogo=previous; founderLogsList.shift();
+                vtAlert('تعذر حفظ الشعار لأن مساحة التخزين ممتلئة. أُعيد الشعار السابق دون أي تغيير.');
+                return;
+            }
+            if(typeof renderFounderLogs==='function') renderFounderLogs();
+            pendingCompanyLogo=null; applyCompanyLogoToPage(); closeCompanyLogoModal();
+            vtAlert('تم حفظ شعار الشركة، وسيظهر في واجهة النظام وجميع المطبوعات.');
+        }
+
+        function removeCompanyLogo(){
+            if(!isFounder()){ vtAlert('إعدادات الشعار متاحة لحساب المنشأ فقط.'); return; }
+            if(!hasCompanyLogo()){ vtAlert('لا يوجد شعار مخصص؛ النظام يستخدم شعار VOLTECH الافتراضي حالياً.'); return; }
+            if(!confirm('إزالة شعار الشركة والعودة لشعار VOLTECH الافتراضي؟')) return;
+            const previous=companyLogo; companyLogo=null;
+            founderLogAction('إزالة شعار الشركة',`تمت إزالة شعار الشركة (${previous.fileName||'-'}) والعودة لشعار VOLTECH الافتراضي`);
+            if(!saveAllAppState()){ companyLogo=previous; founderLogsList.shift(); vtAlert('تعذر حفظ التغيير. بقي الشعار كما هو.'); return; }
+            if(typeof renderFounderLogs==='function') renderFounderLogs();
+            pendingCompanyLogo=null; applyCompanyLogoToPage(); closeCompanyLogoModal();
+            vtAlert('تمت إزالة الشعار، وعاد النظام لشعار VOLTECH الافتراضي.');
+        }
+
         // نافذة طباعة موحّدة عبر Blob URL بدل document.write المباشر — أكثر استقراراً وتمنع مشكلة الصفحة البيضاء
         // التي تحدث أحياناً مع document.write على بعض المتصفحات.
         function openPrintWindow(html,options){
             options=options||{};
+            html=applyCompanyLogoToHtml(html);
             try{
                 const blob=new Blob([html],{type:'text/html;charset=utf-8'});
                 const url=URL.createObjectURL(blob);
@@ -7091,6 +7224,7 @@ let lastAutoAddedBatchImei = '';
         }
 
         function populatePrintModal(inv){
+            applyCompanyLogoToPage();
             document.getElementById('printClientName').innerText=inv.clientName||'';document.getElementById('printClientPhone').innerText=inv.clientPhone||'';document.getElementById('printInvoiceNo').innerText=inv.invoiceNo||'';document.getElementById('printDate').innerText=inv.dateEn||inv.date||'';document.getElementById('printTime').innerText=inv.timeEn||inv.time||'';
             document.getElementById('printTotalCount').innerText=(inv.items||[]).reduce((s,it)=>s+(Number(it.qty)||1),0)+(inv.warranty==='vip'?1:0);
             const vipBox=document.getElementById('printVipBadgeBox');if(vipBox)vipBox.style.display=inv.warranty==='vip'?'block':'none';
@@ -7234,14 +7368,6 @@ let lastAutoAddedBatchImei = '';
 
         function formatInstallmentDate(v){
             if(!v)return '-'; const d=new Date(v+'T00:00:00'); return Number.isNaN(d.getTime())?v:d.toLocaleDateString('en-GB');
-        }
-
-        function renderInvoiceInstallmentBox(inv){
-            if(inv.paymentType!=='installment') return '';
-            const plan=getInvoiceInstallmentPlan(inv); const down=Number(inv.installmentDownPayment)||0; const paid=down+plan.reduce((s,x)=>s+Number(x.paid||0),0); const remaining=Math.max(0,(Number(inv.totalAmount)||0)-paid);
-            const downSource=inv.installmentDownPaymentSource==='pos'?'POS':'الكاشير';
-            const rows=plan.map(x=>`<tr><td>${x.number}</td><td>${formatInstallmentDate(x.dueDate)}</td><td>${x.amount.toLocaleString('en-US')} د.ع</td><td>${x.paid.toLocaleString('en-US')} د.ع</td><td>${x.remaining.toLocaleString('en-US')} د.ع</td><td>${x.status==='paid'?'مدفوع':x.status==='partial'?'جزئي':'مفتوح'}</td></tr>`).join('');
-            return `<div style="margin-top:12px;padding:12px;border:1px solid var(--accent-blue);border-radius:8px;background:rgba(52,152,219,.06);"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><b>خطة الأقساط</b><span>الدفعة الأولى: <b>${down.toLocaleString('en-US')}</b> د.ع (${downSource}) — المدفوع: <b style="color:var(--accent-green);">${paid.toLocaleString('en-US')}</b> د.ع — المتبقي: <b style="color:var(--accent-red);">${remaining.toLocaleString('en-US')}</b> د.ع</span></div><div style="overflow:auto;margin-top:8px;"><table style="width:100%;font-size:12px;"><thead><tr><th>القسط</th><th>الاستحقاق</th><th>المبلغ</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
         }
 
         function payInvoiceInstallment(id,type){
@@ -7942,7 +8068,7 @@ let lastAutoAddedBatchImei = '';
         function buildBranchBackupObject(){
             syncActiveBranchToStore();
             const snap=makeBranchDataSnapshot();
-            const backup={backupType:'VOLTECH_BRANCH_BACKUP',backupVersion:1,createdAt:new Date().toISOString(),createdBy:(loggedInUser&&loggedInUser.name)||'',branchId:Number(currentBranchId)||1,branchName:branchName(),branchCode:(branches.find(b=>Number(b.id)===Number(currentBranchId))||{}).code||'',data:snap};
+            const backup={backupType:'VOLTECH_BRANCH_BACKUP',backupVersion:1,createdAt:new Date().toISOString(),createdBy:(loggedInUser&&loggedInUser.name)||'',branchId:Number(currentBranchId)||1,branchName:branchName(),branchCode:(branches.find(b=>Number(b.id)===Number(currentBranchId))||{}).code||'',data:snap,companyLogo:hasCompanyLogo()?JSON.parse(JSON.stringify(companyLogo)):null};
             backup.checksum=voltechChecksum(JSON.stringify(snap));
             return backup;
         }
@@ -7981,6 +8107,7 @@ let lastAutoAddedBatchImei = '';
                 ['سجلات الصيانة',(snap.maintenanceRecords||[]).length],
                 ['رصيد الكاشير',Number(snap.cashierBalance||0).toLocaleString('en-US')+' د.ع'],
                 ['رصيد القاصة',Number(snap.vaultBalance||0).toLocaleString('en-US')+' د.ع'],
+                ['شعار الشركة',hasCompanyLogo()?'مخصص (محفوظ ضمن النسخة)':'الافتراضي VOLTECH'],
             ];
             return `<table style="width:100%;border-collapse:collapse;margin-top:10px;"><thead><tr><th style="border:1px solid #999;padding:6px;background:#eee;">البند</th><th style="border:1px solid #999;padding:6px;background:#eee;">العدد / القيمة</th></tr></thead><tbody>${rows.map(r=>`<tr><td style="border:1px solid #999;padding:6px;text-align:center;">${r[0]}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${r[1]}</td></tr>`).join('')}</tbody></table>`;
         }
@@ -8019,7 +8146,7 @@ let lastAutoAddedBatchImei = '';
             pre{white-space:pre-wrap;word-break:break-all;font-size:7px;line-height:1.35;border:1px solid #999;padding:10px;border-radius:6px;background:#fafafa;direction:ltr;text-align:left;}</style>
             </head><body>
             <h1>VOLTECH — نسخة احتياطية كاملة (كل الفروع والبيانات المركزية والإعدادات)</h1>
-            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapePurchaseReportHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}<br>عدد الفروع: ${(branches||[]).length}</div>
+            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapePurchaseReportHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}<br>عدد الفروع: ${(branches||[]).length}<br>شعار الشركة: ${hasCompanyLogo()?'مخصص (محفوظ ضمن النسخة)':'الافتراضي VOLTECH'}</div>
             <table><thead><tr><th>الفرع</th><th>عدد الفواتير</th><th>الكاشير</th><th>القاصة</th></tr></thead><tbody>${branchesSummary}</tbody></table>
             <div class="warn">هذه نسخة للأرشفة والقراءة والاستعادة اليدوية عند الحاجة. يُفضّل الاحتفاظ أيضاً بملف JSON (زر "تصدير النسخة") لاستعادة تلقائية أسرع وأدق، خصوصاً أن حجم البيانات الكامل قد يجعل النص التالي طويلاً جداً. لا تُعدّل أي حرف داخل النص عند نسخه.</div>
             <div style="font-weight:900;margin-top:10px;">بيانات الاستعادة الكاملة (JSON):</div>
@@ -8058,7 +8185,8 @@ let lastAutoAddedBatchImei = '';
                 <b>${validChecksum?'✅ رمز التحقق سليم — الملف غير تالف':'⚠️ رمز التحقق غير مطابق أو غير موجود — قد يكون الملف ناقصاً أو مُعدَّلاً'}</b><br>
                 نوع النسخة: ${typeLabel}<br>
                 تاريخ إنشائها: ${parsed.createdAt?new Date(parsed.createdAt).toLocaleString('en-GB'):'غير معروف'}<br>
-                بواسطة: ${escapePurchaseReportHtml(parsed.createdBy||'غير معروف')}
+                بواسطة: ${escapePurchaseReportHtml(parsed.createdBy||'غير معروف')}<br>
+                شعار الشركة: ${((parsed.backupType==='VOLTECH_FULL_BACKUP'?parsed.appData?.companyLogo:parsed.companyLogo)?.dataUrl)?'موجود ضمن النسخة وسيُستعاد':'غير موجود (يبقى الشعار الحالي)'}
                 </div>
                 <div style="margin-top:10px;">للتأكيد، اكتب كلمة <b>استعادة</b> بالمربع ثم اضغط تنفيذ الاستعادة. سيتم أخذ نسخة أمان تلقائية من البيانات الحالية قبل أي استبدال.</div>
                 <input id="restoreConfirmPhrase" type="text" placeholder="اكتب: استعادة" style="margin-top:8px;">
@@ -8088,6 +8216,7 @@ let lastAutoAddedBatchImei = '';
                     const targetId=Number(targetIdRaw)||Number(backup.branchId)||1;
                     if(!confirm(`سيتم استبدال كامل بيانات الفرع رقم ${targetId} ببيانات النسخة الاحتياطية (${backup.branchName||''}). هل أنت متأكد؟`))return;
                     branchDataStore[targetId]=JSON.parse(JSON.stringify(backup.data));
+                    if(backup.companyLogo&&/^data:image\//.test(String(backup.companyLogo.dataUrl||''))&&confirm('هذه النسخة تحتوي شعار شركة. هل تريد استعادته أيضاً (يطبّق على كل الفروع)؟')){ companyLogo=JSON.parse(JSON.stringify(backup.companyLogo)); founderLogAction('استعادة شعار الشركة','تمت استعادة شعار الشركة من نسخة احتياطية لفرع '+(backup.branchName||'')); }
                     saveAllAppState();
                     vtAlert('تمت استعادة بيانات الفرع بنجاح. ستُعاد الصفحة الآن.');
                 }
@@ -8100,6 +8229,7 @@ let lastAutoAddedBatchImei = '';
         setInterval(saveAllAppState, 2500);
         window.addEventListener('beforeunload', saveAllAppState);
         saveAllAppState();
+        applyCompanyLogoToPage();
     </script>
 <div id="userPasswordEditorModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px;"><div class="modal-content-box" style="border-color:#8e44ad;max-width:480px;width:100%;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:12px;margin-bottom:15px;"><h3 style="color:#bb86fc;margin:0;"><i class="fa-solid fa-key"></i> تغيير رمز حساب</h3><button type="button" onclick="closeUserPasswordEditor()" style="background:none;border:0;color:var(--text-muted);font-size:18px;"><i class="fa-solid fa-xmark"></i></button></div><div id="userPasswordEditorName" style="font-weight:900;margin-bottom:12px;"></div><div class="form-grid"><div><label>الرمز الجديد:</label><input id="userPasswordNew" type="password"></div><div><label>تأكيد الرمز:</label><input id="userPasswordNew2" type="password"></div></div><button type="button" class="btn-custom" style="margin-top:15px;background:linear-gradient(135deg,#8e44ad,#6c3483);" onclick="saveUserPasswordEditor()"><i class="fa-solid fa-floppy-disk"></i> حفظ الرمز</button></div></div>
 <div id="branchAccountStatementModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px;overflow:auto;">
