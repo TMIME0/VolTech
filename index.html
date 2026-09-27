@@ -417,6 +417,24 @@
 #printPreviewModal .invoice-brand-line #printVipBadgeBox{display:none;flex:0 0 auto!important;width:34px!important;height:24px!important;padding:2px 5px!important;border-radius:5px!important;font-size:11px!important;line-height:18px!important;text-align:center!important;box-sizing:border-box!important;margin:0!important;}
 #printPreviewModal .invoice-brand-line .brand{flex:0 0 auto!important;}
 #printPreviewModal .print-vip-row td{background:rgba(255,42,77,.06)!important;}
+
+/* Critical print isolation — without this, printing shows the entire dark app screen instead of a clean invoice. */
+@media print {
+    body * { visibility: hidden; }
+    #printPreviewModal, #printPreviewModal * { visibility: visible; }
+    #printPreviewModal { position: absolute; left: 0; top: 0; width: 100%; background: white !important; padding: 0; }
+    .invoice-print-box { border: none !important; box-shadow: none !important; width: 100% !important; background: white !important; color: black !important; }
+    .invoice-print-box * { color: black !important; }
+    .invoice-print-box b { color: black !important; }
+    .invoice-top-header .brand span { color: black !important; text-shadow: none !important; }
+    .invoice-meta-grid { background: transparent !important; border: 1px solid #ccc !important; }
+    .invoice-total-row { background: transparent !important; border: 1px solid #999 !important; }
+    .print-table th { background: #eee !important; color: black !important; }
+    .print-table td { background: transparent !important; }
+    #printPreviewModal button { display: none !important; }
+    .print-barcode-col { display: none !important; }
+}
+
 /* V6.3.16 — subtle premium motion layer (visual only) */
 @keyframes vtAmbientShift {
   0%,100% { transform: scale(1) translate3d(0,0,0); opacity:.72; }
@@ -3549,17 +3567,25 @@ function addBranch(){
         function buildDeliveryReconciliationSectionsHtml(rows){
             const groups={};
             rows.forEach(r=>{ const key=r.deliveryCompany||'غير محدد'; (groups[key]=groups[key]||[]).push(r); });
-            let grandTotal=0,grandFees=0;
+            let grandTotal=0,grandFees=0,grandInvoices=0;
             const sections=Object.entries(groups).map(([companyName,list])=>{
                 const totalAmount=list.reduce((s,r)=>s+Number(r.totalAmount||0),0);
                 const totalFee=list.reduce((s,r)=>s+Number(r.deliveryFee||0),0);
                 const totalRequired=list.reduce((s,r)=>s+Number(r.requiredTotal||0),0);
-                grandTotal+=totalRequired; grandFees+=totalFee;
+                grandTotal+=totalRequired; grandFees+=totalFee; grandInvoices+=totalAmount;
                 const trs=list.map(r=>`<tr><td>${r.receiptNo}</td><td>${escapePurchaseReportHtml(r.invoiceNo||'')}</td><td>${escapePurchaseReportHtml(r.customerName||'')}</td><td>${escapePurchaseReportHtml(r.governorate||'-')}</td><td>${Number(r.totalAmount||0).toLocaleString('en-US')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')}</td><td>${Number(r.requiredTotal||0).toLocaleString('en-US')}</td><td>${r.date}</td></tr>`).join('');
-                return `<div style="margin-top:14px;"><b>${escapePurchaseReportHtml(companyName)}</b> — عدد الوصولات: ${list.length} | إجمالي الفواتير: ${totalAmount.toLocaleString('en-US')} د.ع | إجمالي أجور التوصيل: ${totalFee.toLocaleString('en-US')} د.ع | الإجمالي الكلي: <b>${totalRequired.toLocaleString('en-US')} د.ع</b>
+                return `<div style="margin-top:18px;border:1px solid #ccc;border-radius:8px;padding:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:1px solid #ddd;padding-bottom:8px;margin-bottom:8px;">
+                    <b style="font-size:15px;">${escapePurchaseReportHtml(companyName)} <span style="font-weight:normal;color:#555;font-size:12px;">(عدد الوصولات: ${list.length})</span></b>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+                    <div style="flex:1;min-width:130px;padding:8px;border:1px dashed #888;border-radius:6px;text-align:center;"><div style="font-size:11px;color:#666;">إجمالي الفواتير</div><b>${totalAmount.toLocaleString('en-US')} د.ع</b></div>
+                    <div style="flex:1;min-width:130px;padding:8px;border:1px dashed #3498db;border-radius:6px;text-align:center;"><div style="font-size:11px;color:#666;">إجمالي أجور التوصيل</div><b>${totalFee.toLocaleString('en-US')} د.ع</b></div>
+                    <div style="flex:1;min-width:130px;padding:8px;border:1px dashed #2ecc71;border-radius:6px;text-align:center;"><div style="font-size:11px;color:#666;">الإجمالي الكلي</div><b>${totalRequired.toLocaleString('en-US')} د.ع</b></div>
+                </div>
                 <table><thead><tr><th>وصل #</th><th>الفاتورة</th><th>الزبون</th><th>المحافظة</th><th>إجمالي الفاتورة</th><th>أجور التوصيل</th><th>الإجمالي</th><th>التاريخ</th></tr></thead><tbody>${trs}</tbody></table></div>`;
             }).join('');
-            return {sections,grandTotal,grandFees};
+            return {sections,grandTotal,grandFees,grandInvoices};
         }
         function printDeliveryCompanyReconciliation(){
             if(!loggedInUser||!(isFounder()||['admin','manager'].includes(loggedInUser.role))){vtAlert('مطابقة كشف التوصيل متاحة للمسؤول العام ومدير الفرع فقط.');return;}
@@ -3569,12 +3595,13 @@ function addBranch(){
             if(to)rows=rows.filter(r=>new Date(r.createdAt).toLocaleDateString('en-CA')<=to);
             if(company)rows=rows.filter(r=>(r.deliveryCompany||'')===company);
             if(!rows.length){vtAlert('لا توجد سجلات توصيل ضمن هذه الفترة/الشركة.');return;}
-            const {sections,grandTotal,grandFees}=buildDeliveryReconciliationSectionsHtml(rows);
+            const {sections,grandTotal,grandFees,grandInvoices}=buildDeliveryReconciliationSectionsHtml(rows);
             const companyLabel=escapePurchaseReportHtml(company||'كل الشركات');
             const content=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #888;border-radius:8px;"><div style="font-size:12px;color:#666;">إجمالي الفواتير</div><b>${grandInvoices.toLocaleString('en-US')} د.ع</b></div>
                 <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #3498db;border-radius:8px;"><div style="font-size:12px;color:#666;">إجمالي أجور التوصيل</div><b>${grandFees.toLocaleString('en-US')} د.ع</b></div>
                 <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #2ecc71;border-radius:8px;"><div style="font-size:12px;color:#666;">الإجمالي الكلي (فواتير + أجور)</div><b>${grandTotal.toLocaleString('en-US')} د.ع</b></div>
-                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #9b59b6;border-radius:8px;"><div style="font-size:12px;color:#666;">عدد الوصولات</div><b>${rows.length}</b></div>
+                <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #9b59b6;border-radius:8px;"><div style="font-size:12px;color:#666;">عدد الوصولات الكلي</div><b>${rows.length}</b></div>
                 </div>
                 ${sections}`;
             const html=`<html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>كشف مطابقة التوصيل</title><style>@page{size:A4;}body{font-family:Tahoma,Arial,sans-serif;padding:20px;color:#111;}table{width:100%;border-collapse:collapse;margin-top:10px;}th,td{border:1px solid #999;padding:6px 8px;font-size:12px;text-align:center;}th{background:#eee;}h2{margin-bottom:4px;}</style></head><body><h2>كشف مطابقة التوصيل — ${companyLabel}</h2><p>${escapePurchaseReportHtml(branchName())} — الفترة: ${from||'—'} إلى ${to||'—'} — تاريخ الإصدار: ${new Date().toLocaleDateString('en-GB')}</p>${content}</body></html>`;
@@ -4690,6 +4717,7 @@ let lastAutoAddedBatchImei = '';
             return clean.length?clean:null;
         }
         function hasTextBrand(){ return Array.isArray(companyBrandText) && companyBrandText.length>0; }
+        function companyPlainName(){ return (companyBrandMode==='text' && hasTextBrand()) ? companyBrandText.map(s=>s.text).join('') : 'VOLTECH'; }
         function brandSegmentsHtml(segments){
             return (segments||[]).map(seg=>`<span style="color:${escapePurchaseReportHtml(seg.color)}">${escapePurchaseReportHtml(seg.text)}</span>`).join('');
         }
@@ -4967,7 +4995,7 @@ let lastAutoAddedBatchImei = '';
                 });
                 html+=`<tr class="total-row"><td colspan="3">الإجمالي</td><td>${totalCount.toLocaleString('en-US')}</td><td>${money(totalCost)}</td><td>-</td><td>${money(paidTotal)}</td><td>${money(remainingTotal)}</td></tr></tbody></table>`;
             }
-            html+=`<div class="sign"><span>توقيع VOLTECH: __________________</span><span>توقيع الشركة الموردة: __________________</span></div></body></html>`;
+            html+=`<div class="sign"><span>توقيع ${escapePurchaseReportHtml(companyPlainName())}: __________________</span><span>توقيع الشركة الموردة: __________________</span></div></body></html>`;
             openPrintWindow(html,{autoPrint:true});
             const modal=document.getElementById('supplierReconciliationModal');
             if(modal)modal.style.display='none';
@@ -6332,12 +6360,6 @@ let lastAutoAddedBatchImei = '';
             let acc=accountsList.find(a=>a.id===id);
             if(!acc){vtAlert('اختر شخصاً أو شركة مضافة مسبقاً من قائمة الحسابات والديون.');return;}
             if(amount<=0||!note){vtAlert('أدخل مبلغ السند والبيان.');return;}
-            // مصاريف عامة هي دفتر مصروفات الفرع: تُسجّل بسند صرف فقط،
-            // وتتراكم خلال الشهر ثم يصفرها المسؤول العام بعد المراجعة.
-            if(acc.name==='مصاريف عامة' && type!=='payment'){
-                vtAlert('حساب مصاريف عامة مخصص لسندات الصرف فقط.');
-                return;
-            }
             // ذمم الموردين بالدولار لا يجوز تسديدها من سند عام بالدينار، لأن
             // سند الحسابات لا يحتوي سعر صرف/عملة الفاتورة. يجب استخدام نافذة
             // تسديد قائمة المشتريات حتى يُسجل المبلغ الأصلي وأثره بالدينار معاً.
@@ -6376,15 +6398,20 @@ let lastAutoAddedBatchImei = '';
             // ولا تُحوّل سندات القبض/الصرف إلى ذمم؛ لذلك يبقى مطلوب مني/مطلوب لي = 0.
             if(isFixedSystemAccount(acc)){
                 // الحسابات التشغيلية لا تدخل في مطلوب مني/مطلوب لي.
-                // مصاريف عامة حالة خاصة: سند الصرف يزيد إجمالي مصروفات الفرع،
-                // ويُخصم من مصدر الدفع، ثم يبقى متراكماً حتى تصفيره شهرياً.
+                // مصاريف عامة حالة خاصة: سند الصرف = مطلوب لي (يزيد acc.total)، وسند القبض = مطلوب مني (يزيد acc.payableTotal)،
+                // ويُطبّع الاثنان تلقائياً إلى remaining/payableRemaining في normalizeAccountLedgers مثل أي حساب عادي.
                 if(acc.name==='مصاريف عامة'){
-                    acc.total=Number(acc.total||0)+amount;
-                    acc.paid=Number(acc.paid||0)+amount;
-                    acc.remaining=0;
-                    acc.operationalBalance=Number(acc.operationalBalance||0)+amount;
-                    if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
-                    addAccountPaymentHistoryMeta(acc,amount,`سند صرف — مصاريف عامة — ${note}`,{voucherId:voucher.id,ledgerType:'generalExpense',source});
+                    if(type==='payment'){
+                        acc.total=Number(acc.total||0)+amount;
+                        acc.operationalBalance=Number(acc.operationalBalance||0)+amount;
+                        if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
+                        addAccountPaymentHistoryMeta(acc,amount,`سند صرف — مصاريف عامة — ${note}`,{voucherId:voucher.id,ledgerType:'generalExpense',source,balanceType:'receivable'});
+                    } else {
+                        acc.payableTotal=Number(acc.payableTotal||0)+amount;
+                        acc.operationalBalance=Number(acc.operationalBalance||0)-amount;
+                        if(source==='vault') vaultBalance+=amount; else cashierBalance+=amount;
+                        addAccountPaymentHistoryMeta(acc,amount,`سند قبض — مصاريف عامة — ${note}`,{voucherId:voucher.id,ledgerType:'generalExpense',source,balanceType:'payable'});
+                    }
                 } else if(type==='payment'){
                     acc.operationalBalance=Number(acc.operationalBalance||0)-amount;
                     if(source==='vault') vaultBalance-=amount; else cashierBalance-=amount;
@@ -6494,16 +6521,16 @@ let lastAutoAddedBatchImei = '';
         function resetGeneralExpenseAccount(){
             if(!loggedInUser || !['admin','founder'].includes(loggedInUser.role)){vtAlert('تصفير حساب المصاريف العامة متاح للمسؤول العام فقط.');return;}
             const acc=accountsList.find(a=>a.name==='مصاريف عامة'); if(!acc)return;
-            const amount=Math.max(0,Number(acc.total||0));
-            const paid=Math.max(0,Number(acc.paid||0));
+            const owedToMe=Math.max(0,Number(acc.total||0)-Number(acc.paid||0));
+            const owedByMe=Math.max(0,Number(acc.payableTotal||0)-Number(acc.payablePaid||0));
             const note=prompt('أدخل بيان تصفير حساب المصاريف العامة (إجباري):','');
             if(note===null)return;
             const statement=note.trim(); if(!statement){vtAlert('يجب إدخال بيان للتصفير.');return;}
-            if(!confirm(`تصفير حساب المصاريف العامة؟\n\nالإجمالي: ${amount.toLocaleString('en-US')} د.ع\nالمصروف/الواصل: ${paid.toLocaleString('en-US')} د.ع\n\nالبيان: ${statement}`))return;
+            if(!confirm(`تصفير حساب المصاريف العامة؟\n\nمطلوب لي (من سندات الصرف): ${owedToMe.toLocaleString('en-US')} د.ع\nمطلوب مني (من سندات القبض): ${owedByMe.toLocaleString('en-US')} د.ع\n\nالبيان: ${statement}`))return;
             acc.total=0; acc.paid=0; acc.remaining=0; acc.operationalBalance=0; acc.payableTotal=0; acc.payablePaid=0; acc.payableRemaining=0;
             acc.lastStatement=statement;
             addAccountPaymentHistoryMeta(acc,0,`تصفير المصاريف العامة — ${statement}`,{settlement:true});
-            logAction(loggedInUser.name,'تصفير حساب المصاريف العامة',`تم تصفير مبالغ المصاريف العامة دون التأثير على العمليات المالية الأخرى — البيان: ${statement}`,null);
+            logAction(loggedInUser.name,'تصفير حساب المصاريف العامة',`تم تصفير مبالغ المصاريف العامة (مطلوب لي: ${owedToMe.toLocaleString('en-US')} د.ع، مطلوب مني: ${owedByMe.toLocaleString('en-US')} د.ع) دون التأثير على العمليات المالية الأخرى — البيان: ${statement}`,null);
             renderAccountsTable(); saveAllAppState();
             vtAlert('تم تصفير حساب المصاريف العامة بنجاح دون التأثير على الحسابات الأخرى.');
         }
