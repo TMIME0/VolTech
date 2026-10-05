@@ -41,24 +41,12 @@
                 radial-gradient(circle at 90% 80%, rgba(52, 152, 219, 0.06) 0%, transparent 40%);
         }
 
-        #loginScreen {
-            position: fixed; inset: 0; display: flex; justify-content: center; align-items: center;
-            background: rgba(11, 12, 16, 0.95); backdrop-filter: blur(25px); z-index: 1000;
-        }
-
-        .login-card {
-            width: 440px; background: var(--card-bg); border: 2px solid var(--accent-red);
-            padding: 35px; border-radius: var(--radius-lg); box-shadow: 0 0 50px var(--accent-glow);
-            text-align: center;
-        }
-
         .brand-text-logo {
             font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; color: #ffffff;
             letter-spacing: 2px; margin-bottom: 5px; text-shadow: 0 0 15px var(--accent-glow); display: inline-block;
         }
         .brand-text-logo span { color: var(--accent-red); }
         .brand-sub-box { margin-bottom: 25px; }
-        .login-card p { font-size: 12px; color: var(--text-muted); }
 
         .input-group { position: relative; margin-bottom: 20px; text-align: right; }
         .input-group i { position: absolute; right: 15px; top: 44px; color: var(--text-muted); }
@@ -342,7 +330,6 @@
         }
 
         @media (max-width: 540px) {
-            .login-card { width: calc(100vw - 28px); padding:22px; }
             .brand-text-logo { font-size:28px; }
             .input-group i { top:44px; }
             main { padding:8px; }
@@ -483,9 +470,7 @@
   50% { transform: scale(1.08) translate3d(1%, -1%, 0); opacity:1; }
 }
 @keyframes vtCardIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
-@keyframes vtGlowPulse { 0%,100%{box-shadow:0 0 22px rgba(255,42,77,.14)} 50%{box-shadow:0 0 34px rgba(255,42,77,.25)} }
 @keyframes vtLogoBreath { 0%,100%{text-shadow:0 0 10px rgba(255,42,77,.18)} 50%{text-shadow:0 0 22px rgba(255,42,77,.42)} }
-@keyframes vtLineShimmer { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
 
 /* Overall system: calm movement, no layout/function changes */
 body::before, body::after {
@@ -518,75 +503,6 @@ button:active:not(:disabled), .btn-custom:active:not(:disabled), .btn:active:not
 input, select, textarea { transition:var(--transition), box-shadow .3s ease; }
 input:focus, select:focus, textarea:focus { transform:translateY(-1px); }
 
-/* Login — premium, calm, dark, visually consistent with VOLTECH */
-#loginScreen {
-  overflow:hidden;
-  isolation:isolate;
-  background-color:#030407 !important;
-  background-image:
-    radial-gradient(circle at 18% 25%, rgba(255,42,77,.20), transparent 24%),
-    radial-gradient(circle at 82% 72%, rgba(52,152,219,.16), transparent 25%),
-    radial-gradient(circle at 50% 110%, rgba(255,42,77,.11), transparent 34%),
-    linear-gradient(120deg, #020307 0%, #070910 38%, #030407 68%, #08050a 100%) !important;
-  background-size:140% 140%, 135% 135%, 130% 130%, 220% 220% !important;
-  animation:vtLoginBgDrift 14s ease-in-out infinite alternate;
-}
-#loginScreen::before, #loginScreen::after {
-  content:""; position:absolute; pointer-events:none; z-index:0;
-  border-radius:50%; filter:blur(32px);
-  mix-blend-mode:screen;
-}
-#loginScreen::before {
-  width:520px;height:520px;right:-230px;top:-220px;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255,42,77,.30), rgba(255,42,77,.08) 38%, transparent 68%);
-  animation:vtLoginOrbRed 8s ease-in-out infinite;
-}
-#loginScreen::after {
-  width:480px;height:480px;left:-230px;bottom:-210px;
-  background:
-    radial-gradient(circle at 65% 45%, rgba(52,152,219,.24), rgba(52,152,219,.07) 40%, transparent 70%);
-  animation:vtLoginOrbBlue 10s ease-in-out infinite;
-}
-#loginScreen > * { position:relative; z-index:2; }
-@keyframes vtLoginBgDrift {
-  0%   { background-position:0% 20%, 100% 80%, 40% 100%, 0% 50%; }
-  50%  { background-position:55% 70%, 25% 20%, 75% 35%, 70% 50%; }
-  100% { background-position:100% 10%, 0% 90%, 25% 70%, 100% 50%; }
-}
-@keyframes vtLoginOrbRed {
-  0%,100% { transform:translate3d(0,0,0) scale(.82); opacity:.55; }
-  35% { transform:translate3d(-120px,120px,0) scale(1.08); opacity:.95; }
-  70% { transform:translate3d(-40px,210px,0) scale(.92); opacity:.72; }
-}
-@keyframes vtLoginOrbBlue {
-  0%,100% { transform:translate3d(0,0,0) scale(.82); opacity:.48; }
-  40% { transform:translate3d(140px,-100px,0) scale(1.12); opacity:.88; }
-  75% { transform:translate3d(230px,-20px,0) scale(.94); opacity:.65; }
-}
-.login-card {
-  position:relative; z-index:2; overflow:hidden;
-  background:linear-gradient(145deg, rgba(25,26,34,.96), rgba(12,13,18,.97)) !important;
-  border:1px solid rgba(255,42,77,.58) !important;
-  box-shadow:0 28px 80px rgba(0,0,0,.58), 0 0 42px rgba(255,42,77,.10) !important;
-  backdrop-filter:blur(18px);
-  animation:vtCardIn .65s cubic-bezier(.16,1,.3,1) both, vtGlowPulse 5s ease-in-out 1s infinite;
-}
-.login-card::before {
-  content:""; position:absolute; top:0; left:0; right:0; height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,42,77,.85), rgba(52,152,219,.55), transparent);
-  background-size:200% 100%; animation:vtLineShimmer 6s linear infinite;
-}
-.login-card::after {
-  content:""; position:absolute; width:180px;height:180px;right:-110px;top:-110px;border-radius:50%;
-  background:rgba(255,42,77,.055); filter:blur(10px); pointer-events:none;
-}
-.brand-text-logo { animation:vtLogoBreath 4s ease-in-out infinite; }
-.login-card p { letter-spacing:.15px; }
-.login-card .input-group { animation:vtCardIn .55s ease both; }
-.login-card .input-group:nth-of-type(2){animation-delay:.08s}
-.login-card .btn-custom { margin-top:4px; box-shadow:0 8px 26px rgba(255,42,77,.18); }
-.login-card .btn-custom:hover { box-shadow:0 10px 32px rgba(255,42,77,.30); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
@@ -763,74 +679,6 @@ input:focus,select:focus,textarea:focus{
   pointer-events:none;
 }
 
-/* Login: premium dark, alive but calm */
-#loginScreen{
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(255,42,77,.11), transparent 34%),
-    radial-gradient(circle at 20% 80%, rgba(52,152,219,.08), transparent 30%),
-    #050609;
-}
-#loginScreen::before,
-#loginScreen::after{
-  content:"";
-  position:absolute;
-  pointer-events:none;
-  border-radius:50%;
-}
-#loginScreen::before{
-  width:520px;height:520px;
-  top:-260px;right:-150px;
-  background:radial-gradient(circle,rgba(255,42,77,.17),transparent 67%);
-  filter:blur(18px);
-  animation:vtLoginOrb 12s ease-in-out infinite alternate;
-}
-#loginScreen::after{
-  width:460px;height:460px;
-  bottom:-260px;left:-150px;
-  background:radial-gradient(circle,rgba(52,152,219,.12),transparent 68%);
-  filter:blur(22px);
-  animation:vtLoginOrbTwo 15s ease-in-out infinite alternate;
-}
-.login-card{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,rgba(24,26,34,.94),rgba(10,11,16,.96));
-  border:1px solid rgba(255,42,77,.55);
-  box-shadow:
-    0 24px 80px rgba(0,0,0,.65),
-    0 0 0 1px rgba(255,255,255,.025) inset,
-    0 0 45px rgba(255,42,77,.13);
-  animation:vtLoginCard 1s cubic-bezier(.16,1,.3,1) both;
-}
-.login-card::before{
-  content:"";
-  position:absolute;
-  top:0;left:-45%;
-  width:35%;height:2px;
-  background:linear-gradient(90deg,transparent,#ff2a4d,rgba(255,255,255,.85),#ff2a4d,transparent);
-  box-shadow:0 0 16px rgba(255,42,77,.5);
-  animation:vtLoginLine 5.5s ease-in-out infinite;
-}
-.login-card::after{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  pointer-events:none;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.035) 50%,transparent 70%);
-  background-size:220% 100%;
-  animation:vtGlassSweep 9s linear infinite;
-}
-.brand-text-logo{
-  animation:vtLogoBreath 3.5s ease-in-out infinite;
-}
-.login-card p{
-  animation:vtSoftPulse 4s ease-in-out infinite;
-}
-.login-card .btn-custom{
-  box-shadow:0 8px 28px rgba(255,42,77,.20);
-}
 
 @keyframes vtBackgroundDrift{
   0%{background-position:0% 20%}
@@ -863,28 +711,6 @@ input:focus,select:focus,textarea:focus{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-2px)}
 }
-@keyframes vtLoginOrb{
-  0%{transform:translate(0,0) scale(.9)}
-  100%{transform:translate(-90px,75px) scale(1.12)}
-}
-@keyframes vtLoginOrbTwo{
-  0%{transform:translate(0,0) scale(1)}
-  100%{transform:translate(90px,-55px) scale(.88)}
-}
-@keyframes vtLoginCard{
-  from{opacity:0;transform:translateY(18px) scale(.975)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-@keyframes vtLoginLine{
-  0%,15%{left:-45%;opacity:0}
-  30%{opacity:1}
-  65%{left:110%;opacity:0}
-  100%{left:110%;opacity:0}
-}
-@keyframes vtGlassSweep{
-  0%{background-position:160% 0}
-  100%{background-position:-60% 0}
-}
 @keyframes vtLogoBreath{
   0%,100%{text-shadow:0 0 10px rgba(255,42,77,.22)}
   50%{text-shadow:0 0 22px rgba(255,42,77,.48),0 0 35px rgba(52,152,219,.10)}
@@ -896,9 +722,7 @@ input:focus,select:focus,textarea:focus{
 
 @media (prefers-reduced-motion: reduce){
   body,#appContainer::before,body::before,body::after,
-  aside nav button i,.card::before,.btn-custom::after,
-  #loginScreen::before,#loginScreen::after,.login-card,
-  .login-card::before,.login-card::after,.brand-text-logo,.login-card p{
+  aside nav button i,.card::before,.btn-custom::after{
     animation:none !important;
   }
   .card:hover{transform:none}
@@ -946,9 +770,115 @@ input:focus,select:focus,textarea:focus{
  .invoice-edit-addbar button{grid-column:1/-1;}
 }
 </style>
+<style id="voltech-login-style">
+/* ===== شاشة الدخول: خلفية فخمة بخطوط ليزر متحركة (مصدر التنسيق الوحيد لشاشة الدخول) ===== */
+#loginScreen{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;z-index:1000;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(1100px 640px at 10% 6%,rgba(255,42,77,.34),transparent 62%),
+    radial-gradient(960px 600px at 94% 94%,rgba(52,152,219,.30),transparent 62%),
+    radial-gradient(720px 440px at 50% 52%,rgba(130,70,210,.14),transparent 72%),
+    linear-gradient(160deg,#05060a 0%,#0c0e17 50%,#06070c 100%);}
+.login-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.login-fx>*{position:absolute;display:block}
+
+/* شبكة تتحرك ببطء وتتلاشى نحو الأطراف */
+.lfx-grid{inset:-64px;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 18%,transparent 74%);mask-image:radial-gradient(ellipse at 50% 50%,#000 18%,transparent 74%);animation:lfxGrid 24s linear infinite}
+@keyframes lfxGrid{to{transform:translate3d(64px,64px,0)}}
+
+/* توهج الزوايا */
+.lfx-glow{width:660px;height:660px;border-radius:50%;will-change:transform,opacity}
+.lfx-glow-a{top:-280px;right:-220px;background:radial-gradient(circle,rgba(255,42,77,.46),transparent 66%);animation:lfxGlowA 9s ease-in-out infinite alternate}
+.lfx-glow-b{bottom:-300px;left:-240px;background:radial-gradient(circle,rgba(52,152,219,.42),transparent 66%);animation:lfxGlowB 11s ease-in-out infinite alternate}
+@keyframes lfxGlowA{from{transform:translate3d(0,0,0) scale(.9);opacity:.55}to{transform:translate3d(-80px,70px,0) scale(1.12);opacity:1}}
+@keyframes lfxGlowB{from{transform:translate3d(0,0,0) scale(.92);opacity:.5}to{transform:translate3d(90px,-60px,0) scale(1.1);opacity:1}}
+
+/* حلقة ضوئية تدور حول البطاقة */
+.lfx-ring{left:50%;top:50%;width:min(112vmin,980px);height:min(112vmin,980px);margin:calc(min(112vmin,980px)/-2) 0 0 calc(min(112vmin,980px)/-2);border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0 52%,rgba(255,42,77,.55) 66%,rgba(255,255,255,.7) 69%,transparent 76%,rgba(52,152,219,.5) 90%,transparent 97%);
+  -webkit-mask:radial-gradient(circle,transparent 63%,#000 63.4%,#000 64.4%,transparent 64.8%);mask:radial-gradient(circle,transparent 63%,#000 63.4%,#000 64.4%,transparent 64.8%);
+  opacity:.8;animation:lfxRot 30s linear infinite;will-change:transform}
+@keyframes lfxRot{to{transform:rotate(360deg)}}
+
+/* شعاع مسح عمودي */
+.lfx-scan{top:0;bottom:0;left:0;width:240px;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,42,77,.10) 70%,rgba(255,42,77,.30) 98%,rgba(255,255,255,.85) 100%);animation:lfxScan 13s ease-in-out 1s infinite;will-change:transform,opacity}
+@keyframes lfxScan{0%{transform:translate3d(-260px,0,0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translate3d(100vw,0,0);opacity:0}}
+
+/* أشعة ليزر أفقية */
+.lfx-laser{--lc:255,42,77;left:0;width:48vw;height:2px;opacity:0;will-change:transform,opacity;
+  background:linear-gradient(90deg,rgba(var(--lc),0),rgba(var(--lc),.9) 46%,#fff 50%,rgba(var(--lc),.9) 54%,rgba(var(--lc),0));
+  box-shadow:0 0 8px rgba(var(--lc),.95),0 0 22px rgba(var(--lc),.6),0 0 46px rgba(var(--lc),.28);
+  animation:lfxSweepR var(--t,8s) linear var(--dl,0s) infinite}
+.lfx-laser.b{--lc:52,152,219}
+.lfx-laser.rev{animation-name:lfxSweepL}
+.lfx-h1{top:13%;--t:7s}
+.lfx-h2{top:30%;--t:9s;--dl:1.5s}
+.lfx-h3{top:52%;--t:8s;--dl:3s}
+.lfx-h4{top:71%;--t:10s;--dl:.8s}
+.lfx-h5{top:88%;--t:7.5s;--dl:4.5s}
+@keyframes lfxSweepR{0%{transform:translate3d(-55vw,0,0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate3d(105vw,0,0);opacity:0}}
+@keyframes lfxSweepL{0%{transform:translate3d(105vw,0,0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate3d(-55vw,0,0);opacity:0}}
+
+/* أشعة قطرية تتقاطع خلف البطاقة */
+.lfx-diag{--lc:255,42,77;left:50%;top:50%;width:150vmax;height:2px;margin:-1px 0 0 -75vmax;opacity:0;will-change:transform,opacity;
+  background:linear-gradient(90deg,rgba(var(--lc),0),rgba(var(--lc),.85) 40%,#fff 50%,rgba(var(--lc),.85) 60%,rgba(var(--lc),0));
+  box-shadow:0 0 10px rgba(var(--lc),.9),0 0 30px rgba(var(--lc),.5)}
+.lfx-diag.b{--lc:52,152,219}
+.lfx-d1{animation:lfxDiagA 12s linear 1s infinite}
+.lfx-d2{animation:lfxDiagB 15s linear 5s infinite}
+@keyframes lfxDiagA{0%{transform:rotate(-31deg) translate3d(0,-60vmax,0);opacity:0}8%{opacity:.85}92%{opacity:.85}100%{transform:rotate(-31deg) translate3d(0,60vmax,0);opacity:0}}
+@keyframes lfxDiagB{0%{transform:rotate(31deg) translate3d(0,60vmax,0);opacity:0}8%{opacity:.8}92%{opacity:.8}100%{transform:rotate(31deg) translate3d(0,-60vmax,0);opacity:0}}
+
+/* شرارات صاعدة */
+.lfx-sparks{inset:0}
+.lfx-sparks i{position:absolute;left:var(--x);bottom:-12px;width:3px;height:3px;border-radius:50%;background:#fff;opacity:0;box-shadow:0 0 8px #ff2a4d,0 0 18px #ff2a4d;animation:lfxRise var(--s) linear var(--d) infinite;will-change:transform,opacity}
+@keyframes lfxRise{0%{transform:translate3d(0,0,0);opacity:0}15%{opacity:.95}100%{transform:translate3d(26px,-108vh,0);opacity:0}}
+
+/* بطاقة الدخول: زجاج داكن + حدّ ليزري يدور + شعاع يمسح الحافة العلوية */
+@property --lfx-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+.login-card{position:relative;z-index:3;overflow:hidden;width:440px;max-width:calc(100vw - 28px);padding:38px 36px;border-radius:var(--radius-lg);text-align:center;
+  background:linear-gradient(150deg,rgba(25,27,38,.94),rgba(9,10,15,.96));border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 30px 90px rgba(0,0,0,.72),0 0 60px rgba(255,42,77,.16),inset 0 1px 0 rgba(255,255,255,.06);
+  animation:vtCardIn .7s cubic-bezier(.16,1,.3,1) both}
+.login-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;pointer-events:none;
+  background:conic-gradient(from var(--lfx-angle),transparent 0deg 245deg,rgba(255,42,77,.15) 262deg,#ff2a4d 308deg,#fff 330deg,#3498db 346deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  animation:lfxSpin 6s linear infinite}
+@keyframes lfxSpin{to{--lfx-angle:360deg}}
+.login-card::after{content:"";position:absolute;top:0;left:-45%;width:35%;height:2px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,#ff2a4d,rgba(255,255,255,.9),#ff2a4d,transparent);box-shadow:0 0 16px rgba(255,42,77,.6);
+  animation:lfxCardLine 5.5s ease-in-out infinite}
+@keyframes lfxCardLine{0%,15%{left:-45%;opacity:0}30%{opacity:1}65%{left:110%;opacity:0}100%{left:110%;opacity:0}}
+.login-card .brand-text-logo{animation:vtLogoBreath 3.5s ease-in-out infinite}
+.login-card p{font-size:12px;color:var(--text-muted);letter-spacing:.15px;animation:vtSoftPulse 4s ease-in-out infinite}
+.login-card .input-group{animation:vtCardIn .55s ease both}
+.login-card .input-group:nth-of-type(2){animation-delay:.08s}
+.login-card .btn-custom{margin-top:4px;box-shadow:0 8px 28px rgba(255,42,77,.22)}
+.login-card .btn-custom:hover{box-shadow:0 10px 34px rgba(255,42,77,.34)}
+
+@media (max-width:540px){
+  .login-card{padding:24px 22px}
+  .lfx-grid{background-size:44px 44px}
+  .lfx-d2,.lfx-h4,.lfx-sparks i:nth-child(even){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .login-fx *,.login-card,.login-card::before,.login-card::after,.login-card .brand-text-logo,.login-card p,.login-card .input-group{animation:none!important}
+  .lfx-laser,.lfx-diag,.lfx-scan,.lfx-sparks i{display:none}
+}
+</style>
 </head>
 <body>
 <div id="loginScreen">
+<div class="login-fx" aria-hidden="true">
+<span class="lfx-grid"></span>
+<span class="lfx-glow lfx-glow-a"></span><span class="lfx-glow lfx-glow-b"></span>
+<span class="lfx-ring"></span>
+<span class="lfx-scan"></span>
+<span class="lfx-laser lfx-h1"></span><span class="lfx-laser b rev lfx-h2"></span><span class="lfx-laser lfx-h3"></span><span class="lfx-laser b rev lfx-h4"></span><span class="lfx-laser lfx-h5"></span>
+<span class="lfx-diag lfx-d1"></span><span class="lfx-diag b lfx-d2"></span>
+<span class="lfx-sparks"><i style="--x:8%;--s:9s;--d:0s"></i><i style="--x:19%;--s:12s;--d:2s"></i><i style="--x:31%;--s:10s;--d:5s"></i><i style="--x:44%;--s:13s;--d:1s"></i><i style="--x:57%;--s:9.5s;--d:6s"></i><i style="--x:68%;--s:11s;--d:3s"></i><i style="--x:79%;--s:12.5s;--d:7s"></i><i style="--x:90%;--s:10s;--d:4s"></i></span>
+</div>
 <div class="login-card">
 <div class="brand-sub-box">
 <div class="brand-text-logo vt-brand-mark">VOL<span>TECH</span></div>
