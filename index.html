@@ -187,9 +187,7 @@
         table.warehouse-table th, table.warehouse-table td { padding: 9px 6px; white-space: normal; overflow-wrap: anywhere; }
         @media (max-width: 1100px) {
             .warehouse-filter-grid { gap: 6px; }
-            .warehouse-filter-head th { padding: 8px 8px 10px !important; }
             .warehouse-filter-panel .warehouse-filter-title { font-size: 10.5px; }
-            .warehouse-filter-head input, .warehouse-filter-head select { font-size: 10.5px; height: 36px; padding: 6px 5px; }
         }
 
 
@@ -200,9 +198,7 @@
         .warehouse-summary-bar > span{order:1!important;}
         .warehouse-summary-bar .warehouse-clear-filter:hover{transform:translateY(-1px)!important;background:linear-gradient(135deg,rgba(91,181,245,1),rgba(63,139,205,1))!important;box-shadow:0 3px 10px rgba(30,110,180,.3)!important;}
         .warehouse-summary-bar .warehouse-clear-filter:active{transform:translateY(0) scale(.98)!important;}
-        .warehouse-clear-filter-old { width:auto!important; min-width:0!important; height:24px!important; padding:3px 8px!important; margin:0 0 5px!important; border-radius:6px!important; font-size:10px!important; line-height:1!important; box-shadow:none!important; background:rgba(52,152,219,.16)!important; border:1px solid rgba(52,152,219,.45)!important; color:var(--accent-blue)!important; }
         .warehouse-clear-filter:hover { transform:none!important; box-shadow:none!important; background:rgba(52,152,219,.24)!important; }
-        .warehouse-filter-head th:first-child .warehouse-filter-title { flex-direction:column; gap:0; }
 
         .total-box {
             background: linear-gradient(135deg, #14141c, #1a1a26); border: 1px solid var(--accent-red);
@@ -213,7 +209,7 @@
         .btn-action { padding: 6px 12px; font-size: 11.5px; border-radius: 6px; cursor: pointer; font-weight: 700; border: none; }
         .btn-delete { background: rgba(255, 42, 77, 0.15); color: var(--accent-red); border: 1px solid rgba(255, 42, 77, 0.3); }
 
-        #searchDeviceModal, #searchAccessoryModal, #printPreviewModal, #opsModal, #invoiceDetailsModal, #catalogItemModal, #inventoryReportModal {
+        #searchDeviceModal, #searchAccessoryModal, #printPreviewModal, #invoiceDetailsModal, #catalogItemModal, #inventoryReportModal{
             position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 2000; overflow-y: auto; padding: 20px;
         }
         .modal-content-box {
@@ -264,8 +260,8 @@
         .account-quick-btn { border:1px solid rgba(255,255,255,.28); color:#fff; border-radius:9px; padding:10px 14px; font-weight:900; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); white-space:nowrap; }
         .account-quick-btn:hover { transform:translateY(-1px); filter:brightness(1.08); }
         #accountVoucherBox.quick-voucher-panel { margin:0 0 20px; box-shadow:none; }
-        #vipAnnualHistoryBox, #vipMonthlyHistoryBox, #vipYearlyHistoryBox, #adminDailyReportHistoryBox { margin-top:15px; background:rgba(20,20,28,.7); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; }
-        #adminDailyReportHistoryBox, #vipAnnualHistoryBox { margin-top: 15px; background: rgba(20,20,28,.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; }
+        #vipMonthlyHistoryBox, #vipYearlyHistoryBox, #adminDailyReportHistoryBox{ margin-top:15px; background:rgba(20,20,28,.7); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; }
+        #adminDailyReportHistoryBox{ margin-top: 15px; background: rgba(20,20,28,.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
@@ -358,7 +354,7 @@
             main { padding:10px; }
         }
 
-        <style id="voltech-central-branches-v1">.central-branches-card{position:relative;overflow:hidden;border:1px solid rgba(52,152,219,.38)!important;background:linear-gradient(145deg,rgba(16,20,30,.96),rgba(23,27,39,.92))!important;box-shadow:0 18px 55px rgba(0,0,0,.28),0 0 35px rgba(52,152,219,.08)}.central-branches-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}.central-branches-head h2{margin:0 0 5px!important}.central-branches-head p{margin:0;color:var(--text-muted);font-size:12px}.central-refresh-btn{width:auto!important;background:linear-gradient(135deg,#3498db,#2471a3)!important}.central-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.central-summary-card{padding:17px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.central-summary-card span{display:block;color:var(--text-muted);font-size:11px;margin-bottom:8px}.central-summary-card b{display:block;font-size:20px;font-weight:900;color:#fff}.central-section{margin-top:16px;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.075);background:rgba(10,13,20,.48)}.central-section-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:12px}.central-section-title i{color:var(--accent-blue);margin-left:6px}.central-chart-wrap{height:300px;position:relative}@media(max-width:900px){.central-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.central-summary-grid{grid-template-columns:1fr}.central-summary-card b{font-size:18px}.central-chart-wrap{height:260px}}        .delivery-print-data{font-size:15px;line-height:1.8;text-align:right;font-weight:700;max-width:100%;box-sizing:border-box;border:1px solid #3a3a46;border-radius:10px;padding:12px 14px;}
+        <style id="voltech-central-branches-v1">.central-branches-card{position:relative;overflow:hidden;border:1px solid rgba(52,152,219,.38)!important;background:linear-gradient(145deg,rgba(16,20,30,.96),rgba(23,27,39,.92))!important;box-shadow:0 18px 55px rgba(0,0,0,.28),0 0 35px rgba(52,152,219,.08)}.central-branches-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}.central-branches-head h2{margin:0 0 5px!important}.central-branches-head p{margin:0;color:var(--text-muted);font-size:12px}.central-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.central-summary-card{padding:17px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.central-summary-card span{display:block;color:var(--text-muted);font-size:11px;margin-bottom:8px}.central-summary-card b{display:block;font-size:20px;font-weight:900;color:#fff}.central-section{margin-top:16px;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.075);background:rgba(10,13,20,.48)}.central-section-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:12px}.central-section-title i{color:var(--accent-blue);margin-left:6px}.central-chart-wrap{height:300px;position:relative}@media(max-width:900px){.central-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.central-summary-grid{grid-template-columns:1fr}.central-summary-card b{font-size:18px}.central-chart-wrap{height:260px}}        .delivery-print-data{font-size:15px;line-height:1.8;text-align:right;font-weight:700;max-width:100%;box-sizing:border-box;border:1px solid #3a3a46;border-radius:10px;padding:12px 14px;}
         .delivery-print-data .dpd-title{display:block;text-align:center;font-size:17px;color:#3498db;margin-bottom:10px;}
         .delivery-print-data .dpd-cols{display:table;width:100%;table-layout:fixed;}
         .delivery-print-data .dpd-col{display:table-cell;width:50%;vertical-align:top;padding:0 8px;}
@@ -460,7 +456,6 @@
     #printPreviewModal .invoice-print-box.v630-invoice .invoice-footer-notes{margin-top:8px !important;padding-top:6px !important;line-height:1.45 !important;}
     #printPreviewModal .invoice-print-box.v630-invoice .invoice-footer-notes p{margin:1px 0 !important;}
     #printPreviewModal button { display: none !important; }
-    .print-barcode-col { display: none !important; }
 }
 
 
@@ -480,7 +475,7 @@ body::before, body::after {
 }
 body::before { top:-20vw; right:-15vw; background:rgba(255,42,77,.42); }
 body::after { bottom:-22vw; left:-16vw; background:rgba(52,152,219,.34); animation-delay:-7s; }
-#appContainer, aside, main, .modal, .card, .section-card { position:relative; z-index:1; }
+#appContainer, aside, main, .modal, .card{ position:relative; z-index:1; }
 
 /* Soft entrance for major panels */
 #appContainer main > * { animation:vtCardIn .42s ease both; }
@@ -489,15 +484,15 @@ body::after { bottom:-22vw; left:-16vw; background:rgba(52,152,219,.34); animati
 #appContainer main > *:nth-child(4){animation-delay:.12s}
 
 /* Buttons: restrained lift */
-button, .btn-custom, .btn, .nav-item { transition:transform .25s ease, box-shadow .25s ease, filter .25s ease, border-color .25s ease, background .25s ease; }
+button, .btn-custom, .btn{ transition:transform .25s ease, box-shadow .25s ease, filter .25s ease, border-color .25s ease, background .25s ease; }
 button:hover:not(:disabled), .btn-custom:hover:not(:disabled), .btn:hover:not(:disabled) { transform:translateY(-2px); filter:brightness(1.04); }
 button:active:not(:disabled), .btn-custom:active:not(:disabled), .btn:active:not(:disabled) { transform:translateY(0) scale(.985); }
 
 /* Cards/sections */
-.card, .section-card, .modal-content, .panel, .stat-card {
+.card, .panel{
   transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
-.card:hover, .section-card:hover, .stat-card:hover { transform:translateY(-2px); }
+.card:hover{ transform:translateY(-2px); }
 
 /* Inputs: subtle focus halo */
 input, select, textarea { transition:var(--transition), box-shadow .3s ease; }
@@ -749,23 +744,10 @@ input:focus,select:focus,textarea:focus{
 .invoice-edit-totalbar{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:12px;border-radius:8px;background:rgba(46,204,113,.08);font-size:16px;}
 .invoice-edit-totalbar b{color:var(--accent-green);font-size:19px;}
 .invoice-edit-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;}
-.invoice-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
-.invoice-detail-section{border:1px solid var(--border-color);border-radius:10px;padding:13px;background:rgba(20,20,28,.38);min-width:0;}
-.invoice-detail-wide{grid-column:1/-1;}
-.invoice-detail-section-title{font-weight:900;color:var(--accent-blue);padding-bottom:8px;margin-bottom:9px;border-bottom:1px solid var(--border-color);}
-.invoice-detail-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-.invoice-detail-fields>div{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;border-radius:7px;background:rgba(255,255,255,.025);}
-.invoice-detail-fields span{color:var(--text-muted);}
-.invoice-detail-total{color:var(--accent-green);font-size:16px;}
-.invoice-detail-table-wrap{overflow:auto;}
-.invoice-detail-table{width:100%;border-collapse:collapse;min-width:780px;font-size:12px;}
-.invoice-detail-table th,.invoice-detail-table td{padding:8px;border-bottom:1px solid var(--border-color);text-align:center;}
 .invoice-detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
 .invoice-cancel-panel{padding:12px;border:1px solid var(--accent-red);border-radius:10px;background:rgba(255,42,77,.05);}
 @media(max-width:700px){
- .invoice-edit-grid,.invoice-detail-grid{grid-template-columns:1fr;} #invoiceEditEmployeeWrap{order:0;}
- .invoice-detail-wide{grid-column:auto;}
- .invoice-detail-fields{grid-template-columns:1fr;}
+ .invoice-edit-grid{grid-template-columns:1fr;} #invoiceEditEmployeeWrap{order:0;}
  .invoice-edit-addbar{grid-template-columns:1fr 100px;}
  .invoice-edit-addbar button{grid-column:1/-1;}
 }
@@ -1674,7 +1656,7 @@ input:focus,select:focus,textarea:focus{
 <section class="section-content" id="tabFounderLogs">
 <div class="card"><h2 style="color:#3498db;"><i class="fa-solid fa-user-secret"></i> السجل الخاص</h2><p style="color:var(--text-muted);font-size:12px;">هذا السجل مستقل عن سجل النظام العام ولا يظهر لأي حساب آخر.</p><div id="founderLogsList" style="max-height:520px;overflow:auto;"></div></div></section>
 <section class="section-content" id="tabFounderSettings"><div class="card" style="border-color:#3498db;"><h2 style="color:#3498db;"><i class="fa-solid fa-user-shield"></i> إعدادات الحساب</h2><p style="color:var(--text-muted);font-size:12px;line-height:1.8;">تغيير بيانات حساب المنشأ يتطلب إدخال بياناته الحالية أولاً.</p><div class="form-grid"><div><label>اسم المستخدم الحالي:</label><input id="founderOldUsername" type="text" placeholder="General"></div><div><label>الرمز الحالي:</label><input id="founderOldPassword" type="password"></div><div><label>اسم المستخدم الجديد:</label><input id="founderNewUsername" type="text" placeholder="General"></div><div><label>الرمز السري الجديد:</label><input id="founderNewPassword" type="password"></div><div><label>تأكيد الرمز الجديد:</label><input id="founderNewPassword2" type="password"></div></div><button class="btn-custom" type="button" style="width:auto;margin-top:12px;background:linear-gradient(135deg,#3498db,#2980b9);" onclick="saveFounderCredentials()"><i class="fa-solid fa-key"></i> حفظ بيانات حساب المنشأ</button><div id="founderSettingsStatus" style="margin-top:12px;"></div></div></section><section class="section-content" id="tabCloudDatabase">
-<div class="card"><h2><i class="fa-solid fa-cloud"></i> قاعدة البيانات السحابية — للتميمي فقط</h2><p style="color:var(--text-muted);font-size:12px;line-height:1.8;">إعدادات Supabase لا تظهر للمسؤول العام أو أي عضو آخر. مفاتيح الخدمة السرية لا توضع داخل المتصفح؛ استخدم Publishable/Anon Key مع RLS.</p><div class="form-grid"><div><label>Supabase Project URL</label><input id="cloudSupabaseUrl" placeholder="https://xxxx.supabase.co"></div><div><label>Publishable / Anon Key</label><input id="cloudSupabaseAnonKey" type="password" placeholder="ضع المفتاح العام للمشروع"></div></div><div id="cloudDatabaseStatus" style="margin-top:12px;padding:10px;border:1px dashed var(--border-color);border-radius:8px;"></div><button class="btn-custom" style="width:auto;margin-top:12px;background:linear-gradient(135deg,#3498db,#2980b9);" onclick="saveCloudDatabaseConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> حفظ إعدادات قاعدة البيانات</button></div></section>
+<div class="card"><h2><i class="fa-solid fa-cloud"></i> قاعدة البيانات السحابية — للتميمي فقط</h2><p style="color:var(--text-muted);font-size:12px;line-height:1.8;">إعدادات Supabase لا تظهر للمسؤول العام أو أي عضو آخر. مفاتيح الخدمة السرية لا توضع داخل المتصفح؛ استخدم Publishable/Anon Key مع RLS. المفتاح يُحفظ على هذا الجهاز فقط ولا يدخل النسخ الاحتياطية، ويُرفض أي مفتاح سري تلقائياً.</p><div class="form-grid"><div><label>Supabase Project URL</label><input id="cloudSupabaseUrl" placeholder="https://xxxx.supabase.co"></div><div><label>Publishable / Anon Key</label><input id="cloudSupabaseAnonKey" type="password" placeholder="ضع المفتاح العام للمشروع"></div></div><div id="cloudDatabaseStatus" style="margin-top:12px;padding:10px;border:1px dashed var(--border-color);border-radius:8px;"></div><button class="btn-custom" style="width:auto;margin-top:12px;background:linear-gradient(135deg,#3498db,#2980b9);" onclick="saveCloudDatabaseConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> حفظ إعدادات قاعدة البيانات</button><button class="btn-custom" style="width:auto;margin:12px 8px 0 0;background:linear-gradient(135deg,#e74c3c,#c0392b);" onclick="clearCloudDatabaseConfig()"><i class="fa-solid fa-trash"></i> حذف إعدادات الاتصال</button></div></section>
 <section class="section-content" id="tabLogs">
 <div class="card">
 <h2><i class="fa-solid fa-timeline"></i> سجل العمليات</h2>
@@ -2126,7 +2108,6 @@ input:focus,select:focus,textarea:focus{
 
         let loggedInUser = null;
         let founderLogsList = [];
-        let cloudDatabaseConfig = {url:"", anonKey:"", enabled:false};
         
         let currentActivePrintInvoiceData = null;
 
@@ -2497,15 +2478,84 @@ function renderFounderLogs(){
     if(!isFounder()){box.innerHTML='';return;}
     box.innerHTML=(founderLogsList||[]).map(x=>`<div style="padding:10px;border-bottom:1px solid var(--border-color);"><b>${x.type||'-'}</b><br><span style="font-size:12px;color:var(--text-muted);">${x.details||''}<br>${x.date||''} — ${x.time||''} — ${x.branchName||''}</span></div>`).join('')||'<div style="color:var(--text-muted);">لا توجد حركات في سجل المؤسس.</div>';
 }
+// ===== إعدادات السحابة (Supabase) =====
+// تُحفظ بمفتاح مستقل خارج حالة النظام والنسخ الاحتياطية. المسموح فقط: رابط المشروع + المفتاح العام (Publishable/anon).
+// مفاتيح service_role / sb_secret_ مرفوضة نهائياً داخل المتصفح.
+const VT_CLOUD_CFG_KEY='voltech_cloud_cfg_v1';
+const VT_BACKUP_EXCLUDED_KEYS=new Set([VT_CLOUD_CFG_KEY,'voltech_full_backup','voltech_pre_restore_safety_backup','vt_backup_before_reset']);
+function loadCloudConfig(){
+    try{ const c=JSON.parse(localStorage.getItem(VT_CLOUD_CFG_KEY)||'null'); if(c&&typeof c==='object') return {url:String(c.url||''),anonKey:String(c.anonKey||''),enabled:!!c.enabled}; }catch(_){}
+    return {url:'',anonKey:'',enabled:false};
+}
+function persistCloudConfig(cfg){ localStorage.setItem(VT_CLOUD_CFG_KEY,JSON.stringify(cfg)); }
+function vtDecodeJwtPayload(token){
+    try{
+        const part=String(token).split('.')[1]||'';
+        const b64=part.replace(/-/g,'+').replace(/_/g,'/'), pad=b64+'='.repeat((4-b64.length%4)%4);
+        const json=decodeURIComponent(atob(pad).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+        const obj=JSON.parse(json); return obj&&typeof obj==='object'?obj:null;
+    }catch(_){ return null; }
+}
+function validateSupabaseCredentials(url,key){
+    url=String(url||'').trim().replace(/\/+$/,''); key=String(key||'').trim();
+    if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)) return {ok:false,reason:'رابط المشروع يجب أن يكون بالشكل https://xxxx.supabase.co'};
+    if(/^sb_secret_/i.test(key)) return {ok:false,reason:'هذا مفتاح سري (secret) ولا يوضع داخل المتصفح أبداً. استخدم المفتاح العام Publishable/anon فقط.'};
+    if(/^sb_publishable_[A-Za-z0-9_-]{20,}$/.test(key)) return {ok:true,url,key,kind:'publishable'};
+    if(key.split('.').length===3){
+        const p=vtDecodeJwtPayload(key);
+        if(!p) return {ok:false,reason:'تعذر قراءة المفتاح. تأكد أنك نسخته كاملاً.'};
+        if(p.role==='service_role') return {ok:false,reason:'هذا مفتاح service_role السري ولا يوضع داخل المتصفح أبداً. استخدم مفتاح anon/Publishable فقط.'};
+        if(p.role!=='anon') return {ok:false,reason:'المفتاح ليس مفتاح anon العام.'};
+        const ref=url.replace(/^https:\/\//,'').split('.')[0];
+        if(p.ref&&p.ref!==ref) return {ok:false,reason:'هذا المفتاح يخص مشروعاً آخر ولا يطابق رابط المشروع.'};
+        return {ok:true,url,key,kind:'anon-jwt'};
+    }
+    return {ok:false,reason:'صيغة المفتاح غير معروفة. الصق مفتاح Publishable أو anon فقط.'};
+}
+function migrateLegacyCloudConfig(old){
+    // نسخ قديمة كانت تحفظ الإعدادات داخل حالة النظام: ننقلها لمفتاحها المستقل (بعد التحقق) ولا نعيد كتابتها بالحالة.
+    if(!old||typeof old!=='object'||!old.url||!old.anonKey||localStorage.getItem(VT_CLOUD_CFG_KEY)) return;
+    const v=validateSupabaseCredentials(old.url,old.anonKey);
+    if(v.ok) persistCloudConfig({url:v.url,anonKey:v.key,enabled:!!old.enabled});
+}
 function saveCloudDatabaseConfig(){
     if(!isFounder()){vtAlert('إعدادات قاعدة البيانات السحابية مخصصة للتميمي فقط.');return;}
-    const url=String(document.getElementById('cloudSupabaseUrl')?.value||'').trim(); const key=String(document.getElementById('cloudSupabaseAnonKey')?.value||'').trim();
-    if(!url||!key){vtAlert('أدخل رابط Supabase وPublishable/Anon Key أولاً.');return;}
-    cloudDatabaseConfig={url,anonKey:key,enabled:true}; saveAllAppState(); founderLogAction('إعداد قاعدة البيانات السحابية','تم حفظ إعدادات Supabase للحساب المؤسس فقط.'); renderCloudDatabasePanel(); vtAlert('تم حفظ إعدادات قاعدة البيانات السحابية. الربط الفعلي بالبيانات يحتاج جداول/RLS وRPC الخاصة بالمشروع.');
+    const url=String(document.getElementById('cloudSupabaseUrl')?.value||'').trim();
+    const typedKey=String(document.getElementById('cloudSupabaseAnonKey')?.value||'').trim();
+    const v=validateSupabaseCredentials(url,typedKey||loadCloudConfig().anonKey);
+    if(!v.ok){vtAlert(v.reason);return;}
+    persistCloudConfig({url:v.url,anonKey:v.key,enabled:true});
+    founderLogAction('إعداد قاعدة البيانات السحابية','تم حفظ إعدادات Supabase (نوع المفتاح: '+v.kind+') للحساب المؤسس فقط.');
+    renderCloudDatabasePanel(); vtAlert('تم حفظ إعدادات الاتصال على هذا الجهاز فقط، ولا تدخل النسخ الاحتياطية. المزامنة الفعلية تحتاج الجداول وسياسات RLS من مجلد supabase.');
+}
+function clearCloudDatabaseConfig(){
+    if(!isFounder()){vtAlert('إعدادات قاعدة البيانات السحابية مخصصة للتميمي فقط.');return;}
+    if(!confirm('سيتم حذف إعدادات الاتصال بـ Supabase من هذا الجهاز. هل أنت متأكد؟')) return;
+    localStorage.removeItem(VT_CLOUD_CFG_KEY);
+    founderLogAction('حذف إعدادات قاعدة البيانات السحابية','تم حذف إعدادات Supabase من هذا الجهاز.');
+    renderCloudDatabasePanel(); vtAlert('تم حذف إعدادات الاتصال.');
 }
 function renderCloudDatabasePanel(){
-    const status=document.getElementById('cloudDatabaseStatus'); if(status) status.innerHTML=cloudDatabaseConfig?.enabled?'<span style="color:var(--accent-green);font-weight:900;">تم حفظ إعدادات الاتصال</span>':'<span style="color:var(--text-muted);">غير مفعّل بعد</span>';
-    const u=document.getElementById('cloudSupabaseUrl'),k=document.getElementById('cloudSupabaseAnonKey'); if(u)u.value=cloudDatabaseConfig?.url||''; if(k)k.value=cloudDatabaseConfig?.anonKey||'';
+    const cfg=loadCloudConfig();
+    const status=document.getElementById('cloudDatabaseStatus');
+    if(status) status.innerHTML=cfg.enabled?'<span style="color:var(--accent-green);font-weight:900;">تم حفظ إعدادات الاتصال</span> <span style="color:var(--text-muted);">'+(window.VoltechSync&&window.VoltechSync.isActive()?'— المزامنة نشطة':'— المزامنة غير مفعّلة بعد (بانتظار ربط الجداول وسياسات RLS)')+'</span>':'<span style="color:var(--text-muted);">غير مفعّل بعد</span>';
+    const u=document.getElementById('cloudSupabaseUrl'),k=document.getElementById('cloudSupabaseAnonKey');
+    if(u) u.value=cfg.url||'';
+    if(k){ k.value=''; k.placeholder=cfg.anonKey?'محفوظ — اتركه فارغاً للإبقاء عليه':'ضع المفتاح العام للمشروع'; }
+}
+// نقطة ربط المزامنة: كل حفظ محلي ناجح يستدعي onLocalSaved. لا يحدث شيء حتى يُسجَّل محوّل (adapter) وتُفعَّل الإعدادات.
+window.VoltechSync={
+    adapter:null,
+    register(adapter){ this.adapter=adapter; },
+    isActive(){ const c=loadCloudConfig(); return !!(this.adapter&&c.enabled&&c.url&&c.anonKey); },
+    onLocalSaved(){ if(!this.isActive()) return; try{ if(typeof this.adapter.onLocalSaved==='function') this.adapter.onLocalSaved(voltechCloudSafeState); }catch(e){ console.error('VOLTECH sync hook error:',e); } }
+};
+// الحالة الوحيدة المسموح خروجها من الجهاز: بلا كلمات مرور ولا بصمات مرور ولا سجل المؤسس الخاص ولا إعدادات الاتصال.
+function voltechCloudSafeState(){
+    const st=JSON.parse(JSON.stringify(appStatePayload()));
+    delete st.cloudDatabaseConfig; delete st.founderLogsList;
+    if(Array.isArray(st.systemUsers)) st.systemUsers=st.systemUsers.map(u=>{ if(!u||typeof u!=='object') return u; const {passwordHash,passwordPlain,...rest}=u; return rest; });
+    return st;
 }
 
 
@@ -2577,7 +2627,7 @@ function confirmAddBranch(){
             b.active=b.active===false; renderBranchManagement(); renderBranchSelector(); saveAllAppState();
         }
         let userPasswordEditorId=null;
-        function openUserPasswordEditor(id){ if(!isFounder()){vtAlert('تغيير رموز الحسابات متاح للتميمي فقط.');return;} const u=systemUsers.find(x=>Number(x.id)===Number(id));if(!u)return;userPasswordEditorId=u.id;document.getElementById('userPasswordEditorName').innerHTML=`الحساب: <b>${escapePurchaseReportHtml(u.name||u.username||'-')}</b> — اسم المستخدم: <code>${escapePurchaseReportHtml(u.username||'-')}</code>`;document.getElementById('userPasswordNew').value='';document.getElementById('userPasswordNew2').value='';document.getElementById('userPasswordEditorModal').style.display='flex';document.getElementById('userPasswordNew').focus();}
+        function openUserPasswordEditor(id){ if(!isFounder()){vtAlert('تغيير رموز الحسابات متاح للتميمي فقط.');return;} const u=systemUsers.find(x=>Number(x.id)===Number(id));if(!u)return;userPasswordEditorId=u.id;document.getElementById('userPasswordEditorName').innerHTML=`الحساب: <b>${escapeHtml(u.name||u.username||'-')}</b> — اسم المستخدم: <code>${escapeHtml(u.username||'-')}</code>`;document.getElementById('userPasswordNew').value='';document.getElementById('userPasswordNew2').value='';document.getElementById('userPasswordEditorModal').style.display='flex';document.getElementById('userPasswordNew').focus();}
         function closeUserPasswordEditor(){userPasswordEditorId=null;const m=document.getElementById('userPasswordEditorModal');if(m)m.style.display='none';}
         async function saveUserPasswordEditor(){ if(!isFounder()){vtAlert('تغيير رموز الحسابات متاح للتميمي فقط.');return;}const u=systemUsers.find(x=>Number(x.id)===Number(userPasswordEditorId));if(!u)return;const p1=String(document.getElementById('userPasswordNew')?.value||''),p2=String(document.getElementById('userPasswordNew2')?.value||'');if(p1.length<4){vtAlert('الرمز يجب أن لا يقل عن 4 أحرف.');return;}if(p1!==p2){vtAlert('الرمزان غير متطابقين.');return;}u.passwordPlain=p1;u.passwordHash=await hashOfflinePassword(p1);founderLogAction('تغيير رمز حساب',`تم تغيير رمز حساب ${u.name||u.username||u.id} بواسطة التميمي.`);saveAllAppState();renderUsersManageTable();closeUserPasswordEditor();vtAlert('تم تغيير رمز الحساب بنجاح.');}
         let branchAccountStatementTargetId=null;
@@ -2590,7 +2640,7 @@ function confirmAddBranch(){
             const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
             const now=new Date(),first=new Date(now.getFullYear(),now.getMonth(),1);
             document.getElementById('branchAccountStatementFrom').value=fmt(first);document.getElementById('branchAccountStatementTo').value=fmt(now);
-            document.getElementById('branchAccountStatementMeta').innerHTML=`الفرع الذي أصدر الكشف: <b>${escapePurchaseReportHtml(issuer.name)}</b><br>الفرع المطلوب المطابقة معه: <b>${escapePurchaseReportHtml(target.name)}</b><br><span style="color:var(--text-muted);font-size:12px;">الكشف يعرض حركات حساب الفرع كما سُجلت من هذا الفرع، مع الرصيد والحركات ضمن الفترة المحددة.</span>`;
+            document.getElementById('branchAccountStatementMeta').innerHTML=`الفرع الذي أصدر الكشف: <b>${escapeHtml(issuer.name)}</b><br>الفرع المطلوب المطابقة معه: <b>${escapeHtml(target.name)}</b><br><span style="color:var(--text-muted);font-size:12px;">الكشف يعرض حركات حساب الفرع كما سُجلت من هذا الفرع، مع الرصيد والحركات ضمن الفترة المحددة.</span>`;
             document.getElementById('branchAccountStatementModal').style.display='flex';
         }
         function closeBranchAccountStatementModal(){branchAccountStatementTargetId=null;const m=document.getElementById('branchAccountStatementModal');if(m)m.style.display='none';}
@@ -2609,9 +2659,9 @@ function confirmAddBranch(){
             const owedByMe=history.filter(v=>v.type!=='payment').reduce((a,v)=>a+Number(v.amount||0),0);
             const closing=owedToMe-owedByMe;
             const money=n=>Number(n||0).toLocaleString('en-US')+' د.ع';
-            const rows=history.map((v,i)=>{const isPay=v.type==='payment';return `<tr class="${isPay?'pay':'rec'}"><td>${i+1}</td><td>${escapePurchaseReportHtml(v.date||'-')}</td><td>${escapePurchaseReportHtml(v.time||'-')}</td><td><b>${isPay?'سند صرف':'سند قبض'}</b></td><td>${money(v.amount)}</td><td>${escapePurchaseReportHtml(v.note||'-')}</td><td>${escapePurchaseReportHtml(v.employee||'-')}</td></tr>`;}).join('')||'<tr><td colspan="7">لا توجد حركات ضمن الفترة المحددة.</td></tr>';
-            const status=closing>0?`الرصيد لصالح ${escapePurchaseReportHtml(issuer.name)}: مطلوب من ${escapePurchaseReportHtml(target.name)} مبلغ ${money(closing)}`:closing<0?`الرصيد لصالح ${escapePurchaseReportHtml(target.name)}: مطلوب من ${escapePurchaseReportHtml(issuer.name)} مبلغ ${money(Math.abs(closing))}`:'متطابق / لا يوجد رصيد صافٍ';
-            const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>كشف مطابقة فروع</title><style>@page{size:A4;}body{font-family:Arial,Tahoma,sans-serif;padding:28px;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact}h1,h2{text-align:center;margin:0 0 8px}.meta{text-align:center;line-height:1.9;color:#444}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}.box{border:1px solid #777;padding:12px;text-align:center;border-radius:6px}.box b{display:block;font-size:18px;margin-top:6px}.box.pay{background:#fdecea;border-color:#e6a19a}.box.rec{background:#e8f6ec;border-color:#9ccfae}table{width:100%;border-collapse:collapse;margin-top:18px}th,td{border:1px solid #222;padding:7px;text-align:center;font-size:12px}th{background:#eee}tr.pay td{background:#fdecea}tr.rec td{background:#e8f6ec}.status{text-align:center;font-weight:bold;margin:12px 0;padding:10px;border:1px solid #777;border-radius:6px}.legend{text-align:center;font-size:11px;color:#555;margin-top:6px}.legend span{display:inline-block;width:12px;height:12px;vertical-align:middle;margin:0 4px;border:1px solid #999}</style></head><body><h1>VOLTECH — كشف مطابقة بين الفروع</h1><h2>${escapePurchaseReportHtml(issuer.name)} ↔ ${escapePurchaseReportHtml(target.name)}</h2><div class="meta">الفرع مصدر الكشف: ${escapePurchaseReportHtml(issuer.name)}<br>الفرع محل الكشف: ${escapePurchaseReportHtml(target.name)}<br>الفترة: ${from} إلى ${to}<br>تاريخ إصدار الكشف: ${new Date().toLocaleDateString('en-GB')}</div><div class="grid"><div class="box pay">مطلوب لي (إجمالي الصرف)<b>${money(owedToMe)}</b></div><div class="box rec">مطلوب مني (إجمالي القبض)<b>${money(owedByMe)}</b></div><div class="box">الرصيد الختامي (الصرف − القبض)<b>${money(closing)}</b></div></div><div class="status">${status}</div><div class="legend"><span style="background:#fdecea"></span>سند صرف &nbsp;&nbsp; <span style="background:#e8f6ec"></span>سند قبض</div><table><thead><tr><th>#</th><th>التاريخ</th><th>الوقت</th><th>نوع الحركة</th><th>المبلغ</th><th>البيان</th><th>الموظف</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+            const rows=history.map((v,i)=>{const isPay=v.type==='payment';return `<tr class="${isPay?'pay':'rec'}"><td>${i+1}</td><td>${escapeHtml(v.date||'-')}</td><td>${escapeHtml(v.time||'-')}</td><td><b>${isPay?'سند صرف':'سند قبض'}</b></td><td>${money(v.amount)}</td><td>${escapeHtml(v.note||'-')}</td><td>${escapeHtml(v.employee||'-')}</td></tr>`;}).join('')||'<tr><td colspan="7">لا توجد حركات ضمن الفترة المحددة.</td></tr>';
+            const status=closing>0?`الرصيد لصالح ${escapeHtml(issuer.name)}: مطلوب من ${escapeHtml(target.name)} مبلغ ${money(closing)}`:closing<0?`الرصيد لصالح ${escapeHtml(target.name)}: مطلوب من ${escapeHtml(issuer.name)} مبلغ ${money(Math.abs(closing))}`:'متطابق / لا يوجد رصيد صافٍ';
+            const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>كشف مطابقة فروع</title><style>@page{size:A4;}body{font-family:Arial,Tahoma,sans-serif;padding:28px;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact}h1,h2{text-align:center;margin:0 0 8px}.meta{text-align:center;line-height:1.9;color:#444}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}.box{border:1px solid #777;padding:12px;text-align:center;border-radius:6px}.box b{display:block;font-size:18px;margin-top:6px}.box.pay{background:#fdecea;border-color:#e6a19a}.box.rec{background:#e8f6ec;border-color:#9ccfae}table{width:100%;border-collapse:collapse;margin-top:18px}th,td{border:1px solid #222;padding:7px;text-align:center;font-size:12px}th{background:#eee}tr.pay td{background:#fdecea}tr.rec td{background:#e8f6ec}.status{text-align:center;font-weight:bold;margin:12px 0;padding:10px;border:1px solid #777;border-radius:6px}.legend{text-align:center;font-size:11px;color:#555;margin-top:6px}.legend span{display:inline-block;width:12px;height:12px;vertical-align:middle;margin:0 4px;border:1px solid #999}</style></head><body><h1>VOLTECH — كشف مطابقة بين الفروع</h1><h2>${escapeHtml(issuer.name)} ↔ ${escapeHtml(target.name)}</h2><div class="meta">الفرع مصدر الكشف: ${escapeHtml(issuer.name)}<br>الفرع محل الكشف: ${escapeHtml(target.name)}<br>الفترة: ${from} إلى ${to}<br>تاريخ إصدار الكشف: ${new Date().toLocaleDateString('en-GB')}</div><div class="grid"><div class="box pay">مطلوب لي (إجمالي الصرف)<b>${money(owedToMe)}</b></div><div class="box rec">مطلوب مني (إجمالي القبض)<b>${money(owedByMe)}</b></div><div class="box">الرصيد الختامي (الصرف − القبض)<b>${money(closing)}</b></div></div><div class="status">${status}</div><div class="legend"><span style="background:#fdecea"></span>سند صرف &nbsp;&nbsp; <span style="background:#e8f6ec"></span>سند قبض</div><table><thead><tr><th>#</th><th>التاريخ</th><th>الوقت</th><th>نوع الحركة</th><th>المبلغ</th><th>البيان</th><th>الموظف</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
             if(openPrintWindow(html,{autoPrint:true}))closeBranchAccountStatementModal();
         }
         function renderBranchManagement(){
@@ -2660,7 +2710,7 @@ function confirmAddBranch(){
         // حفظ دائم لكل بيانات التشغيل داخل ملف JSON واحد في localStorage.
         // يتم استعادتها عند إعادة فتح/تحديث الصفحة، مع إبقاء التقارير التاريخية منفصلة أيضاً.
         const APP_STORE_KEY = 'voltech_app_state_v14';
-        const VOLTECH_BUILD = 'V6.3.6-PRELINK-SALES-NAMES-SIMPLE';
+        const VOLTECH_BUILD = 'V6.4.0-SUPABASE-PREP';
         function appStatePayload(){
             syncActiveBranchToStore();
             return {
@@ -2669,7 +2719,7 @@ function confirmAddBranch(){
                 version: 15, savedAt: Date.now(),
                 centralDeviceCatalog:JSON.parse(JSON.stringify(centralDeviceCatalog||deviceCatalog||[])),
                 centralAccessoryCatalog:JSON.parse(JSON.stringify(centralAccessoryCatalog||accessoryCatalog||[])),
-                exchangeRate, vipWarrantyPrice, systemUsers, branches, currentBranchId, branchDataStore, founderLogsList, cloudDatabaseConfig, companyLogo, companyBrandMode, companyBrandText, companyFacebook, companyInstagram, companyTiktok, companySnapchat
+                exchangeRate, vipWarrantyPrice, systemUsers, branches, currentBranchId, branchDataStore, founderLogsList, companyLogo, companyBrandMode, companyBrandText, companyFacebook, companyInstagram, companyTiktok, companySnapchat
             };
         }
         // ===== V6.1 PRE-LINK SAFETY LAYER =====
@@ -2877,7 +2927,7 @@ function confirmAddBranch(){
         }
 
         function saveAllAppState(){
-            if(window.__vtOtherTab){vtBanner('⚠️ النظام مفتوح بتبويب آخر. أغلق هذا التبويب حتى لا تتعارض البيانات.');return false;} try{ localStorage.setItem(APP_STORE_KEY, JSON.stringify(appStatePayload())); vtBanner(''); return true; } catch(e){ console.error('VOLTECH persistence error:',e); vtBanner('⚠️ تعذر حفظ البيانات (المساحة ممتلئة). لا تغلق الصفحة وحمّل نسخة احتياطية فوراً.'); return false; }
+            if(window.__vtOtherTab){vtBanner('⚠️ النظام مفتوح بتبويب آخر. أغلق هذا التبويب حتى لا تتعارض البيانات.');return false;} try{ localStorage.setItem(APP_STORE_KEY, JSON.stringify(appStatePayload())); vtBanner(''); if(window.VoltechSync) window.VoltechSync.onLocalSaved(); return true; } catch(e){ console.error('VOLTECH persistence error:',e); vtBanner('⚠️ تعذر حفظ البيانات (المساحة ممتلئة). لا تغلق الصفحة وحمّل نسخة احتياطية فوراً.'); return false; }
         }
         function hydrateAppState(){
             try{
@@ -2894,7 +2944,7 @@ function confirmAddBranch(){
                 if(Number.isFinite(st.vaultBalance)) vaultBalance=st.vaultBalance;
                 if(Array.isArray(st.systemUsers)) systemUsers=st.systemUsers;
                 if(Array.isArray(st.founderLogsList)) founderLogsList=st.founderLogsList;
-                if(st.cloudDatabaseConfig && typeof st.cloudDatabaseConfig==='object') cloudDatabaseConfig=st.cloudDatabaseConfig;
+                migrateLegacyCloudConfig(st.cloudDatabaseConfig);
                 companyLogo=(st.companyLogo && typeof st.companyLogo==='object' && /^data:image\//.test(String(st.companyLogo.dataUrl||''))) ? st.companyLogo : null;
                 companyBrandMode=['default','text','image'].includes(st.companyBrandMode) ? st.companyBrandMode : 'default';
                 companyBrandText=sanitizeBrandSegments(st.companyBrandText);
@@ -3061,7 +3111,7 @@ function confirmAddBranch(){
             const monthlyBox=document.getElementById('vipMonthlyHistoryList'), yearlyBox=document.getElementById('vipYearlyHistoryList'); [monthlyBox,yearlyBox].forEach(b=>{if(b){b.style.maxHeight='230px';b.style.overflowY='auto';}});
         }
         function buildDailyReportPrintWindow(report){
-            const branchLabel=escapePurchaseReportHtml(report.branchName||branchName());
+            const branchLabel=escapeHtml(report.branchName||branchName());
             const cashierVal=Number(report.cashierBalanceAtIssue!=null?report.cashierBalanceAtIssue:cashierBalance||0).toLocaleString('en-US');
             const vaultVal=Number(report.vaultBalanceAtIssue!=null?report.vaultBalanceAtIssue:vaultBalance||0).toLocaleString('en-US');
             const totalFundsVal=(Number(report.cashierBalanceAtIssue!=null?report.cashierBalanceAtIssue:cashierBalance||0)+Number(report.vaultBalanceAtIssue!=null?report.vaultBalanceAtIssue:vaultBalance||0)).toLocaleString('en-US');
@@ -3551,7 +3601,7 @@ function confirmAddBranch(){
             box.innerHTML=`<div style="padding:14px;border:1px solid var(--accent-blue);border-radius:10px;background:rgba(52,152,219,.06);"><b>بيانات التوصيل</b><div style="margin-top:8px;line-height:2;"><b>نوع الفاتورة:</b> ${inv.category==='device'?'أجهزة':'اكسسوارات'}<br><b>إجمالي الفاتورة:</b> ${Number(inv.totalAmount||0).toLocaleString('en-US')} د.ع<br><b>+ سعر التوصيل:</b> ${fee.toLocaleString('en-US')} د.ع<br><b>الإجمالي المطلوب تحصيله من الزبون:</b> <span style="color:var(--accent-red);font-weight:900;">${(due+fee).toLocaleString('en-US')} د.ع</span></div></div>`;
         }
         function buildDeliveryDataHtml(d){
-            const esc=escapePurchaseReportHtml, money=n=>Number(n||0).toLocaleString('en-US');
+            const esc=escapeHtml, money=n=>Number(n||0).toLocaleString('en-US');
             const items=[
                 `<p>اسم المستلم: ${esc(d.recipient||'-')}</p>`,
                 `<p>المحافظة: ${esc(d.governorate||'-')}</p>`,
@@ -3575,7 +3625,7 @@ function confirmAddBranch(){
             setPrintSections({meta:false,table:false,total:false});
             const vip=document.getElementById('printVipBadgeBox'); if(vip) vip.style.display='none';
             const notesBox=document.getElementById('printWarrantyNoteText')?.closest('.invoice-footer-notes'); if(notesBox){ notesBox.style.borderTop='0'; notesBox.style.paddingTop='0'; notesBox.style.marginTop='4px'; }
-            const noRow=document.getElementById('printInvoiceNoRow'); if(noRow) noRow.innerHTML=`رقم وصل التوصيل: <b id="printInvoiceNo">${escapePurchaseReportHtml(String(receiptNo||''))}</b>`;
+            const noRow=document.getElementById('printInvoiceNoRow'); if(noRow) noRow.innerHTML=`رقم وصل التوصيل: <b id="printInvoiceNo">${escapeHtml(String(receiptNo||''))}</b>`;
         }
         function issueDeliveryReceipt(){
             if(!loggedInUser||!['admin','manager','employee','founder'].includes(loggedInUser.role)){vtAlert('إصدار وصل التوصيل متاح للمسؤول العام ومدير الفرع وموظف المبيعات فقط.');return;}
@@ -3614,7 +3664,7 @@ function confirmAddBranch(){
             const label=document.getElementById('deliveryCompanyModalBranch'); if(label)label.textContent=branchName();
             const list=document.getElementById('deliveryCompanyList'); if(!list)return;
             const names=Array.isArray(deliveryCompaniesList)?deliveryCompaniesList:[];
-            list.innerHTML=names.length?names.map((n,idx)=>`<span style="background:rgba(231,76,60,.12);border:1px solid #e74c3c;padding:6px 11px;border-radius:20px;font-size:12px;display:inline-flex;align-items:center;gap:8px;">${escapePurchaseReportHtml(n)}<button type="button" title="حذف" onclick="removeDeliveryCompanyAt(${idx})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-weight:900;font-size:15px;">×</button></span>`).join(''):'<span style="color:var(--text-muted);font-size:12px;">لا توجد شركات مضافة بعد لهذا الفرع.</span>';
+            list.innerHTML=names.length?names.map((n,idx)=>`<span style="background:rgba(231,76,60,.12);border:1px solid #e74c3c;padding:6px 11px;border-radius:20px;font-size:12px;display:inline-flex;align-items:center;gap:8px;">${escapeHtml(n)}<button type="button" title="حذف" onclick="removeDeliveryCompanyAt(${idx})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-weight:900;font-size:15px;">×</button></span>`).join(''):'<span style="color:var(--text-muted);font-size:12px;">لا توجد شركات مضافة بعد لهذا الفرع.</span>';
         }
         function openDeliveryCompanyModal(){
             if(!canManageDeliveryCompanies()){vtAlert('إدارة شركات التوصيل متاحة للمسؤول العام والمنشأ فقط.');return;}
@@ -3646,7 +3696,7 @@ function confirmAddBranch(){
             const sel=document.getElementById('deliveryCompanySelect'); if(!sel)return;
             const current=sel.value;
             const names=Array.isArray(deliveryCompaniesList)?deliveryCompaniesList.slice():[];
-            sel.innerHTML='<option value="">اختر شركة التوصيل</option>'+names.map(n=>`<option value="${escapePurchaseReportHtml(n)}">${escapePurchaseReportHtml(n)}</option>`).join('');
+            sel.innerHTML='<option value="">اختر شركة التوصيل</option>'+names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
             if(names.includes(current)) sel.value=current;
         }
         function populateDeliveryReconCompanySelect(){
@@ -3655,7 +3705,7 @@ function confirmAddBranch(){
             const fromList=Array.isArray(deliveryCompaniesList)?deliveryCompaniesList:[];
             const fromRecords=[...new Set((deliveryRecords||[]).map(r=>String(r?.deliveryCompany||'').trim()).filter(Boolean))];
             const names=[...new Set([...fromList,...fromRecords])].sort((a,b)=>a.localeCompare(b,'ar'));
-            sel.innerHTML='<option value="">كل الشركات</option>'+names.map(n=>`<option value="${escapePurchaseReportHtml(n)}">${escapePurchaseReportHtml(n)}</option>`).join('');
+            sel.innerHTML='<option value="">كل الشركات</option>'+names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
             if(names.includes(current)) sel.value=current;
         }
 
@@ -3667,7 +3717,7 @@ function confirmAddBranch(){
             const list=document.getElementById('maintenanceAgencyList'); if(!list)return;
             if(!maintenanceAgencies.length) maintenanceAgencies=[{id:1,name:'وكالة / مركز صيانة عام',active:true}];
             const items=maintenanceAgencies.filter(a=>a.active!==false);
-            list.innerHTML=items.length?items.map((a)=>`<span style="background:rgba(231,76,60,.12);border:1px solid #e74c3c;padding:6px 11px;border-radius:20px;font-size:12px;display:inline-flex;align-items:center;gap:8px;">${maintenanceEscape(a.name)}<button type="button" title="حذف" onclick="removeMaintenanceAgencyAt(${a.id})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-weight:900;font-size:15px;">×</button></span>`).join(''):'<span style="color:var(--text-muted);font-size:12px;">لا توجد وكالات مضافة بعد لهذا الفرع.</span>';
+            list.innerHTML=items.length?items.map((a)=>`<span style="background:rgba(231,76,60,.12);border:1px solid #e74c3c;padding:6px 11px;border-radius:20px;font-size:12px;display:inline-flex;align-items:center;gap:8px;">${escapeHtml(a.name)}<button type="button" title="حذف" onclick="removeMaintenanceAgencyAt(${a.id})" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-weight:900;font-size:15px;">×</button></span>`).join(''):'<span style="color:var(--text-muted);font-size:12px;">لا توجد وكالات مضافة بعد لهذا الفرع.</span>';
         }
         function openMaintenanceAgencyModal(){
             if(!canManageMaintenanceAgencies()){vtAlert('إدارة وكالات الصيانة متاحة للمسؤول العام والمنشأ فقط.');return;}
@@ -3720,7 +3770,7 @@ function confirmAddBranch(){
             if(q)rows=rows.filter(r=>deliveryLogMatchesSearch(r,q));
             if(!rows.length){body.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:14px;">لا توجد سجلات توصيل مطابقة.</td></tr>';return;}
             const canEdit=!!loggedInUser&&(isFounder()||['admin','manager'].includes(loggedInUser.role));
-            body.innerHTML=rows.map(r=>`<tr><td>${r.receiptNo||'-'}</td><td>${escapePurchaseReportHtml(r.customerName||'-')}</td><td>${escapePurchaseReportHtml(r.governorate||'-')}</td><td>${escapePurchaseReportHtml(r.deliveryCompany||'-')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')} د.ع</td><td>${r.date||'-'} ${r.time||''}</td><td style="display:flex;gap:5px;flex-wrap:wrap;"><button class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewDeliveryRecord(${r.id})">عرض</button>${canEdit?`<button class="btn-action" style="background:#f39c12;color:#fff;" onclick="openEditDeliveryRecordModal(${r.id})">تعديل</button>`:''}</td></tr>`).join('');
+            body.innerHTML=rows.map(r=>`<tr><td>${r.receiptNo||'-'}</td><td>${escapeHtml(r.customerName||'-')}</td><td>${escapeHtml(r.governorate||'-')}</td><td>${escapeHtml(r.deliveryCompany||'-')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')} د.ع</td><td>${r.date||'-'} ${r.time||''}</td><td style="display:flex;gap:5px;flex-wrap:wrap;"><button class="btn-action" style="background:var(--accent-blue);color:#fff;" onclick="previewDeliveryRecord(${r.id})">عرض</button>${canEdit?`<button class="btn-action" style="background:#f39c12;color:#fff;" onclick="openEditDeliveryRecordModal(${r.id})">تعديل</button>`:''}</td></tr>`).join('');
         }
 
         function previewDeliveryRecord(id){
@@ -3749,17 +3799,17 @@ function confirmAddBranch(){
             const companyNames=[...new Set([...(deliveryCompaniesList||[]),r.deliveryCompany].filter(Boolean))];
             modal.innerHTML=`<div class="modal-content-box" style="width:560px;max-width:98vw;border-color:#f39c12;">
                 <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--border-color);padding-bottom:10px;margin-bottom:14px;">
-                <h3 style="color:#f39c12;margin:0;"><i class="fa-solid fa-pen-to-square"></i> تعديل وصل التوصيل ${escapePurchaseReportHtml(r.receiptNo||'')}</h3>
+                <h3 style="color:#f39c12;margin:0;"><i class="fa-solid fa-pen-to-square"></i> تعديل وصل التوصيل ${escapeHtml(r.receiptNo||'')}</h3>
                 <button type="button" onclick="document.getElementById('deliveryEditModal').style.display='none'" style="background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="form-grid">
-                <div><label>اسم المستلم:</label><input id="editDeliveryRecipient" type="text" value="${escapePurchaseReportHtml(r.recipientName||'')}"></div>
+                <div><label>اسم المستلم:</label><input id="editDeliveryRecipient" type="text" value="${escapeHtml(r.recipientName||'')}"></div>
                 <div><label>المحافظة:</label><select id="editDeliveryGovernorate"></select></div>
-                <div style="grid-column:1/-1;"><label>عنوان التوصيل:</label><input id="editDeliveryAddress" type="text" value="${escapePurchaseReportHtml(r.address||'')}"></div>
-                <div><label>رقم هاتف الزبون:</label><input id="editDeliveryPhone" type="tel" inputmode="tel" placeholder="مثال: 0770xxxxxxx" value="${escapePurchaseReportHtml(r.deliveryPhone||deliveryPhoneFromInvoice({clientPhone:r.customerPhone}))}"></div>
-                <div><label>شركة التوصيل:</label><select id="editDeliveryCompany">${companyNames.map(n=>`<option value="${escapePurchaseReportHtml(n)}" ${n===r.deliveryCompany?'selected':''}>${escapePurchaseReportHtml(n)}</option>`).join('')}</select></div>
+                <div style="grid-column:1/-1;"><label>عنوان التوصيل:</label><input id="editDeliveryAddress" type="text" value="${escapeHtml(r.address||'')}"></div>
+                <div><label>رقم هاتف الزبون:</label><input id="editDeliveryPhone" type="tel" inputmode="tel" placeholder="مثال: 0770xxxxxxx" value="${escapeHtml(r.deliveryPhone||deliveryPhoneFromInvoice({clientPhone:r.customerPhone}))}"></div>
+                <div><label>شركة التوصيل:</label><select id="editDeliveryCompany">${companyNames.map(n=>`<option value="${escapeHtml(n)}" ${n===r.deliveryCompany?'selected':''}>${escapeHtml(n)}</option>`).join('')}</select></div>
                 <div><label>سعر التوصيل:</label><input id="editDeliveryFee" type="number" min="0" value="${Number(r.deliveryFee||0)}"></div>
-                <div><label>ملاحظة:</label><input id="editDeliveryNote" type="text" value="${escapePurchaseReportHtml(r.note||'')}"></div>
+                <div><label>ملاحظة:</label><input id="editDeliveryNote" type="text" value="${escapeHtml(r.note||'')}"></div>
                 </div>
                 <button type="button" class="btn-custom" style="margin-top:14px;background:linear-gradient(135deg,#f39c12,#d68910);" onclick="saveEditedDeliveryRecord()"><i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات</button>
             </div>`;
@@ -3807,10 +3857,10 @@ function confirmAddBranch(){
                 const totalFee=list.reduce((s,r)=>s+Number(r.deliveryFee||0),0);
                 const totalRequired=list.reduce((s,r)=>s+Number(r.requiredTotal||0),0);
                 grandTotal+=totalRequired; grandFees+=totalFee; grandInvoices+=totalAmount;
-                const trs=list.map(r=>`<tr><td>${r.receiptNo}</td><td>${escapePurchaseReportHtml(r.invoiceNo||'')}</td><td>${escapePurchaseReportHtml(r.customerName||'')}</td><td>${escapePurchaseReportHtml(r.governorate||'-')}</td><td>${Number(r.totalAmount||0).toLocaleString('en-US')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')}</td><td>${Number(r.requiredTotal||0).toLocaleString('en-US')}</td><td>${r.date}</td></tr>`).join('');
+                const trs=list.map(r=>`<tr><td>${r.receiptNo}</td><td>${escapeHtml(r.invoiceNo||'')}</td><td>${escapeHtml(r.customerName||'')}</td><td>${escapeHtml(r.governorate||'-')}</td><td>${Number(r.totalAmount||0).toLocaleString('en-US')}</td><td>${Number(r.deliveryFee||0).toLocaleString('en-US')}</td><td>${Number(r.requiredTotal||0).toLocaleString('en-US')}</td><td>${r.date}</td></tr>`).join('');
                 return `<div style="margin-top:18px;border:1px solid #ccc;border-radius:8px;padding:10px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:1px solid #ddd;padding-bottom:8px;margin-bottom:8px;">
-                    <b style="font-size:15px;">${escapePurchaseReportHtml(companyName)} <span style="font-weight:normal;color:#555;font-size:12px;">(عدد الوصولات: ${list.length})</span></b>
+                    <b style="font-size:15px;">${escapeHtml(companyName)} <span style="font-weight:normal;color:#555;font-size:12px;">(عدد الوصولات: ${list.length})</span></b>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
                     <div style="flex:1;min-width:130px;padding:8px;border:1px dashed #888;border-radius:6px;text-align:center;"><div style="font-size:11px;color:#666;">إجمالي الفواتير</div><b>${totalAmount.toLocaleString('en-US')} د.ع</b></div>
@@ -3830,7 +3880,7 @@ function confirmAddBranch(){
             if(company)rows=rows.filter(r=>(r.deliveryCompany||'')===company);
             if(!rows.length){vtAlert('لا توجد سجلات توصيل ضمن هذه الفترة/الشركة.');return;}
             const {sections,grandTotal,grandFees,grandInvoices}=buildDeliveryReconciliationSectionsHtml(rows);
-            const companyLabel=escapePurchaseReportHtml(company||'كل الشركات');
+            const companyLabel=escapeHtml(company||'كل الشركات');
             const content=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
                 <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #888;border-radius:8px;"><div style="font-size:12px;color:#666;">إجمالي الفواتير</div><b>${grandInvoices.toLocaleString('en-US')} د.ع</b></div>
                 <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #3498db;border-radius:8px;"><div style="font-size:12px;color:#666;">إجمالي أجور التوصيل</div><b>${grandFees.toLocaleString('en-US')} د.ع</b></div>
@@ -3838,7 +3888,7 @@ function confirmAddBranch(){
                 <div style="flex:1;min-width:150px;padding:10px;border:1px dashed #9b59b6;border-radius:8px;"><div style="font-size:12px;color:#666;">عدد الوصولات الكلي</div><b>${rows.length}</b></div>
                 </div>
                 ${sections}`;
-            const html=`<html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>كشف مطابقة التوصيل</title><style>@page{size:A4;}body{font-family:Tahoma,Arial,sans-serif;padding:20px;color:#111;}table{width:100%;border-collapse:collapse;margin-top:10px;}th,td{border:1px solid #999;padding:6px 8px;font-size:12px;text-align:center;}th{background:#eee;}h2{margin-bottom:4px;}</style></head><body><h2>كشف مطابقة التوصيل — ${companyLabel}</h2><p>${escapePurchaseReportHtml(branchName())} — الفترة: ${from||'—'} إلى ${to||'—'} — تاريخ الإصدار: ${new Date().toLocaleDateString('en-GB')}</p>${content}</body></html>`;
+            const html=`<html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>كشف مطابقة التوصيل</title><style>@page{size:A4;}body{font-family:Tahoma,Arial,sans-serif;padding:20px;color:#111;}table{width:100%;border-collapse:collapse;margin-top:10px;}th,td{border:1px solid #999;padding:6px 8px;font-size:12px;text-align:center;}th{background:#eee;}h2{margin-bottom:4px;}</style></head><body><h2>كشف مطابقة التوصيل — ${companyLabel}</h2><p>${escapeHtml(branchName())} — الفترة: ${from||'—'} إلى ${to||'—'} — تاريخ الإصدار: ${new Date().toLocaleDateString('en-GB')}</p>${content}</body></html>`;
             openPrintWindow(html,{autoPrint:true});
             closeDeliveryReconModal();
             logAction(loggedInUser.name,'طباعة كشف مطابقة توصيل',`طباعة كشف مطابقة التوصيل — الشركة: ${company||'كل الشركات'} — الفترة: ${from||'—'} إلى ${to||'—'} — عدد الوصولات: ${rows.length}`);
@@ -3853,8 +3903,7 @@ function confirmAddBranch(){
         function maintenanceNow(){const d=new Date();return{iso:d.toISOString(),date:d.toLocaleDateString('en-GB'),time:d.toLocaleTimeString('en-GB')};}
         function maintenanceAgeDays(r){if(!r?.receivedAt)return 0;const a=new Date(r.receivedAt).getTime(),b=r.deliveredToCustomerAt?new Date(r.deliveredToCustomerAt).getTime():Date.now();return Number.isFinite(a)?Math.max(0,Math.floor((b-a)/86400000)):0;}
         function maintenanceStatusClass(r){if(r.status==='تم التسليم')return'ready';const a=maintenanceAgeDays(r);if(a>20)return'danger';if(a>10)return'warning';if(['تم الإصلاح','جاهز للتسليم'].includes(r.status))return'ready';return'active';}
-        function maintenanceEscape(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-        function renderMaintenanceAgencySelect(){const s=document.getElementById('maintenanceAgencySelect');if(!s)return;if(!maintenanceAgencies.length)maintenanceAgencies=[{id:1,name:'وكالة / مركز صيانة عام',active:true}];s.innerHTML='<option value="">اختر الوكالة</option>'+maintenanceAgencies.filter(a=>a.active!==false).map(a=>`<option value="${a.id}">${maintenanceEscape(a.name)}</option>`).join('');}
+        function renderMaintenanceAgencySelect(){const s=document.getElementById('maintenanceAgencySelect');if(!s)return;if(!maintenanceAgencies.length)maintenanceAgencies=[{id:1,name:'وكالة / مركز صيانة عام',active:true}];s.innerHTML='<option value="">اختر الوكالة</option>'+maintenanceAgencies.filter(a=>a.active!==false).map(a=>`<option value="${a.id}">${escapeHtml(a.name)}</option>`).join('');}
         function maintenanceImeiKeydown(event){
             if(['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return true;
             if(event.ctrlKey||event.metaKey) return true;
@@ -3909,7 +3958,7 @@ function confirmAddBranch(){
             const fallback=String(loggedInUser.name||'').trim();
             if(!names.length && fallback) names.push(fallback);
             const current=sel.value;
-            sel.innerHTML='<option value="">اختر الموظف</option>'+names.map(n=>`<option value="${maintenanceEscape(n)}">${maintenanceEscape(n)}</option>`).join('');
+            sel.innerHTML='<option value="">اختر الموظف</option>'+names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
             if(loggedInUser.role==='employee' && names.includes(fallback)){
                 sel.value=fallback;
                 sel.disabled=true;
@@ -4015,7 +4064,7 @@ function confirmAddBranch(){
             const icon=document.getElementById('maintenanceRecordsToggleIcon'); if(icon) icon.className=showing?'fa-solid fa-chevron-down':'fa-solid fa-chevron-up';
             if(!showing) renderMaintenanceTable();
         }
-        function renderMaintenanceTable(){if(!requireMaintenanceAccess())return;const tb=document.querySelector('#maintenanceTable tbody');if(!tb)return;const q=(document.getElementById('maintenanceSearchInput')?.value||'').trim().toLowerCase(),sf=document.getElementById('maintenanceStatusFilter')?.value||'';const list=(maintenanceRecords||[]).filter(r=>{const hay=[r.receiptNo,r.customerPhone,r.customerName,r.imei,r.originalSaleInvoiceNo,r.itemName,r.model].join(' ').toLowerCase();return(!q||hay.includes(q))&&(!sf||r.status===sf);});const title=document.getElementById('maintenanceBranchTitle');if(title)title.textContent=branchName();tb.innerHTML=list.length?list.map(r=>`<tr><td><b>${r.receiptNo}</b></td><td>${maintenanceEscape(r.customerName)}</td><td>${maintenanceEscape(r.customerPhone)}</td><td>${r.itemType==='device'?'جهاز':'اكسسوار'}</td><td>${maintenanceEscape(r.imei||'-')}</td><td>${maintenanceEscape(r.agencyName||'-')}</td><td><span class="maintenance-status ${maintenanceStatusClass(r)}">${maintenanceEscape(r.status)}</span></td><td>${maintenanceAgeDays(r)} يوم</td><td><div class="maintenance-actions"><button class="btn-action" style="background:${openMaintenanceDetailsId===r.id?'#e74c3c':'#3498db'};color:#fff;" onclick="toggleMaintenanceDetails(${r.id})">${openMaintenanceDetailsId===r.id?'إغلاق':'فتح'}</button><button class="btn-action" style="background:#8e44ad;color:#fff;" onclick="printMaintenanceSlip(${r.id},'customer')">طباعة وصل</button><button class="btn-action" style="background:#16a085;color:#fff;" onclick="printMaintenanceSlip(${r.id},'agency')">ورقة الوكالة</button></div></td></tr>`).join(''):'<tr><td colspan="9" style="padding:25px;color:var(--text-muted);">لا توجد سجلات صيانة لهذا الفرع.</td></tr>';renderMaintenanceAlerts();}
+        function renderMaintenanceTable(){if(!requireMaintenanceAccess())return;const tb=document.querySelector('#maintenanceTable tbody');if(!tb)return;const q=(document.getElementById('maintenanceSearchInput')?.value||'').trim().toLowerCase(),sf=document.getElementById('maintenanceStatusFilter')?.value||'';const list=(maintenanceRecords||[]).filter(r=>{const hay=[r.receiptNo,r.customerPhone,r.customerName,r.imei,r.originalSaleInvoiceNo,r.itemName,r.model].join(' ').toLowerCase();return(!q||hay.includes(q))&&(!sf||r.status===sf);});const title=document.getElementById('maintenanceBranchTitle');if(title)title.textContent=branchName();tb.innerHTML=list.length?list.map(r=>`<tr><td><b>${r.receiptNo}</b></td><td>${escapeHtml(r.customerName)}</td><td>${escapeHtml(r.customerPhone)}</td><td>${r.itemType==='device'?'جهاز':'اكسسوار'}</td><td>${escapeHtml(r.imei||'-')}</td><td>${escapeHtml(r.agencyName||'-')}</td><td><span class="maintenance-status ${maintenanceStatusClass(r)}">${escapeHtml(r.status)}</span></td><td>${maintenanceAgeDays(r)} يوم</td><td><div class="maintenance-actions"><button class="btn-action" style="background:${openMaintenanceDetailsId===r.id?'#e74c3c':'#3498db'};color:#fff;" onclick="toggleMaintenanceDetails(${r.id})">${openMaintenanceDetailsId===r.id?'إغلاق':'فتح'}</button><button class="btn-action" style="background:#8e44ad;color:#fff;" onclick="printMaintenanceSlip(${r.id},'customer')">طباعة وصل</button><button class="btn-action" style="background:#16a085;color:#fff;" onclick="printMaintenanceSlip(${r.id},'agency')">ورقة الوكالة</button></div></td></tr>`).join(''):'<tr><td colspan="9" style="padding:25px;color:var(--text-muted);">لا توجد سجلات صيانة لهذا الفرع.</td></tr>';renderMaintenanceAlerts();}
         function renderMaintenanceAlerts(){const b=document.getElementById('maintenanceAlerts');if(!b)return;const a=(maintenanceRecords||[]).filter(r=>r.status!=='تم التسليم'),o10=a.filter(r=>maintenanceAgeDays(r)>10),o20=a.filter(r=>maintenanceAgeDays(r)>20);b.innerHTML=o10.length||o20.length?`<div class="maintenance-alert-box"><b>تنبيهات الصيانة المتأخرة</b>${o10.length?`<div>أكثر من 10 أيام: ${o10.length}</div>`:''}${o20.length?`<div style="color:var(--accent-red);">أكثر من 20 يوماً: ${o20.length}</div>`:''}</div>`:'';}
         function toggleMaintenanceDetails(id){
             if(!requireMaintenanceAccess())return;
@@ -4037,12 +4086,12 @@ function confirmAddBranch(){
         function renderMaintenanceDetailsBox(id){
             const r=maintenanceGet(id); if(!r)return; const b=document.getElementById('maintenanceDetailsBox'); if(!b)return;
             const notifHistory=(maintenanceNotifications||[]).filter(n=>n.maintenanceId===r.id);
-            const notifHistoryHtml=notifHistory.length?notifHistory.map(n=>`<div style="padding:6px 0;border-bottom:1px dashed #333;font-size:12px;">${n.method==='message'?'✉️ إرسال رسالة':'📞 اتصال'} — ${maintenanceEscape(n.date)} ${maintenanceEscape(n.time)} — بواسطة ${maintenanceEscape(n.employee)}</div>`).join(''):'<div style="color:var(--text-muted);font-size:12px;padding:6px 0;">لم يتم تسجيل أي تبليغ للزبون بعد.</div>';
-            b.style.display='block'; b.innerHTML=`<h2>تفاصيل وصل الصيانة ${maintenanceEscape(r.receiptNo)}</h2>
-            <div class="form-grid"><div><b>فرع الاستلام:</b> ${maintenanceEscape(r.branchName)}</div><div><b>فرع البيع الأصلي:</b> ${maintenanceEscape(r.originalSaleBranchName||'-')}</div><div><b>الموظف المستلم:</b> ${maintenanceEscape(r.receivedByName)}</div><div><b>الزبون:</b> ${maintenanceEscape(r.customerName)}</div><div><b>الهاتف:</b> ${maintenanceEscape(r.customerPhone)}</div><div><b>نوع القطعة:</b> ${r.itemType==='device'?'جهاز':'اكسسوار'}</div><div><b>الشركة / الموديل:</b> ${maintenanceEscape((r.company||'')+' '+(r.model||r.itemName||''))}</div><div><b>IMEI:</b> ${maintenanceEscape(r.imei||'-')}</div><div><b>الباركود:</b> ${maintenanceEscape(r.barcode||'-')}</div><div><b>فاتورة البيع الأصلية:</b> ${maintenanceEscape(r.originalSaleInvoiceNo||'-')}</div><div><b>مرات الصيانة:</b> ${r.maintenanceCountForItem||1}</div><div><b>الوكالة:</b> ${maintenanceEscape(r.agencyName||'-')}</div><div><b>الحالة:</b> ${maintenanceEscape(r.status)}</div></div>
-            <div style="margin:12px 0;"><b>العطل عند الاستلام:</b><div class="notice">${maintenanceEscape(r.fault||'-')}</div></div>
-            <div class="form-grid"><div><label>تاريخ التسليم للوكالة:</label><input id="mAgencyDate" type="date" value="${r.deliveredToAgencyDate||''}"></div><div><label>رقم وصل الوكالة:</label><input id="mAgencySlip" value="${maintenanceEscape(r.agencySlipNo||'')}"></div><div><label>نتيجة الوكالة:</label><select id="mAgencyResult"><option value="">اختر</option><option>تم الإصلاح</option><option>تعذر أو رفض الإصلاح</option></select></div><div><label>القطع المستبدلة:</label><input id="mReplacedParts" value="${maintenanceEscape(r.replacedParts||'')}"></div></div>
-            <div style="margin-top:10px;"><label>ملاحظات الوكالة:</label><textarea id="mAgencyNotes" rows="3" style="width:100%;">${maintenanceEscape(r.agencyNotes||'')}</textarea></div>
+            const notifHistoryHtml=notifHistory.length?notifHistory.map(n=>`<div style="padding:6px 0;border-bottom:1px dashed #333;font-size:12px;">${n.method==='message'?'✉️ إرسال رسالة':'📞 اتصال'} — ${escapeHtml(n.date)} ${escapeHtml(n.time)} — بواسطة ${escapeHtml(n.employee)}</div>`).join(''):'<div style="color:var(--text-muted);font-size:12px;padding:6px 0;">لم يتم تسجيل أي تبليغ للزبون بعد.</div>';
+            b.style.display='block'; b.innerHTML=`<h2>تفاصيل وصل الصيانة ${escapeHtml(r.receiptNo)}</h2>
+            <div class="form-grid"><div><b>فرع الاستلام:</b> ${escapeHtml(r.branchName)}</div><div><b>فرع البيع الأصلي:</b> ${escapeHtml(r.originalSaleBranchName||'-')}</div><div><b>الموظف المستلم:</b> ${escapeHtml(r.receivedByName)}</div><div><b>الزبون:</b> ${escapeHtml(r.customerName)}</div><div><b>الهاتف:</b> ${escapeHtml(r.customerPhone)}</div><div><b>نوع القطعة:</b> ${r.itemType==='device'?'جهاز':'اكسسوار'}</div><div><b>الشركة / الموديل:</b> ${escapeHtml((r.company||'')+' '+(r.model||r.itemName||''))}</div><div><b>IMEI:</b> ${escapeHtml(r.imei||'-')}</div><div><b>الباركود:</b> ${escapeHtml(r.barcode||'-')}</div><div><b>فاتورة البيع الأصلية:</b> ${escapeHtml(r.originalSaleInvoiceNo||'-')}</div><div><b>مرات الصيانة:</b> ${r.maintenanceCountForItem||1}</div><div><b>الوكالة:</b> ${escapeHtml(r.agencyName||'-')}</div><div><b>الحالة:</b> ${escapeHtml(r.status)}</div></div>
+            <div style="margin:12px 0;"><b>العطل عند الاستلام:</b><div class="notice">${escapeHtml(r.fault||'-')}</div></div>
+            <div class="form-grid"><div><label>تاريخ التسليم للوكالة:</label><input id="mAgencyDate" type="date" value="${r.deliveredToAgencyDate||''}"></div><div><label>رقم وصل الوكالة:</label><input id="mAgencySlip" value="${escapeHtml(r.agencySlipNo||'')}"></div><div><label>نتيجة الوكالة:</label><select id="mAgencyResult"><option value="">اختر</option><option>تم الإصلاح</option><option>تعذر أو رفض الإصلاح</option></select></div><div><label>القطع المستبدلة:</label><input id="mReplacedParts" value="${escapeHtml(r.replacedParts||'')}"></div></div>
+            <div style="margin-top:10px;"><label>ملاحظات الوكالة:</label><textarea id="mAgencyNotes" rows="3" style="width:100%;">${escapeHtml(r.agencyNotes||'')}</textarea></div>
             <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;"><button class="btn-action" style="background:#16a085;color:#fff;padding:9px 13px;" onclick="setMaintenanceAgencyDelivered(${r.id})">تسليم للوكالة الآن</button><button class="btn-action" style="background:#3498db;color:#fff;padding:9px 13px;" onclick="saveMaintenanceAgencyResponse(${r.id})">حفظ رد الوكالة</button><button class="btn-action" style="background:#374151;color:#fff;padding:9px 13px;" onclick="toggleMaintenanceNotifyPanel(${r.id})">تبليغ الزبون</button><button class="btn-action" style="background:#2ecc71;color:#fff;padding:9px 13px;" onclick="completeMaintenanceDelivery(${r.id})">تسليم للزبون</button><button class="btn-action" style="background:#34495e;color:#fff;padding:9px 13px;" onclick="printMaintenanceSlip(${r.id},'customer')">إعادة طباعة وصل الزبون</button><button class="btn-action" style="background:#34495e;color:#fff;padding:9px 13px;" onclick="printMaintenanceSlip(${r.id},'agency')">إعادة طباعة ورقة الوكالة</button></div>
             <div id="maintenanceNotifyPanel" style="display:none;margin-top:10px;padding:12px;border:1px dashed #374151;border-radius:8px;background:rgba(55,65,81,.15);">
                 <label style="font-weight:800;">طريقة تبليغ الزبون:</label>
@@ -4069,7 +4118,7 @@ function confirmAddBranch(){
             const n=maintenanceNow();
             maintenanceNotifications.unshift({id:Date.now()+Math.floor(Math.random()*1000),maintenanceId:r.id,receiptNo:r.receiptNo,method,date:n.date,time:n.time,employee:loggedInUser.name});
             saveAllAppState();
-            logAction(loggedInUser.name,'تبليغ الزبون',`تم تبليغ الزبون ${maintenanceEscape(r.customerName)} بخصوص وصل الصيانة ${r.receiptNo} عبر ${method==='message'?'رسالة':'اتصال'}`);
+            logAction(loggedInUser.name,'تبليغ الزبون',`تم تبليغ الزبون ${escapeHtml(r.customerName)} بخصوص وصل الصيانة ${r.receiptNo} عبر ${method==='message'?'رسالة':'اتصال'}`);
             const p=document.getElementById('maintenanceNotifyPanel'); if(p)p.style.display='none';
             renderMaintenanceDetailsBox(id);
             vtAlert(`تم تسجيل تبليغ الزبون عبر ${method==='message'?'إرسال رسالة':'الاتصال'}.`);
@@ -4103,13 +4152,13 @@ function confirmAddBranch(){
 .no-print{display:none!important}
 @media print{.sheet{max-width:none;width:100%;padding:0}.section{break-inside:avoid}.header{break-inside:avoid}}
 `;}
-function maintenancePrintField(label,value,cls=''){return `<div class="field ${cls}"><b>${label}</b><span>${maintenanceEscape(value||'-')}</span></div>`;}
+function maintenancePrintField(label,value,cls=''){return `<div class="field ${cls}"><b>${label}</b><span>${escapeHtml(value||'-')}</span></div>`;}
 function printMaintenanceBundle(id,mode='both'){
             if(!requireMaintenanceAccess())return; const r=maintenanceGet(id); if(!r)return;
             const typeLabel=r.itemType==='device'?'جهاز':'اكسسوار', itemLabel=`${r.company||''} ${r.model||r.itemName||''}`.trim()||'-', field=(l,v)=>maintenancePrintField(l,v);
-            const customerPage=`<div class="sheet customer-card"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">وصل استلام الصيانة للزبون</div><div class="doc-sub">رقم الوصل: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">${maintenanceEscape(r.receivedDate||'')} — ${maintenanceEscape(r.receivedTime||'')}</div></div></div><div class="section"><div class="section-title">بيانات الزبون</div><div class="grid">${field('اسم الزبون',r.customerName)}${field('رقم الهاتف',r.customerPhone)}${field('فرع الاستلام',r.branchName)}${field('الموظف المستلم',r.receivedByName)}</div></div><div class="section"><div class="section-title">بيانات القطعة</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}</div></div><div class="section"><div class="section-title">وصف العطل</div><div class="fault">${maintenanceEscape(r.fault||'-')}</div></div><div class="notice"><b>ملاحظة:</b> هذا الوصل يثبت استلام القطعة للصيانة ويُستخدم كمرجع عند الاستلام.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الزبون<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — قسم الصيانة</span><span>وصل صيانة رقم ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
-            const agencyPage=`<div class="sheet agency-tech"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">ورقة تسليم الصيانة للوكالة</div><div class="doc-sub">مرجع الصيانة: <span class="number">${maintenanceEscape(r.receiptNo)}</span></div><div class="doc-sub">تاريخ الاستلام: ${maintenanceEscape(r.receivedDate||'')}</div></div></div><div class="section"><div class="section-title">بيانات التسليم</div><div class="grid">${field('الوكالة',r.agencyName||'-')}${field('فرع VOLTECH',r.branchName)}${field('الموظف المستلم',r.receivedByName)}${field('تاريخ التسليم للوكالة',r.deliveredToAgencyDate||'يُحدد عند التسليم')}</div></div><div class="section"><div class="section-title">بيانات القطعة الفنية</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}${field('رقم وصل الوكالة',r.agencySlipNo||'غير متوفر')}</div></div><div class="section"><div class="section-title">بلاغ العطل والنتيجة الفنية</div><div class="fault"><b>العطل:</b><br>${maintenanceEscape(r.fault||'-')}<br><br><b>النتيجة:</b><br>${maintenanceEscape(r.agencyResult||'-')}<br><br><b>القطع المستبدلة:</b><br>${maintenanceEscape(r.replacedParts||'-')}<br><br><b>ملاحظات الوكالة:</b><br>${maintenanceEscape(r.agencyNotes||'-')}</div></div><div class="notice"><b>ملاحظة للوكالة:</b> يرجى تثبيت نتيجة الفحص والإصلاح والقطع المستبدلة وإعادة القطعة مع رقم وصل الوكالة إن وجد.</div><div class="signrow"><div class="sigbox">${maintenanceEscape(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الوكالة<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — ورقة وكالة الصيانة</span><span>مرجع الصيانة ${maintenanceEscape(r.receiptNo)}</span></div></div>`;
-            const pages=mode==='customer'?customerPage:(mode==='agency'?agencyPage:customerPage+agencyPage); openPrintWindow(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>صيانة ${maintenanceEscape(r.receiptNo)}</title><style>${maintenancePrintStyles()}</style></head><body>${pages}</body></html>`,{autoPrint:true});
+            const customerPage=`<div class="sheet customer-card"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">وصل استلام الصيانة للزبون</div><div class="doc-sub">رقم الوصل: <span class="number">${escapeHtml(r.receiptNo)}</span></div><div class="doc-sub">${escapeHtml(r.receivedDate||'')} — ${escapeHtml(r.receivedTime||'')}</div></div></div><div class="section"><div class="section-title">بيانات الزبون</div><div class="grid">${field('اسم الزبون',r.customerName)}${field('رقم الهاتف',r.customerPhone)}${field('فرع الاستلام',r.branchName)}${field('الموظف المستلم',r.receivedByName)}</div></div><div class="section"><div class="section-title">بيانات القطعة</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}</div></div><div class="section"><div class="section-title">وصف العطل</div><div class="fault">${escapeHtml(r.fault||'-')}</div></div><div class="notice"><b>ملاحظة:</b> هذا الوصل يثبت استلام القطعة للصيانة ويُستخدم كمرجع عند الاستلام.</div><div class="signrow"><div class="sigbox">${escapeHtml(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الزبون<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — قسم الصيانة</span><span>وصل صيانة رقم ${escapeHtml(r.receiptNo)}</span></div></div>`;
+            const agencyPage=`<div class="sheet agency-tech"><div class="header"><div><div class="brand vt-brand-mark">VOL<span>TECH</span></div><div class="subtitle">لتجارة الهواتف النقالة والاكسسوارات والانظمة الذكية</div></div><div><div class="doc-title">ورقة تسليم الصيانة للوكالة</div><div class="doc-sub">مرجع الصيانة: <span class="number">${escapeHtml(r.receiptNo)}</span></div><div class="doc-sub">تاريخ الاستلام: ${escapeHtml(r.receivedDate||'')}</div></div></div><div class="section"><div class="section-title">بيانات التسليم</div><div class="grid">${field('الوكالة',r.agencyName||'-')}${field('فرع VOLTECH',r.branchName)}${field('الموظف المستلم',r.receivedByName)}${field('تاريخ التسليم للوكالة',r.deliveredToAgencyDate||'يُحدد عند التسليم')}</div></div><div class="section"><div class="section-title">بيانات القطعة الفنية</div><div class="grid">${field('نوع القطعة',typeLabel)}${field('الشركة / الموديل',itemLabel)}${field('اللون',r.color||'-')}${field('الذاكرة / السعة',r.memory||'-')}${field('IMEI',r.imei||'-')}${field('الباركود',r.barcode||'-')}${field('فاتورة البيع الأصلية',r.originalSaleInvoiceNo||'-')}${field('فرع البيع الأصلي',r.originalSaleBranchName||'-')}${field('رقم وصل الوكالة',r.agencySlipNo||'غير متوفر')}</div></div><div class="section"><div class="section-title">بلاغ العطل والنتيجة الفنية</div><div class="fault"><b>العطل:</b><br>${escapeHtml(r.fault||'-')}<br><br><b>النتيجة:</b><br>${escapeHtml(r.agencyResult||'-')}<br><br><b>القطع المستبدلة:</b><br>${escapeHtml(r.replacedParts||'-')}<br><br><b>ملاحظات الوكالة:</b><br>${escapeHtml(r.agencyNotes||'-')}</div></div><div class="notice"><b>ملاحظة للوكالة:</b> يرجى تثبيت نتيجة الفحص والإصلاح والقطع المستبدلة وإعادة القطعة مع رقم وصل الوكالة إن وجد.</div><div class="signrow"><div class="sigbox">${escapeHtml(r.receivedByName||'-')}<div class="sigline"></div></div><div class="sigbox">استلام الوكالة<div class="sigline"></div></div></div><div class="footer"><span>VOLTECH — ورقة وكالة الصيانة</span><span>مرجع الصيانة ${escapeHtml(r.receiptNo)}</span></div></div>`;
+            const pages=mode==='customer'?customerPage:(mode==='agency'?agencyPage:customerPage+agencyPage); openPrintWindow(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>صيانة ${escapeHtml(r.receiptNo)}</title><style>${maintenancePrintStyles()}</style></head><body>${pages}</body></html>`,{autoPrint:true});
         }
 function printMaintenanceSlip(id,type='customer'){if(!requireMaintenanceAccess())return;return printMaintenanceBundle(id,type==='customer'||type==='agency'?type:'both');}
 
@@ -4125,7 +4174,7 @@ function printMaintenanceSlip(id,type='customer'){if(!requireMaintenanceAccess()
             const rows=(branches||[]).map(b=>{const d=centralBranchData(b.id),cashier=Number(d.cashierBalance)||0,vault=Number(d.vaultBalance)||0,invs=[...(d.deviceInvoicesArchive||[]),...(d.accessoryInvoicesArchive||[])].filter(i=>i?.status==='active');return{branch:b,cashier,vault,available:cashier+vault,profit:centralBranchMonthlyProfit(d,key),sales:centralBranchMonthlySales(d,key),invoiceCount:invs.length};});
             const totalAvailable=rows.reduce((s,r)=>s+r.available,0),totalProfit=rows.reduce((s,r)=>s+r.profit,0),set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
             set('centralBranchCount',rows.length.toLocaleString('en-US'));set('centralActiveBranchCount',rows.filter(r=>r.branch.active!==false).length.toLocaleString('en-US'));set('centralTotalAvailable',totalAvailable.toLocaleString('en-US')+' د.ع');set('centralTotalMonthlyProfit',totalProfit.toLocaleString('en-US')+' د.ع');
-            const tb=document.querySelector('#centralBranchesTable tbody');if(tb)tb.innerHTML=rows.length?rows.map(r=>`<tr><td><b>${maintenanceEscape(r.branch.name||'فرع')}</b></td><td>${r.branch.active===false?'<span style="color:var(--accent-red);font-weight:800;">متوقف</span>':'<span style="color:var(--accent-green);font-weight:800;">نشط</span>'}</td><td>${r.cashier.toLocaleString('en-US')} د.ع</td><td>${r.vault.toLocaleString('en-US')} د.ع</td><td style="font-weight:900;color:var(--accent-blue);">${r.available.toLocaleString('en-US')} د.ع</td><td>${r.sales.toLocaleString('en-US')} د.ع</td><td style="font-weight:900;color:var(--accent-green);">${r.profit.toLocaleString('en-US')} د.ع</td><td>${r.invoiceCount.toLocaleString('en-US')}</td></tr>`).join(''):'<tr><td colspan="8" style="padding:25px;color:var(--text-muted);">لا توجد فروع.</td></tr>';
+            const tb=document.querySelector('#centralBranchesTable tbody');if(tb)tb.innerHTML=rows.length?rows.map(r=>`<tr><td><b>${escapeHtml(r.branch.name||'فرع')}</b></td><td>${r.branch.active===false?'<span style="color:var(--accent-red);font-weight:800;">متوقف</span>':'<span style="color:var(--accent-green);font-weight:800;">نشط</span>'}</td><td>${r.cashier.toLocaleString('en-US')} د.ع</td><td>${r.vault.toLocaleString('en-US')} د.ع</td><td style="font-weight:900;color:var(--accent-blue);">${r.available.toLocaleString('en-US')} د.ع</td><td>${r.sales.toLocaleString('en-US')} د.ع</td><td style="font-weight:900;color:var(--accent-green);">${r.profit.toLocaleString('en-US')} د.ع</td><td>${r.invoiceCount.toLocaleString('en-US')}</td></tr>`).join(''):'<tr><td colspan="8" style="padding:25px;color:var(--text-muted);">لا توجد فروع.</td></tr>';
             if(typeof Chart==='undefined')return;const labels=rows.map(r=>r.branch.name||'فرع');
             const build=(id,old,label,data,bg,border)=>{const c=document.getElementById(id);if(!c)return old;if(old)old.destroy();return new Chart(c,{type:'bar',data:{labels,datasets:[{label,data,backgroundColor:bg,borderColor:border,borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#f5f6fa'}}},scales:{x:{ticks:{color:'#a4b0be'},grid:{color:'rgba(255,255,255,.05)'}},y:{beginAtZero:true,ticks:{color:'#a4b0be'},grid:{color:'rgba(255,255,255,.05)'}}}}});};
             centralBranchFundsChartInstance=build('centralBranchFundsCanvas',centralBranchFundsChartInstance,'المبالغ المتوفرة (د.ع)',rows.map(r=>r.available),'rgba(52,152,219,.55)','#3498db');
@@ -4296,7 +4345,7 @@ function printMaintenanceSlip(id,type='customer'){if(!requireMaintenanceAccess()
                         <td><b>${u.name}</b></td>
                         <td>${roleLabels[u.role] || u.role}</td>
                         <td><code>${u.username}</code></td>
-                        <td><code>${escapePurchaseReportHtml(u.passwordPlain||'غير محفوظ')}</code></td>
+                        <td><code>${escapeHtml(u.passwordPlain||'غير محفوظ')}</code></td>
                         <td>${branchName(u.branchId||1)}</td>
                         <td>${statusText}</td>
                         <td>
@@ -4967,7 +5016,7 @@ let lastAutoAddedBatchImei = '';
             if(!modal || !sel)return;
             const current=sel.value;
             const companies=[...new Set((accountsList||[]).filter(a=>a && a.entityType==='company' && !isFixedSystemAccount(a)).map(a=>String(a.name||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
-            sel.innerHTML='<option value="">اختيار الشركة</option>'+companies.map(c=>`<option value="${escapePurchaseReportHtml(c)}">${escapePurchaseReportHtml(c)}</option>`).join('');
+            sel.innerHTML='<option value="">اختيار الشركة</option>'+companies.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
             if(companies.includes(current))sel.value=current;
             const now=new Date();
             const first=new Date(now.getFullYear(),now.getMonth(),1);
@@ -4993,7 +5042,7 @@ let lastAutoAddedBatchImei = '';
             return (h1>>>0).toString(16).padStart(8,'0')+(h2>>>0).toString(16).padStart(8,'0');
         }
 
-        function escapePurchaseReportHtml(value){
+        function escapeHtml(value){
             return String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
         }
 
@@ -5023,7 +5072,7 @@ let lastAutoAddedBatchImei = '';
         function hasTextBrand(){ return Array.isArray(companyBrandText) && companyBrandText.length>0; }
         function companyPlainName(){ return (companyBrandMode==='text' && hasTextBrand()) ? companyBrandText.map(s=>s.text).join('') : 'VOLTECH'; }
         function brandSegmentsHtml(segments){
-            return (segments||[]).map(seg=>`<span style="color:${escapePurchaseReportHtml(seg.color)}">${escapePurchaseReportHtml(seg.text)}</span>`).join('');
+            return (segments||[]).map(seg=>`<span style="color:${escapeHtml(seg.color)}">${escapeHtml(seg.text)}</span>`).join('');
         }
 
         // يطبّق هوية النظام (شعار صورة / اسم نصي مخصص / VOLTECH الافتراضي) على عناصر الصفحة ويُظهر زر الإعدادات للمنشأ.
@@ -5090,7 +5139,7 @@ let lastAutoAddedBatchImei = '';
             list.innerHTML=segs.map((seg,idx)=>`
                 <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
                     <input type="color" value="${isValidHexColor(seg.color)?seg.color:'#ffffff'}" oninput="updateBrandSegmentColor(${idx},this.value)" style="width:40px;height:38px;padding:2px;flex:0 0 auto;">
-                    <input type="text" value="${escapePurchaseReportHtml(seg.text)}" maxlength="20" placeholder="مقطع من الاسم" oninput="updateBrandSegmentText(${idx},this.value)" style="flex:1;min-width:0;margin:0;">
+                    <input type="text" value="${escapeHtml(seg.text)}" maxlength="20" placeholder="مقطع من الاسم" oninput="updateBrandSegmentText(${idx},this.value)" style="flex:1;min-width:0;margin:0;">
                     <button type="button" class="btn-action" style="background:#374151;color:#fff;" onclick="moveBrandSegmentRow(${idx},-1)" ${idx===0?'disabled':''} title="نقل لأعلى"><i class="fa-solid fa-arrow-up"></i></button>
                     <button type="button" class="btn-action" style="background:#374151;color:#fff;" onclick="moveBrandSegmentRow(${idx},1)" ${idx===segs.length-1?'disabled':''} title="نقل لأسفل"><i class="fa-solid fa-arrow-down"></i></button>
                     <button type="button" class="btn-action btn-delete" onclick="removeBrandSegmentRow(${idx})" ${segs.length<=1?'disabled':''} title="حذف"><i class="fa-solid fa-trash"></i></button>
@@ -5168,9 +5217,9 @@ let lastAutoAddedBatchImei = '';
             if(info){
                 if(pendingCompanyLogo){
                     const saved=pendingCompanyLogo.originalBytes>0?Math.min(99,Math.max(0,Math.round((1-pendingCompanyLogo.bytes/pendingCompanyLogo.originalBytes)*100))):0;
-                    info.innerHTML=`الملف: <b>${escapePurchaseReportHtml(pendingCompanyLogo.fileName)}</b> — الأبعاد بعد الضغط: <b>${pendingCompanyLogo.width}×${pendingCompanyLogo.height}</b> بكسل — الحجم: <b>${formatLogoBytes(pendingCompanyLogo.originalBytes)}</b> ← <b style="color:#2ecc71;">${formatLogoBytes(pendingCompanyLogo.bytes)}</b>${saved>0?` (تم توفير ${saved}%)`:''}`;
+                    info.innerHTML=`الملف: <b>${escapeHtml(pendingCompanyLogo.fileName)}</b> — الأبعاد بعد الضغط: <b>${pendingCompanyLogo.width}×${pendingCompanyLogo.height}</b> بكسل — الحجم: <b>${formatLogoBytes(pendingCompanyLogo.originalBytes)}</b> ← <b style="color:#2ecc71;">${formatLogoBytes(pendingCompanyLogo.bytes)}</b>${saved>0?` (تم توفير ${saved}%)`:''}`;
                 } else if(hasCompanyLogo()){
-                    info.innerHTML=`الشعار المحفوظ: ${companyLogo.width||'-'}×${companyLogo.height||'-'} بكسل — ${formatLogoBytes(companyLogo.bytes)} — آخر تحديث: ${escapePurchaseReportHtml(companyLogo.updatedAt||'-')}`;
+                    info.innerHTML=`الشعار المحفوظ: ${companyLogo.width||'-'}×${companyLogo.height||'-'} بكسل — ${formatLogoBytes(companyLogo.bytes)} — آخر تحديث: ${escapeHtml(companyLogo.updatedAt||'-')}`;
                 } else info.innerHTML='يُستخدم حالياً شعار VOLTECH الافتراضي.';
             }
             if(saveBtn){ saveBtn.disabled=!pendingCompanyLogo; saveBtn.style.opacity=pendingCompanyLogo?'1':'.5'; saveBtn.style.cursor=pendingCompanyLogo?'pointer':'not-allowed'; }
@@ -5297,7 +5346,7 @@ let lastAutoAddedBatchImei = '';
             });
             const money=n=>Number(n||0).toLocaleString('en-US')+' د.ع';
             const dateLabel=ms=>new Date(ms).toLocaleDateString('en-GB');
-            let html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>كشف مشتريات - ${escapePurchaseReportHtml(company)}</title><style>body{font-family:Arial,Tahoma,sans-serif;padding:28px;color:#111;background:#fff}h1{text-align:center;margin:0 0 8px;font-size:24px}h2{text-align:center;margin:0 0 18px;font-size:18px}.meta{text-align:center;color:#444;margin-bottom:20px;line-height:1.8}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.box{border:1px solid #777;padding:10px;text-align:center;border-radius:6px}.box b{display:block;font-size:16px;margin-top:5px}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #222;padding:8px;text-align:center;font-size:12px}th{background:#eee}.total-row{font-weight:bold;background:#f4f4f4}.sign{display:flex;justify-content:space-between;margin-top:55px;font-weight:bold}.empty{text-align:center;padding:30px;border:1px dashed #777;margin-top:20px}@media print{body{padding:12px}.no-print{display:none!important}}@page{size:A4;}</style></head><body><h1>كشف مشتريات المورد</h1><h2>الشركة الموردة: ${escapePurchaseReportHtml(company)}</h2><div class="meta">الفترة: ${escapePurchaseReportHtml(dateLabel(startMs))} إلى ${escapePurchaseReportHtml(dateLabel(endMs))}<br>تاريخ إصدار الكشف: ${escapePurchaseReportHtml(new Date().toLocaleDateString('en-GB'))}</div>`;
+            let html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>كشف مشتريات - ${escapeHtml(company)}</title><style>body{font-family:Arial,Tahoma,sans-serif;padding:28px;color:#111;background:#fff}h1{text-align:center;margin:0 0 8px;font-size:24px}h2{text-align:center;margin:0 0 18px;font-size:18px}.meta{text-align:center;color:#444;margin-bottom:20px;line-height:1.8}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.box{border:1px solid #777;padding:10px;text-align:center;border-radius:6px}.box b{display:block;font-size:16px;margin-top:5px}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #222;padding:8px;text-align:center;font-size:12px}th{background:#eee}.total-row{font-weight:bold;background:#f4f4f4}.sign{display:flex;justify-content:space-between;margin-top:55px;font-weight:bold}.empty{text-align:center;padding:30px;border:1px dashed #777;margin-top:20px}@media print{body{padding:12px}.no-print{display:none!important}}@page{size:A4;}</style></head><body><h1>كشف مشتريات المورد</h1><h2>الشركة الموردة: ${escapeHtml(company)}</h2><div class="meta">الفترة: ${escapeHtml(dateLabel(startMs))} إلى ${escapeHtml(dateLabel(endMs))}<br>تاريخ إصدار الكشف: ${escapeHtml(new Date().toLocaleDateString('en-GB'))}</div>`;
             html+=`<div class="summary"><div class="box">عدد القوائم<b>${rows.length}</b></div><div class="box">عدد القطع<b>${totalCount.toLocaleString('en-US')}</b></div><div class="box">إجمالي المشتريات<b>${money(totalCost)}</b></div><div class="box">المتبقي<b>${money(remainingTotal)}</b></div></div>`;
             if(!rows.length){
                 html+='<div class="empty">لا توجد قوائم مشتريات لهذه الشركة ضمن الفترة المحددة.</div>';
@@ -5310,11 +5359,11 @@ let lastAutoAddedBatchImei = '';
                     const paid=isPaid&&!isDebt?amount:0;
                     const remaining=amount-paid;
                     const status=isDebt?'آجل على حساب الشركة':(isPaid?'تم الدفع':'معلقة مالياً');
-                    html+=`<tr><td>${i+1}</td><td>${escapePurchaseReportHtml(p.date||dateLabel(Number(p.createdAt||p.id||0)))}</td><td><b>${escapePurchaseReportHtml(p.supplierInvoiceNo||p.invoiceNo||'-')}</b></td><td>${Number(p.count||0).toLocaleString('en-US')}</td><td>${money(amount)}</td><td>${escapePurchaseReportHtml(status)}</td><td>${money(paid)}</td><td>${money(remaining)}</td></tr>`;
+                    html+=`<tr><td>${i+1}</td><td>${escapeHtml(p.date||dateLabel(Number(p.createdAt||p.id||0)))}</td><td><b>${escapeHtml(p.supplierInvoiceNo||p.invoiceNo||'-')}</b></td><td>${Number(p.count||0).toLocaleString('en-US')}</td><td>${money(amount)}</td><td>${escapeHtml(status)}</td><td>${money(paid)}</td><td>${money(remaining)}</td></tr>`;
                 });
                 html+=`<tr class="total-row"><td colspan="3">الإجمالي</td><td>${totalCount.toLocaleString('en-US')}</td><td>${money(totalCost)}</td><td>-</td><td>${money(paidTotal)}</td><td>${money(remainingTotal)}</td></tr></tbody></table>`;
             }
-            html+=`<div class="sign"><span>توقيع ${escapePurchaseReportHtml(companyPlainName())}: __________________</span><span>توقيع الشركة الموردة: __________________</span></div></body></html>`;
+            html+=`<div class="sign"><span>توقيع ${escapeHtml(companyPlainName())}: __________________</span><span>توقيع الشركة الموردة: __________________</span></div></body></html>`;
             openPrintWindow(html,{autoPrint:true});
             const modal=document.getElementById('supplierReconciliationModal');
             if(modal)modal.style.display='none';
@@ -5324,7 +5373,7 @@ let lastAutoAddedBatchImei = '';
             const sel=document.getElementById('purchaseInvoiceSearchSupplier'); if(!sel)return;
             const current=sel.value;
             const names=[...new Set((purchasesLog||[]).map(p=>String(p.supplier||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
-            sel.innerHTML='<option value="">كل الشركات</option>'+names.map(n=>`<option value="${escapePurchaseReportHtml(n)}">${escapePurchaseReportHtml(n)}</option>`).join('');
+            sel.innerHTML='<option value="">كل الشركات</option>'+names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
             if(names.includes(current))sel.value=current;
         }
         function searchPurchaseInvoiceByNo(){
@@ -5430,7 +5479,7 @@ let lastAutoAddedBatchImei = '';
             const unitPrice=getPurchaseEditUnitPrice(item,cur);
             const qty=Math.max(1,Number(item.qty)||1);
             const containsImei=type==='device' || !!item.containsImei;
-            const esc=v=>escapePurchaseReportHtml(v);
+            const esc=v=>escapeHtml(v);
             return `<tr data-edit-row="${index}" data-type="${type}" data-contains-imei="${containsImei?'1':'0'}">
                 <td class="pe-index">${index+1}</td>
                 <td><span style="font-weight:800;color:${type==='device'?'#3498db':'#2ecc71'};">${type==='device'?'جهاز':'اكسسوار'}</span></td>
@@ -5643,10 +5692,10 @@ let lastAutoAddedBatchImei = '';
             document.getElementById('purchaseEditCurrency').value=String(p.currency||'IQD').toUpperCase()==='USD'?'USD':'IQD';
             document.getElementById('purchaseEditStatement').value=p.contentDescription||'';
             const notice=document.getElementById('purchaseEditNotice');
-            notice.innerHTML=`سيتم تعديل <b>السجل نفسه</b> رقم ${escapePurchaseReportHtml(p.invoiceNo||'-')}، مع المحافظة على رقم النظام والتاريخ والموظف وسجل التدقيق. يمكنك تعديل رقم قائمة المورد، المورد، العملة، البيان، الباركود، IMEI، الكمية، سعر الشراء وسعر البيع وحذف أو إضافة القطع.`;
+            notice.innerHTML=`سيتم تعديل <b>السجل نفسه</b> رقم ${escapeHtml(p.invoiceNo||'-')}، مع المحافظة على رقم النظام والتاريخ والموظف وسجل التدقيق. يمكنك تعديل رقم قائمة المورد، المورد، العملة، البيان، الباركود، IMEI، الكمية، سعر الشراء وسعر البيع وحذف أو إضافة القطع.`;
             const sel=document.getElementById('purchaseEditSupplier');
             const companies=[...new Set((accountsList||[]).filter(a=>a&&a.entityType==='company'&&!isFixedSystemAccount(a)).map(a=>String(a.name||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
-            sel.innerHTML='<option value="">اختيار الشركة</option>'+companies.map(c=>`<option value="${escapePurchaseReportHtml(c)}">${escapePurchaseReportHtml(c)}</option>`).join('');
+            sel.innerHTML='<option value="">اختيار الشركة</option>'+companies.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
             sel.value=p.supplier||'';
             const preview=document.getElementById('purchaseEditImagePreview'); preview.innerHTML=p.image?`<img src="${p.image}" style="max-width:180px;max-height:100px;object-fit:contain;border:1px solid var(--border-color);border-radius:8px;">`:'لا توجد صورة محفوظة.';
             document.getElementById('purchaseEditImage').value='';
@@ -6576,7 +6625,7 @@ let lastAutoAddedBatchImei = '';
             if(!lowItems.length){ box.innerHTML=''; return; }
             box.innerHTML=`<div style="background:rgba(231,76,60,.1);border:1px solid var(--accent-red);border-radius:10px;padding:12px;margin-bottom:12px;">
                 <b style="color:var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> تنبيه: ${lowItems.length} صنف وصل الحد الأدنى من المخزون</b>
-                <div style="margin-top:6px;font-size:12px;color:var(--text-muted);">${lowItems.map(i=>`${escapePurchaseReportHtml(i.company||'')} - ${escapePurchaseReportHtml(i.name||'')} (المتبقي: ${i.qty||0})`).join(' | ')}</div>
+                <div style="margin-top:6px;font-size:12px;color:var(--text-muted);">${lowItems.map(i=>`${escapeHtml(i.company||'')} - ${escapeHtml(i.name||'')} (المتبقي: ${i.qty||0})`).join(' | ')}</div>
             </div>`;
         }
 
@@ -7076,17 +7125,17 @@ let lastAutoAddedBatchImei = '';
             document.getElementById('printInvoiceNoRow').innerHTML=`رقم السند: <b id="printInvoiceNo">${String(Number(v.voucherNo)||1)}</b>`;
             document.getElementById('printDate').innerText=v.date||'';
             document.getElementById('printTime').innerText=v.time||'';
-            document.getElementById('printClientNameRow').innerHTML=`الاسم: <b id="printClientName" style="color:#fff;">${escapePurchaseReportHtml(acc.name||'')}</b>`;
+            document.getElementById('printClientNameRow').innerHTML=`الاسم: <b id="printClientName" style="color:#fff;">${escapeHtml(acc.name||'')}</b>`;
             document.getElementById('printClientPhoneRow').innerHTML=''; document.getElementById('printClientPhoneRow').style.display='none';
             setPrintSections({meta:true,table:false,total:false});
             const summaryBox=document.getElementById('printVoucherSummaryBox');
             if(summaryBox) summaryBox.innerHTML=`<div style="border:1px solid #3a3a46;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;">
                 <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #3a3a46;">حساب سابق: <b>${formatSignedBalance(v.balanceBefore)}</b></div>
                 <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #3a3a46;">${isReceipt?'قبض':'صرف'} مبلغ قدره: <b style="color:${isReceipt?'#2ecc71':'#ff2a4d'};">${Number(v.amount||0).toLocaleString('en-US')} د.ع</b></div>
-                <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #3a3a46;">الفرع المصدر: <b>${escapePurchaseReportHtml(v.branchName||branchName()||'-')}</b></div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #3a3a46;">الفرع المصدر: <b>${escapeHtml(v.branchName||branchName()||'-')}</b></div>
                 <div style="display:flex;justify-content:space-between;padding:4px 0;">الباقي: <b>${formatSignedBalance(v.balanceAfter)}</b></div>
             </div>
-            <div style="font-size:12px;margin-bottom:8px;">البيان: ${escapePurchaseReportHtml(v.note||'-')}</div>
+            <div style="font-size:12px;margin-bottom:8px;">البيان: ${escapeHtml(v.note||'-')}</div>
             <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">${amountToArabicWordsLine(v.amount)}</div>`;
             const footer=document.getElementById('printWarrantyNoteText');
             const footerWrap=footer?.closest('.invoice-footer-notes');
@@ -7147,15 +7196,15 @@ let lastAutoAddedBatchImei = '';
             if(q) list=list.filter(c=>String(c.name||'').toLowerCase().includes(q)||String(c.phone||'').toLowerCase().includes(q));
             list.sort((a,b)=>(b.lastPurchaseAt||0)-(a.lastPurchaseAt||0));
             if(!list.length){ tbody.innerHTML='<tr><td colspan="6" style="color:var(--text-muted);">لا يوجد زبائن مسجلون بعد</td></tr>'; return; }
-            tbody.innerHTML=list.map(c=>`<tr><td><b>${escapePurchaseReportHtml(c.name||'-')}</b></td><td>${escapePurchaseReportHtml(c.phone||'-')}</td><td>${c.invoiceCount||0}</td><td style="color:var(--accent-green);font-weight:800;">${(c.totalSpent||0).toLocaleString('en-US')} د.ع</td><td>${c.lastPurchaseAt?new Date(c.lastPurchaseAt).toLocaleDateString('en-GB'):'-'}</td><td><button class="btn-action" style="background:#5dade2;color:#fff;" onclick="showCustomerInvoiceHistory('${c.id}')"><i class="fa-solid fa-eye"></i> الفواتير</button></td></tr>`).join('');
+            tbody.innerHTML=list.map(c=>`<tr><td><b>${escapeHtml(c.name||'-')}</b></td><td>${escapeHtml(c.phone||'-')}</td><td>${c.invoiceCount||0}</td><td style="color:var(--accent-green);font-weight:800;">${(c.totalSpent||0).toLocaleString('en-US')} د.ع</td><td>${c.lastPurchaseAt?new Date(c.lastPurchaseAt).toLocaleDateString('en-GB'):'-'}</td><td><button class="btn-action" style="background:#5dade2;color:#fff;" onclick="showCustomerInvoiceHistory('${c.id}')"><i class="fa-solid fa-eye"></i> الفواتير</button></td></tr>`).join('');
         }
         function showCustomerInvoiceHistory(customerId){
             const c=(customersList||[]).find(x=>String(x.id)===String(customerId)); if(!c)return;
             const box=document.getElementById('customerInvoiceHistoryBox'); if(!box)return;
             const invoices=[...(deviceInvoicesArchive||[]),...(accessoryInvoicesArchive||[])].filter(i=>i&&String(i.clientPhone||'').trim()===String(c.phone||'').trim()).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-            const rows=invoices.map(i=>`<tr><td>${escapePurchaseReportHtml(i.invoiceNo||'-')}</td><td>${i.category==='device'?'جهاز':'اكسسوار'}</td><td>${(i.totalAmount||0).toLocaleString('en-US')} د.ع</td><td>${i.status==='cancelled'?'<span style="color:var(--accent-red);">ملغاة</span>':'فعالة'}</td><td>${i.date||'-'}</td><td><button class="btn-action" style="background:#5dade2;color:#fff;" onclick="previewLogOperationByInvoice(${i.id})"><i class="fa-solid fa-eye"></i></button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد فواتير لهذا الزبون</td></tr>';
+            const rows=invoices.map(i=>`<tr><td>${escapeHtml(i.invoiceNo||'-')}</td><td>${i.category==='device'?'جهاز':'اكسسوار'}</td><td>${(i.totalAmount||0).toLocaleString('en-US')} د.ع</td><td>${i.status==='cancelled'?'<span style="color:var(--accent-red);">ملغاة</span>':'فعالة'}</td><td>${i.date||'-'}</td><td><button class="btn-action" style="background:#5dade2;color:#fff;" onclick="previewLogOperationByInvoice(${i.id})"><i class="fa-solid fa-eye"></i></button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد فواتير لهذا الزبون</td></tr>';
             box.innerHTML=`<div style="border:1px dashed var(--accent-blue);border-radius:8px;padding:12px;">
-                <b style="color:var(--accent-blue);">فواتير الزبون: ${escapePurchaseReportHtml(c.name)} — ${escapePurchaseReportHtml(c.phone)}</b>
+                <b style="color:var(--accent-blue);">فواتير الزبون: ${escapeHtml(c.name)} — ${escapeHtml(c.phone)}</b>
                 <div class="table-container" style="margin-top:8px;max-height:260px;overflow:auto;"><table style="width:100%;"><thead><tr><th>الفاتورة</th><th>القسم</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th><th>معاينة</th></tr></thead><tbody>${rows}</tbody></table></div>
             </div>`;
         }
@@ -7207,7 +7256,7 @@ let lastAutoAddedBatchImei = '';
             const margin=d.totalRevenue>0?((d.totalProfit/d.totalRevenue)*100).toFixed(1):'0';
             const rowsHtml=d.rows.map(([name,x])=>{
                 const m=x.revenue>0?((x.profit/x.revenue)*100).toFixed(1):'0';
-                return `<tr><td style="text-align:right;">${escapePurchaseReportHtml(name)}</td><td>${x.qty}</td><td>${x.revenue.toLocaleString('en-US')}</td><td>${x.cost.toLocaleString('en-US')}</td><td style="color:${x.profit>=0?'var(--accent-green)':'var(--accent-red)'};font-weight:800;">${x.profit.toLocaleString('en-US')}</td><td>${m}%</td></tr>`;
+                return `<tr><td style="text-align:right;">${escapeHtml(name)}</td><td>${x.qty}</td><td>${x.revenue.toLocaleString('en-US')}</td><td>${x.cost.toLocaleString('en-US')}</td><td style="color:${x.profit>=0?'var(--accent-green)':'var(--accent-red)'};font-weight:800;">${x.profit.toLocaleString('en-US')}</td><td>${m}%</td></tr>`;
             }).join('');
             box.innerHTML=`<div id="profitReportPrintable">
                 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
@@ -7225,11 +7274,11 @@ let lastAutoAddedBatchImei = '';
             const margin=d.totalRevenue>0?((d.totalProfit/d.totalRevenue)*100).toFixed(1):'0';
             const rowsHtml=d.rows.map(([name,x])=>{
                 const m=x.revenue>0?((x.profit/x.revenue)*100).toFixed(1):'0';
-                return `<tr><td style="text-align:right;">${escapePurchaseReportHtml(name)}</td><td>${x.qty}</td><td>${x.revenue.toLocaleString('en-US')}</td><td>${x.cost.toLocaleString('en-US')}</td><td>${x.profit.toLocaleString('en-US')}</td><td>${m}%</td></tr>`;
+                return `<tr><td style="text-align:right;">${escapeHtml(name)}</td><td>${x.qty}</td><td>${x.revenue.toLocaleString('en-US')}</td><td>${x.cost.toLocaleString('en-US')}</td><td>${x.profit.toLocaleString('en-US')}</td><td>${m}%</td></tr>`;
             }).join('');
             const catLabel=category==='device'?'الأجهزة فقط':category==='accessory'?'الاكسسوارات فقط':'الكل';
             const html=`<html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>تقرير الربحية</title><style>@page{size:A4;}body{font-family:Tahoma,Arial,sans-serif;padding:24px;color:#111;}table{width:100%;border-collapse:collapse;margin-top:10px;}th,td{border:1px solid #999;padding:6px 8px;font-size:12px;text-align:center;}th{background:#eee;}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}.box{border:1px solid #999;border-radius:8px;padding:10px;text-align:center;}.box div{font-size:11px;color:#555;}.box b{font-size:15px;}</style></head><body>
-            <h2>تقرير الربحية التفصيلي — ${escapePurchaseReportHtml(branchName())}</h2>
+            <h2>تقرير الربحية التفصيلي — ${escapeHtml(branchName())}</h2>
             <p>الفترة: ${from||'—'} إلى ${to||'—'} — القسم: ${catLabel} — صدر بتاريخ: ${new Date().toLocaleDateString('en-GB')}</p>
             <div class="grid">
                 <div class="box"><div>عدد الفواتير</div><b>${d.invoiceCount}</b></div>
@@ -7262,7 +7311,7 @@ let lastAutoAddedBatchImei = '';
             const sum=document.getElementById('treasuryTransfersSummary');
             if(sum)sum.innerHTML=`عدد الحركات: <b>${rows.length}</b> &nbsp;|&nbsp; إجمالي المنقول إلى القاصة: <b style="color:var(--accent-blue);">${toVault.toLocaleString('en-US')} د.ع</b> &nbsp;|&nbsp; إجمالي المنقول إلى الكاشير: <b style="color:var(--accent-green);">${toCashier.toLocaleString('en-US')} د.ع</b>`;
             if(!rows.length){body.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:12px;">لا توجد حركات نقل مسجلة ضمن هذا التحديد.</td></tr>';return;}
-            body.innerHTML=rows.map((t,i)=>`<tr style="${t.reversed?'opacity:.55;text-decoration:line-through;':''}"><td>${rows.length-i}</td><td>${t.direction==='cashierToVault'?'<span style="color:var(--accent-blue);font-weight:800;">الكاشير ← القاصة</span>':'<span style="color:var(--accent-green);font-weight:800;">القاصة ← الكاشير</span>'}${t.reversed?' <small style="color:var(--accent-red);">(معكوسة)</small>':''}</td><td><b>${Number(t.amount||0).toLocaleString('en-US')} د.ع</b></td><td>${escapePurchaseReportHtml(t.by||'-')}</td><td>${t.cashierAfter!=null?Number(t.cashierAfter).toLocaleString('en-US'):'-'}</td><td>${t.vaultAfter!=null?Number(t.vaultAfter).toLocaleString('en-US'):'-'}</td><td>${escapePurchaseReportHtml(t.date||'')} ${escapePurchaseReportHtml(t.time||'')}</td></tr>`).join('');
+            body.innerHTML=rows.map((t,i)=>`<tr style="${t.reversed?'opacity:.55;text-decoration:line-through;':''}"><td>${rows.length-i}</td><td>${t.direction==='cashierToVault'?'<span style="color:var(--accent-blue);font-weight:800;">الكاشير ← القاصة</span>':'<span style="color:var(--accent-green);font-weight:800;">القاصة ← الكاشير</span>'}${t.reversed?' <small style="color:var(--accent-red);">(معكوسة)</small>':''}</td><td><b>${Number(t.amount||0).toLocaleString('en-US')} د.ع</b></td><td>${escapeHtml(t.by||'-')}</td><td>${t.cashierAfter!=null?Number(t.cashierAfter).toLocaleString('en-US'):'-'}</td><td>${t.vaultAfter!=null?Number(t.vaultAfter).toLocaleString('en-US'):'-'}</td><td>${escapeHtml(t.date||'')} ${escapeHtml(t.time||'')}</td></tr>`).join('');
         }
 
         function executeTreasuryTransfer() {
@@ -7354,10 +7403,11 @@ let lastAutoAddedBatchImei = '';
 
         function applyAdminOnlyFinanceVisibility(){
             const isAdmin = !!loggedInUser && ['admin','founder'].includes(loggedInUser.role);
+            const canIssueMonthly = isAdmin || (!!loggedInUser && loggedInUser.role==='accountant'); // المحاسب يصدر التقرير الشهري مثل اليومي، وجدول مبيعات الموظفين يبقى للمدير فقط
             const section = document.getElementById('employeeMonthlySalesSection');
             const reportBtn = document.getElementById('adminMonthlySalesReportBtn');
             if(section) section.style.display = isAdmin ? 'block' : 'none';
-            if(reportBtn) reportBtn.style.display = isAdmin ? 'block' : 'none';
+            if(reportBtn) reportBtn.style.display = canIssueMonthly ? 'block' : 'none';
         }
 
         function renderEmployeeSalesDashboard(){
@@ -7404,7 +7454,7 @@ let lastAutoAddedBatchImei = '';
         
 
         function issueMonthlyAccountsReport(){
-            if(!loggedInUser || !['admin','founder'].includes(loggedInUser.role)){vtAlert('تقرير المبيعات الشهرية متاح للمسؤول العام فقط.');return;}
+            if(!loggedInUser || !['admin','founder','accountant'].includes(loggedInUser.role)){vtAlert('تقرير المبيعات الشهرية متاح للمسؤول العام والمحاسب فقط.');return;}
             rolloverEmployeeMonthlySales();
             let month=employeeMonthlySalesState.month;
             if(Array.isArray(monthlyAccountsReportHistory) && monthlyAccountsReportHistory.some(r=>String(r.month)===String(month))){
@@ -7424,7 +7474,7 @@ let lastAutoAddedBatchImei = '';
             monthlyAccountsReportHistory.unshift(report); persistMonthlyAccountsReportHistory();
             let rows=entries.map(([name,e])=>`<tr><td>${name}</td><td>${(e.deviceSales||0).toLocaleString('en-US')} د.ع</td><td>${(e.accessorySales||0).toLocaleString('en-US')} د.ع</td><td>${(e.total||0).toLocaleString('en-US')} د.ع</td></tr>`).join('');
             const monthlyHtml=`<html dir="rtl"><head><meta charset="UTF-8"><title>تقرير المبيعات الشهرية - VOLTECH</title><style>@page{size:A4;}body{font-family:Arial;padding:30px}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border:1px solid #222;padding:10px;text-align:center}h1,h2{text-align:center}</style>
-</head><body><h1>تقرير المبيعات الشهرية - VOLTECH</h1><p style="text-align:center;">الفرع: <b>${escapePurchaseReportHtml(report.branchName)}</b></p><h2>الشهر: ${month}</h2><p><b>إجمالي المبيعات:</b> ${monthSales.toLocaleString('en-US')} د.ع</p><p><b>إجمالي الأرباح الشهرية:</b> ${monthProfit.toLocaleString('en-US')} د.ع</p><p><b>الأكثر مبيعات:</b> ${report.topEmployee} — ${report.topEmployeeSales.toLocaleString('en-US')} د.ع</p><table><tr><th>الموظف / عضو النظام</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th></tr>${rows||'<tr><td colspan="4">لا توجد مبيعات</td></tr>'}</table><table style="margin-top:16px;"><tr><th>رصيد الكاشير عند الإصدار</th><th>رصيد القاصة عند الإصدار</th></tr><tr><td>${report.cashierBalanceAtIssue.toLocaleString('en-US')} د.ع</td><td>${report.vaultBalanceAtIssue.toLocaleString('en-US')} د.ع</td></tr><tr><th colspan="2" style="background:#e8f6ec;">الإجمالي (الكاشير + القاصة): ${(report.cashierBalanceAtIssue+report.vaultBalanceAtIssue).toLocaleString('en-US')} د.ع</th></tr></table></body></html>`;
+</head><body><h1>تقرير المبيعات الشهرية - VOLTECH</h1><p style="text-align:center;">الفرع: <b>${escapeHtml(report.branchName)}</b></p><h2>الشهر: ${month}</h2><p><b>إجمالي المبيعات:</b> ${monthSales.toLocaleString('en-US')} د.ع</p><p><b>إجمالي الأرباح الشهرية:</b> ${monthProfit.toLocaleString('en-US')} د.ع</p><p><b>الأكثر مبيعات:</b> ${report.topEmployee} — ${report.topEmployeeSales.toLocaleString('en-US')} د.ع</p><table><tr><th>الموظف / عضو النظام</th><th>مبيعات الأجهزة</th><th>مبيعات الاكسسوارات</th><th>الإجمالي</th></tr>${rows||'<tr><td colspan="4">لا توجد مبيعات</td></tr>'}</table><table style="margin-top:16px;"><tr><th>رصيد الكاشير عند الإصدار</th><th>رصيد القاصة عند الإصدار</th></tr><tr><td>${report.cashierBalanceAtIssue.toLocaleString('en-US')} د.ع</td><td>${report.vaultBalanceAtIssue.toLocaleString('en-US')} د.ع</td></tr><tr><th colspan="2" style="background:#e8f6ec;">الإجمالي (الكاشير + القاصة): ${(report.cashierBalanceAtIssue+report.vaultBalanceAtIssue).toLocaleString('en-US')} د.ع</th></tr></table></body></html>`;
             openPrintWindow(monthlyHtml,{autoPrint:true});
             // تبدأ الدورة الشهرية التالية من أول يوم في الشهر التالي، وليس من يوم إصدار التقرير.
             const nextMonthStart=new Date(nowDate.getFullYear(),nowDate.getMonth()+1,1).getTime();
@@ -7656,7 +7706,7 @@ let lastAutoAddedBatchImei = '';
             const box=document.getElementById('printSocialBadge'); if(!box)return;
             const merged=!!(opts&&opts.merged);
             const b=(opts&&opts.branch)||branches.find(x=>Number(x.id)===Number(currentBranchId));
-            const esc=escapePurchaseReportHtml, rows=[], contact=[];
+            const esc=escapeHtml, rows=[], contact=[];
             if(b&&b.address) contact.push(`<span class="isb-addr"><i class="fa-solid fa-location-dot"></i> ${esc(b.address)}</span>`);
             if(b&&b.phones) contact.push(`<span class="isb-phones"><i class="fa-solid fa-phone"></i> ${esc(b.phones)}</span>`);
             if(contact.length) rows.push(merged?contact.join(''):`<div class="isb-contact">${contact.join('')}</div>`);
@@ -7865,9 +7915,6 @@ let lastAutoAddedBatchImei = '';
 
         let invoiceEditDraft=null;
 
-        function invoiceEditEsc(v){
-            return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
         function ensureInvoiceEditModal(){
             let modal=document.getElementById('invoiceEditModal');
             if(modal)return modal;
@@ -7896,24 +7943,24 @@ let lastAutoAddedBatchImei = '';
                 if(type==='device'){
                     return `<tr data-edit-row="${idx}">
                         <td>${idx+1}</td>
-                        <td><input data-e="company" value="${invoiceEditEsc(it.company||'')}"></td>
-                        <td><input data-e="model" value="${invoiceEditEsc(it.model||'')}"></td>
-                        <td><input data-e="color" value="${invoiceEditEsc(it.color||'')}"></td>
-                        <td><input data-e="memory" value="${invoiceEditEsc(it.memory||'')}"></td>
-                        <td><input data-e="imei" inputmode="numeric" value="${invoiceEditEsc(it.imei||'')}"></td>
-                        <td><input data-e="barcode" value="${invoiceEditEsc(it.barcode||'')}"></td>
+                        <td><input data-e="company" value="${escapeHtml(it.company||'')}"></td>
+                        <td><input data-e="model" value="${escapeHtml(it.model||'')}"></td>
+                        <td><input data-e="color" value="${escapeHtml(it.color||'')}"></td>
+                        <td><input data-e="memory" value="${escapeHtml(it.memory||'')}"></td>
+                        <td><input data-e="imei" inputmode="numeric" value="${escapeHtml(it.imei||'')}"></td>
+                        <td><input data-e="barcode" value="${escapeHtml(it.barcode||'')}"></td>
                         <td><input data-e="priceIQD" type="number" min="0" value="${Number(it.priceIQD)||0}"></td>
                         <td><button type="button" class="btn-action btn-delete" onclick="removeInvoiceEditItem(${idx})">حذف</button></td>
                     </tr>`;
                 }
                 return `<tr data-edit-row="${idx}">
                     <td>${idx+1}</td>
-                    <td><input data-e="company" value="${invoiceEditEsc(it.company||'')}"></td>
-                    <td><input data-e="name" value="${invoiceEditEsc(it.name||'')}"></td>
-                    <td><input data-e="color" value="${invoiceEditEsc(it.color||'')}"></td>
-                    <td><input data-e="memory" value="${invoiceEditEsc(it.memory||'')}"></td>
-                    <td><input data-e="barcode" value="${invoiceEditEsc(it.barcode||'')}"></td>
-                    <td><input data-e="imei" inputmode="numeric" value="${invoiceEditEsc(it.imei||'')}"></td>
+                    <td><input data-e="company" value="${escapeHtml(it.company||'')}"></td>
+                    <td><input data-e="name" value="${escapeHtml(it.name||'')}"></td>
+                    <td><input data-e="color" value="${escapeHtml(it.color||'')}"></td>
+                    <td><input data-e="memory" value="${escapeHtml(it.memory||'')}"></td>
+                    <td><input data-e="barcode" value="${escapeHtml(it.barcode||'')}"></td>
+                    <td><input data-e="imei" inputmode="numeric" value="${escapeHtml(it.imei||'')}"></td>
                     <td><input data-e="qty" type="number" min="1" step="1" value="${Math.max(1,Number(it.qty)||1)}"></td>
                     <td><input data-e="priceIQD" type="number" min="0" value="${Number(it.priceIQD)||0}"></td>
                     <td><button type="button" class="btn-action btn-delete" onclick="removeInvoiceEditItem(${idx})">حذف</button></td>
@@ -7922,12 +7969,12 @@ let lastAutoAddedBatchImei = '';
 
             const payment=inv.paymentType||'cash';
             const empNames=[...new Set([...(Array.isArray(salesInvoiceNames)?salesInvoiceNames:[]),inv.employeeName].map(n=>String(n||'').trim()).filter(Boolean))];
-            const employeeOptions=empNames.map(n=>`<option value="${invoiceEditEsc(n)}">${invoiceEditEsc(n)}</option>`).join('');
+            const employeeOptions=empNames.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
             body.innerHTML=`
                 <div class="invoice-edit-note"><b>تعديل كامل وآمن:</b> يمكنك إضافة/حذف المنتجات، تغيير العدد والسعر والاسم والباركود/IMEI، وبيانات الزبون والضمان والسداد. عند الحفظ يعاد احتساب المخزون والحسابات والصندوق والتقارير كعملية واحدة، وإذا فشل أي جزء لا يعتمد التعديل.</div>
                 <div class="invoice-edit-grid">
-                    <div><label>اسم الزبون</label><input id="invoiceEditClientName" value="${invoiceEditEsc(inv.clientName||'')}"></div>
-                    <div><label>رقم الزبون</label><input id="invoiceEditClientPhone" value="${invoiceEditEsc(inv.clientPhone||'')}"></div>
+                    <div><label>اسم الزبون</label><input id="invoiceEditClientName" value="${escapeHtml(inv.clientName||'')}"></div>
+                    <div><label>رقم الزبون</label><input id="invoiceEditClientPhone" value="${escapeHtml(inv.clientPhone||'')}"></div>
                     <div><label>نوع الضمان</label><select id="invoiceEditWarranty"><option value="normal">ضمان عادي</option><option value="vip">ضمان VIP</option></select></div>
                     <div><label>آلية السداد</label><select id="invoiceEditPaymentType" onchange="renderInvoiceEditPaymentFields()">
                         <option value="cash">نقداً</option><option value="pos">POS</option><option value="mixed">مختلط</option><option value="debt">آجل</option><option value="installment">أقساط</option>
@@ -7973,7 +8020,7 @@ let lastAutoAddedBatchImei = '';
             if(type==='mixed'){
                 html=`<div class="invoice-edit-grid"><div><label>POS</label><input id="invoiceEditPos" type="number" min="0" value="${Number(inv.posPaidAmount)||0}"></div><div><label>الكاشير</label><input id="invoiceEditCash" type="number" min="0" value="${Number(inv.cashPaidAmount)||0}"></div></div>`;
             }else if(type==='debt'){
-                html=`<div><label>تسجيل الآجل على</label><select id="invoiceEditDebt">${(accountsList||[]).filter(a=>!isFixedSystemAccount(a)&&(a.entityType==='person'||a.entityType==='company')).map(a=>`<option value="${a.id}">${invoiceEditEsc(a.name||'')}</option>`).join('')}</select></div>`;
+                html=`<div><label>تسجيل الآجل على</label><select id="invoiceEditDebt">${(accountsList||[]).filter(a=>!isFixedSystemAccount(a)&&(a.entityType==='person'||a.entityType==='company')).map(a=>`<option value="${a.id}">${escapeHtml(a.name||'')}</option>`).join('')}</select></div>`;
             }else if(type==='installment'){
                 const oldPlan=Array.isArray(inv.installmentPlan)?inv.installmentPlan:[];
                 const hasPayments=oldPlan.some(x=>Number(x.paid||0)>0)||oldPlan.some(x=>Array.isArray(x.payments)&&x.payments.length);
@@ -7982,7 +8029,7 @@ let lastAutoAddedBatchImei = '';
                     <div><label>الدفعة الأولى</label><input id="invoiceEditInstallmentDown" type="number" min="0" value="${Number(inv.installmentDownPayment)||0}" ${hasPayments?'disabled':''}></div>
                     <div><label>مصدر الدفعة الأولى</label><select id="invoiceEditInstallmentSource" ${hasPayments?'disabled':''}><option value="cashier">الكاشير</option><option value="pos">POS</option></select></div>
                     <div><label>الفترة</label><select id="invoiceEditInstallmentFrequency" ${hasPayments?'disabled':''}><option value="monthly">شهري</option><option value="45days">كل 45 يوم</option></select></div>
-                    <div><label>أول استحقاق</label><input id="invoiceEditInstallmentFirst" type="date" value="${invoiceEditEsc(inv.installmentFirstDueDate||getDefaultInstallmentFirstDueDate())}" ${hasPayments?'disabled':''}></div>
+                    <div><label>أول استحقاق</label><input id="invoiceEditInstallmentFirst" type="date" value="${escapeHtml(inv.installmentFirstDueDate||getDefaultInstallmentFirstDueDate())}" ${hasPayments?'disabled':''}></div>
                     <div style="grid-column:1/-1;font-size:12px;color:var(--text-muted);">${hasPayments?'تم تحصيل مبالغ من هذه الفاتورة، لذلك تبقى تواريخ/هيكل الأقساط والمدفوعات السابقة محفوظة ويعاد توزيع المتبقي فقط.':''}</div>
                 </div>`;
             }
@@ -8113,7 +8160,6 @@ let lastAutoAddedBatchImei = '';
             const old=Array.isArray(oldInv.installmentPlan)?JSON.parse(JSON.stringify(oldInv.installmentPlan||[])):[];
             const oldPaid=old.reduce((s,x)=>s+Number(x.paid||0),0);
             if(down+oldPaid>total+0.000001)throw new Error('الإجمالي الجديد أقل من المبالغ التي تم تحصيلها سابقاً في الأقساط.');
-            const dates=[];
             const hasPayments=old.some(x=>Number(x.paid||0)>0||Array.isArray(x.payments)&&x.payments.length);
             if(hasPayments){
                 const plan=old.map(x=>{x.amount=Number(x.amount)||0;x.paid=Number(x.paid)||0;x.remaining=Math.max(0,x.amount-x.paid);x.status=x.remaining<=.000001?'paid':(x.paid>0?'partial':'pending');return x;});
@@ -8486,7 +8532,7 @@ let lastAutoAddedBatchImei = '';
 
         // ===== VOLTECH SUPABASE READY CONTRACT =====
         // لا توجد مفاتيح سرية هنا. الربط الفعلي يتم لاحقاً عبر publishable key + Auth + RLS + Postgres RPC.
-        const VOLTECH_SUPABASE_READY={enabled:false,founderOnly:true,provider:'supabase',serviceRoleKeyAllowedInBrowser:false,branchScopedTables:['sales_invoices','sales_invoice_items','sale_payments','purchase_invoices','purchase_invoice_items','purchase_payments','accounts','account_ledger','device_stock','accessory_stock','inventory_movements','audit_logs','daily_reports','monthly_reports','maintenance_records','maintenance_agencies','maintenance_notifications','delivery_receipts','delivery_companies'],centralTables:['company_settings','device_catalog','accessory_catalog','brands','warehouses'],rpcTransactions:['issue_sale_invoice','cancel_sale_invoice','record_sale_payment','record_purchase','record_purchase_payment','record_voucher','record_treasury_transfer','record_expense','receive_maintenance','update_maintenance','issue_delivery_receipt','edit_delivery_receipt'],security:['auth_profiles','branch_membership','role_based_access','row_level_security','server_side_validation','atomic_transactions']};
+        const VOLTECH_SUPABASE_READY={enabled:false,founderOnly:true,provider:'supabase',serviceRoleKeyAllowedInBrowser:false,schema:'supabase/schema.sql',branchScopedTables:['sales_invoices','sales_invoice_items','sale_payments','purchase_invoices','purchase_invoice_items','purchase_payments','accounts','account_ledger','treasury_transfers','device_stock','accessory_stock','inventory_movements','delivery_companies','delivery_receipts','maintenance_agencies','maintenance_records','maintenance_notifications','customers','daily_reports','monthly_reports','audit_logs'],centralTables:['branches','profiles','company_settings','device_catalog','accessory_catalog','founder_private_logs','branch_counters'],rpcTransactions:['next_counter','issue_sale_invoice','cancel_sale_invoice','record_sale_payment','record_purchase','record_purchase_payment','record_voucher','record_treasury_transfer','issue_delivery_receipt','edit_delivery_receipt','receive_maintenance','update_maintenance'],rpcImplemented:['next_counter'],security:['auth_profiles','branch_scoping','role_based_access','row_level_security','server_side_validation','atomic_transactions']};
         window.VOLTECH_SUPABASE_READY=VOLTECH_SUPABASE_READY;
 
         // ===== تشغيل النظام من مصدر بيانات واحد فقط =====
@@ -8521,7 +8567,7 @@ let lastAutoAddedBatchImei = '';
             let appData={};
             try{appData=JSON.parse(localStorage.getItem(APP_STORE_KEY)||'{}');}catch(_){appData=appStatePayload();}
             const localStorageSnapshot={};
-            try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k)localStorageSnapshot[k]=localStorage.getItem(k);}}catch(_){ }
+            try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&!VT_BACKUP_EXCLUDED_KEYS.has(k))localStorageSnapshot[k]=localStorage.getItem(k);}}catch(_){ }
             const backup={backupType:'VOLTECH_FULL_BACKUP',backupVersion:2,createdAt:new Date().toISOString(),createdBy:(loggedInUser&&loggedInUser.name)||'',appStoreKey:APP_STORE_KEY,appData,localStorageSnapshot};
             backup.checksum=voltechChecksum(JSON.stringify({appData,localStorageSnapshot}));
             return backup;
@@ -8577,18 +8623,18 @@ let lastAutoAddedBatchImei = '';
             if(!saveAllAppState()){vtAlert('تعذر حفظ حالة النظام الحالية.');return;}
             const backup=buildBranchBackupObject();
             const jsonText=JSON.stringify(backup);
-            const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>نسخة احتياطية - ${escapePurchaseReportHtml(backup.branchName)}</title>
+            const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>نسخة احتياطية - ${escapeHtml(backup.branchName)}</title>
             <style>@page{size:A4;}body{font-family:Arial,Tahoma,sans-serif;padding:24px;color:#111}h1,h2{text-align:center;margin:0 0 6px}
             .meta{text-align:center;color:#444;line-height:1.9;margin-bottom:14px}
             .warn{border:1px dashed #c0392b;color:#c0392b;padding:10px;border-radius:8px;font-size:12px;margin:14px 0;text-align:center;}
             pre{white-space:pre-wrap;word-break:break-all;font-size:8px;line-height:1.4;border:1px solid #999;padding:10px;border-radius:6px;background:#fafafa;direction:ltr;text-align:left;}</style>
             </head><body>
-            <h1>VOLTECH — نسخة احتياطية لفرع</h1><h2>${escapePurchaseReportHtml(backup.branchName)}</h2>
-            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapePurchaseReportHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}</div>
+            <h1>VOLTECH — نسخة احتياطية لفرع</h1><h2>${escapeHtml(backup.branchName)}</h2>
+            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapeHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}</div>
             ${backupSummaryCountsHtml(backup.data)}
             <div class="warn">هذه نسخة للأرشفة والقراءة والاستعادة اليدوية عند الحاجة. يُفضّل الاحتفاظ أيضاً بملف JSON (زر "تصدير JSON") لاستعادة تلقائية أسرع وأدق. لا تُعدّل أي حرف داخل النص التالي عند نسخه لاستخدامه بالاستعادة.</div>
             <div style="font-weight:900;margin-top:10px;">بيانات الاستعادة (JSON) — انسخ النص كاملاً إذا احتجت الاستعادة يدوياً:</div>
-            <pre>${escapePurchaseReportHtml(jsonText)}</pre>
+            <pre>${escapeHtml(jsonText)}</pre>
             </body></html>`;
             openPrintWindow(html,{autoPrint:false});
             const el=document.getElementById('voltechBackupStatus');if(el)el.innerText='تم تجهيز نسخة PDF لفرع «'+backup.branchName+'» — رمز التحقق: '+backup.checksum;
@@ -8598,7 +8644,7 @@ let lastAutoAddedBatchImei = '';
             if(!saveAllAppState()){vtAlert('تعذر حفظ حالة النظام الحالية.');return;}
             const backup=buildVoltechBackupObject();
             const jsonText=JSON.stringify(backup);
-            const branchesSummary=(branches||[]).map(b=>{const d=branchDataStore[Number(b.id)]||{}; return `<tr><td style="border:1px solid #999;padding:6px;text-align:center;">${escapePurchaseReportHtml(b.name)}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${(d.deviceInvoicesArchive||[]).length+(d.accessoryInvoicesArchive||[]).length}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${Number(d.cashierBalance||0).toLocaleString('en-US')}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${Number(d.vaultBalance||0).toLocaleString('en-US')}</td></tr>`;}).join('');
+            const branchesSummary=(branches||[]).map(b=>{const d=branchDataStore[Number(b.id)]||{}; return `<tr><td style="border:1px solid #999;padding:6px;text-align:center;">${escapeHtml(b.name)}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${(d.deviceInvoicesArchive||[]).length+(d.accessoryInvoicesArchive||[]).length}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${Number(d.cashierBalance||0).toLocaleString('en-US')}</td><td style="border:1px solid #999;padding:6px;text-align:center;">${Number(d.vaultBalance||0).toLocaleString('en-US')}</td></tr>`;}).join('');
             const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>نسخة احتياطية كاملة - VOLTECH</title>
             <style>@page{size:A4;}body{font-family:Arial,Tahoma,sans-serif;padding:24px;color:#111}h1{text-align:center;margin:0 0 6px}
             .meta{text-align:center;color:#444;line-height:1.9;margin-bottom:14px}
@@ -8607,11 +8653,11 @@ let lastAutoAddedBatchImei = '';
             pre{white-space:pre-wrap;word-break:break-all;font-size:7px;line-height:1.35;border:1px solid #999;padding:10px;border-radius:6px;background:#fafafa;direction:ltr;text-align:left;}</style>
             </head><body>
             <h1>VOLTECH — نسخة احتياطية كاملة (كل الفروع والبيانات المركزية والإعدادات)</h1>
-            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapePurchaseReportHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}<br>عدد الفروع: ${(branches||[]).length}<br>شعار الشركة: ${hasCompanyLogo()?'مخصص (محفوظ ضمن النسخة)':'الافتراضي VOLTECH'}</div>
+            <div class="meta">تاريخ الإصدار: ${new Date(backup.createdAt).toLocaleString('en-GB')}<br>بواسطة: ${escapeHtml(backup.createdBy)}<br>رمز التحقق (Checksum): ${backup.checksum}<br>عدد الفروع: ${(branches||[]).length}<br>شعار الشركة: ${hasCompanyLogo()?'مخصص (محفوظ ضمن النسخة)':'الافتراضي VOLTECH'}</div>
             <table><thead><tr><th>الفرع</th><th>عدد الفواتير</th><th>الكاشير</th><th>القاصة</th></tr></thead><tbody>${branchesSummary}</tbody></table>
             <div class="warn">هذه نسخة للأرشفة والقراءة والاستعادة اليدوية عند الحاجة. يُفضّل الاحتفاظ أيضاً بملف JSON (زر "تصدير النسخة") لاستعادة تلقائية أسرع وأدق، خصوصاً أن حجم البيانات الكامل قد يجعل النص التالي طويلاً جداً. لا تُعدّل أي حرف داخل النص عند نسخه.</div>
             <div style="font-weight:900;margin-top:10px;">بيانات الاستعادة الكاملة (JSON):</div>
-            <pre>${escapePurchaseReportHtml(jsonText)}</pre>
+            <pre>${escapeHtml(jsonText)}</pre>
             </body></html>`;
             openPrintWindow(html,{autoPrint:false});
             const el=document.getElementById('voltechBackupStatus');if(el)el.innerText='تم تجهيز نسخة PDF كاملة لكل النظام — رمز التحقق: '+backup.checksum;
@@ -8641,12 +8687,12 @@ let lastAutoAddedBatchImei = '';
             const validChecksum=parsed.checksum&&voltechChecksum(dataForChecksum)===parsed.checksum;
             pendingRestoreBackup=parsed;
             const box=document.getElementById('restorePreviewBox'); if(!box)return;
-            const typeLabel=parsed.backupType==='VOLTECH_FULL_BACKUP'?'نسخة كاملة لكل النظام':`نسخة فرع: ${escapePurchaseReportHtml(parsed.branchName||'')}`;
+            const typeLabel=parsed.backupType==='VOLTECH_FULL_BACKUP'?'نسخة كاملة لكل النظام':`نسخة فرع: ${escapeHtml(parsed.branchName||'')}`;
             box.innerHTML=`<div style="padding:12px;border:1px solid ${validChecksum?'var(--accent-green)':'var(--accent-red)'};border-radius:8px;">
                 <b>${validChecksum?'✅ رمز التحقق سليم — الملف غير تالف':'⚠️ رمز التحقق غير مطابق أو غير موجود — قد يكون الملف ناقصاً أو مُعدَّلاً'}</b><br>
                 نوع النسخة: ${typeLabel}<br>
                 تاريخ إنشائها: ${parsed.createdAt?new Date(parsed.createdAt).toLocaleString('en-GB'):'غير معروف'}<br>
-                بواسطة: ${escapePurchaseReportHtml(parsed.createdBy||'غير معروف')}<br>
+                بواسطة: ${escapeHtml(parsed.createdBy||'غير معروف')}<br>
                 شعار الشركة: ${((parsed.backupType==='VOLTECH_FULL_BACKUP'?parsed.appData?.companyLogo:parsed.companyLogo)?.dataUrl)?'موجود ضمن النسخة وسيُستعاد':'غير موجود (يبقى الشعار الحالي)'}
                 </div>
                 <div style="margin-top:10px;">للتأكيد، اكتب كلمة <b>استعادة</b> بالمربع ثم اضغط تنفيذ الاستعادة. سيتم أخذ نسخة أمان تلقائية من البيانات الحالية قبل أي استبدال.</div>
@@ -8668,8 +8714,10 @@ let lastAutoAddedBatchImei = '';
                 if(backup.backupType==='VOLTECH_FULL_BACKUP'){
                     const snapshot=backup.localStorageSnapshot||{};
                     if(!Object.keys(snapshot).length){vtAlert('النسخة الكاملة لا تحتوي بيانات localStorage صالحة.');return;}
+                    const keepKeys={}; ['voltech_pre_restore_safety_backup',VT_CLOUD_CFG_KEY].forEach(k=>{const v=localStorage.getItem(k); if(v!==null) keepKeys[k]=v;});
                     localStorage.clear();
-                    Object.entries(snapshot).forEach(([k,v])=>{ try{localStorage.setItem(k,v);}catch(_){} });
+                    Object.entries(snapshot).forEach(([k,v])=>{ if(!VT_BACKUP_EXCLUDED_KEYS.has(k)){ try{localStorage.setItem(k,v);}catch(_){} } });
+                    Object.entries(keepKeys).forEach(([k,v])=>{ try{localStorage.setItem(k,v);}catch(_){} });
                     vtAlert('تمت استعادة النسخة الكاملة بنجاح. ستُعاد الصفحة الآن.');
                 }else{
                     const targetIdRaw=prompt('رقم الفرع الذي تريد استعادة هذه البيانات إليه (اتركه كما هو إن لم تكن متأكداً):',String(backup.branchId||currentBranchId||1));
